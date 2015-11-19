@@ -46,7 +46,7 @@ public abstract class Employee implements Serializable{
 	@JoinColumn(name="employeeId")
 	private Paymethod paymethod;
 	
-	// TO DO
+	// TO DO un po di più
 	@ManyToOne
 	private Union union;
 	
