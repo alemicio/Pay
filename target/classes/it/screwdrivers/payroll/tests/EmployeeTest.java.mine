@@ -1,0 +1,60 @@
+package it.screwdrivers.payroll.tests;
+
+import it.screwdrivers.payroll.dao.EmployeeDao;
+import it.screwdrivers.payroll.pojo.Employee;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(Arquillian.class)
+public class EmployeeTest extends ArquillianTest {
+	
+	
+	@Inject EmployeeDao employee_dao;
+
+	@Test
+	public void testEmployee(){
+		
+		Employee employee = new Employee();
+		
+		//aggiunta di un employee al db
+		employee.setName("carlo");
+		employee.setSurname("Bobba");
+		employee.setE_mail("carlo.bobba01@ATENEOPV.IT");
+		employee.setPhone_number("339-3930243940");
+		employee.setPostal_address("Pavia, via Olevano");
+		employee.setUsername("carlo91b");
+		employee.setPassword("password");
+		
+		employee_dao.add(employee);
+		
+		// Suppose to go down into the database
+		List<Employee> employees = employee_dao.findAll();
+
+		// now we check if the person was in fact added
+		boolean found = false;
+		int number_employees_before=0;
+		int number_employees_after=0;
+		
+		for (Employee e : employees) {
+			number_employees_before++;
+			if ("carlo91b".equals(e.getUsername()) && "password".equals(e.getPassword())) {
+				found = true;
+				break;
+			}
+		}
+
+		Assert.assertTrue("Bobba was found", found);
+		
+		
+		
+		
+	}
+
+}
