@@ -47,7 +47,7 @@ public abstract class Employee implements Serializable{
 	private Paymethod paymethod;
 	
 	// TO DO
-	//ciao beppe
+	// occorre capire come gestire la union
 	@ManyToOne
 	private Union union;
 	
