@@ -27,7 +27,6 @@ public class Union implements Serializable{
 	// Since a Union may be associated to one or more Employee,
 	// this attribute must be a List
 	@OneToMany(mappedBy = "union")
-	@JoinColumn(name = "unionId")
 	private List<Employee> employees;
 	
 	public String getPhone_number() {
