@@ -2,10 +2,12 @@ package it.screwdrivers.payroll.pojo;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,7 +24,7 @@ public class Union implements Serializable{
 	private String phone_number;
 	private String name;
 	
-	//TODO //CAPIRE come realzionare
+	@OneToMany
 	private Employee employee;
 	
 	public String getPhone_number() {

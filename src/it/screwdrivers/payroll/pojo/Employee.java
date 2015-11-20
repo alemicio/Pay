@@ -49,11 +49,9 @@ public abstract class Employee implements Serializable{
 	@JoinColumn(name="employeeId")
 	private Paymethod paymethod;
 	
-	// TO DO
-	// occorre capire come gestire la union
 	@ManyToOne
+	@JoinColumn(name="unionId")
 	private Union union;
-	
 	
 	public String getUsername() {
 		return username;
