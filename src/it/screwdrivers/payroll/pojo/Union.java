@@ -1,6 +1,7 @@
 package it.screwdrivers.payroll.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,8 +25,11 @@ public class Union implements Serializable{
 	private String phone_number;
 	private String name;
 	
-	@OneToMany
-	private Employee employee;
+	// Since a Union may be associated to one or more Employee,
+	// this attribute must be a List
+	@OneToMany(mappedBy = "union")
+	@JoinColumn(name = "unionId")
+	private List<Employee> employees;
 	
 	public String getPhone_number() {
 		return phone_number;
