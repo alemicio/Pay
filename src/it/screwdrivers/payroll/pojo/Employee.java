@@ -16,8 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-//this class must be abstract --> cannot be instantiated a generic employee.
-
 @Entity
 @Table(name = "Employee")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
