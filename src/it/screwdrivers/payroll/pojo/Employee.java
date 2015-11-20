@@ -2,6 +2,7 @@ package it.screwdrivers.payroll.pojo;
 
 import java.io.Serializable;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -15,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+// ciao sono billuz
 
 //this class must be abstract --> cannot be instantiated a generic employee.
 
