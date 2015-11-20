@@ -3,3 +3,5 @@
 target/m2e-wtp/web-resources/META-INF/maven/it.unipv/Pay/pom.properties
 
 
+
+*.properties
