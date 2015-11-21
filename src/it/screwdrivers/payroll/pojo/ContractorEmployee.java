@@ -1,7 +1,10 @@
 package it.screwdrivers.payroll.pojo;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +15,10 @@ public class ContractorEmployee extends Employee {
 	private static final long serialVersionUID = 1L;
 	
 	private float hourly_rate; //see "BigDecimal"
+	
+	//relationship for time card
+	@OneToMany(mappedBy="contractor_employee")
+	private List<TimeCard> timecards;
 
 	public float getHourly_rate() {
 		return hourly_rate;
