@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.pojo;
+package it.screwdrivers.payroll.pojo.union;
 
 import java.io.Serializable;
 
@@ -12,17 +12,17 @@ import javax.persistence.Table;
 
 // Questa classe rappresenta l'associazione tra Union e Service. Deriva dalla
 // molti a molti. Usa, come chiave primaria, una chiave composta da union_id
-// e union_service_id. Creare una chiave composta in questa classe non è possibile,
+// e union_service_id. Creare una chiave composta in questa classe non ï¿½ possibile,
 // quindi dobbiamo appoggiarci su una classe UnionServiceAssociationId che diventa
 // la chiave composta(vedi UnionServiceAssociationId). Questa classe che fa da chiave
 // primaria composta, la linko qui dentro tramite @IdClass(UnionServiceAssociationId.class).
 // A questo punto, posso definire due attributi, annotati come @Id, che corrispondono a 
 // quelli definiti nella classe UnionServiceAssociationId. 
-// Ma qual'è la figata?
-// La figata è che uso la chiave primaria, composta da union_id e union_service_id, per
+// Ma qual'ï¿½ la figata?
+// La figata ï¿½ che uso la chiave primaria, composta da union_id e union_service_id, per
 // fare la join con le tabelle Union e UnionService. Per dire che voglio usare union_id
-// (che è parte della chiave primaria di UnionServiceAssociatio) come anello di congiunzione
-// con la chiave primaria di Union (che è semplicemente id), uso:
+// (che ï¿½ parte della chiave primaria di UnionServiceAssociatio) come anello di congiunzione
+// con la chiave primaria di Union (che ï¿½ semplicemente id), uso:
 //
 // @PrimaryKeyJoinColumn(name = "union_id", referencedColumnName = "id")
 //

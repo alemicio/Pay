@@ -1,4 +1,6 @@
-package it.screwdrivers.payroll.pojo;
+package it.screwdrivers.payroll.pojo.payment;
+
+import it.screwdrivers.payroll.pojo.employee.Employee;
 
 import java.io.Serializable;
 

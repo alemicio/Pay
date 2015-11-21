@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.pojo;
+package it.screwdrivers.payroll.pojo.union;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ public class UnionServiceAssociationId implements Serializable {
 	private int union_id;
 	private int union_service_id;
 
-	// Perchè bisogna mettere questi due metodi non lo so ancora... ma vanno
+	// Perchï¿½ bisogna mettere questi due metodi non lo so ancora... ma vanno
 	// messi.
 	public int hashCode() {
 		return (int) (union_id + union_service_id);
