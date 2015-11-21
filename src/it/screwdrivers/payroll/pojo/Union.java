@@ -28,6 +28,9 @@ public class Union implements Serializable{
 	@OneToMany(mappedBy = "union")
 	private List<Employee> employees;
 	
+	@OneToMany(mappedBy="union")
+	private List<UnionServiceAssociation> union_service_associations;
+	
 	public String getPhone_number() {
 		return phone_number;
 	}

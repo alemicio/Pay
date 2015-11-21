@@ -1,16 +1,18 @@
 package it.screwdrivers.payroll.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="UnionService")
-public class UnionServices implements Serializable{
+public class UnionService implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -20,6 +22,9 @@ public class UnionServices implements Serializable{
 	
 	private String name;
 	private String description;
+	
+	@OneToMany(mappedBy="union_service")
+	private List<UnionServiceAssociation> union_service_associations;
 	
 	public String getDescription() {
 		return description;
