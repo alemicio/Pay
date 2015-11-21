@@ -24,6 +24,9 @@ public class TimeCard implements Serializable {
 	private Time start_time;
 	private Time end_time;
 	
+	//to do 
+	//We need to have a relationship with the Contractor employee
+	
 	
 	public Date getDate() {
 		return date;
