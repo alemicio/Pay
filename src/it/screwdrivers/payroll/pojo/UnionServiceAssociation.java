@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -29,6 +30,14 @@ import javax.persistence.Table;
 //           corrente, ovvero UnionServiceAssociation.
 //
 // . referencedColumnName => nome della chiave primaria della tabella Union (che voglio JOINARE)
+// 
+// Nel tutorial che ho seguito, https://en.wikibooks.org/wiki/Java_Persistence/ManyToMany,
+// mi dice che, se lanciando il server non riesco a creare la tabella UnionServiceAssociation,
+// allora devo usare una forma alternativa al @PrimaryKeyJoinColumn, ovvero:
+//
+//	@JoinColumn(name = "employeeId", updatable = false, insertable = false, referencedColumnName = "id")
+//
+// Ho provato questa nuova versione. FUNZIONA
 @Entity
 @Table(name = "UnionServiceAssociation")
 @IdClass(UnionServiceAssociationId.class)
@@ -43,10 +52,12 @@ public class UnionServiceAssociation implements Serializable {
 	private int union_service_id;
 
 	@ManyToOne
-	@PrimaryKeyJoinColumn(name = "union_id", referencedColumnName = "id")
+	//@PrimaryKeyJoinColumn(name = "union_id", referencedColumnName = "id")
+	@JoinColumn(name = "union_id", updatable = false, insertable = false, referencedColumnName = "id")
 	private Union union;
 
 	@ManyToOne
-	@PrimaryKeyJoinColumn(name = "union_service_id", referencedColumnName = "id")
+	//@PrimaryKeyJoinColumn(name = "union_service_id", referencedColumnName = "id")
+	@JoinColumn(name = "union_service_id", updatable = false, insertable = false, referencedColumnName = "id")
 	private UnionService union_service;
 }
