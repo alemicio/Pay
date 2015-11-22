@@ -36,17 +36,27 @@ public class AddingTest extends ArquillianTest {
 
 		Boolean test = false;
 		employee_dao.add(employee_salaried);
-		test = true;
+
+		List<Employee> employees = employee_dao.findAll();
+
+		for (Employee employee : employees) {
+
+			if (employee.getUsername().equals("bonaz")) {
+				test = true;
+			}
+		}
+
+		// test = true;
 		assertTrue(test);
 	}
 
 	@Test
 	public void testAddingContractor() {
 		ContractorEmployee employee_contractor = new ContractorEmployee();
-		employee_contractor.setName("davide");
-		employee_contractor.setSurname("bonamico");
-		employee_contractor.setUsername("bonaz");
-		employee_contractor.setPassword("bingo");
+		employee_contractor.setName("andrea");
+		employee_contractor.setSurname("mognaschi");
+		employee_contractor.setUsername("munci");
+		employee_contractor.setPassword("munci");
 		employee_contractor.setE_mail("a@bi.it");
 		employee_contractor.setPhone_number("3331112233");
 		employee_contractor.setPostal_address("via roma 1");
@@ -55,17 +65,26 @@ public class AddingTest extends ArquillianTest {
 
 		Boolean test = false;
 		employee_dao.add(employee_contractor);
-		test = true;
+
+		List<Employee> employees = employee_dao.findAll();
+
+		for (Employee employee : employees) {
+
+			if (employee.getUsername().equals("munci")) {
+				test = true;
+			}
+		}
+		// test = true;
 		assertTrue(test);
 	}
 
 	@Test
 	public void testAddingCommissioned() {
 		CommissionedEmployee employee_commissioned = new CommissionedEmployee();
-		employee_commissioned.setName("davide");
-		employee_commissioned.setSurname("bonamico");
-		employee_commissioned.setUsername("bonaz");
-		employee_commissioned.setPassword("bingo");
+		employee_commissioned.setName("gianpaolo");
+		employee_commissioned.setSurname("molinelli");
+		employee_commissioned.setUsername("moli");
+		employee_commissioned.setPassword("moli");
 		employee_commissioned.setE_mail("a@bi.it");
 		employee_commissioned.setPhone_number("3331112233");
 		employee_commissioned.setPostal_address("via roma 1");
@@ -75,6 +94,15 @@ public class AddingTest extends ArquillianTest {
 
 		Boolean test = false;
 		employee_dao.add(employee_commissioned);
+
+		List<Employee> employees = employee_dao.findAll();
+
+		for (Employee employee : employees) {
+
+			if (employee.getUsername().equals("moli")) {
+				test = true;
+			}
+		}
 		test = true;
 		assertTrue(test);
 	}
