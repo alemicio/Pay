@@ -36,6 +36,6 @@ public class EmployeeDao {
 
 	// This method allows to delete an existing employee record
 	public void remove(Employee employee) {
-		em.remove(employee);
+		em.remove(em.merge(employee));
 	}
 }

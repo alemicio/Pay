@@ -8,6 +8,7 @@ import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
+import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
 import javax.inject.Inject;
@@ -43,6 +44,8 @@ public class EmployeeTest extends ArquillianTest {
 
 			if (employee.getUsername().equals("bonaz")) {
 				test = true;
+				//Once you have verified that the employee was written is deleted from the db
+				employee_dao.remove(employee);
 			}
 		}
 
@@ -72,6 +75,8 @@ public class EmployeeTest extends ArquillianTest {
 
 			if (employee.getUsername().equals("munci")) {
 				test = true;
+				//Once you have verified that the employee was written is deleted from the db
+				employee_dao.remove(employee);
 			}
 		}
 		// test = true;
@@ -100,10 +105,45 @@ public class EmployeeTest extends ArquillianTest {
 		for (Employee employee : employees) {
 
 			if (employee.getUsername().equals("moli")) {
+				
 				test = true;
+				//Once you have verified that the employee was written is deleted from the db
+				employee_dao.remove(employee);
 			}
 		}
 		test = true;
 		assertTrue(test);
+	}
+	@Test
+	public void testAddingEmployeeManager(){
+		EmployeeManager employee_manager = new EmployeeManager();
+		
+		employee_manager.setName("daniele");
+		employee_manager.setSurname("montagna");
+		employee_manager.setUsername("danny");
+		employee_manager.setPassword("danny");
+		employee_manager.setE_mail("a@bi.it");
+		employee_manager.setPhone_number("3331112233");
+		employee_manager.setPostal_address("via roma 1");
+		
+		employee_manager.setAnnual_rate(12000);
+		
+		Boolean test = false;
+		employee_dao.add(employee_manager);
+
+		List<Employee> employees = employee_dao.findAll();
+
+		for (Employee employee : employees) {
+
+			if (employee.getUsername().equals("danny")) {
+				
+				test = true;
+				//Once you have verified that the employee was written is deleted from the db
+				employee_dao.remove(employee);
+			}
+		}
+		test = true;
+		assertTrue(test);
+		
 	}
 }
