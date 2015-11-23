@@ -31,5 +31,47 @@ public class PaymentTest extends ArquillianTest {
 	public void testAddingBankPaymethod() {
 		
 		BankPaymethod bankpaymethod = new BankPaymethod();
+		
+		bankpaymethod.setFilial("Unicredit");
+		bankpaymethod.setIBAN("45647fg3gckw57");
+		
+		
+		//aggiunta di munci 
+		ContractorEmployee employee_contractor = new ContractorEmployee();
+		employee_contractor.setName("andrea");
+		employee_contractor.setSurname("mognaschi");
+		employee_contractor.setUsername("munci");
+		employee_contractor.setPassword("munci");
+		employee_contractor.setE_mail("a@bi.it");
+		employee_contractor.setPhone_number("3331112233");
+		employee_contractor.setPostal_address("via roma 1");
+
+		employee_contractor.setHourly_rate(10);
+
+		Boolean test = false;
+		employee_dao.add(employee_contractor);
+		
+		List<Employee> employees=employee_dao.findAll();
+		Employee tmp = null;
+		
+		//ricercare employee desiderato
+		for(Employee employee : employees){
+			
+			if(employee.getUsername().equals("munci")){
+				
+				tmp = employee;
+				break;
+			}
+		}
+		bankpaymethod.setEmployee(tmp);
+		tmp.setPaymethod(bankpaymethod);
+		employee_dao.update(tmp);
+		paymethod_dao.add(bankpaymethod);
+		
+		
+		test = true;
+		assertTrue(test);
+		
+		
 	}
 }

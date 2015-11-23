@@ -119,4 +119,33 @@ public abstract class Employee implements Serializable {
 		// TODO Auto-generated method stub
 		return super.equals(obj);
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Paymethod getPaymethod() {
+		return paymethod;
+	}
+
+	public void setPaymethod(Paymethod paymethod) {
+		this.paymethod = paymethod;
+	}
+
+	public Union getUnion() {
+		return union;
+	}
+
+	public void setUnion(Union union) {
+		this.union = union;
+	}
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	
 }
