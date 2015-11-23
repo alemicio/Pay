@@ -24,8 +24,7 @@ public class EmployeeDao {
 	// The query is made using java persistance query language(see
 	// documentation)
 	public List<Employee> findAll() {
-		List<Employee> employees = em.createQuery("select p from Employee p",
-				Employee.class).getResultList();
+		List<Employee> employees = em.createQuery("select p from Employee p", Employee.class).getResultList();
 		return employees;
 	}
 
