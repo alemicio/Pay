@@ -31,7 +31,6 @@ public abstract class Employee implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int employeeId;
 
-	// attributes for the Entity Employee
 	private String username;
 	private String password;
 	private String name;
@@ -41,7 +40,6 @@ public abstract class Employee implements Serializable {
 	private String phone_number;
 
 	@OneToOne(mappedBy = "employee", cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "employeeId")
 	private Paymethod paymethod;
 
 	@ManyToOne

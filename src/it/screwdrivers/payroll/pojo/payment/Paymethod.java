@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,6 +29,7 @@ public abstract class Paymethod implements Serializable {
 	private int id;
 	
 	@OneToOne
+	@JoinColumn(name = "employeeId")
 	private Employee employee;
 
 	public Employee getEmployee() {

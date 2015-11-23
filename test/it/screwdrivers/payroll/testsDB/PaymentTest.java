@@ -58,9 +58,6 @@ public class PaymentTest extends ArquillianTest {
 		bankpaymethod.setEmployee(tmp);
 		tmp.setPaymethod(bankpaymethod);
 		
-		System.out.println("BANKPAYMETHOD CLASS: " + bankpaymethod.getClass());
-		
-		//employee_dao.update(tmp);
 		paymethod_dao.add(bankpaymethod);
 		
 		boolean test = true;
