@@ -28,6 +28,6 @@ public class UnionServiceDao {
 	}
 
 	public void remove(UnionService union_service) {
-		em.remove(union_service);
+		em.remove(em.merge(union_service));
 	}
 }

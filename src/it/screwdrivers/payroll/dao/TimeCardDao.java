@@ -2,9 +2,8 @@ package it.screwdrivers.payroll.dao;
 
 import java.util.List;
 
-import it.screwdrivers.payroll.pojo.card.SalesCard;
 import it.screwdrivers.payroll.pojo.card.TimeCard;
-import it.screwdrivers.payroll.pojo.employee.Employee;
+
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,6 +32,6 @@ public class TimeCardDao {
 
 
 	public void remove(TimeCard time_card) {
-		em.remove(time_card);
+		em.remove(em.merge(time_card));
 	}
 }

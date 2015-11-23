@@ -28,6 +28,6 @@ public class PaymethodDao {
 	}
 
 	public void remove(Paymethod paymethod) {
-		em.remove(paymethod);
+		em.remove(em.merge(paymethod));
 	}
 }
