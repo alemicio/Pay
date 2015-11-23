@@ -21,7 +21,4 @@ public class PostalPaymethod extends Paymethod implements Serializable {
 	public void setIBAN(String iBAN) {
 		redidential_address = iBAN;
 	}
-
-	
-
 }

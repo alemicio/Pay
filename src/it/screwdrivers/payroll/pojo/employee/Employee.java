@@ -147,5 +147,4 @@ public abstract class Employee implements Serializable {
 	public int getEmployeeId() {
 		return employeeId;
 	}
-	
 }

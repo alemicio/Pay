@@ -29,6 +29,4 @@ public class CommissionedEmployee extends SalariedEmployee {
 	public void setSale_rate(float sale_rate) {
 		this.sale_rate = sale_rate;
 	}
-
-
 }

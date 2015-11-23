@@ -1,17 +1,13 @@
 package it.screwdrivers.payroll.testsDB;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-
+import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.PaymethodDao;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
-import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -31,12 +27,9 @@ public class PaymentTest extends ArquillianTest {
 	public void testAddingBankPaymethod() {
 		
 		BankPaymethod bankpaymethod = new BankPaymethod();
-		
 		bankpaymethod.setFilial("Unicredit");
 		bankpaymethod.setIBAN("45647fg3gckw57");
 		
-		
-		//aggiunta di munci 
 		ContractorEmployee employee_contractor = new ContractorEmployee();
 		employee_contractor.setName("andrea");
 		employee_contractor.setSurname("mognaschi");
@@ -45,13 +38,11 @@ public class PaymentTest extends ArquillianTest {
 		employee_contractor.setE_mail("a@bi.it");
 		employee_contractor.setPhone_number("3331112233");
 		employee_contractor.setPostal_address("via roma 1");
-
 		employee_contractor.setHourly_rate(10);
 
-		Boolean test = false;
 		employee_dao.add(employee_contractor);
 		
-		List<Employee> employees=employee_dao.findAll();
+		List<Employee> employees = employee_dao.findAll();
 		Employee tmp = null;
 		
 		//ricercare employee desiderato
@@ -63,15 +54,16 @@ public class PaymentTest extends ArquillianTest {
 				break;
 			}
 		}
+		
 		bankpaymethod.setEmployee(tmp);
 		tmp.setPaymethod(bankpaymethod);
-		employee_dao.update(tmp);
+		
+		System.out.println("BANKPAYMETHOD CLASS: " + bankpaymethod.getClass());
+		
+		//employee_dao.update(tmp);
 		paymethod_dao.add(bankpaymethod);
 		
-		
-		test = true;
+		boolean test = true;
 		assertTrue(test);
-		
-		
 	}
 }

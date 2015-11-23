@@ -21,7 +21,4 @@ public class WithDrawPaymethod extends Paymethod implements Serializable {
 	public void setFilial(String filial) {
 		this.headquarter = filial;
 	}
-	
-	
-
 }

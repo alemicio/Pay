@@ -41,9 +41,4 @@ public abstract class Paymethod implements Serializable {
 	public int getId() {
 		return id;
 	}
-	
-	
-	
-	
-
 }

@@ -28,7 +28,6 @@ public class EmployeeDao {
 		return employees;
 	}
 
-	
 	// This method allows to override an existing employee record
 	public Employee update(Employee employee) {
 		return em.merge(employee);

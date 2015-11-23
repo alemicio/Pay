@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,11 +28,9 @@ public class TimeCard implements Serializable {
 	private Time start_time;
 	private Time end_time;
 	
-	//We need to have a relationship with the Contractor employee
 	@ManyToOne
 	@JoinColumn(name="employeeId",referencedColumnName="employeeId")
 	private ContractorEmployee contractor_employee;
-	
 	
 	public Date getDate() {
 		return date;
@@ -53,5 +50,4 @@ public class TimeCard implements Serializable {
 	public void setEnd_time(Time end_time) {
 		this.end_time = end_time;
 	}
-
 }

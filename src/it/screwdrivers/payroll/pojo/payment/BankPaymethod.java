@@ -27,7 +27,4 @@ public class BankPaymethod extends Paymethod implements Serializable {
 	public void setFilial(String filial) {
 		this.filial = filial;
 	}
-	
-	
-
 }

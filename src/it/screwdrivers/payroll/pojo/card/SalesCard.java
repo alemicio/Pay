@@ -1,8 +1,6 @@
 package it.screwdrivers.payroll.pojo.card;
 
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -31,8 +29,6 @@ public class SalesCard implements Serializable {
 	@JoinColumn(name="employeeId",referencedColumnName="employeeId")
 	private CommissionedEmployee commissioned_employee;
 	
-	
-	
 	public float getAmount() {
 		return amount;
 	}
@@ -45,7 +41,4 @@ public class SalesCard implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-
 }

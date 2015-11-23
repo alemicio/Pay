@@ -20,6 +20,4 @@ public class EmployeeManager extends Employee {
 	public void setAnnual_rate(float annual_rate) {
 		this.annual_rate = annual_rate;
 	}
-
-
 }
