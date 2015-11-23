@@ -1,9 +1,8 @@
 package it.screwdrivers.payroll.dao;
 
-import java.util.List;
-
 import it.screwdrivers.payroll.pojo.card.SalesCard;
-import it.screwdrivers.payroll.pojo.employee.Employee;
+
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

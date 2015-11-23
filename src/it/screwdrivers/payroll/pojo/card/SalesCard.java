@@ -1,8 +1,6 @@
 package it.screwdrivers.payroll.pojo.card;
 
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-
 import java.io.Serializable;
 import java.util.Date;
 

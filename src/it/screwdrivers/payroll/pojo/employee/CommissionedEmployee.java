@@ -1,8 +1,6 @@
 package it.screwdrivers.payroll.pojo.employee;
 
 import it.screwdrivers.payroll.pojo.card.SalesCard;
-import it.screwdrivers.payroll.pojo.card.TimeCard;
-
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
