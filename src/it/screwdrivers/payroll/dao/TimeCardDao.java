@@ -1,0 +1,38 @@
+package it.screwdrivers.payroll.dao;
+
+import java.util.List;
+
+import it.screwdrivers.payroll.pojo.card.SalesCard;
+import it.screwdrivers.payroll.pojo.card.TimeCard;
+import it.screwdrivers.payroll.pojo.employee.Employee;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+@Stateless
+public class TimeCardDao {
+
+	@PersistenceContext
+	EntityManager em;
+
+	public void add(TimeCard time_card) {
+		em.persist(time_card);
+	}
+
+
+	public List<TimeCard> findAll() {
+		List<TimeCard> times_card = em.createQuery("select s from TimeCard s", TimeCard.class).getResultList();
+		return times_card;
+	}
+
+	
+	public TimeCard update(TimeCard time_card) {
+		return em.merge(time_card);
+	}
+
+
+	public void remove(TimeCard time_card) {
+		em.remove(time_card);
+	}
+}
