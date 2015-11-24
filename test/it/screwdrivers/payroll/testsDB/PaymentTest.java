@@ -66,13 +66,13 @@ public class PaymentTest extends ArquillianTest {
 		List<Paymethod> paymethods = paymethod_dao.findAll();
 
 
-		for (Paymethod p : paymethods) {
+		for (Paymethod paymethod : paymethods) {
 
 			//l'employee che sto cercando
-			if (p.getId() == 7) {
+			if (paymethod.getId() == 7) {
 
 				// updating employee record
-				tmp.setPaymethod(p);
+				tmp.setPaymethod(paymethod);
 				employee_dao.update(tmp);
 				
 			}
