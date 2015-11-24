@@ -4,6 +4,7 @@ import it.screwdrivers.payroll.pojo.employee.Employee;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -28,8 +29,7 @@ public abstract class Paymethod implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private int id;
 	
-	@OneToOne
-	@JoinColumn(name = "employeeId")
+	@OneToOne(mappedBy="paymethod")
 	private Employee employee;
 
 	public Employee getEmployee() {

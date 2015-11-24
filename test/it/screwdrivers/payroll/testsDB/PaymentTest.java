@@ -3,9 +3,9 @@ package it.screwdrivers.payroll.testsDB;
 import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.PaymethodDao;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
+import it.screwdrivers.payroll.pojo.payment.Paymethod;
 
 import java.util.List;
 
@@ -25,42 +25,55 @@ public class PaymentTest extends ArquillianTest {
 
 	@Test
 	public void testAddingBankPaymethod() {
-		
+
 		BankPaymethod bankpaymethod = new BankPaymethod();
 		bankpaymethod.setFilial("Unicredit");
 		bankpaymethod.setIBAN("45647fg3gckw57");
-		
-		ContractorEmployee employee_contractor = new ContractorEmployee();
-		employee_contractor.setName("andrea");
-		employee_contractor.setSurname("mognaschi");
-		employee_contractor.setUsername("munci");
-		employee_contractor.setPassword("munci");
-		employee_contractor.setE_mail("a@bi.it");
-		employee_contractor.setPhone_number("3331112233");
-		employee_contractor.setPostal_address("via roma 1");
-		employee_contractor.setHourly_rate(10);
 
-		employee_dao.add(employee_contractor);
-		
-		List<Employee> employees = employee_dao.findAll();
-		Employee tmp = null;
-		
-		//ricercare employee desiderato
-		for(Employee employee : employees){
-			
-			if(employee.getUsername().equals("munci")){
-				
-				tmp = employee;
-				break;
+		paymethod_dao.add(bankpaymethod);
+
+		List<Paymethod> paymethods = paymethod_dao.findAll();
+		Boolean isAdded = false;
+
+		for (Paymethod paymethod : paymethods) {
+
+			if (paymethod.getId() == 7) {
+				// set the flag if is retrieved
+				isAdded = true;
 			}
 		}
-		
-		bankpaymethod.setEmployee(tmp);
-		tmp.setPaymethod(bankpaymethod);
-		
-		paymethod_dao.add(bankpaymethod);
-		
-		boolean test = true;
-		assertTrue(test);
+		assertTrue("Aggiunto nuovo metodo di pagamento ", isAdded);
+
+	}
+
+	@Test
+	public void testThatPaymethodReferenceIsAddedToEmployee() {
+
+		List<Employee> employees = employee_dao.findAll();
+
+		// employee that we are looking for
+		Employee tmp = null;
+
+		for (Employee employee : employees) {
+
+			if (employee.getId() == 6) {
+
+				// employee found
+				tmp = employee;
+			}
+		}
+
+		List<Paymethod> paymethods = paymethod_dao.findAll();
+
+
+		for (Paymethod p : paymethods) {
+
+			if (p.getId() == 7) {
+
+				// employee found
+				tmp = employee;
+			}
+		}
+
 	}
 }

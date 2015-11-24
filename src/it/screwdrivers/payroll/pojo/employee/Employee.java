@@ -39,11 +39,12 @@ public abstract class Employee implements Serializable {
 	private String e_mail;
 	private String phone_number;
 
-	@OneToOne(mappedBy = "employee", cascade = CascadeType.REMOVE)
+	@OneToOne
+	@JoinColumn(name = "payment_id")
 	private Paymethod paymethod;
 
-	@ManyToOne
-	@JoinColumn(name = "unionId")
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "union_id")
 	private Union union;
 
 	public String getUsername() {
