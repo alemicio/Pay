@@ -35,7 +35,7 @@ public abstract class Employee implements Serializable {
 	private String password;
 	private String name;
 	private String surname;
-	private String address;
+	private String postal_address;
 	private String e_mail;
 	private String phone_number;
 
@@ -80,11 +80,11 @@ public abstract class Employee implements Serializable {
 	}
 
 	public String getPostal_address() {
-		return address;
+		return postal_address;
 	}
 
 	public void setPostal_address(String postal_address) {
-		this.address = postal_address;
+		this.postal_address = postal_address;
 	}
 
 	public String getE_mail() {
@@ -117,14 +117,6 @@ public abstract class Employee implements Serializable {
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
 		return super.equals(obj);
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public Paymethod getPaymethod() {

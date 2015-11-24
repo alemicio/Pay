@@ -3,6 +3,7 @@ package it.screwdrivers.payroll.testsDB;
 import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.PaymethodDao;
+import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
 import it.screwdrivers.payroll.pojo.payment.Paymethod;
@@ -23,60 +24,66 @@ public class PaymentTest extends ArquillianTest {
 	@Inject
 	EmployeeDao employee_dao;
 
+	// This method will test the presence of a new BankPaymethod object
+	// in the db, after we have added it.
 	@Test
 	public void testAddingBankPaymethod() {
 
+		//=============Add BankPaymethod object==============
 		BankPaymethod bankpaymethod = new BankPaymethod();
 		bankpaymethod.setFilial("Unicredit");
-		bankpaymethod.setIBAN("45647fg3gckw57");
+		bankpaymethod.setIBAN("865657dyr1d1y1111");
 
 		paymethod_dao.add(bankpaymethod);
+		//===================================================
 
+		//==========BankPaymethod object retrieval===========
 		List<Paymethod> paymethods = paymethod_dao.findAll();
 		Boolean isAdded = false;
 
 		for (Paymethod paymethod : paymethods) {
 
-			if (paymethod.getId() == 7) {
+			if (paymethod.getId() == bankpaymethod.getId()) {
 				// set the flag if is retrieved
 				isAdded = true;
+				paymethod_dao.remove(bankpaymethod);
 			}
 		}
-		assertTrue("Aggiunto nuovo metodo di pagamento ", isAdded);
-
+		//===================================================
+		
+		assertTrue("Paymethod object was correctly added to the db!", isAdded);
 	}
 
+	// This method tests if a Paymethod object, already in the db, is correctly referenced 
+	// in a given employee record.
 	@Test
 	public void testThatPaymethodReferenceIsAddedToEmployee() {
-
-		List<Employee> employees = employee_dao.findAll();
-
-		// employee that we are looking for
-		Employee tmp = null;
-
-		for (Employee employee : employees) {
-
-			if (employee.getId() == 6) {
-
-				// employee found
-				tmp = employee;
-			}
-		}
-
-		List<Paymethod> paymethods = paymethod_dao.findAll();
-
-
-		for (Paymethod paymethod : paymethods) {
-
-			//l'employee che sto cercando
-			if (paymethod.getId() == 7) {
-
-				// updating employee record
-				tmp.setPaymethod(paymethod);
-				employee_dao.update(tmp);
-				
-			}
-		}
-
+		
+		//create an employee
+		ContractorEmployee ce = new ContractorEmployee();
+		ce.setName("Eric");
+		ce.setSurname("Villa");
+		ce.setPhone_number("3334455666");
+		ce.setE_mail("eric@email.de");
+		ce.setPostal_address("Via Roma 62/3");
+		ce.setHourly_rate(10);
+		employee_dao.add(ce);
+		
+		//create BankPaymethod
+		BankPaymethod bankpaymethod = new BankPaymethod();
+		bankpaymethod.setFilial("Unicredit");
+		bankpaymethod.setIBAN("865657dyr1d1y1111");
+		paymethod_dao.add(bankpaymethod);
+		
+		// update employee record
+		ce.setPaymethod(bankpaymethod);
+		employee_dao.update(ce);
+		
+		boolean condition = ce.getPaymethod().getId() == bankpaymethod.getId();
+		
+		assertTrue("Paymethod object is correctly referenced inside Employee record!", condition);
+		
+		employee_dao.remove(ce);
+		paymethod_dao.remove(bankpaymethod);
 	}
 }
