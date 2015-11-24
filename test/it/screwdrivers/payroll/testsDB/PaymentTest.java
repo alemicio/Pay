@@ -68,10 +68,13 @@ public class PaymentTest extends ArquillianTest {
 
 		for (Paymethod p : paymethods) {
 
+			//l'employee che sto cercando
 			if (p.getId() == 7) {
 
-				// employee found
-				tmp = employee;
+				// updating employee record
+				tmp.setPaymethod(p);
+				employee_dao.update(tmp);
+				
 			}
 		}
 
