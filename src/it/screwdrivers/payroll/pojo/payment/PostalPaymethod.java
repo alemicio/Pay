@@ -14,10 +14,10 @@ public class PostalPaymethod extends Paymethod implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String redidential_address;
 	
-	public String getIBAN() {
+	public String getRedidential_address() {
 		return redidential_address;
 	}
-	public void setIBAN(String iBAN) {
-		redidential_address = iBAN;
+	public void setRedidential_address(String redidential_address) {
+		this.redidential_address = redidential_address;
 	}
 }

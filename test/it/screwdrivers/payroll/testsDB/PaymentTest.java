@@ -7,7 +7,9 @@ import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
 import it.screwdrivers.payroll.pojo.payment.Paymethod;
+import it.screwdrivers.payroll.pojo.payment.PostalPaymethod;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,15 +31,15 @@ public class PaymentTest extends ArquillianTest {
 	@Test
 	public void testAddingBankPaymethod() {
 
-		//=============Add BankPaymethod object==============
+		// =============Add BankPaymethod object==============
 		BankPaymethod bankpaymethod = new BankPaymethod();
 		bankpaymethod.setFilial("Unicredit");
 		bankpaymethod.setIBAN("865657dyr1d1y1111");
 
 		paymethod_dao.add(bankpaymethod);
-		//===================================================
+		// ===================================================
 
-		//==========BankPaymethod object retrieval===========
+		// ==========BankPaymethod object retrieval===========
 		List<Paymethod> paymethods = paymethod_dao.findAll();
 		Boolean isAdded = false;
 
@@ -49,17 +51,18 @@ public class PaymentTest extends ArquillianTest {
 				paymethod_dao.remove(bankpaymethod);
 			}
 		}
-		//===================================================
-		
+		// ===================================================
+
 		assertTrue("Paymethod object was correctly added to the db!", isAdded);
 	}
 
-	// This method tests if a Paymethod object, already in the db, is correctly referenced 
+	// This method tests if a Paymethod object, already in the db, is correctly
+	// referenced
 	// in a given employee record.
 	@Test
 	public void testThatPaymethodReferenceIsAddedToEmployee() {
-		
-		//create an employee
+
+		// create an employee
 		ContractorEmployee ce = new ContractorEmployee();
 		ce.setName("Eric");
 		ce.setSurname("Villa");
@@ -68,22 +71,68 @@ public class PaymentTest extends ArquillianTest {
 		ce.setPostal_address("Via Roma 62/3");
 		ce.setHourly_rate(10);
 		employee_dao.add(ce);
-		
-		//create BankPaymethod
+
+		// create BankPaymethod
 		BankPaymethod bankpaymethod = new BankPaymethod();
 		bankpaymethod.setFilial("Unicredit");
 		bankpaymethod.setIBAN("865657dyr1d1y1111");
 		paymethod_dao.add(bankpaymethod);
-		
+
+		// update employee record
+		ce.setPaymethod(bankpaymethod);
+		employee_dao.update(ce);
+
+		boolean condition = ce.getPaymethod().getId() == bankpaymethod.getId();
+
+		assertTrue(
+				"Paymethod object is correctly referenced inside Employee record!",
+				condition);
+
+		employee_dao.remove(ce);
+		paymethod_dao.remove(bankpaymethod);
+	}
+
+	@Test
+	public void testThatPaymethodWasUpdatedCorrectly() {
+
+		// create an employee
+		ContractorEmployee ce = new ContractorEmployee();
+		ce.setName("Eric");
+		ce.setSurname("Villa");
+		ce.setPhone_number("3334455666");
+		ce.setE_mail("eric@email.de");
+		ce.setPostal_address("Via Roma 62/3");
+		ce.setHourly_rate(10);
+		employee_dao.add(ce);
+
+		// create BankPaymethod
+		BankPaymethod bankpaymethod = new BankPaymethod();
+		bankpaymethod.setFilial("Unicredit");
+		bankpaymethod.setIBAN("865657dyr1d1y1111");
+		paymethod_dao.add(bankpaymethod);
+
 		// update employee record
 		ce.setPaymethod(bankpaymethod);
 		employee_dao.update(ce);
 		
-		boolean condition = ce.getPaymethod().getId() == bankpaymethod.getId();
+		// NB: before removing BankPaymethod from the db, we
+		// have to update the Employee's foreign key by 
+		// setting the new paymethod; otherwise, the Employee
+		// record will reference a Paymethod that is no more in the db.
+
+		// create BankPaymethod
+		PostalPaymethod postalpaymethod = new PostalPaymethod();
+		postalpaymethod.setRedidential_address("27050");
 		
-		assertTrue("Paymethod object is correctly referenced inside Employee record!", condition);
+		paymethod_dao.add(postalpaymethod);
 		
-		employee_dao.remove(ce);
+		// update employee record
+		ce.setPaymethod(postalpaymethod);
+		employee_dao.update(ce);
 		paymethod_dao.remove(bankpaymethod);
+		
+		boolean condition_2 = ce.getPaymethod().getId() != bankpaymethod.getId() && (ce.getPaymethod() instanceof PostalPaymethod);
+		
+		assertTrue(condition_2);
 	}
 }
