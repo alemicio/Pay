@@ -134,5 +134,8 @@ public class PaymentTest extends ArquillianTest {
 		boolean condition_2 = ce.getPaymethod().getId() != bankpaymethod.getId() && (ce.getPaymethod() instanceof PostalPaymethod);
 		
 		assertTrue(condition_2);
+		
+		employee_dao.remove(ce);
+		paymethod_dao.remove(postalpaymethod);
 	}
 }
