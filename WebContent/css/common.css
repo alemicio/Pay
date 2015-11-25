@@ -30,18 +30,36 @@ body {
 .navbar-wrapper .navbar .container {
 	width: auto;
 }
-
+/* ----------------------- Roba mia --------------------------- */
 #sfondo {
 	background-image: url("../images/hero.jpg");
 	background-repeat: no-repeat;
     background-position: top;
 }
-#sottosfondo {
-	margin-top: 70px;
+
+#jumbotrone {
 	text-align: center;
-	color: white;
+	margin-top: 10rem;
+	margin-bottom: 10rem;
+	/*color: rgb(58,130,133);*/
+	color: black;
+}
+#bordino {
+	border-style: solid;
+	border-radius: 10px;
+	border-color: rgb(58,130,133);
+	border-width: 1rem;
+	
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+
+}
+#modale {
+	color: rgb(58,130,133);
+	text-align: center;
 }
 
+/* ----------------------- Media Queries --------------------------- */
 
 @media (min-width: 768px) {
   /* Navbar positioning foo */

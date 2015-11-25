@@ -52,23 +52,60 @@
 
 		</div>
 	</div>
+
 	<div class="container-fluid" id="sfondo">
-		<div class="container" id="sottosfondo">
-			<div class="row">
-				<div class="col-lg-6">
-					<H1>PAYROLL APPLICATION</H1>
-					<H3>keep it simple</H3>
+		<div class="container">
+
+			<div class="jumbotron" id="jumbotrone">
+				<div class="row">
+					<div class="col-lg-8">
+						<h1>Payroll Application</h1>
+						<H2>made by: Magic Scredrivers</H2>
+						<H3>Università degli Studi di Pavia</H3>
+						<button type="button" class="btn btn-primary btn-lg"
+							data-toggle="modal" data-target="#myModal">LOG IN</button>
+
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content" id="modale">
+									<div class="modal-header">
+										<h2 class="modal-title" id="myModalLabel">Log In Payroll
+											WEB APP</h2>
+									</div>
+									<div class="modal-body">
+										<h:form>
+											<H3>Username</H3>
+											<p:inputText required="true" />
+											<H3>Password</H3>
+											<p:inputText required="true" />
+										</h:form>
+									</div>
+									<div class="modal-footer">
+										<p:commandButton value="LOG IN"
+											actionListener="#{LogBean.login}" type="submit" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<img src="images/icons/logo_unipv.png" class="img-responsive center-block"
+							alt="Responsive image" id="bordino"/>
+					</div>
 				</div>
-				<div class="col-lg-6">
-					<H1>LOG IN</H1>
-				</div>
+
+
 			</div>
 		</div>
 	</div>
 
-
-
-
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6"></div>
+			<div class="col-lg-6"></div>
+		</div>
+	</div>
 
 
 
