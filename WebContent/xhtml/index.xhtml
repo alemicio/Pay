@@ -68,17 +68,19 @@
 						<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 							aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
-								<div class="modal-content" id="modale">
-									<div class="modal-header">
+								<div class="modal-content"  id="modale">
+									<div class="modal-header" id="bordino">
 										<h2 class="modal-title" id="myModalLabel">Log In Payroll
 											WEB APP</h2>
 									</div>
 									<div class="modal-body">
 										<h:form id="loginForm">
 											<H3>Username</H3>
-											<p:inputText id="username" required="true" value="#{login.username}" />
+											<p:inputText id="username" required="true"
+												value="#{login.username}" />
 											<H3>Password</H3>
-											<p:inputText type="password" required="true" value="#{login.password}" />
+											<p:inputText type="password" required="true"
+												value="#{login.password}" />
 
 											<div class="modal-footer">
 												<p:commandButton value="LOGIN" type="submit"
@@ -103,105 +105,145 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="row" id="bordino">
-			<div class="col-lg-12">
-				<H2>Payroll has been developed using the following tools and
-					technologies</H2>
+	<div class="container-fluid" id="sfondo2">
+		<div class="container">
+			<div class="row" id="bordino">
+				<div class="col-lg-12">
+					<H2>Payroll has been developed using the following tools and
+						technologies</H2>
+				</div>
 			</div>
-		</div>
-		<div class="row" id="bordino">
-			<div class="col-lg-6">
-				<div class="row">
-					<div class="col-lg-6">
-						<img src="images/icons/javaee.png"
-							class="img-responsive center-block" alt="Responsive image" />
+			<div class="row" id="bordino">
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-lg-6">
+							<img src="images/icons/javaee_alpha.png"
+								class="img-responsive center-block" alt="Responsive image" />
+						</div>
+						<div class="col-lg-6">
+							<H1>JAVA EE</H1>
+							<H4>Java EE is a widely used enterprise computing platform
+								developed under the Java Community Process. The platform
+								provides an API and runtime environment for developing and
+								running enterprise software, including network and web services,
+								and other large-scale, multi-tiered, scalable, reliable, and
+								secure network applications</H4>
+						</div>
 					</div>
-					<div class="col-lg-6">
-						<H1>JAVA EE</H1>
-						<H4>Java EE is a widely used enterprise computing platform
-							developed under the Java Community Process. The platform provides
-							an API and runtime environment for developing and running
-							enterprise software, including network and web services, and
-							other large-scale, multi-tiered, scalable, reliable, and secure
-							network applications</H4>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-lg-6">
+							<img src="images/icons/eclipse.png"
+								class="img-responsive center-block" alt="Responsive image" />
+						</div>
+						<div class="col-lg-6">
+							<H1>ECLIPSE</H1>
+							<H4>Eclipse is an integrated development environment (IDE).
+								It contains a base workspace and an extensible plug-in system
+								for customizing the environment. Eclipse is written mostly in
+								Java and its primary use is for developing Java applications</H4>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-6">
-				<div class="row">
-					<div class="col-lg-6">
-						<img src="images/icons/eclipse.png"
-							class="img-responsive center-block" alt="Responsive image" />
-					</div>
-					<div class="col-lg-6">
-						<H1>ECLIPSE</H1>
-						<H4>Eclipse is an integrated development environment (IDE).
-							It contains a base workspace and an extensible plug-in system for
-							customizing the environment. Eclipse is written mostly in Java
-							and its primary use is for developing Java applications</H4>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row" id="bordino">
-			<div class="col-lg-12">
-				<img src="images/icons/trio.png" class="img-responsive center-block"
-					alt="Responsive image" />
-			</div>
-		</div>
-
-		<div class="row" id="bordino">
-			<div class="col-lg-6">
-				<div class="row">
-					<div class="col-lg-6">
-						<img src="images/icons/jboss.png"
-							class="img-responsive center-block" alt="Responsive image" />
-					</div>
-					<div class="col-lg-6">
-						<H1>JBoss EAP 6</H1>
-						<H4>JBoss® Enterprise Application Platform 6 provides an
-							innovative modular, cloud-ready architecture, powerful management
-							and automation, and world class developer productivity</H4>
-					</div>
+			<div class="row" id="bordino">
+				<div class="col-lg-12">
+					<img src="images/icons/trio.png"
+						class="img-responsive center-block" alt="Responsive image" />
 				</div>
 			</div>
 
-			<div class="col-lg-6">
-				<div class="row">
-					<div class="col-lg-6">
-						<img src="images/icons/mysql.png"
-							class="img-responsive center-block" alt="Responsive image" />
+			<div class="row" id="bordino">
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-lg-6">
+							<img src="images/icons/jboss.png"
+								class="img-responsive center-block" alt="Responsive image" />
+						</div>
+						<div class="col-lg-6">
+							<H1>JBoss EAP 6</H1>
+							<H4>JBoss® Enterprise Application Platform 6 provides an
+								innovative modular, cloud-ready architecture, powerful
+								management and automation, and world class developer
+								productivity</H4>
+						</div>
 					</div>
-					<div class="col-lg-6">
-						<H1>MySql</H1>
-						<H4>the open-source relational database management system
-							most widely used</H4>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-lg-6">
+							<img src="images/icons/mysql.png"
+								class="img-responsive center-block" alt="Responsive image" />
+						</div>
+						<div class="col-lg-6">
+							<H1>MySql</H1>
+							<H4>the open-source relational database management system
+								most widely used</H4>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
+		</div>
+	</div>
+
+	<div class="container-fluid" id="sfondo">
+		<div class="container">
+
+			<div class="row" id="bordino2">
+				<div class="col-lg-4">
+					<img src="images/icons/hibernate_alpha.png"
+						class="img-responsive center-block" alt="Responsive image" />
+					<h3>An object-relational mapping framework for the Java
+						language, providing a framework for mapping an object-oriented
+						domain model to a traditional relational database</h3>
+				</div>
+				<div class="col-lg-4">
+					<img src="images/icons/arquillian.png"
+						class="img-responsive center-block" alt="Responsive image" />
+					<h3>An object-relational mapping framework for the Java
+						language, providing a framework for mapping an object-oriented
+						domain model to a traditional relational database</h3>
+				</div>
+				<div class="col-lg-4">
+					<img src="images/icons/maven.png"
+						class="img-responsive center-block" alt="Responsive image" />
+					<h3>Apache Maven is a software project management and
+						comprehension tool. Based on the concept of a project object model
+						(POM), Maven can manage a project's build, reporting and
+						documentation from a central piece of information</h3>
+				</div>
+			</div>
+
+		</div>
 	</div>
 
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
+			<div class="row" id="bordino">
+				<div class="col-lg-8">
+					<img src="images/icons/primefaces.png"
+						class="img-responsive center-block" alt="Responsive image" />
+				</div>				<div class="col-lg-4">
+					<img src="images/icons/bootstrapb.png"
+						class="img-responsive center-block" alt="Responsive image" />
+				</div>
+			</div>
+		</div>
+	</div>	<div class="container-fluid" id="sfondo">
+		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>merda</h1>
-					<h1>merda</h1>
-					<h1>merda</h1>
-					<h1>merda</h1>
-					<h1>merda</h1>
-					
+					<img src="images/icons/unipv2.png" id="bordino2"
+						class="img-responsive center-block" alt="Responsive image" />
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 
 
