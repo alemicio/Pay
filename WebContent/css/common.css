@@ -34,9 +34,13 @@ body {
 #sfondo {
 	background-image: url("../images/hero.jpg");
 	background-repeat: no-repeat;
-    background-position: top;
+	background-position: top;
 }
-
+#sfondo2 {
+	background-image: url("../images/back.jpg");
+	background-repeat: no-repeat;
+	background-position: top;
+}
 #jumbotrone {
 	text-align: center;
 	margin-top: 10rem;
@@ -44,39 +48,43 @@ body {
 	/*color: rgb(58,130,133);*/
 	color: black;
 }
+
 #bordino {
 	border-style: solid;
 	border-radius: 10px;
-	border-color: rgb(58,130,133);
-	border-width: 1rem;
-	
+	border-color: rgb(58, 130, 133);
+	border-width: 0.5rem;
+	padding: 0rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
-
 }
+
 #modale {
-	color: rgb(58,130,133);
+	color: rgb(58, 130, 133);
 	text-align: center;
+	margin: 1rem;
+}
+#loghi {
+	
 }
 
 /* ----------------------- Media Queries --------------------------- */
+@media ( min-width : 768px) {
+	/* Navbar positioning foo */
+	.navbar-wrapper {
+		margin-top: 20px;
+	}
+	.navbar-wrapper .container {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	.navbar-wrapper .navbar {
+		padding-right: 0;
+		padding-left: 0;
+	}
 
-@media (min-width: 768px) {
-  /* Navbar positioning foo */
-  .navbar-wrapper {
-    margin-top: 20px;
-  }
-  .navbar-wrapper .container {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-  .navbar-wrapper .navbar {
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  /* The navbar becomes detached from the top, so we round the corners */
-  .navbar-wrapper .navbar {
-    border-radius: 4px;
-  }
+	/* The navbar becomes detached from the top, so we round the corners */
+	.navbar-wrapper .navbar {
+		border-radius: 4px;
+	}
 }
