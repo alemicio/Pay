@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<title>Payroll APP</title>
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+		crossorigin="anonymous" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+		crossorigin="anonymous"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</h:head>
+
+<body>
+	<div class="navbar-wrapper">
+		<div class="container">
+
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar"
+							aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Magic ScrewDriver</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Home</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a class="navbar-right" href="#about">About us</a></li>
+							<li><a href="#contact">Contacts</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</div>
+
+	<div class="container-fluid" id="sfondo">
+		<div class="container">
+
+			<div class="jumbotron" id="jumbotrone">
+				<div class="row">
+					<div class="col-lg-8">
+						<h1>Payroll Application</h1>
+						<H2>made by: Magic Scredrivers</H2>
+						<H3>Università degli Studi di Pavia</H3>
+						<button type="button" class="btn btn-primary btn-lg"
+							data-toggle="modal" data-target="#myModal">LOG IN</button>
+
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content" id="modale">
+									<div class="modal-header">
+										<h2 class="modal-title" id="myModalLabel">Log In Payroll
+											WEB APP</h2>
+									</div>
+									<div class="modal-body">
+										<h:form>
+											<H3>Username</H3>
+											<p:inputText required="true" />
+											<H3>Password</H3>
+											<p:inputText required="true" />
+
+											<div class="modal-footer">
+												<p:commandButton value="Submit" type="submit"
+													action="#{LogBean.doPressButton}" />
+											</div>
+
+										</h:form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<img src="images/icons/logo_unipv.png"
+							class="img-responsive center-block" alt="Responsive image"
+							id="bordino" />
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row" id="bordino">
+			<div class="col-lg-12">
+				<H2>Payroll has been developed using the following tools and
+					technologies</H2>
+			</div>
+		</div>
+		<div class="row" id="bordino">
+			<div class="col-lg-6">
+				<div class="row">
+					<div class="col-lg-6">
+						<img src="images/icons/javaee.png"
+							class="img-responsive center-block" alt="Responsive image" />
+					</div>
+					<div class="col-lg-6">
+						<H1>JAVA EE</H1>
+						<H4>Java EE is a widely used enterprise computing platform
+							developed under the Java Community Process. The platform provides
+							an API and runtime environment for developing and running
+							enterprise software, including network and web services, and
+							other large-scale, multi-tiered, scalable, reliable, and secure
+							network applications</H4>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6">
+				<div class="row">
+					<div class="col-lg-6">
+						<img src="images/icons/eclipse.png"
+							class="img-responsive center-block" alt="Responsive image" />
+					</div>
+					<div class="col-lg-6">
+						<H1>ECLIPSE</H1>
+						<H4>Eclipse is an integrated development environment (IDE).
+							It contains a base workspace and an extensible plug-in system for
+							customizing the environment. Eclipse is written mostly in Java
+							and its primary use is for developing Java applications</H4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" id="bordino">
+			<div class="col-lg-12">
+				<img src="images/icons/trio.png" class="img-responsive center-block"
+					alt="Responsive image" />
+			</div>
+		</div>
+
+		<div class="row" id="bordino">
+			<div class="col-lg-6">
+				<div class="row">
+					<div class="col-lg-6">
+						<img src="images/icons/jboss.png"
+							class="img-responsive center-block" alt="Responsive image" />
+					</div>
+					<div class="col-lg-6">
+						<H1>JBoss EAP 6</H1>
+						<H4>JBoss® Enterprise Application Platform 6 provides an
+							innovative modular, cloud-ready architecture, powerful management
+							and automation, and world class developer productivity</H4>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6">
+				<div class="row">
+					<div class="col-lg-6">
+						<img src="images/icons/mysql.png"
+							class="img-responsive center-block" alt="Responsive image" />
+					</div>
+					<div class="col-lg-6">
+						<H1>MySql</H1>
+						<H4>the open-source relational database management system
+							most widely used</H4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container-fluid" id="sfondo2">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>merda</h1>
+					<h1>merda</h1>
+					<h1>merda</h1>
+					<h1>merda</h1>
+					<h1>merda</h1>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</body>
+</html>

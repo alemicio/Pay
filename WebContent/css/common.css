@@ -1,0 +1,90 @@
+@CHARSET "UTF-8";
+
+body {
+	padding-bottom: 40px;
+	color: #5a5a5a;
+}
+
+/* ----------------------- CUSTOMIZE THE NAVBAR --------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper>.container {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.navbar-wrapper .navbar {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.navbar-wrapper .navbar .container {
+	width: auto;
+}
+/* ----------------------- Roba mia --------------------------- */
+#sfondo {
+	background-image: url("../images/hero.jpg");
+	background-repeat: no-repeat;
+	background-position: top;
+}
+#sfondo2 {
+	background-image: url("../images/back.jpg");
+	background-repeat: no-repeat;
+	background-position: top;
+}
+#jumbotrone {
+	text-align: center;
+	margin-top: 10rem;
+	margin-bottom: 10rem;
+	/*color: rgb(58,130,133);*/
+	color: black;
+}
+
+#bordino {
+	border-style: solid;
+	border-radius: 10px;
+	border-color: rgb(58, 130, 133);
+	border-width: 0.5rem;
+	padding: 0rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+#modale {
+	color: rgb(58, 130, 133);
+	text-align: center;
+	margin: 1rem;
+}
+#loghi {
+	
+}
+
+/* ----------------------- Media Queries --------------------------- */
+@media ( min-width : 768px) {
+	/* Navbar positioning foo */
+	.navbar-wrapper {
+		margin-top: 20px;
+	}
+	.navbar-wrapper .container {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	.navbar-wrapper .navbar {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	/* The navbar becomes detached from the top, so we round the corners */
+	.navbar-wrapper .navbar {
+		border-radius: 4px;
+	}
+}
