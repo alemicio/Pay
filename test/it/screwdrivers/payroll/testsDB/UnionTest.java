@@ -45,15 +45,15 @@ public class UnionTest extends ArquillianTest {
 				isAdded = true;
 			}
 		}
+		
 		assertTrue("Union correctly added in the db", isAdded);
 
 		// finally i remove it from the db
 		union_dao.remove(union);
-
 	}
 
 	@Test
-	public void testThatPaymethodReferenceIsAddedToEmployee() {
+	public void testThatUnionReferenceIsAddedToEmployee() {
 
 		// create an employee
 		ContractorEmployee ce = new ContractorEmployee();
@@ -71,7 +71,7 @@ public class UnionTest extends ArquillianTest {
 		union.setPhone_number("3388194740");
 		union_dao.add(union);
 
-		// update employye record with the union reference setted.
+		// update employee record with the union reference setted.
 		ce.setUnion(union);
 		employee_dao.update(ce);
 
