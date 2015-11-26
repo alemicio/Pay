@@ -29,8 +29,6 @@ public class SalesCard implements Serializable {
 	@JoinColumn(name="employeeId",referencedColumnName="employeeId")
 	private CommissionedEmployee commissioned_employee;
 	
-	
-	
 	public float getAmount() {
 		return amount;
 	}
@@ -43,7 +41,4 @@ public class SalesCard implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-
 }

@@ -20,7 +20,4 @@ public class SalariedEmployee extends Employee {
 	public void setMonthly_salary(float monthly_salary) {
 		this.monthly_salary = monthly_salary;
 	}
-	
-	
-
 }

@@ -18,7 +18,6 @@ public class ContractorEmployee extends Employee {
 	
 	private float hourly_rate; //see "BigDecimal"
 	
-	//relationship for time card
 	@OneToMany(mappedBy="contractor_employee")
 	private List<TimeCard> timecards;
 
@@ -29,9 +28,4 @@ public class ContractorEmployee extends Employee {
 	public void setHourly_rate(float hourly_rate) {
 		this.hourly_rate = hourly_rate;
 	}
-
-	
-	
-	
-
 }

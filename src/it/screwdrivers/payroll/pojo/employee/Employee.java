@@ -31,21 +31,20 @@ public abstract class Employee implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int employeeId;
 
-	// attributes for the Entity Employee
 	private String username;
 	private String password;
 	private String name;
 	private String surname;
-	private String address;
+	private String postal_address;
 	private String e_mail;
 	private String phone_number;
 
-	@OneToOne(mappedBy = "employee", cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "employeeId")
+	@OneToOne
+	@JoinColumn(name = "payment_id")
 	private Paymethod paymethod;
 
-	@ManyToOne
-	@JoinColumn(name = "unionId")
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "union_id")
 	private Union union;
 
 	public String getUsername() {
@@ -81,11 +80,11 @@ public abstract class Employee implements Serializable {
 	}
 
 	public String getPostal_address() {
-		return address;
+		return postal_address;
 	}
 
 	public void setPostal_address(String postal_address) {
-		this.address = postal_address;
+		this.postal_address = postal_address;
 	}
 
 	public String getE_mail() {
@@ -118,5 +117,25 @@ public abstract class Employee implements Serializable {
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
 		return super.equals(obj);
+	}
+
+	public Paymethod getPaymethod() {
+		return paymethod;
+	}
+
+	public void setPaymethod(Paymethod paymethod) {
+		this.paymethod = paymethod;
+	}
+
+	public Union getUnion() {
+		return union;
+	}
+
+	public void setUnion(Union union) {
+		this.union = union;
+	}
+
+	public int getEmployeeId() {
+		return employeeId;
 	}
 }

@@ -19,7 +19,7 @@ public class PaymethodDao {
 	}
 
 	public List<Paymethod> findAll() {
-		List<Paymethod> paymethods = em.createQuery("select p from Paymethod s", Paymethod.class).getResultList();
+		List<Paymethod> paymethods = em.createQuery("select s from Paymethod s", Paymethod.class).getResultList();
 		return paymethods;
 	}
 
@@ -28,6 +28,6 @@ public class PaymethodDao {
 	}
 
 	public void remove(Paymethod paymethod) {
-		em.remove(paymethod);
+		em.remove(em.merge(paymethod));
 	}
 }

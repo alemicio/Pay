@@ -19,7 +19,7 @@ public class UnionDao {
 	}
 
 	public List<Union> findAll() {
-		List<Union> unions = em.createQuery("select p from Union s", Union.class).getResultList();
+		List<Union> unions = em.createQuery("select s from Union s", Union.class).getResultList();
 		return unions;
 	}
 
@@ -28,6 +28,6 @@ public class UnionDao {
 	}
 
 	public void remove(Union union) {
-		em.remove(union);
+		em.remove(em.merge(union));
 	}
 }
