@@ -74,15 +74,15 @@
 											WEB APP</h2>
 									</div>
 									<div class="modal-body">
-										<h:form>
+										<h:form id="loginForm">
 											<H3>Username</H3>
-											<p:inputText required="true" />
+											<p:inputText id="username" required="true" value="#{login.username}" />
 											<H3>Password</H3>
-											<p:inputText required="true" />
+											<p:inputText type="password" required="true" value="#{login.password}" />
 
 											<div class="modal-footer">
-												<p:commandButton value="Submit" type="submit"
-													action="#{LogBean.doPressButton}" />
+												<p:commandButton value="LOGIN" type="submit"
+													actionListener="#{login.performLogin}" />
 											</div>
 
 										</h:form>
