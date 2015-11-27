@@ -1,20 +1,21 @@
 package it.screwdrivers.payroll.bean;
 
+import it.screwdrivers.payroll.controller.EmployeeController;
 
 import java.io.Serializable;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-
-//@ManagedBean
 @Named("login")
 @SessionScoped
 public class LogBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+	@Inject 
+	EmployeeController e_controller;
 	private String username;
 	private String password;
 
