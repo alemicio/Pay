@@ -8,7 +8,8 @@
 
 <h:head>
 	<title>Payroll APP</title>
-	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<h:outputStylesheet library="css" name="common.css"></h:outputStylesheet>
+
 	<link
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
 		rel="stylesheet"
@@ -84,7 +85,7 @@
 
 											<div class="modal-footer">
 												<p:commandButton value="LOGIN" type="submit"
-													action="#{login.performLogin}"/>
+													action="#{login.performLogin}" />
 											</div>
 
 										</h:form>
@@ -96,7 +97,7 @@
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<img src="images/icons/logo_unipv.png"
+						<h:graphicImage library="images" name="logo_unipv.png"
 							class="img-responsive center-block" alt="Responsive image"
 							id="bordino" />
 					</div>
@@ -118,7 +119,7 @@
 				<div class="col-lg-6">
 					<div class="row">
 						<div class="col-lg-6">
-							<img src="images/icons/javaee_alpha.png"
+							<h:graphicImage library="images" name="javaee_alpha.png"
 								class="img-responsive center-block" alt="Responsive image" />
 						</div>
 						<div class="col-lg-6">
@@ -136,7 +137,7 @@
 				<div class="col-lg-6">
 					<div class="row">
 						<div class="col-lg-6">
-							<img src="images/icons/eclipse.png"
+							<h:graphicImage library="images" name="eclipse.png"
 								class="img-responsive center-block" alt="Responsive image" />
 						</div>
 						<div class="col-lg-6">
@@ -152,7 +153,7 @@
 
 			<div class="row" id="bordino">
 				<div class="col-lg-12">
-					<img src="images/icons/trio.png"
+					<h:graphicImage library="images" name="trio.png"
 						class="img-responsive center-block" alt="Responsive image" />
 				</div>
 			</div>
@@ -161,7 +162,7 @@
 				<div class="col-lg-6">
 					<div class="row">
 						<div class="col-lg-6">
-							<img src="images/icons/jboss.png"
+							<h:graphicImage library="images" name="jboss.png"
 								class="img-responsive center-block" alt="Responsive image" />
 						</div>
 						<div class="col-lg-6">
@@ -177,7 +178,7 @@
 				<div class="col-lg-6">
 					<div class="row">
 						<div class="col-lg-6">
-							<img src="images/icons/mysql.png"
+							<h:graphicImage library="images" name="mysql.png"
 								class="img-responsive center-block" alt="Responsive image" />
 						</div>
 						<div class="col-lg-6">
@@ -197,21 +198,21 @@
 
 			<div class="row" id="bordino2">
 				<div class="col-lg-4">
-					<img src="images/icons/hibernate_alpha.png"
+					<h:graphicImage library="images" name="hibernate_alpha.png"
 						class="img-responsive center-block" alt="Responsive image" />
 					<h3>An object-relational mapping framework for the Java
 						language, providing a framework for mapping an object-oriented
 						domain model to a traditional relational database</h3>
 				</div>
 				<div class="col-lg-4">
-					<img src="images/icons/arquillian.png"
+					<h:graphicImage library="images" name="arquillian.png"
 						class="img-responsive center-block" alt="Responsive image" />
 					<h3>An object-relational mapping framework for the Java
 						language, providing a framework for mapping an object-oriented
 						domain model to a traditional relational database</h3>
 				</div>
 				<div class="col-lg-4">
-					<img src="images/icons/maven.png"
+					<h:graphicImage library="images" name="maven.png"
 						class="img-responsive center-block" alt="Responsive image" />
 					<h3>Apache Maven is a software project management and
 						comprehension tool. Based on the concept of a project object model
@@ -227,11 +228,11 @@
 		<div class="container">
 			<div class="row" id="bordino">
 				<div class="col-lg-8">
-					<img src="images/icons/primefaces.png"
+					<h:graphicImage library="images" name="primefaces.png"
 						class="img-responsive center-block" alt="Responsive image" />
 				</div>
 				<div class="col-lg-4">
-					<img src="images/icons/bootstrapb.png"
+					<h:graphicImage library="images" name="bootstrapb.png"
 						class="img-responsive center-block" alt="Responsive image" />
 				</div>
 			</div>
@@ -241,8 +242,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<img src="images/icons/unipv2.png" id="bordino2"
-						class="img-responsive center-block" alt="Responsive image" />
+					<h:graphicImage library="images" name="unipv2.png"
+						class="img-responsive center-block" alt="Responsive image" id="bordino2"/>
 				</div>
 			</div>
 		</div>

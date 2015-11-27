@@ -32,13 +32,13 @@ body {
 }
 /* ----------------------- Roba mia --------------------------- */
 #sfondo {
-	background-image: url("../images/hero.jpg");
+	background-image: url("/Pay/resources/images/hero.jpg");
 	background-repeat: no-repeat;
 	background-position: top;
 }
 
 #sfondo2 {
-	background-image: url("../images/back2.jpg");
+	background-image: url("/Pay/resources/images/back2.jpg");
 	background-repeat: no-repeat;
 	background-position: top;
 }
