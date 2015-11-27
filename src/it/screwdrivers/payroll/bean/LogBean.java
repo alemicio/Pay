@@ -14,10 +14,13 @@ import javax.inject.Named;
 public class LogBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	@Inject 
 	EmployeeController e_controller;
+	
 	private String username;
 	private String password;
+	private Boolean is_logged;
 
 	
     public String getUsername() {
@@ -37,8 +40,10 @@ public class LogBean implements Serializable {
 	}
 
 	public void performLogin(){
-        System.out.println("username:"+username);
-        System.out.println("password:"+password);
+		
+		is_logged = e_controller.checkLogin(username,password);
+		
+		System.out.println(is_logged);
     }
 
 }
