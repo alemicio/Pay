@@ -20,7 +20,7 @@ public class LogBean implements Serializable {
 	
 	private String username;
 	private String password;
-	private Boolean is_logged;
+	private String type_log;
 
 	
     public String getUsername() {
@@ -41,16 +41,11 @@ public class LogBean implements Serializable {
 
 	public String performLogin(){
 		
-		is_logged = e_controller.checkLogin(username,password);
 		
-		System.out.println(is_logged);
 		
-		//set the navigation rule
-		if(is_logged){
-			return "success";
-		}
-		else
-			return "failure";
+		System.out.println(type_log);
+		
+		return type_log;
 		
     }
 

@@ -3,7 +3,9 @@ package it.screwdrivers.payroll.controller;
 import java.util.List;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
+import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
+import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -14,22 +16,51 @@ public class EmployeeController {
 	EmployeeDao e_dao;
 
 	
-	public Boolean checkLogin(String username, String password) {
-		
-		boolean find = false;
-		//check if the employee witch tries to enter in the web app has an registered account
+	
+	
+
+	public String checkLogin(String username, String password) {
+
+		String type="not-found";
+
+		// check if the employee witch tries to enter in the web app has an
+		// registered account
 		List<Employee> employees = e_dao.findAll();
-		
-		//itaerator over the list
-		for(Employee e : employees ){
-			
-			if(e.getUsername().equals(username) && e.getPassword().equals(password)){
-				find = true;
+
+		// itaerator over the list
+		for (Employee e : employees) {
+
+			if (e.getUsername().equals(username) && e.getPassword().equals(password)) {
+				
+				type = findType(e);
+				
+				break;
+
 			}
 		}
-		
-		return find;
+		return type;
 	}
+	
+	
+	
+	
+	
+	
+	private String findType(Employee e){
+		String ritorno;
+		ritorno = e.getClass().getSimpleName();
+		return ritorno;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

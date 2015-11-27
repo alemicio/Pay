@@ -9,15 +9,26 @@
 
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
-			<from-outcome>success</from-outcome>
-			<to-view-id>/xhtml/dashboard.xhtml</to-view-id>
+			<from-outcome>salaried</from-outcome>
+			<to-view-id>/xhtml/employeepages/salariedFace.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
-			<from-outcome>failure</from-outcome>
-			<to-view-id>/xhtml/index.xhtml</to-view-id>
+			<from-outcome>commissioned</from-outcome>
+			<to-view-id>/xhtml/employeepages/commissionedFace.xhtml</to-view-id>
 		</navigation-case>
-		
+		<navigation-case>
+			<from-action>#{login.performLogin}</from-action>
+			<from-outcome>contractor</from-outcome>
+			<to-view-id>/xhtml/employeepages/contractorFace.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{login.performLogin}</from-action>
+			<from-outcome>manager</from-outcome>
+			<to-view-id>/xhtml/employeepages/managerFace.xhtml</to-view-id>
+		</navigation-case>
+
+
 
 	</navigation-rule>
 
