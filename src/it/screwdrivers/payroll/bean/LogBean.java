@@ -39,11 +39,19 @@ public class LogBean implements Serializable {
 		this.password = password;
 	}
 
-	public void performLogin(){
+	public String performLogin(){
 		
 		is_logged = e_controller.checkLogin(username,password);
 		
 		System.out.println(is_logged);
+		
+		//set the navigation rule
+		if(is_logged){
+			return "success";
+		}
+		else
+			return "failure";
+		
     }
 
 }
