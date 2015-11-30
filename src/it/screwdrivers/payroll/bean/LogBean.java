@@ -12,7 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.sun.tools.classfile.Annotation.element_value;
 
 @Named("login")
 @SessionScoped
@@ -46,15 +45,17 @@ public class LogBean implements Serializable {
 	}
 
 	public void performLogin(){
-		FacesContext context = FacesContext.getCurrentInstance();
 		
 		retrived_employee = e_controller.checkLogin(username, password);
 		
 		if (retrived_employee == null) {
-			context.addMessage(null, new FacesMessage("ERROR", "Account non presente !!!"));
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Uncorrect username or password", "Invalid credentials"));
 		}
 		else {
-			context.addMessage(null, new FacesMessage("Benvenuto " + username));	
+			//context.getCurrentInstance().addMessage(null, new FacesMessage("Benvenuto" + username));
+			System.out.println(retrived_employee.getName());
+			System.out.println(retrived_employee.getSurname());
 		}
 
     }
