@@ -19,10 +19,10 @@ public class EmployeeController {
 	
 	
 
-	public String checkLogin(String username, String password) {
+	public Employee checkLogin(String username, String password) {
 
-		String type="not-found";
-
+		Employee emp = null;
+		
 		// check if the employee witch tries to enter in the web app has an
 		// registered account
 		List<Employee> employees = e_dao.findAll();
@@ -32,13 +32,14 @@ public class EmployeeController {
 
 			if (e.getUsername().equals(username) && e.getPassword().equals(password)) {
 				
-				type = findType(e);
+				emp = e;
 				
 				break;
 
 			}
 		}
-		return type;
+	
+		return emp;
 	}
 	
 	

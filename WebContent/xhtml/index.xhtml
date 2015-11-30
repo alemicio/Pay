@@ -75,7 +75,10 @@
 											WEB APP</h2>
 									</div>
 									<div class="modal-body">
+										<p:growl id="growl" sticky="true" showDetail="true"
+											life="3000" />
 										<h:form id="loginForm">
+
 											<H3>Username</H3>
 											<p:inputText id="username" required="true"
 												value="#{login.username}" />
@@ -87,7 +90,6 @@
 												<p:commandButton value="LOGIN" type="submit"
 													action="#{login.performLogin}" />
 											</div>
-
 										</h:form>
 
 									</div>
@@ -243,7 +245,8 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h:graphicImage library="images" name="unipv2.png"
-						class="img-responsive center-block" alt="Responsive image" id="bordino2"/>
+						class="img-responsive center-block" alt="Responsive image"
+						id="bordino2" />
 				</div>
 			</div>
 		</div>
