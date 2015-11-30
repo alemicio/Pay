@@ -54,11 +54,8 @@ public class LogBean implements Serializable {
 			context.addMessage(null, new FacesMessage("ERROR", "Account non presente !!!"));
 		}
 		else {
-			context.addMessage(null, new FacesMessage("Benvenuto" + username));	
+			context.addMessage(null, new FacesMessage("Benvenuto " + username));	
 		}
-		
-		System.out.println(retrived_employee.getName());
-		System.out.println(retrived_employee.getSurname());
 
     }
 
