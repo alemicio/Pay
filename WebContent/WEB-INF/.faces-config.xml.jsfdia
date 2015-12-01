@@ -5,25 +5,25 @@
   <PROCESS-ITEM ID="rules:#xhtml#index.xhtml:0" NAME="item"
    PATH="/xhtml/index.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="salaried:#{login.performLogin}:#xhtml#employeepages#salariedFace.xhtml"
+    ID="SalariedEmployee:#{login.performLogin}:#xhtml#employeepages#salariedFace.xhtml"
     NAME="output" PATH="/xhtml/employeepages/salariedFace.xhtml"
     TARGET="rules:#xhtml#employeepages#salariedFace.xhtml"
-    TITLE="#{login.performLogin}:salaried" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{login.performLogin}:SalariedEmployee" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="commissioned:#{login.performLogin}:#xhtml#employeepages#commissionedFace.xhtml"
+    ID="CommissionedEmployee:#{login.performLogin}:#xhtml#employeepages#commissionedFace.xhtml"
     NAME="output1" PATH="/xhtml/employeepages/commissionedFace.xhtml"
     TARGET="rules:#xhtml#employeepages#commissionedFace.xhtml"
-    TITLE="#{login.performLogin}:commissioned" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{login.performLogin}:CommissionedEmployee" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="contractor:#{login.performLogin}:#xhtml#employeepages#contractorFace.xhtml"
+    ID="ContractorEmployee:#{login.performLogin}:#xhtml#employeepages#contractorFace.xhtml"
     NAME="output2" PATH="/xhtml/employeepages/contractorFace.xhtml"
     TARGET="rules:#xhtml#employeepages#contractorFace.xhtml"
-    TITLE="#{login.performLogin}:contractor" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{login.performLogin}:ContractorEmployee" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="manager:#{login.performLogin}:#xhtml#employeepages#managerFace.xhtml"
+    ID="EmployeeManager:#{login.performLogin}:#xhtml#employeepages#managerFace.xhtml"
     NAME="output3" PATH="/xhtml/employeepages/managerFace.xhtml"
     TARGET="rules:#xhtml#employeepages#managerFace.xhtml"
-    TITLE="#{login.performLogin}:manager" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{login.performLogin}:EmployeeManager" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#salariedFace.xhtml"

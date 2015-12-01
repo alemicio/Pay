@@ -18,8 +18,6 @@ public class EmployeeController {
 
 	
 	
-	
-
 	public Employee checkLogin(String username, String password) {
 
 		Employee emp = null;
@@ -30,28 +28,18 @@ public class EmployeeController {
 
 		// itaerator over the list
 		for (Employee e : employees) {
-
 			if (e.getUsername().equals(username) && e.getPassword().equals(password)) {
-				
 				emp = e;
-				
 				break;
-
 			}
 		}
-	
 		return emp;
 	}
 	
-	
-	
-	
-	
-	
-	private String findType(Employee e){
-		String ritorno;
-		ritorno = e.getClass().getSimpleName();
-		return ritorno;
+	public String findType(Employee e){
+		String type;
+		type = e.getClass().getSimpleName();
+		return type;
 	}
 	
 	

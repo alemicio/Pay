@@ -9,22 +9,22 @@
 
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
-			<from-outcome>salaried</from-outcome>
+			<from-outcome>SalariedEmployee</from-outcome>
 			<to-view-id>/xhtml/employeepages/salariedFace.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
-			<from-outcome>commissioned</from-outcome>
+			<from-outcome>CommissionedEmployee</from-outcome>
 			<to-view-id>/xhtml/employeepages/commissionedFace.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
-			<from-outcome>contractor</from-outcome>
+			<from-outcome>ContractorEmployee</from-outcome>
 			<to-view-id>/xhtml/employeepages/contractorFace.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
-			<from-outcome>manager</from-outcome>
+			<from-outcome>EmployeeManager</from-outcome>
 			<to-view-id>/xhtml/employeepages/managerFace.xhtml</to-view-id>
 		</navigation-case>
 
