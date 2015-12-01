@@ -24,45 +24,25 @@
 </h:head>
 
 <body>
-	<div class="navbar-wrapper">
-		<div class="container">
-
-			<nav class="navbar navbar-inverse navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target="#navbar"
-							aria-expanded="false" aria-controls="navbar">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#">Magic ScrewDriver</a>
-					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Home</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li><a class="navbar-right" href="#about">About us</a></li>
-							<li><a class="navbar-right" href="#contact">Contacts</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-
-		</div>
-	</div>
 
 	<div class="container-fluid" id="sfondo">
+	
+		<b:navBar brand="Magic ScrewDriver" brandHref="#" fluid="true" id="navbar">
+			<b:navbarLinks>
+				<b:navLink value="Home" href="#"></b:navLink>
+				<b:navLink value="About US" href="#"></b:navLink>
+				<b:navLink value="Contacts" href="#"></b:navLink>
+				<b:navLink value="LOG OUT" href="#"></b:navLink>
+
+			</b:navbarLinks>
+		</b:navBar>
+		
 		<div class="container">
 
 			<div class="jumbotron" id="jumbotrone">
 				<div class="row">
 					<div class="col-lg-8">
-						<h1> Benvenuto  #{login.retrived_employee.username}</h1>
-
-						
+						<h1>Benvenuto #{login.retrived_employee.username}</h1>
 
 					</div>
 					<div class="col-lg-4">
@@ -76,7 +56,7 @@
 		</div>
 	</div>
 
-	
+
 	<div class="container-fluid" id="sfondo">
 		<div class="container">
 			<div class="row">
