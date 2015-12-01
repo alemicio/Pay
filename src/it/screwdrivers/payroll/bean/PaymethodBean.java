@@ -17,11 +17,22 @@ public class PaymethodBean implements Serializable {
 	
 	private Employee logged_employee;
 	private Paymethod paymethod;
+	private String type;
 	
 	
-	public void changePaymethod(){
-		//TODO method for changing the paymethod for the logged employee
+	public String checkPaymethod(){
+		
+		//this method return a paymethod for a given employee.
+		paymethod = paymethod_controller.checkPaymethodForEmployee(logged_employee);
+		
+		if(paymethod != null){
+			type = paymethod_controller.findType(paymethod);
+			return type;
+		}
+		
+		return null;
 	}
+	
 	
 	public Employee getLogged_employee() {
 		return logged_employee;
