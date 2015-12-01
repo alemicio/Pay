@@ -40,30 +40,30 @@
 			<div class="jumbotron" id="jumbotrone">
 				<div class="row">
 					<div class="col-lg-8">
+
 						<h1>Payroll Application</h1>
+						<div class="col-lg-8 col-lg-offset-2">
+							<h:form id="loginForm">
+								<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+								<H3>Username</H3>
+								<b:inputText id="username" required="true"
+									value="#{login.username}">
+									<f:facet name="prepend">
+										<b:icon name="user"></b:icon>
+									</f:facet>
+								</b:inputText>
+								<H3>Password</H3>
+								<b:inputSecret type="password" required="true"
+									value="#{login.password}">
+									<f:facet name="prepend">
+										<b:icon name="ok"></b:icon>
+									</f:facet>
+								</b:inputSecret>
 
-						<h:form id="loginForm">
-							<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-							<H3>Username</H3>
-							<b:inputText id="username" required="true"
-								value="#{login.username}">
-								<f:facet name="prepend">
-									<b:icon name="user"></b:icon>
-								</f:facet>
-							</b:inputText>
-							<H3>Password</H3>
-							<b:inputSecret type="password" required="true"
-								value="#{login.password}">
-								<f:facet name="prepend">
-									<b:icon name="ok"></b:icon>
-								</f:facet>
-							</b:inputSecret>
-
-							<b:commandButton value="LOGIN" update="growl" size="lg"
-								action="#{login.performLogin}" style="color:rgb(58, 130, 133);" />
-
-						</h:form>
-
+								<b:commandButton value="LOGIN" update="growl" size="lg"
+									action="#{login.performLogin}" style="color:rgb(58, 130, 133);" />
+							</h:form>
+						</div>
 					</div>
 					<div class="col-lg-4">
 						<h:graphicImage library="images" name="logo_unipv.png"
