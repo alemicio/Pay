@@ -29,12 +29,14 @@
 
 		<b:navBar brand="Magic ScrewDriver" brandHref="#" fluid="true"
 			id="navbar">
-			<b:navbarLinks>
+			<b:navbarLinks pull="left">
 				<b:navLink value="Home" href="#"></b:navLink>
 				<b:navLink value="About US" href="#"></b:navLink>
 				<b:navLink value="Contacts" href="#"></b:navLink>
-				<b:navLink value="LOG OUT" href="#"></b:navLink>
-
+			</b:navbarLinks>
+			<b:navbarLinks pull="right">
+				<b:navLink value="Payments received" href="#"></b:navLink>
+				<b:navLink value="Union Services" href="#"></b:navLink>
 			</b:navbarLinks>
 		</b:navBar>
 
@@ -43,39 +45,52 @@
 			<div class="jumbotron" id="jumbotrone">
 				<div class="row">
 
-					<div class="col-lg-8">
+					<div class="col-lg-9">
 
 						<h1>Benvenuto #{login.retrived_employee.username}</h1>
 
-						<div class="col-lg-6"  style="text-align: left;">
-							<h3>Name: #{login.retrived_employee.name}</h3>
+						<div class="row">
+							<div class="col-lg-6" style="text-align: left;">
+								<h3>Name: #{login.retrived_employee.name}</h3>
+								<h3>E-mail: #{login.retrived_employee.e_mail}</h3>
+								<h3>Address: #{login.retrived_employee.postal_address}</h3>
+							</div>
+							<div class="col-lg-6" style="text-align: left;">
+								<h3>Surname: #{login.retrived_employee.surname}</h3>
+								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
+							</div>
 						</div>
-						<div class="col-lg-6"  style="text-align: left;">
-							<h3>Surname: #{login.retrived_employee.surname}</h3>
+						<div class="row">
+							<div class="col-lg-6" style="text-align: left;">
+								<h3>Payment: #{login.retrived_employee.paymethod}</h3>
+							</div>
+							<div class="col-lg-6" style="text-align: left;">
+								<h3>Union: #{login.retrived_employee.union}</h3>
+							</div>
 						</div>
-						<div class="col-lg-6" style="text-align: left;">
-							<h3>Address: #{login.retrived_employee.postal_address}</h3>
-							<h3>E-mail: #{login.retrived_employee.e_mail}</h3>
-							<h3>Phone: #{login.retrived_employee.phone_number}</h3>
-
-							<h3>Payment: #{login.retrived_employee.paymethod}</h3>
-						</div>
-
-
-
 
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<h:graphicImage library="images" name="logo_unipv.png"
 							class="img-responsive center-block" alt="Responsive image"
 							id="bordino" />
+
+						<b:button value="Change Detail" size="lg" action=""
+							style="color:rgb(58, 130, 133);" />
+
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<div class="container-fluid" id="sfondo2">
+		<div class="container">
+			<div class="row" id="bordino2">
+				<div class="col-lg-12"></div>
+			</div>
+		</div>
+	</div>
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">

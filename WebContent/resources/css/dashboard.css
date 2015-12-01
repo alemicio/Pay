@@ -5,8 +5,8 @@ body {
 }
 
 /* ----------------------- Roba mia --------------------------- */
-#navbar {
-	
+#navbar{
+
 }
 #sfondo {
 	background-image: url("/Pay/resources/images/hero.jpg");
@@ -22,8 +22,9 @@ body {
 
 #jumbotrone {
 	text-align: center;
-	margin-top: 2rem;
+	margin-top: 1rem;
 	margin-bottom: 2rem;
+
 }
 
 #bordino {
