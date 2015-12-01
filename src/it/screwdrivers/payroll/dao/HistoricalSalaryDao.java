@@ -1,6 +1,6 @@
 package it.screwdrivers.payroll.dao;
 
-import it.screwdrivers.payroll.pojo.employee.Employee;
+import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
 
 import java.util.List;
 
@@ -12,20 +12,20 @@ public class HistoricalSalaryDao {
 	@PersistenceContext
 	EntityManager em;
 
-	public void add(Employee employee) {
-		em.persist(employee);
+	public void add(HistoricalSalary historical_salary) {
+		em.persist(historical_salary);
 	}
 
-	public List<Employee> findAll() {
-		List<Employee> employees = em.createQuery("select p from Employee p", Employee.class).getResultList();
-		return employees;
+	public List<HistoricalSalary> findAll() {
+		List<HistoricalSalary> historical_salaries = em.createQuery("select p from HistoricalSalary p", HistoricalSalary.class).getResultList();
+		return historical_salaries;
 	}
 	
-	public Employee update(Employee employee) {
-		return em.merge(employee);
+	public HistoricalSalary update(HistoricalSalary historical_salary) {
+		return em.merge(historical_salary);
 	}
 
-	public void remove(Employee employee) {
-		em.remove(em.merge(employee));
+	public void remove(HistoricalSalary historical_salary) {
+		em.remove(em.merge(historical_salary));
 	}
 }

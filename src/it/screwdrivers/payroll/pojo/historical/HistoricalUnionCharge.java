@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "HistoricalUnionCharge")
 public class HistoricalUnionCharge {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,9 +26,8 @@ public class HistoricalUnionCharge {
 	private Date date;
 	
 	@ManyToOne
-	@JoinColumn(name="employeeId",referencedColumnName="employeeId")
+	@JoinColumn(name="employeeId", referencedColumnName="employeeId")
 	private Employee employee;
-	
 	
 	public float getAmount() {
 		return amount;
@@ -50,5 +50,4 @@ public class HistoricalUnionCharge {
 	public int getId() {
 		return id;
 	}
-
 }

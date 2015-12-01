@@ -1,6 +1,6 @@
 package it.screwdrivers.payroll.pojo.employee;
 
-import it.screwdrivers.payroll.pojo.historical.HistoricalSalaries;
+import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
 import it.screwdrivers.payroll.pojo.historical.HistoricalUnionCharge;
 import it.screwdrivers.payroll.pojo.payment.Paymethod;
 import it.screwdrivers.payroll.pojo.union.Union;
@@ -52,7 +52,7 @@ public abstract class Employee implements Serializable {
 	private Union union;
 
 	@OneToMany(mappedBy="employee")
-	private List<HistoricalSalaries> historical_salaries;
+	private List<HistoricalSalary> historical_salaries;
 	
 	@OneToMany(mappedBy="employee")
 	private List<HistoricalUnionCharge> historical_union_charge;
