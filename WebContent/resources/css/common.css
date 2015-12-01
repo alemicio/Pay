@@ -32,20 +32,21 @@ body {
 }
 /* ----------------------- Roba mia --------------------------- */
 #sfondo {
-	background-image: url("../images/hero.jpg");
+	background-image: url("/Pay/resources/images/hero.jpg");
 	background-repeat: no-repeat;
 	background-position: top;
 }
+
 #sfondo2 {
-	background-image: url("../images/back.jpg");
+	background-image: url("/Pay/resources/images/back2.jpg");
 	background-repeat: no-repeat;
 	background-position: top;
 }
+
 #jumbotrone {
 	text-align: center;
 	margin-top: 10rem;
 	margin-bottom: 10rem;
-	/*color: rgb(58,130,133);*/
 	color: black;
 }
 
@@ -53,21 +54,35 @@ body {
 	border-style: solid;
 	border-radius: 10px;
 	border-color: rgb(58, 130, 133);
-	border-width: 0.5rem;
+	border-width: 0.7rem;
+	padding: 0rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+#bordino2 {
+	border-style: solid;
+	border-radius: 10px;
+	border-color: white;
+	border-width: 0.7rem;
 	padding: 0rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 }
 
 #modale {
-	color: rgb(58, 130, 133);
+	background-color: #C49E12;
 	text-align: center;
 	margin: 1rem;
-}
-#loghi {
-	
+	color: rgb(58, 130, 133);
+	background-position: top;
 }
 
+#foot {
+	background-color: rgb(99, 66, 66);
+	color: white;
+	text-align: center;
+}
 /* ----------------------- Media Queries --------------------------- */
 @media ( min-width : 768px) {
 	/* Navbar positioning foo */
