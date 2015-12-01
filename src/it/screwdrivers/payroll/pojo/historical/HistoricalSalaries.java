@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "HistoricalSalaries")
+@Table(name = "HistoricalSalary")
 public class HistoricalSalaries {
 	private static final long serialVersionUID = 1L;
 
@@ -25,9 +25,8 @@ public class HistoricalSalaries {
 	private Date date;
 	
 	@ManyToOne
-	@JoinColumn(name="employeeId",referencedColumnName="employeeId")
+	@JoinColumn(name="employeeId", referencedColumnName="employeeId")
 	private Employee employee;
-	
 	
 	public float getAmount() {
 		return amount;
@@ -50,5 +49,4 @@ public class HistoricalSalaries {
 	public int getId() {
 		return id;
 	}
-
 }
