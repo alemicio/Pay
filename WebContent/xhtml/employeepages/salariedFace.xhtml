@@ -9,6 +9,7 @@
 <h:head>
 	<title>Salaried Dashboard</title>
 	<h:outputStylesheet library="css" name="common.css"></h:outputStylesheet>
+
 	<link
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
 		rel="stylesheet"
@@ -44,7 +45,7 @@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li><a class="navbar-right" href="#about">About us</a></li>
-							<li><a href="#contact">Contacts</a></li>
+							<li><a class="navbar-right" href="#contact">Contacts</a></li>
 						</ul>
 					</div>
 				</div>
@@ -53,14 +54,40 @@
 		</div>
 	</div>
 
-	<h:outputText  value="#{login.retrived_employee.name}" />
-	<h:outputText  value="#{login.retrived_employee.surname}" />
-	<h:outputText  value="#{login.retrived_employee.username}" />
-	<h:outputText  value="#{login.retrived_employee.e_mail}" />
-	<h:outputText  value="#{login.retrived_employee.monthly_salary}"/>
+	<div class="container-fluid" id="sfondo">
+		<div class="container">
 
+			<div class="jumbotron" id="jumbotrone">
+				<div class="row">
+					<div class="col-lg-8">
+						<h1> Benvenuto  #{login.retrived_employee.username}</h1>
 
+						
 
+					</div>
+					<div class="col-lg-4">
+						<h:graphicImage library="images" name="logo_unipv.png"
+							class="img-responsive center-block" alt="Responsive image"
+							id="bordino" />
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<div class="container-fluid" id="sfondo">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h:graphicImage library="images" name="unipv2.png"
+						class="img-responsive center-block" alt="Responsive image"
+						id="bordino2" />
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 

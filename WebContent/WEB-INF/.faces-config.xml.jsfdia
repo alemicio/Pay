@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#xhtml#index.xhtml" PATH="/xhtml/index.xhtml"
-  SHAPE="200,144,50,57" model-entity="JSFProcessGroup">
+  SHAPE="112,152,50,89" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#xhtml#index.xhtml:0" NAME="item"
    PATH="/xhtml/index.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -27,7 +27,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#salariedFace.xhtml"
-  PATH="/xhtml/employeepages/salariedFace.xhtml" SHAPE="256,145,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/xhtml/employeepages/salariedFace.xhtml" SHAPE="208,64,50,25" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#managerFace.xhtml"
   PATH="/xhtml/employeepages/managerFace.xhtml" SHAPE="288,465,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#contractorFace.xhtml"
