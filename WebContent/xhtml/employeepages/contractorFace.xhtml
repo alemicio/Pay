@@ -92,12 +92,13 @@
 		<div class="container">
 			<b:jumbotron id="jumbotrone2">
 				<h:form>
+				<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 					<h1>Send Time Card</h1>
 					<div class="row">
 						<div class="col-lg-4">
 							<h:outputText value="Select date:" />
 							<b:datepicker mode="icon-toggle" showWeek="true" firstDay="1"
-								id="calendar"></b:datepicker>
+								id="calendar" value="#{timecard.date}"></b:datepicker>
 						</div>
 						<div class="col-lg-4">
 
@@ -146,8 +147,8 @@
 					</div>
 					<div class="row">
 						<div class="col-lg-4 col-lg-offset-4">
-							<b:commandButton value="Submit TimeCard" size="lg"
-								action="#{timecard.submitTimeCard()}"></b:commandButton>
+							<b:commandButton value="Submit TimeCard" size="lg" update="growl"
+								action="#{timecard.submitTimeCard(login.retrived_employee)}"></b:commandButton>
 						</div>
 					</div>
 				</h:form>

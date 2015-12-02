@@ -60,5 +60,12 @@ public class TimeCard implements Serializable {
 	public int getId() {
 		return id;
 	}
+	public ContractorEmployee getContractor_employee() {
+		return contractor_employee;
+	}
+	public void setContractor_employee(ContractorEmployee contractor_employee) {
+		this.contractor_employee = contractor_employee;
+	}
+	
 	
 }
