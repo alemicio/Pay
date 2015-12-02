@@ -1,12 +1,11 @@
 package it.screwdrivers.payroll.controller;
 
-import java.util.List;
+import java.sql.Time;
+import java.util.Date;
+import java.util.Timer;
 
-import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.TimeCardDao;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
+import it.screwdrivers.payroll.pojo.card.TimeCard;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,7 +18,22 @@ public class TimeCardController {
 	TimeCardDao t_dao;
 
 	
-	
+	@SuppressWarnings("deprecation")
+	public Time ComputeTime(int start_hour, int start_min){
+		Time tempo = new Time(start_hour, start_min, 0);
+		
+		return tempo;
+	}
+
+	public String registerTimeCard(TimeCard t){
+		
+		t_dao.add(t);
+		
+		//TODO 
+		
+		return null;
+		
+	}
 	
 	
 	
