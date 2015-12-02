@@ -24,6 +24,7 @@ public class ArquillianTest {
 				.addPackages(true, "it.screwdrivers.payroll.pojo.payment")
 				.addPackages(true, "it.screwdrivers.payroll.pojo.union")
 				.addPackages(true, "it.screwdrivers.payroll.dao")
+				.addPackages(true,  "it.screwdrivers.payroll.pojo.historical")
 				.addPackages(true, "it.screwdrivers.payroll.testsDB")
 				.addAsResource("META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE,
