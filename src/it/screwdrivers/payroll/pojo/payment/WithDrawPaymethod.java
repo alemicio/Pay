@@ -14,11 +14,13 @@ public class WithDrawPaymethod extends Paymethod implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String headquarter;
 	
-	
-	public String getFilial() {
+	public String getHeadquarter() {
 		return headquarter;
 	}
-	public void setFilial(String filial) {
-		this.headquarter = filial;
+	public void setHeadquarter(String headquarter) {
+		this.headquarter = headquarter;
 	}
+	
+	
+	
 }

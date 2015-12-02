@@ -8,6 +8,7 @@ import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
 import it.screwdrivers.payroll.pojo.payment.Paymethod;
 import it.screwdrivers.payroll.pojo.payment.PostalPaymethod;
 import it.screwdrivers.payroll.pojo.payment.WithDrawPaymethod;
+import it.screwdrivers.payroll.testsDB.PaymentTest;
 
 import javax.inject.Inject;
 
@@ -17,13 +18,14 @@ public class PaymethodBean implements Serializable {
 
 	@Inject
 	PaymethodController paymethod_controller;
+	BankPaymethod bank_paymethod;
+	PostalPaymethod postal_paymethod;
+	WithDrawPaymethod withdraw_paymethod;
 	
 	private Employee logged_employee;
 	private Paymethod paymethod;
 	private String type;
-	private BankPaymethod bank_paymethod;
-	private PostalPaymethod postal_paymethod;
-	private WithDrawPaymethod withdraw_paymethod;
+	
 	
 	
 	public String checkPaymethod(){
@@ -38,22 +40,30 @@ public class PaymethodBean implements Serializable {
 		
 		return null;
 	}
-	public void changePaymethod(String paymethod_type){
+	public void addBankPaymethod(String iban,String filial){
 		
-		if(paymethod_type.equals("Bank")){
-			
-			
-			
-		}
-		if(paymethod_type.equals("Postal")){
-			
-		}
-		if(paymethod_type.equals("WithDraw")){
-			
-		}
+		bank_paymethod.setIBAN(iban);
+		bank_paymethod.setFilial(filial);
 		
-		
+		paymethod_controller.addingNewBankPaymethod(logged_employee,bank_paymethod);	
 	}
+	
+	public void addPostalPaymethod(String residential_address){
+		
+		postal_paymethod.setRedidential_address(residential_address);
+		
+		paymethod_controller.addingNewPostalPaymethod(logged_employee, postal_paymethod);	
+	}
+	
+	public void addWithDrawPaymethod(String headquarter){
+		
+		withdraw_paymethod.setHeadquarter(headquarter);
+		
+		paymethod_controller.addingNewWithDrawPaymethod(logged_employee, withdraw_paymethod);	
+	}
+	
+	
+
 	
 	
 	public Employee getLogged_employee() {

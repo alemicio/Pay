@@ -20,8 +20,58 @@ public class PaymethodController {
 	PaymethodDao paymethod_dao;
 	EmployeeDao employee_dao;
 	
-	public void addingNewPaymethod(Paymethod paymethod){
-		paymethod_dao.add(paymethod);
+	public void addingNewBankPaymethod(Employee employee,BankPaymethod bank_paymethod){
+		
+		//delete all references of paymethod for the given employee
+		List<Employee> employees = employee_dao.findAll();
+		
+		for (Employee e : employees) {
+			if(e.getUsername().equals(employee.getUsername())){
+				paymethod_dao.remove(e.getPaymethod());
+			}
+		}
+		//adding the new paymethod in the db
+		paymethod_dao.add(bank_paymethod);
+		
+		// update employee record
+		employee.setPaymethod(bank_paymethod);
+		employee_dao.update(employee);
+
+	}
+	public void addingNewPostalPaymethod(Employee employee,PostalPaymethod postal){
+		
+		//delete all references of paymethod for the given employee
+		List<Employee> employees = employee_dao.findAll();
+		
+		for (Employee e : employees) {
+			if(e.getUsername().equals(employee.getUsername())){
+				paymethod_dao.remove(e.getPaymethod());
+			}
+		}
+		//adding the new paymethod in the db
+		paymethod_dao.add(postal);
+		
+		// update employee record
+		employee.setPaymethod(postal);
+		employee_dao.update(employee);
+
+	}
+	public void addingNewWithDrawPaymethod(Employee employee,WithDrawPaymethod withdraw){
+		
+		//delete all references of paymethod for the given employee
+		List<Employee> employees = employee_dao.findAll();
+		
+		for (Employee e : employees) {
+			if(e.getUsername().equals(employee.getUsername())){
+				paymethod_dao.remove(e.getPaymethod());
+			}
+		}
+		//adding the new paymethod in the db
+		paymethod_dao.add(withdraw);
+		
+		// update employee record
+		employee.setPaymethod(withdraw);
+		employee_dao.update(employee);
 
 	}
 	
