@@ -61,11 +61,7 @@ public class PaymethodBean implements Serializable {
 		
 		paymethod_controller.addingNewWithDrawPaymethod(logged_employee, withdraw_paymethod);	
 	}
-	
-	
 
-	
-	
 	public Employee getLogged_employee() {
 		return logged_employee;
 	}

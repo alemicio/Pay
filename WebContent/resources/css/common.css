@@ -1,13 +1,14 @@
 @CHARSET "UTF-8";
 
 body {
-
+	
 }
 
 /* ----------------------- Roba mia --------------------------- */
 #navbar {
 	
 }
+
 #sfondo {
 	background-image: url("/Pay/resources/images/hero.jpg");
 	background-repeat: no-repeat;
@@ -20,15 +21,16 @@ body {
 	background-position: top;
 }
 
-#jumbotrone {
+#jumbotrone1,#jumbotrone2 {
 	text-align: center;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 }
 
 #calendar {
-
+	
 }
+
 #bordino {
 	border-style: solid;
 	border-radius: 10px;
@@ -53,5 +55,20 @@ body {
 	background-color: rgb(99, 66, 66);
 	color: white;
 	text-align: center;
+}
+
+#face {
+	stroke-width: 2px;
+	stroke: #fff;
+}
+
+#hour, #min, #sec {
+	stroke-width: 1px;
+	fill: #333;
+	stroke: #555;
+}
+
+#sec {
+	stroke: #f55;
 }
 /* ----------------------- Media Queries --------------------------- */

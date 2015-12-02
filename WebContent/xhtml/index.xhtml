@@ -47,14 +47,14 @@
 							<h:form id="loginForm">
 								<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 								<H3>Username</H3>
-								<b:inputText id="username" required="true"
+								<b:inputText id="username" required="true" placeholder="username"
 									value="#{login.username}">
 									<f:facet name="prepend">
 										<b:icon name="user"></b:icon>
 									</f:facet>
 								</b:inputText>
 								<H3>Password</H3>
-								<b:inputSecret type="password" required="true"
+								<b:inputSecret type="password" required="true" placeholder="password"
 									value="#{login.password}">
 									<f:facet name="prepend">
 										<b:icon name="ok"></b:icon>

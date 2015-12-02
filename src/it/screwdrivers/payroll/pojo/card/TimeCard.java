@@ -27,6 +27,7 @@ public class TimeCard implements Serializable {
 	private Date date;
 	private Time start_time;
 	private Time end_time;
+	private float hours_worked;
 	
 	@ManyToOne
 	@JoinColumn(name="employeeId",referencedColumnName="employeeId")
@@ -50,4 +51,21 @@ public class TimeCard implements Serializable {
 	public void setEnd_time(Time end_time) {
 		this.end_time = end_time;
 	}
+	public float getHours_worked() {
+		return hours_worked;
+	}
+	public void setHours_worked(float hours_worked) {
+		this.hours_worked = hours_worked;
+	}
+	public int getId() {
+		return id;
+	}
+	public ContractorEmployee getContractor_employee() {
+		return contractor_employee;
+	}
+	public void setContractor_employee(ContractorEmployee contractor_employee) {
+		this.contractor_employee = contractor_employee;
+	}
+	
+	
 }
