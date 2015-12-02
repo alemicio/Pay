@@ -20,6 +20,11 @@ public class PaymethodController {
 	PaymethodDao paymethod_dao;
 	EmployeeDao employee_dao;
 	
+	public void addingNewPaymethod(Paymethod paymethod){
+		paymethod_dao.add(paymethod);
+
+	}
+	
 	//method that check if the employee has already set a paymethod type
 	public Paymethod checkPaymethodForEmployee(Employee employee){
 		
