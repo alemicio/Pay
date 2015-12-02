@@ -8,7 +8,9 @@
 
 <h:head>
 	<title>Salaried Dashboard</title>
+
 	<h:outputStylesheet library="css" name="common.css"></h:outputStylesheet>
+	<h:outputScript library="js" name="myscript.js"></h:outputScript>
 
 	<link
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -35,78 +37,125 @@
 				<b:navLink value="Contacts" href="#"></b:navLink>
 			</b:navbarLinks>
 			<b:navbarLinks pull="right">
-				<b:navLink value="Post Time Card" href="#"></b:navLink>
+				<b:navLink value="Post Time Card" href="#jumbotrone2"></b:navLink>
 				<b:navLink value="Payments received" href="#"></b:navLink>
 				<b:navLink value="Union Services" href="#"></b:navLink>
 				<b:navLink value="LOGOUT" href="#" active="true"></b:navLink>
 			</b:navbarLinks>
 		</b:navBar>
 
-		<div class="container">
 
-			<b:jumbotron id="jumbotrone">
-				<div class="row">
 
-					<div class="col-lg-9">
-						<h1>Benvenuto #{login.retrived_employee.username}</h1>
+		<b:jumbotron id="jumbotrone1">
+			<div class="row">
 
-						<div class="row">
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Name: #{login.retrived_employee.name}</h3>
-								<h3>E-mail: #{login.retrived_employee.e_mail}</h3>
-								<h3>Address: #{login.retrived_employee.postal_address}</h3>
-							</div>
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Surname: #{login.retrived_employee.surname}</h3>
-								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
-							</div>
+				<div class="col-lg-9">
+					<h1>Benvenuto #{login.retrived_employee.username}</h1>
+
+					<div class="row">
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Name: #{login.retrived_employee.name}</h3>
+							<h3>E-mail: #{login.retrived_employee.e_mail}</h3>
+							<h3>Address: #{login.retrived_employee.postal_address}</h3>
 						</div>
-						<div class="row">
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Payment: #{login.retrived_employee.paymethod}</h3>
-							</div>
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Union: #{login.retrived_employee.union}</h3>
-							</div>
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Surname: #{login.retrived_employee.surname}</h3>
+							<h3>Phone: #{login.retrived_employee.phone_number}</h3>
 						</div>
-
 					</div>
-					<div class="col-lg-3">
-						<h:graphicImage library="images" name="logo_unipv.png"
-							class="img-responsive center-block" alt="Responsive image"
-							id="bordino" />
-
-						<b:button value="Change Detail" size="lg" action=""
-							style="color:rgb(58, 130, 133);" />
-
+					<div class="row">
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Payment: #{login.retrived_employee.paymethod}</h3>
+						</div>
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Union: #{login.retrived_employee.union}</h3>
+						</div>
 					</div>
 
 				</div>
-			</b:jumbotron>
+				<div class="col-lg-3">
+					<h:graphicImage library="images" name="logo_unipv.png"
+						class="img-responsive center-block" alt="Responsive image"
+						id="bordino" />
 
+					<b:button value="Change Detail" size="lg" action=""
+						style="color:rgb(58, 130, 133);" />
 
-		</div>
+				</div>
+
+			</div>
+		</b:jumbotron>
+
 	</div>
 	<div class="container-fluid" id="sfondo2">
 
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<b:jumbotron id="jumbotrone">
-						<h2>Send Time Card</h2>
-						<div class="row">
-							<div class="col-lg-6">
-								<b:datepicker mode="icon-toggle" showWeek="true" firstDay="1" id="calendar"></b:datepicker>
-							</div>
-							<div class="col-lg-6">
-
-							</div>
+			<b:jumbotron id="jumbotrone2">
+				<h:form>
+				<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+					<h1>Send Time Card</h1>
+					<div class="row">
+						<div class="col-lg-4">
+							<h:outputText value="Select date:" />
+							<b:datepicker mode="icon-toggle" showWeek="true" firstDay="1"
+								id="calendar" value="#{timecard.date}"></b:datepicker>
 						</div>
-					</b:jumbotron>
-				</div>
-			</div>
+						<div class="col-lg-4">
+
+							<h:outputText value="Start hour:" />
+							<b:inputText id="hs" required="true"
+								value="#{timecard.hour_start}">
+								<f:facet name="prepend">
+									<b:icon name="menu-up"></b:icon>
+								</f:facet>
+							</b:inputText>
+							<h:outputText value="Start minute:" />
+							<b:inputText id="ms" required="true"
+								value="#{timecard.minute_start}">
+								<f:facet name="prepend">
+									<b:icon name="menu-down"></b:icon>
+								</f:facet>
+							</b:inputText>
+							<h:outputText value="End hour:" />
+							<b:inputText id="he" required="true" value="#{timecard.hour_end}">
+								<f:facet name="prepend">
+									<b:icon name="menu-up"></b:icon>
+								</f:facet>
+							</b:inputText>
+							<h:outputText value="End minute:" />
+							<b:inputText id="me" required="true"
+								value="#{timecard.minute_end}">
+								<f:facet name="prepend">
+									<b:icon name="menu-down"></b:icon>
+								</f:facet>
+							</b:inputText>
+
+						</div>
+						<div class="col-lg-4">
+							<svg id="clock" viewBox="0 0 100 100">
+            						<circle id="face" cx="50" cy="50" r="45" />
+            						<g id="hands">
+                						<rect id="hour" x="48.5" y="12.5" width="5"
+									height="40" rx="2.5" ry="2.55" />
+               							<rect id="min" x="48" y="12.5" width="3"
+									height="40" rx="2" ry="2" />
+                						<line id="sec" x1="50" y1="50" x2="50" y2="16" />
+            						</g>
+        						</svg>
+						</div>
+					
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-4">
+							<b:commandButton value="Submit TimeCard" size="lg" update="growl"
+								action="#{timecard.submitTimeCard(login.retrived_employee)}"></b:commandButton>
+						</div>
+					</div>
+				</h:form>
+			</b:jumbotron>
 		</div>
 	</div>
+
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">
