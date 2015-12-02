@@ -58,6 +58,19 @@ public abstract class Employee implements Serializable {
 	private List<HistoricalUnionCharge> historical_union_charge;
 	
 	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+	
+	
 	public String getUsername() {
 		return username;
 	}
@@ -118,17 +131,6 @@ public abstract class Employee implements Serializable {
 		return employeeId;
 	}
 
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
 
 	public Paymethod getPaymethod() {
 		return paymethod;
@@ -149,4 +151,22 @@ public abstract class Employee implements Serializable {
 	public int getEmployeeId() {
 		return employeeId;
 	}
+
+	public List<HistoricalSalary> getHistorical_salaries() {
+		return historical_salaries;
+	}
+
+	public void setHistorical_salaries(List<HistoricalSalary> historical_salaries) {
+		this.historical_salaries = historical_salaries;
+	}
+
+	public List<HistoricalUnionCharge> getHistorical_union_charge() {
+		return historical_union_charge;
+	}
+
+	public void setHistorical_union_charge(
+			List<HistoricalUnionCharge> historical_union_charge) {
+		this.historical_union_charge = historical_union_charge;
+	}
+	
 }
