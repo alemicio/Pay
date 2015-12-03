@@ -45,7 +45,7 @@ public class PaymethodBean implements Serializable {
 		paymethod_controller.setBankPaymethod(e_bean.getRetrived_employee(), bank_paymethod);	
 	}
 	
-	public void addPostalPaymethod(String residential_address){
+	public void seyPostalPaymethod(String residential_address){
 		
 		PostalPaymethod postal_paymethod = new PostalPaymethod();
 		postal_paymethod.setRedidential_address(residential_address);
@@ -53,7 +53,7 @@ public class PaymethodBean implements Serializable {
 		paymethod_controller.setPostalPaymethod(e_bean.getRetrived_employee(), postal_paymethod);
 	}
 	
-	public void addWithDrawPaymethod(String headquarter){
+	public void setWithDrawPaymethod(String headquarter){
 		
 		WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
 		withdraw_paymethod.setHeadquarter(headquarter);
