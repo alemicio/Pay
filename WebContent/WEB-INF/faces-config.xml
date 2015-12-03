@@ -3,32 +3,32 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
-
+	
 	<navigation-rule>
 		<from-view-id>/xhtml/index.xhtml</from-view-id>
-
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
 			<from-outcome>SalariedEmployee</from-outcome>
 			<to-view-id>/xhtml/employeepages/salariedFace.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
-		
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
 			<from-outcome>CommissionedEmployee</from-outcome>
 			<to-view-id>/xhtml/employeepages/commissionedFace.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
-		
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
 			<from-outcome>ContractorEmployee</from-outcome>
 			<to-view-id>/xhtml/employeepages/contractorFace.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
-		
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
 			<from-outcome>EmployeeManager</from-outcome>
 			<to-view-id>/xhtml/employeepages/managerFace.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
