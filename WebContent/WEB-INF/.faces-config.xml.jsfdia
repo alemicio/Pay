@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#xhtml#index.xhtml" PATH="/xhtml/index.xhtml"
-  SHAPE="112,152,50,89" model-entity="JSFProcessGroup">
+  SHAPE="48,32,50,89" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#xhtml#index.xhtml:0" NAME="item"
    PATH="/xhtml/index.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
     ID="SalariedEmployee:#{login.performLogin}:#xhtml#employeepages#salariedFace.xhtml"
     NAME="output" PATH="/xhtml/employeepages/salariedFace.xhtml"
+    SHAPE="97,64,520,64,520,40,615,40"
     TARGET="rules:#xhtml#employeepages#salariedFace.xhtml"
     TITLE="#{login.performLogin}:SalariedEmployee" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
@@ -27,11 +28,48 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#salariedFace.xhtml"
-  PATH="/xhtml/employeepages/salariedFace.xhtml" SHAPE="208,64,50,25" model-entity="JSFProcessGroup"/>
+  PATH="/xhtml/employeepages/salariedFace.xhtml" SHAPE="616,32,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#xhtml#employeepages#salariedFace.xhtml:0"
+   NAME="item" PATH="/xhtml/employeepages/salariedFace.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="Logout:#{login.performLogout}:#xhtml#index.xhtml" NAME="output"
+    PATH="/xhtml/index.xhtml" TARGET="rules:#xhtml#index.xhtml"
+    TITLE="#{login.performLogout}:Logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#managerFace.xhtml"
-  PATH="/xhtml/employeepages/managerFace.xhtml" SHAPE="288,465,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/xhtml/employeepages/managerFace.xhtml" SHAPE="616,280,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#xhtml#employeepages#managerFace.xhtml:0"
+   NAME="item" PATH="/xhtml/employeepages/managerFace.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="Logout:#{login.performLogout}:#xhtml#index.xhtml" NAME="output"
+    PATH="/xhtml/index.xhtml"
+    SHAPE="665,312,672,312,672,256,40,256,40,40,47,40"
+    TARGET="rules:#xhtml#index.xhtml"
+    TITLE="#{login.performLogout}:Logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#contractorFace.xhtml"
-  PATH="/xhtml/employeepages/contractorFace.xhtml" SHAPE="288,33,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/xhtml/employeepages/contractorFace.xhtml" SHAPE="616,112,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#xhtml#employeepages#contractorFace.xhtml:0"
+   NAME="item" PATH="/xhtml/employeepages/contractorFace.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="Logout:#{login.performLogout}:#xhtml#index.xhtml" NAME="output"
+    PATH="/xhtml/index.xhtml" TARGET="rules:#xhtml#index.xhtml"
+    TITLE="#{login.performLogout}:Logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#commissionedFace.xhtml"
-  PATH="/xhtml/employeepages/commissionedFace.xhtml" SHAPE="288,353,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/xhtml/employeepages/commissionedFace.xhtml"
+  SHAPE="616,208,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#xhtml#employeepages#commissionedFace.xhtml:0"
+   NAME="item" PATH="/xhtml/employeepages/commissionedFace.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="Logout:#{login.performLogout}:#xhtml#index.xhtml" NAME="output"
+    PATH="/xhtml/index.xhtml"
+    SHAPE="665,240,680,240,680,176,48,176,48,40,47,40"
+    TARGET="rules:#xhtml#index.xhtml"
+    TITLE="#{login.performLogout}:Logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>
