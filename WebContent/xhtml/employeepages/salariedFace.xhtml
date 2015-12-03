@@ -99,10 +99,16 @@
 								#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
 
 
-
-							<b:modal id="modalpay" title="Modify Pay method"
+							<b:modal id="modalpay"
+								title="Here you can Modify you Payment method"
 								styleClass="modalPseudoClassP">
 								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<h:graphicImage library="images" name="unipv2.png"
+												class="img-responsive center-block" alt="Responsive image"/>
+										</div>
+									</div>
 									<div class="row">
 										<div class="col-lg-12">
 											<h3>Actual:
@@ -110,25 +116,59 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-lg-3">
-											<h2>NEW:</h2>
+										<div class="col-lg-12">
+
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active"><a href="#home"
+													aria-controls="home" role="tab" data-toggle="tab">BANK</a></li>
+												<li role="presentation"><a href="#profile"
+													aria-controls="profile" role="tab" data-toggle="tab">POSTAL</a></li>
+												<li role="presentation"><a href="#messages"
+													aria-controls="messages" role="tab" data-toggle="tab">WITHDRAW</a></li>
+											</ul>
 										</div>
-										<div class="col-lg-3">
-											<h:form>
-												<b:dropMenu value="BANK" >
-													<b:navLink value="Action" href="#"></b:navLink>
-												</b:dropMenu>
-											</h:form>
+									</div>
+
+									<div class="row" style="margin-top: 2rem;">
+										<div class="col-lg-12">
+											<!-- Tab panes -->
+											<div class="tab-content">
+												<div role="tabpanel" class="tab-pane active" id="home">
+													<b:inputText fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="IBAN" />
+														</f:facet>
+													</b:inputText>
+
+													<b:inputText fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="filial" />
+														</f:facet>
+													</b:inputText>
+												</div>
+												<div role="tabpanel" class="tab-pane" id="profile">
+													<b:inputText fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="Residential Address" />
+														</f:facet>
+													</b:inputText>
+												</div>
+												<div role="tabpanel" class="tab-pane" id="messages">
+													<b:inputText fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="Headquarter" />
+														</f:facet>
+													</b:inputText>
+												</div>
+											</div>
 										</div>
-										<div class="col-lg-3"></div>
-										<div class="col-lg-3"></div>
 									</div>
 								</div>
 
-
 								<f:facet name="footer">
-									<b:button value="close" dismiss="modal" onclick="return false;" />
-									<b:button value="Ok" look="primary" dismiss="modal"
+									<b:button value="close" size="lg" dismiss="modal"
+										onclick="return false;" />
+									<b:button value="Ok" size="lg" look="primary" dismiss="modal"
 										onclick="return false;" />
 								</f:facet>
 							</b:modal>
