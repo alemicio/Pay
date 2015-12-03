@@ -47,10 +47,8 @@ public class TimeCardBean implements Serializable {
 		start_time = t_controller.ComputeTime(hour_start, minute_start);
 		end_time = t_controller.ComputeTime(hour_end, minute_end);
 
-		hours_worked = (end_time.getHours() + (float) ((float) end_time
-				.getMinutes() / 60))
-				- (start_time.getHours() + (float) ((float) start_time
-						.getMinutes() / 60));
+		hours_worked = (end_time.getHours() + (float) ((float) end_time.getMinutes() / 60))
+				     - (start_time.getHours() + (float) ((float) start_time.getMinutes() / 60));
 
 		t_card.setDate(date);
 		t_card.setStart_time(start_time);
