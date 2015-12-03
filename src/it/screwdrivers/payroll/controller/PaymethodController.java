@@ -20,76 +20,70 @@ public class PaymethodController {
 	PaymethodDao paymethod_dao;
 	EmployeeDao employee_dao;
 	
-	public void addingNewBankPaymethod(Employee employee,BankPaymethod bank_paymethod){
+	private void clearPaymethod(int id){
 		
 		//delete all references of paymethod for the given employee
 		List<Employee> employees = employee_dao.findAll();
 		
 		for (Employee e : employees) {
-			if(e.getUsername().equals(employee.getUsername())){
+			if(id == e.getId()){
 				paymethod_dao.remove(e.getPaymethod());
 			}
 		}
-		//adding the new paymethod in the db
-		paymethod_dao.add(bank_paymethod);
-		
-		// update employee record
-		employee.setPaymethod(bank_paymethod);
-		employee_dao.update(employee);
-
-	}
-	public void addingNewPostalPaymethod(Employee employee,PostalPaymethod postal){
-		
-		//delete all references of paymethod for the given employee
-		List<Employee> employees = employee_dao.findAll();
-		
-		for (Employee e : employees) {
-			if(e.getUsername().equals(employee.getUsername())){
-				paymethod_dao.remove(e.getPaymethod());
-			}
-		}
-		//adding the new paymethod in the db
-		paymethod_dao.add(postal);
-		
-		// update employee record
-		employee.setPaymethod(postal);
-		employee_dao.update(employee);
-
-	}
-	public void addingNewWithDrawPaymethod(Employee employee,WithDrawPaymethod withdraw){
-		
-		//delete all references of paymethod for the given employee
-		List<Employee> employees = employee_dao.findAll();
-		
-		for (Employee e : employees) {
-			if(e.getUsername().equals(employee.getUsername())){
-				paymethod_dao.remove(e.getPaymethod());
-			}
-		}
-		//adding the new paymethod in the db
-		paymethod_dao.add(withdraw);
-		
-		// update employee record
-		employee.setPaymethod(withdraw);
-		employee_dao.update(employee);
-
 	}
 	
-	//method that check if the employee has already set a paymethod type
-	public Paymethod checkPaymethodForEmployee(Employee employee){
+	private void updatePaymethod(Employee e, Paymethod p){
+		
+		e.setPaymethod(p);
+		employee_dao.update(e);
+	}
+	
+	public void setBankPaymethod(Employee employee,BankPaymethod bank_paymethod){
+		
+		clearPaymethod(employee.getId());
+		
+		// Add the new paymethod in the db
+		paymethod_dao.add(bank_paymethod);
+		
+		updatePaymethod(employee, bank_paymethod);
+
+	}
+	public void setPostalPaymethod(Employee employee,PostalPaymethod postal){
+		
+		clearPaymethod(employee.getId());
+		
+		// Add the new paymethod in the db
+		paymethod_dao.add(postal);
+		
+		updatePaymethod(employee, postal);
+
+	}
+	public void setWithDrawPaymethod(Employee employee,WithDrawPaymethod withdraw){
+		
+		clearPaymethod(employee.getId());
+		
+		// Adding the new paymethod in the db
+		paymethod_dao.add(withdraw);
+		
+		updatePaymethod(employee, withdraw);
+	}
+	
+	// This method checks if the employee has already set a paymethod type
+	public boolean isPaymethodSet(Employee employee){
 		
 		List<Employee> employees = employee_dao.findAll();
 		
-		//this method return the paymethod for a given employee.
 		for (Employee e : employees) {
 			if(e.getUsername().equals(employee.getUsername())){
-				return e.getPaymethod();
+				return true;
 			}
 		}
-		return null;
-
+		
+		return false;
 	}
+	
 	public String findType(Paymethod p){
+		
 		String type = null;
 		
 		if(p instanceof BankPaymethod)
