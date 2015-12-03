@@ -1,17 +1,14 @@
 package it.screwdrivers.payroll.bean;
 
 import it.screwdrivers.payroll.controller.EmployeeController;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
-import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
+import java.io.IOException;
 import java.io.Serializable;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -54,8 +51,6 @@ public class LogBean implements Serializable {
 		this.retrived_employee = retrived_employee;
 	}
 
-	
-	
 	public String performLogin() {
 
 		retrived_employee = e_controller.checkLogin(username, password);
@@ -68,10 +63,21 @@ public class LogBean implements Serializable {
 		} else {
 			type= e_controller.findType(retrived_employee);
 			System.out.println(type);
-
 		}
+		
 		return type;
-
 	}
-
+	
+	public void performLogout() {
+		
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    ec.invalidateSession();
+	    
+	    try {
+			ec.redirect(ec.getRequestContextPath() + "/xhtml/index.xhtml");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

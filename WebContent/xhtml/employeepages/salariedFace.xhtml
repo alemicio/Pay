@@ -4,7 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<title>Salaried Dashboard</title>
@@ -37,7 +38,7 @@
 			<b:navbarLinks pull="right">
 				<b:navLink value="Payments received" href="#"></b:navLink>
 				<b:navLink value="Union Services" href="#"></b:navLink>
-				<b:navLink value="LOGOUT" href="#" active="true"></b:navLink>
+				<b:navLink look="link" value="LOGOUT" href="#{login.performLogout()}"/>
 			</b:navbarLinks>
 		</b:navBar>
 
@@ -104,8 +105,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
 </body>
 </html>
