@@ -6,6 +6,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui" 
 	xmlns:b="http://bootsfaces.net/ui">
+	
+<f:event listener="#{login.checkIfLogged}" type="preRenderView" />
 
 <h:head>
 	<title>Salaried Dashboard</title>
