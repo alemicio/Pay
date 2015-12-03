@@ -58,7 +58,6 @@ public class TimeCardBean implements Serializable {
 		t_card.setHours_worked(hours_worked);
 		t_card.setContractor_employee(logged_employee);
 
-		System.out.println("data inserita da facelet" + t_card.getDate());
 
 		response = t_controller.registerTimeCard(logged_employee, t_card);
 

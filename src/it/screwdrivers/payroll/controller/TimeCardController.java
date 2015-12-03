@@ -34,11 +34,7 @@ public class TimeCardController {
 		List<TimeCard> timecards = t_dao.findAll();
 		
 		
-		System.out.println("id employee"+logged_employee.getId());
-		
 		for(TimeCard t : timecards){
-			
-			System.out.println(t.getContractor_employee().getId());
 		
 			//duble check
 			//1. if the time card t belongs to the logged employee

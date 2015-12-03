@@ -24,6 +24,8 @@ public class LogBean implements Serializable {
 
 	@Inject
 	EmployeeController e_controller;
+	@Inject
+	EmployeeBean e_bean;
 
 	private String username;
 	private String password;
@@ -56,7 +58,7 @@ public class LogBean implements Serializable {
 
 	public String performLogin() {
 
-		retrived_employee = e_controller.checkLogin(username, password);
+		retrived_employee = e_bean.retrieveEmployee(username,password);
 
 		if (retrived_employee == null) {
 			FacesContext context = FacesContext.getCurrentInstance();

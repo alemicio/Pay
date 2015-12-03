@@ -12,7 +12,7 @@ public class EmployeeController {
 	@Inject
 	EmployeeDao e_dao;
 	
-	public Employee checkLogin(String username, String password) {
+	public Employee retrieveEmployee(String username, String password) {
 
 		Employee emp = null;
 		
