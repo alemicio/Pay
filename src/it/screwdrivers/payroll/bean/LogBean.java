@@ -73,6 +73,6 @@ public class LogBean implements Serializable {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 	    ec.invalidateSession();
 	    
-	    return "/xhtml/index.xhtml";
+	    return "Logout";
 	}
 }

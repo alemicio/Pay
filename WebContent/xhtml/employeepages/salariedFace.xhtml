@@ -38,7 +38,7 @@
 			<b:navbarLinks pull="right">
 				<b:navLink value="Payments received" href="#"></b:navLink>
 				<b:navLink value="Union Services" href="#"></b:navLink>
-				<b:navLink look="link" value="LOGOUT" href="#{login.performLogout()}"></b:navLink>
+				<h:form><b:commandButton look="link" value="LOGOUT" action="#{login.performLogout}"/></h:form>
 			</b:navbarLinks>
 		</b:navBar>
 

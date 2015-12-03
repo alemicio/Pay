@@ -31,5 +31,15 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/xhtml/employeepages/salariedFace.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{login.performLogout}</from-action>
+			<from-outcome>Logout</from-outcome>
+			<to-view-id>/xhtml/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>	
 
 </faces-config>
