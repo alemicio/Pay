@@ -4,9 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:b="http://bootsfaces.net/ui">
-	
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
 <f:event listener="#{login.checkIfLogged}" type="preRenderView" />
 
 <h:head>
@@ -37,10 +36,10 @@
 				<b:navLink value="About US" href="#"></b:navLink>
 				<b:navLink value="Contacts" href="#"></b:navLink>
 			</b:navbarLinks>
+
 			<b:navbarLinks pull="right">
 				<b:navLink value="Payments received" href="#"></b:navLink>
 				<b:navLink value="Union Services" href="#"></b:navLink>
-				<h:form><b:commandButton look="link" value="LOGOUT" action="#{login.performLogout}"/></h:form>
 			</b:navbarLinks>
 		</b:navBar>
 
@@ -64,24 +63,24 @@
 								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
 							</div>
 						</div>
+
 						<div class="row">
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Payment: #{login.retrived_employee.paymethod}</h3>
+							<div class="col-lg-3 col-lg-offset-4">
+								<b:button value="Change Detail" size="lg" action=""
+									look="success" />
 							</div>
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Union: #{login.retrived_employee.union}</h3>
-							</div>
+
 						</div>
 
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-3" style="text-align: center;">
 						<h:graphicImage library="images" name="logo_unipv.png"
 							class="img-responsive center-block" alt="Responsive image"
 							id="bordino" />
-
-						<b:button value="Change Detail" size="lg" action=""
-							style="color:rgb(58, 130, 133);" />
-
+						<h:form>
+							<b:commandButton size="lg" value="LOGOUT"
+								action="#{login.performLogout}" look="danger"></b:commandButton>
+						</h:form>
 					</div>
 
 				</div>
@@ -90,8 +89,77 @@
 	</div>
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
-			<div class="row" id="bordino2">
-				<div class="col-lg-12"></div>
+			<br></br>
+			<div class="jumbotron" id="jumbotrone">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Payment:
+								#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
+
+
+
+							<b:modal id="modalpay" title="Modify Pay method"
+								styleClass="modalPseudoClassP">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Actual:
+												#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3">
+											<h2>NEW:</h2>
+										</div>
+										<div class="col-lg-3">
+											<h:form>
+												<b:dropMenu value="BANK" >
+													<b:navLink value="Action" href="#"></b:navLink>
+												</b:dropMenu>
+											</h:form>
+										</div>
+										<div class="col-lg-3"></div>
+										<div class="col-lg-3"></div>
+									</div>
+								</div>
+
+
+								<f:facet name="footer">
+									<b:button value="close" dismiss="modal" onclick="return false;" />
+									<b:button value="Ok" look="primary" dismiss="modal"
+										onclick="return false;" />
+								</f:facet>
+							</b:modal>
+
+
+
+							<b:button value="Change Paymethod" look="info"
+								onclick="$('.modalPseudoClassP').modal();return false;"
+								size="lg" />
+						</div>
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Union: #{login.retrived_employee.union}</h3>
+
+							<b:modal id="modalunion" title="Modify Union"
+								styleClass="modalPseudoClassU">
+								<p>Modal body</p>
+								<f:facet name="footer">
+									<b:button value="close" dismiss="modal" onclick="return false;" />
+									<b:button value="Ok" look="primary" dismiss="modal"
+										onclick="return false;" />
+								</f:facet>
+							</b:modal>
+
+							<b:button value="Change Union" look="info"
+								onclick="$('.modalPseudoClassU').modal();return false;"
+								size="lg" />
+						</div>
+
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>

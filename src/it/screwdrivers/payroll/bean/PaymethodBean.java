@@ -8,56 +8,59 @@ import it.screwdrivers.payroll.pojo.payment.WithDrawPaymethod;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+@Named("paymentmethod")
+@SessionScoped
 public class PaymethodBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	PaymethodController paymethod_controller;
-	
-	@Inject 
-	EmployeeBean e_bean;
-	
-	public String getPaymethodType(){
-		
-		Employee current_session_employee = e_bean.getRetrived_employee();
-		
-		// This method returns a paymethod for a given employee.
-		boolean is_paymethod_set = paymethod_controller.isPaymethodSet(current_session_employee);
-		
-		if(is_paymethod_set){
-			String type = paymethod_controller.findType(current_session_employee.getPaymethod());
+	@Inject
+	BankPaymethod bank_paymethod;
+
+	//MICIO
+	public String getPaymethodType(Employee e) {
+		// // This method returns a paymethod for a given employee.
+		String type;
+		boolean is_paymethod_set = paymethod_controller.isPaymethodSet(e);
+
+		if (is_paymethod_set == true) {
+			type = paymethod_controller.findType(e.getPaymethod());
 			return type;
-			
 		} else {
-			return null;
+			return "Not setted";
 		}
 	}
-	
-	public void setBankPaymethod(String iban,String filial){
-		
-		BankPaymethod bank_paymethod = new BankPaymethod();
+
+	//MICIO
+	public void setBankPaymethod(Employee e, String iban, String filial) {
+
 		bank_paymethod.setIBAN(iban);
 		bank_paymethod.setFilial(filial);
-		
-		paymethod_controller.setBankPaymethod(e_bean.getRetrived_employee(), bank_paymethod);	
+
+		paymethod_controller.setBankPaymethod(e, bank_paymethod);
 	}
-	
-	public void seyPostalPaymethod(String residential_address){
-		
-		PostalPaymethod postal_paymethod = new PostalPaymethod();
-		postal_paymethod.setRedidential_address(residential_address);
-		
-		paymethod_controller.setPostalPaymethod(e_bean.getRetrived_employee(), postal_paymethod);
-	}
-	
-	public void setWithDrawPaymethod(String headquarter){
-		
-		WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
-		withdraw_paymethod.setHeadquarter(headquarter);
-		
-		paymethod_controller.setWithDrawPaymethod(e_bean.getRetrived_employee(), withdraw_paymethod);	
-	}	
+
+	// public void setPostalPaymethod(String residential_address){
+	//
+	// PostalPaymethod postal_paymethod = new PostalPaymethod();
+	// postal_paymethod.setRedidential_address(residential_address);
+	//
+	// paymethod_controller.setPostalPaymethod(e_bean.getRetrived_employee(),
+	// postal_paymethod);
+	// }
+	//
+	// public void setWithDrawPaymethod(String headquarter){
+	//
+	// WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
+	// withdraw_paymethod.setHeadquarter(headquarter);
+	//
+	// paymethod_controller.setWithDrawPaymethod(e_bean.getRetrived_employee(),
+	// withdraw_paymethod);
+	// }
 }
