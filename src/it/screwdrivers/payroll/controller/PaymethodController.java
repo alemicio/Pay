@@ -18,6 +18,8 @@ public class PaymethodController {
 
 	@Inject
 	PaymethodDao paymethod_dao;
+	
+	@Inject
 	EmployeeDao employee_dao;
 
 	public void setBankPaymethod(Employee employee, BankPaymethod bank_paymethod) {
@@ -28,7 +30,6 @@ public class PaymethodController {
 		paymethod_dao.add(bank_paymethod);
 
 		updatePaymethod(employee, bank_paymethod);
-
 	}
 
 	// public void setPostalPaymethod(Employee employee,PostalPaymethod postal){
@@ -78,9 +79,13 @@ public class PaymethodController {
 	private void clearPaymethod(int id) {
 		// delete all references of paymethod for the given employee
 		List<Employee> employees = employee_dao.findAll();
+		
 		for (Employee e : employees) {
 			if (id == e.getId()) {
-				paymethod_dao.remove(e.getPaymethod());
+				if(e.getPaymethod() != null){
+					
+					paymethod_dao.remove(e.getPaymethod());
+				}
 			}
 		}
 	}

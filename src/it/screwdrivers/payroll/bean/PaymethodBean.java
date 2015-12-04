@@ -3,11 +3,7 @@ package it.screwdrivers.payroll.bean;
 import it.screwdrivers.payroll.controller.PaymethodController;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
-import it.screwdrivers.payroll.pojo.payment.PostalPaymethod;
-import it.screwdrivers.payroll.pojo.payment.WithDrawPaymethod;
-
 import java.io.Serializable;
-
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,8 +16,47 @@ public class PaymethodBean implements Serializable {
 
 	@Inject
 	PaymethodController paymethod_controller;
+	
 	@Inject
 	BankPaymethod bank_paymethod;
+	
+	private String IBAN;
+	private String filial;
+	private String residential_address;
+	private String headquarter;
+
+	public String getIBAN() {
+		return IBAN;
+	}
+
+	public void setIBAN(String iBAN) {
+		IBAN = iBAN;
+	}
+
+	public String getFilial() {
+		return filial;
+	}
+
+	public void setFilial(String filial) {
+		this.filial = filial;
+	}
+
+	public String getResidential_address() {
+		return residential_address;
+	}
+
+	
+	public void setResidential_address(String residential_address) {
+		this.residential_address = residential_address;
+	}
+
+	public String getHeadquarter() {
+		return headquarter;
+	}
+
+	public void setHeadquarter(String headquarter) {
+		this.headquarter = headquarter;
+	}
 
 	//MICIO
 	public String getPaymethodType(Employee e) {
@@ -38,10 +73,13 @@ public class PaymethodBean implements Serializable {
 	}
 
 	//MICIO
-	public void setBankPaymethod(Employee e, String iban, String filial) {
+	public void setBankPaymethod(Employee e) {
 
-		bank_paymethod.setIBAN(iban);
+		bank_paymethod.setIBAN(IBAN);
 		bank_paymethod.setFilial(filial);
+		
+		System.out.println(IBAN + filial);
+		System.out.println("00000000000000000000000000000000000000000000000");
 
 		paymethod_controller.setBankPaymethod(e, bank_paymethod);
 	}
