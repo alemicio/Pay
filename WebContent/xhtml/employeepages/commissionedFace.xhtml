@@ -5,7 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
-	
+
 <f:event listener="#{login.checkIfLogged}" type="preRenderView" />
 
 <h:head>
@@ -36,11 +36,10 @@
 				<b:navLink value="About US" href="#"></b:navLink>
 				<b:navLink value="Contacts" href="#"></b:navLink>
 			</b:navbarLinks>
+
 			<b:navbarLinks pull="right">
-				<b:navLink value="Post Sales Card" href="#"></b:navLink>
 				<b:navLink value="Payments received" href="#"></b:navLink>
 				<b:navLink value="Union Services" href="#"></b:navLink>
-				<h:form><b:commandButton look="link" value="LOGOUT" action="#{login.performLogout}"/></h:form>
 			</b:navbarLinks>
 		</b:navBar>
 
@@ -64,24 +63,24 @@
 								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
 							</div>
 						</div>
+
 						<div class="row">
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Payment: #{login.retrived_employee.paymethod}</h3>
+							<div class="col-lg-3 col-lg-offset-4">
+								<b:button value="Change Detail" size="lg" action=""
+									look="success" />
 							</div>
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Union: #{login.retrived_employee.union}</h3>
-							</div>
+
 						</div>
 
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-3" style="text-align: center;">
 						<h:graphicImage library="images" name="logo_unipv.png"
 							class="img-responsive center-block" alt="Responsive image"
 							id="bordino" />
-
-						<b:button value="Change Detail" size="lg" action=""
-							style="color:rgb(58, 130, 133);" />
-
+						<h:form>
+							<b:commandButton size="lg" value="LOGOUT"
+								action="#{login.performLogout}" look="danger"></b:commandButton>
+						</h:form>
 					</div>
 
 				</div>
@@ -90,12 +89,180 @@
 	</div>
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
-			<div class="row" id="bordino2">
-				<div class="col-lg-12"></div>
+			<br></br>
+			<div class="jumbotron" id="jumbotrone">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Payment:
+								#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
+
+
+							<b:modal id="modalpay"
+								title="Here you can Modify you Payment method"
+								styleClass="modalPseudoClassP">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<h:graphicImage library="images" name="unipv2.png"
+												class="img-responsive center-block" alt="Responsive image" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Actual:
+												#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active"><a href="#home"
+													aria-controls="home" role="tab" data-toggle="tab">BANK</a></li>
+												<li role="presentation"><a href="#profile"
+													aria-controls="profile" role="tab" data-toggle="tab">POSTAL</a></li>
+												<li role="presentation"><a href="#messages"
+													aria-controls="messages" role="tab" data-toggle="tab">WITHDRAW</a></li>
+											</ul>
+										</div>
+									</div>
+
+									<div class="row" style="margin-top: 2rem;">
+										<div class="col-lg-12">
+											<!-- Tab panes -->
+											<div class="tab-content">
+												<div role="tabpanel" class="tab-pane active" id="home">
+													<b:inputText fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="IBAN" />
+														</f:facet>
+													</b:inputText>
+
+													<b:inputText fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="filial" />
+														</f:facet>
+													</b:inputText>
+												</div>
+												<div role="tabpanel" class="tab-pane" id="profile">
+													<b:inputText fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="Residential Address" />
+														</f:facet>
+													</b:inputText>
+												</div>
+												<div role="tabpanel" class="tab-pane" id="messages">
+													<b:inputText fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="Headquarter" />
+														</f:facet>
+													</b:inputText>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<f:facet name="footer">
+									<b:button value="close" size="lg" dismiss="modal"
+										onclick="return false;" />
+									<b:button value="Ok" size="lg" look="primary" dismiss="modal"
+										onclick="return false;" />
+								</f:facet>
+							</b:modal>
+
+
+
+							<b:button value="Change Paymethod" look="info"
+								onclick="$('.modalPseudoClassP').modal();return false;"
+								size="lg" />
+						</div>
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Union: #{login.retrived_employee.union}</h3>
+
+							<b:modal id="modalunion" title="Here you can Modify your Union"
+								styleClass="modalPseudoClassU">
+								<div class="row">
+									<div class="col-lg-12">
+										<h:graphicImage library="images" name="unipv2.png"
+											class="img-responsive center-block" alt="Responsive image" />
+									</div>
+								</div>
+								<div class="row" style="margin-top: 2rem;">
+									<div class="col-lg-12">
+										<b:inputText fieldSize="lg">
+											<f:facet name="prepend">
+												<h:outputText value="UNION" />
+											</f:facet>
+										</b:inputText>
+									</div>
+								</div>
+								<f:facet name="footer">
+									<b:button value="close" size="lg" dismiss="modal"
+										onclick="return false;" />
+									<b:button value="Ok" size="lg" look="primary" dismiss="modal"
+										onclick="return false;" />
+								</f:facet>
+							</b:modal>
+
+							<b:button value="Change Union" look="info"
+								onclick="$('.modalPseudoClassU').modal();return false;"
+								size="lg" />
+						</div>
+
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="container-fluid" id="sfondo2">
 
+		<div class="container">
+			<b:jumbotron id="jumbotrone2">
+				<h:form>
+					<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+					<h1>Send Sales Card</h1>
+					<div class="row">
+						<div class="col-lg-4">
+							<h:outputText value="Select date:" />
+							<b:datepicker mode="icon-toggle" showWeek="true" firstDay="1"
+								id="calendar" value="#{salescard.date}"></b:datepicker>
+						</div>
+						<div class="col-lg-4">
+							<h:outputText value="Customer referenced"/>
+							<b:inputText id="customer" required="true" fieldSize="lg"
+								value="#{salescard.customer}">
+								<f:facet name="prepend">
+									<b:icon name="menu-up"></b:icon>
+								</f:facet>
+							</b:inputText>
+							
+
+						</div>
+						<div class="col-lg-4">
+							<h:outputText value="Amount of sales" />
+							<b:inputText id="amount" required="true" fieldSize="lg"
+								value="#{salescard.amount}">
+								<f:facet name="prepend">
+									<b:icon name="menu-up"></b:icon>
+								</f:facet>
+							</b:inputText>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-4">
+							<b:commandButton value="Submit TimeCard" size="lg" update="growl"
+								action="#{salescard.submitSalesCard(login.retrived_employee)}"></b:commandButton>
+						</div>
+					</div>
+				</h:form>
+			</b:jumbotron>
+		</div>
+	</div>
 	<div class="container-fluid" id="sfondo">
 		<div class="container">
 			<div class="row">
@@ -107,8 +274,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
 </body>
 </html>

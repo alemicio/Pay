@@ -52,7 +52,7 @@ public class SalesCardBean implements Serializable {
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "ERROR",
 					"A sales card from that customer was already"
-					+"sent for this date"));
+					+" sent for this date"));
 		}
 	}
 
