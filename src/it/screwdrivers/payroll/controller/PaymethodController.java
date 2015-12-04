@@ -18,7 +18,7 @@ public class PaymethodController {
 
 	@Inject
 	PaymethodDao paymethod_dao;
-	
+
 	@Inject
 	EmployeeDao employee_dao;
 
@@ -32,26 +32,26 @@ public class PaymethodController {
 		updatePaymethod(employee, bank_paymethod);
 	}
 
-	// public void setPostalPaymethod(Employee employee,PostalPaymethod postal){
-	//
-	// clearPaymethod(employee.getId());
-	//
-	// // Add the new paymethod in the db
-	// paymethod_dao.add(postal);
-	//
-	// updatePaymethod(employee, postal);
-	//
-	// }
-	// public void setWithDrawPaymethod(Employee employee,WithDrawPaymethod
-	// withdraw){
-	//
-	// clearPaymethod(employee.getId());
-	//
-	// // Adding the new paymethod in the db
-	// paymethod_dao.add(withdraw);
-	//
-	// updatePaymethod(employee, withdraw);
-	// }
+	public void setPostalPaymethod(Employee employee, PostalPaymethod postal) {
+
+		clearPaymethod(employee.getId());
+
+		// Add the new paymethod in the db
+		paymethod_dao.add(postal);
+
+		updatePaymethod(employee, postal);
+	}
+
+	public void setWithDrawPaymethod(Employee employee,
+			WithDrawPaymethod withdraw) {
+
+		clearPaymethod(employee.getId());
+
+		// Adding the new paymethod in the db
+		paymethod_dao.add(withdraw);
+
+		updatePaymethod(employee, withdraw);
+	}
 
 	// MICIO
 	// This method checks if the employee has already set a paymethod type
@@ -79,11 +79,11 @@ public class PaymethodController {
 	private void clearPaymethod(int id) {
 		// delete all references of paymethod for the given employee
 		List<Employee> employees = employee_dao.findAll();
-		
+
 		for (Employee e : employees) {
 			if (id == e.getId()) {
-				if(e.getPaymethod() != null){
-					
+				if (e.getPaymethod() != null) {
+
 					paymethod_dao.remove(e.getPaymethod());
 				}
 			}
@@ -91,6 +91,7 @@ public class PaymethodController {
 	}
 
 	private void updatePaymethod(Employee employee, Paymethod p) {
+		
 		employee.setPaymethod(p);
 		employee_dao.update(employee);
 	}

@@ -3,7 +3,11 @@ package it.screwdrivers.payroll.bean;
 import it.screwdrivers.payroll.controller.PaymethodController;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
+import it.screwdrivers.payroll.pojo.payment.PostalPaymethod;
+import it.screwdrivers.payroll.pojo.payment.WithDrawPaymethod;
+
 import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,10 +20,7 @@ public class PaymethodBean implements Serializable {
 
 	@Inject
 	PaymethodController paymethod_controller;
-	
-	@Inject
-	BankPaymethod bank_paymethod;
-	
+
 	private String IBAN;
 	private String filial;
 	private String residential_address;
@@ -45,7 +46,6 @@ public class PaymethodBean implements Serializable {
 		return residential_address;
 	}
 
-	
 	public void setResidential_address(String residential_address) {
 		this.residential_address = residential_address;
 	}
@@ -58,7 +58,7 @@ public class PaymethodBean implements Serializable {
 		this.headquarter = headquarter;
 	}
 
-	//MICIO
+	// MICIO
 	public String getPaymethodType(Employee e) {
 		// // This method returns a paymethod for a given employee.
 		String type;
@@ -72,33 +72,35 @@ public class PaymethodBean implements Serializable {
 		}
 	}
 
-	//MICIO
+	// MICIO
 	public void setBankPaymethod(Employee e) {
 
+		BankPaymethod bank_paymethod = new BankPaymethod();
 		bank_paymethod.setIBAN(IBAN);
 		bank_paymethod.setFilial(filial);
-		
-		System.out.println(IBAN + filial);
-		System.out.println("00000000000000000000000000000000000000000000000");
+
+		System.out.println("IBAN => " + IBAN + "\n" + "filial => " + filial
+				+ "\n");
 
 		paymethod_controller.setBankPaymethod(e, bank_paymethod);
 	}
 
-	// public void setPostalPaymethod(String residential_address){
-	//
-	// PostalPaymethod postal_paymethod = new PostalPaymethod();
-	// postal_paymethod.setRedidential_address(residential_address);
-	//
-	// paymethod_controller.setPostalPaymethod(e_bean.getRetrived_employee(),
-	// postal_paymethod);
-	// }
-	//
-	// public void setWithDrawPaymethod(String headquarter){
-	//
-	// WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
-	// withdraw_paymethod.setHeadquarter(headquarter);
-	//
-	// paymethod_controller.setWithDrawPaymethod(e_bean.getRetrived_employee(),
-	// withdraw_paymethod);
-	// }
+	public void setPostalPaymethod(Employee e) {
+		
+		PostalPaymethod postal_paymethod = new PostalPaymethod();
+		postal_paymethod.setRedidential_address(residential_address);
+		
+		System.out.println("residential_address => " + residential_address + "\n");
+
+		paymethod_controller.setPostalPaymethod(e, postal_paymethod);
+	}
+	
+	public void setWithDrawPaymethod(Employee e) {
+
+		WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
+		withdraw_paymethod = new WithDrawPaymethod();
+		withdraw_paymethod.setHeadquarter(headquarter);
+
+		paymethod_controller.setWithDrawPaymethod(e, withdraw_paymethod);
+	}
 }
