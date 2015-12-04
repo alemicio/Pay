@@ -27,7 +27,7 @@ body {
 	margin-bottom: 2rem;
 }
 
-#modalpay {
+#modalpay,#modalunion {
 	background-image: url("/Pay/resources/images/Unipv-logo.png");
 }
 
