@@ -18,6 +18,8 @@ public class PaymethodController {
 
 	@Inject
 	PaymethodDao paymethod_dao;
+	
+	@Inject
 	EmployeeDao employee_dao;
 
 	public void setBankPaymethod(Employee employee, BankPaymethod bank_paymethod) {

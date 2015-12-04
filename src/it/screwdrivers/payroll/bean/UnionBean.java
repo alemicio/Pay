@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,15 +23,21 @@ public class UnionBean implements Serializable {
 	
 	@Inject
 	UnionController u_controller;
+	
 	@Inject
 	Union unione;
 	
-	private String union;
-	
+	private String union_name;
 	private List<String> associated_unions;
 	
 	
 	public String getUnion(Employee e) {
+		
+		//firstly we populate the list of all unions available on db
+		//SGAMO MICIO --> maybe replaced by @postcustruct
+		affiliatedUnions();
+		
+		
 		// // This method returns a paymethod for a given employee.
 		String name_union = null;
 		boolean is_union_set = u_controller.isUnionSet(e);
@@ -42,30 +49,31 @@ public class UnionBean implements Serializable {
 			name_union = "Not setted";
 		}
 		return name_union;
+		
+		
 	}
 	
-	public void setUnion(Employee e,String union_name){
+	public void setUnion(Employee e){
 		
+		System.out.println("unione scelta dalla tendina"+union_name);
 		u_controller.setUnion(e,union_name);
 		
+		
 	}
 	
-	public void affiliatedUnions(){
-		
+	private void affiliatedUnions(){
 		associated_unions = u_controller.affiliatedUnions();
-		
-//		for(String s : associated_unions){
-//			System.out.println(s);
-//		}
-		
+
 	}
 
-	public String getUnion() {
-		return union;
+	
+
+	public String getUnion_name() {
+		return union_name;
 	}
 
-	public void setUnion(String union) {
-		this.union = union;
+	public void setUnion_name(String union_name) {
+		this.union_name = union_name;
 	}
 
 	public List<String> getAssociated_unions() {
