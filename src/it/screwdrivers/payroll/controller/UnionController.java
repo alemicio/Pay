@@ -61,16 +61,7 @@ public class UnionController {
 		return nomi_unioni;
 	}
 
-	private void clearUnion(int id) {
-		// delete all references of union for the given employee
-		List<Employee> employees = employee_dao.findAll();
-		for (Employee e : employees) {
-			if (id == e.getId()) {
-				
-				
-			}
-		}
-	}
+	
 
 	private void updateUnion(Employee employee, Union u) {
 		employee.setUnion(u);
