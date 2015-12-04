@@ -1,78 +1,66 @@
 package it.screwdrivers.payroll.bean;
 
-import java.io.Serializable;
-
 import it.screwdrivers.payroll.controller.PaymethodController;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
-import it.screwdrivers.payroll.pojo.payment.Paymethod;
 import it.screwdrivers.payroll.pojo.payment.PostalPaymethod;
 import it.screwdrivers.payroll.pojo.payment.WithDrawPaymethod;
-import it.screwdrivers.payroll.testsDB.PaymentTest;
 
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+@Named("paymentmethod")
+@SessionScoped
 public class PaymethodBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	PaymethodController paymethod_controller;
+	@Inject
 	BankPaymethod bank_paymethod;
-	PostalPaymethod postal_paymethod;
-	WithDrawPaymethod withdraw_paymethod;
-	
-	private Employee logged_employee;
-	private Paymethod paymethod;
-	private String type;
-	
-	
-	
-	public String checkPaymethod(){
-		
-		//this method return a paymethod for a given employee.
-		paymethod = paymethod_controller.checkPaymethodForEmployee(logged_employee);
-		
-		if(paymethod != null){
-			type = paymethod_controller.findType(paymethod);
+
+	//MICIO
+	public String getPaymethodType(Employee e) {
+		// // This method returns a paymethod for a given employee.
+		String type;
+		boolean is_paymethod_set = paymethod_controller.isPaymethodSet(e);
+
+		if (is_paymethod_set == true) {
+			type = paymethod_controller.findType(e.getPaymethod());
 			return type;
+		} else {
+			return "Not setted";
 		}
-		
-		return null;
-	}
-	public void addBankPaymethod(String iban,String filial){
-		
-		bank_paymethod.setIBAN(iban);
-		bank_paymethod.setFilial(filial);
-		
-		paymethod_controller.addingNewBankPaymethod(logged_employee,bank_paymethod);	
-	}
-	
-	public void addPostalPaymethod(String residential_address){
-		
-		postal_paymethod.setRedidential_address(residential_address);
-		
-		paymethod_controller.addingNewPostalPaymethod(logged_employee, postal_paymethod);	
-	}
-	
-	public void addWithDrawPaymethod(String headquarter){
-		
-		withdraw_paymethod.setHeadquarter(headquarter);
-		
-		paymethod_controller.addingNewWithDrawPaymethod(logged_employee, withdraw_paymethod);	
 	}
 
-	public Employee getLogged_employee() {
-		return logged_employee;
+	//MICIO
+	public void setBankPaymethod(Employee e, String iban, String filial) {
+
+		bank_paymethod.setIBAN(iban);
+		bank_paymethod.setFilial(filial);
+
+		paymethod_controller.setBankPaymethod(e, bank_paymethod);
 	}
-	public void setLogged_employee(Employee logged_employee) {
-		this.logged_employee = logged_employee;
-	}
-	public Paymethod getPaymethod() {
-		return paymethod;
-	}
-	public void setPaymethod(Paymethod paymethod) {
-		this.paymethod = paymethod;
-	}
-	
+
+	// public void setPostalPaymethod(String residential_address){
+	//
+	// PostalPaymethod postal_paymethod = new PostalPaymethod();
+	// postal_paymethod.setRedidential_address(residential_address);
+	//
+	// paymethod_controller.setPostalPaymethod(e_bean.getRetrived_employee(),
+	// postal_paymethod);
+	// }
+	//
+	// public void setWithDrawPaymethod(String headquarter){
+	//
+	// WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
+	// withdraw_paymethod.setHeadquarter(headquarter);
+	//
+	// paymethod_controller.setWithDrawPaymethod(e_bean.getRetrived_employee(),
+	// withdraw_paymethod);
+	// }
 }

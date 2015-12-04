@@ -25,6 +25,8 @@ public class SalesCard implements Serializable {
 	private float amount;
 	private Date date;
 	
+	private String customer;
+	
 	@ManyToOne
 	@JoinColumn(name="employeeId",referencedColumnName="employeeId")
 	private CommissionedEmployee commissioned_employee;
@@ -41,4 +43,22 @@ public class SalesCard implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	public CommissionedEmployee getCommissioned_employee() {
+		return commissioned_employee;
+	}
+	public void setCommissioned_employee(CommissionedEmployee commissioned_employee) {
+		this.commissioned_employee = commissioned_employee;
+	}
+	public int getId() {
+		return id;
+	}
+	public String getCustomer() {
+		return customer;
+	}
+	public void setCustomer(String customer) {
+		this.customer = customer;
+	}
+	
+	
+	
 }
