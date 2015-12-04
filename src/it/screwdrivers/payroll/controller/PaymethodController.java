@@ -31,27 +31,6 @@ public class PaymethodController {
 
 	}
 
-	// public void setPostalPaymethod(Employee employee,PostalPaymethod postal){
-	//
-	// clearPaymethod(employee.getId());
-	//
-	// // Add the new paymethod in the db
-	// paymethod_dao.add(postal);
-	//
-	// updatePaymethod(employee, postal);
-	//
-	// }
-	// public void setWithDrawPaymethod(Employee employee,WithDrawPaymethod
-	// withdraw){
-	//
-	// clearPaymethod(employee.getId());
-	//
-	// // Adding the new paymethod in the db
-	// paymethod_dao.add(withdraw);
-	//
-	// updatePaymethod(employee, withdraw);
-	// }
-
 	// MICIO
 	// This method checks if the employee has already set a paymethod type
 	public boolean isPaymethodSet(Employee employee) {
