@@ -98,7 +98,6 @@
 							<h3>Payment:
 								#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
 
-
 							<b:modal id="modalpay"
 								title="Here you can Modify you Payment method"
 								styleClass="modalPseudoClassP">
@@ -134,46 +133,80 @@
 											<!-- Tab panes -->
 											<div class="tab-content">
 												<div role="tabpanel" class="tab-pane active" id="home">
-													<b:inputText fieldSize="lg">
-														<f:facet name="prepend">
-															<h:outputText value="IBAN" />
-														</f:facet>
-													</b:inputText>
-
-													<b:inputText fieldSize="lg">
-														<f:facet name="prepend">
-															<h:outputText value="filial" />
-														</f:facet>
-													</b:inputText>
+												
+													<!--  This is the form in which we will insert the new bank paymethod data -->
+													<h:form>
+														<b:inputText fieldSize="lg" value="#{paymentmethod.IBAN}">
+															<f:facet name="prepend">
+																<h:outputText value="IBAN" />
+															</f:facet>
+														</b:inputText>
+	
+														<b:inputText fieldSize="lg" value="#{paymentmethod.filial}">
+															<f:facet name="prepend">
+																<h:outputText value="filial" />
+															</f:facet>
+														</b:inputText>
+	
+														<b:button value="close" size="lg" dismiss="modal"
+															onclick="return false;" />
+														
+														<b:commandButton value="OK" action="#{paymentmethod.setBankPaymethod(employee.retrived_employee)}"></b:commandButton>
+													</h:form>
+													<!-- ===================================================================== -->
+												
 												</div>
 												<div role="tabpanel" class="tab-pane" id="profile">
-													<b:inputText fieldSize="lg">
-														<f:facet name="prepend">
-															<h:outputText value="Residential Address" />
-														</f:facet>
-													</b:inputText>
+												
+													<!--  This is the form in which we will insert the new postal paymethod data -->
+													<h:form>
+														<b:inputText fieldSize="lg"
+															value="#{paymentmethod.residential_address}">
+															<f:facet name="prepend">
+																<h:outputText value="Residential Address" />
+															</f:facet>
+														</b:inputText>
+														
+														<b:button value="close" size="lg" dismiss="modal"
+															onclick="return false;" />
+															
+														<b:commandButton value="OK" action="#{paymentmethod.setPostalPaymethod(employee.retrived_employee)}"></b:commandButton>
+													</h:form>
+													<!-- ===================================================================== -->
+													
 												</div>
 												<div role="tabpanel" class="tab-pane" id="messages">
-													<b:inputText fieldSize="lg">
-														<f:facet name="prepend">
-															<h:outputText value="Headquarter" />
-														</f:facet>
-													</b:inputText>
+												
+													<!--  This is the form in which we will insert the new withdraw paymethod data -->
+													<h:form>
+														<b:inputText fieldSize="lg"
+															value="#{paymentmethod.headquarter}">
+															<f:facet name="prepend">
+																<h:outputText value="Headquarter" />
+															</f:facet>
+														</b:inputText>
+														
+														<b:button value="close" size="lg" dismiss="modal"
+															onclick="return false;" />
+														
+														<b:commandButton value="OK" action="#{paymentmethod.setWithDrawPaymethod(employee.retrived_employee)}"></b:commandButton>
+													</h:form>
+													<!-- ===================================================================== -->
+													
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<f:facet name="footer">
+								<!-- <f:facet name="footer">
 									<b:button value="close" size="lg" dismiss="modal"
 										onclick="return false;" />
-									<b:button value="Ok" size="lg" look="primary" dismiss="modal"
-										onclick="return false;" />
-								</f:facet>
+									<h:form>
+										<b:commandButton value="OK"></b:commandButton>
+									</h:form>
+								</f:facet>  -->
 							</b:modal>
-
-
 
 							<b:button value="Change Paymethod" look="info"
 								onclick="$('.modalPseudoClassP').modal();return false;"
@@ -201,6 +234,8 @@
 								</div>
 								<f:facet name="footer">
 									<b:button value="close" size="lg" dismiss="modal"
+										onclick="return false;" />
+									<b:button value="Ok" size="lg" look="primary" dismiss="modal"
 										onclick="return false;" />
 									<b:button value="Ok" size="lg" look="primary" dismiss="modal"
 										onclick="return false;" />
