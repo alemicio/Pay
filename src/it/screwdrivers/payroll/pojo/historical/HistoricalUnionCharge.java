@@ -35,7 +35,7 @@ public class HistoricalUnionCharge implements Serializable {
 	@ManyToOne
 	@JoinColumns({	
 		@JoinColumn(name = "union_id", referencedColumnName = "union_id", insertable = false, updatable = false),             
-	    @JoinColumn(name = "union_service_id", referencedColumnName = "union_service_id", insertable = true, updatable = true)
+	    @JoinColumn(name = "union_service_id", referencedColumnName = "union_service_id", insertable = false, updatable = false)
 	})
 	private UnionServiceAssociation union_service_association;
 	

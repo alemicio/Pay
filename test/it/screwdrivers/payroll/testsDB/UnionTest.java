@@ -49,7 +49,7 @@ public class UnionTest extends ArquillianTest {
 		assertTrue("Union correctly added in the db", isAdded);
 
 		 //finally i remove it from the db
-		union_dao.remove(union);
+		//union_dao.remove(union);
 	}
 
 	@Test

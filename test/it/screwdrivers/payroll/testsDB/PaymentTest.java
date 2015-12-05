@@ -4,16 +4,11 @@ import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.PaymethodDao;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
 import it.screwdrivers.payroll.pojo.payment.Paymethod;
 import it.screwdrivers.payroll.pojo.payment.PostalPaymethod;
-
-import java.util.Iterator;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
