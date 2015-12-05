@@ -49,6 +49,16 @@ public class UnionServiceAssociation implements Serializable {
 
 	@Id
 	private int union_service_id;
+	
+	private float price;
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
 	@ManyToOne
 	//@PrimaryKeyJoinColumn(name = "union_id", referencedColumnName = "id")
