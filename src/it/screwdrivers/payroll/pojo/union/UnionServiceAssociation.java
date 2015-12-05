@@ -1,12 +1,17 @@
 package it.screwdrivers.payroll.pojo.union;
 
+import it.screwdrivers.payroll.pojo.historical.HistoricalUnionCharge;
+
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 // Questa classe rappresenta l'associazione tra Union e Service. Deriva dalla
@@ -52,6 +57,17 @@ public class UnionServiceAssociation implements Serializable {
 	
 	private float price;
 
+	@ManyToOne
+	@JoinColumn(name = "union_id", referencedColumnName = "id", updatable = false, insertable = false)
+	private Union union;
+
+	@ManyToOne
+	@JoinColumn(name = "union_service_id", referencedColumnName = "id", updatable = false, insertable = false)
+	private UnionService union_service;
+	
+	@OneToMany(mappedBy="union_service_association")
+	private List<HistoricalUnionCharge> historical_union_charge;
+	
 	public float getPrice() {
 		return price;
 	}
@@ -59,14 +75,4 @@ public class UnionServiceAssociation implements Serializable {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-
-	@ManyToOne
-	//@PrimaryKeyJoinColumn(name = "union_id", referencedColumnName = "id")
-	@JoinColumn(name = "union_id", updatable = false, insertable = false, referencedColumnName = "id")
-	private Union union;
-
-	@ManyToOne
-	//@PrimaryKeyJoinColumn(name = "union_service_id", referencedColumnName = "id")
-	@JoinColumn(name = "union_service_id", updatable = false, insertable = false, referencedColumnName = "id")
-	private UnionService union_service;
 }

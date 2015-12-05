@@ -57,7 +57,6 @@ public abstract class Employee implements Serializable {
 	@OneToMany(mappedBy="employee")
 	private List<HistoricalUnionCharge> historical_union_charge;
 	
-	
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
@@ -168,5 +167,5 @@ public abstract class Employee implements Serializable {
 			List<HistoricalUnionCharge> historical_union_charge) {
 		this.historical_union_charge = historical_union_charge;
 	}
-	
+
 }
