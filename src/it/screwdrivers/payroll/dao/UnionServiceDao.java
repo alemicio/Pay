@@ -19,7 +19,7 @@ public class UnionServiceDao {
 	}
 
 	public List<UnionService> findAll() {
-		List<UnionService> union_services = em.createQuery("select p from UnionService s", UnionService.class).getResultList();
+		List<UnionService> union_services = em.createQuery("select s from UnionService s", UnionService.class).getResultList();
 		return union_services;
 	}
 
