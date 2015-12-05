@@ -45,7 +45,7 @@ public class EmployeeTest extends ArquillianTest {
 			if (employee.getUsername().equals("bonaz")) {
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				employee_dao.remove(employee);
+				//employee_dao.remove(employee);
 			}
 		}
 
@@ -76,7 +76,7 @@ public class EmployeeTest extends ArquillianTest {
 			if (employee.getUsername().equals("munci")) {
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				employee_dao.remove(employee);
+				//employee_dao.remove(employee);
 			}
 		}
 //		 test = true;
@@ -108,7 +108,7 @@ public class EmployeeTest extends ArquillianTest {
 				
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				employee_dao.remove(employee);
+				//employee_dao.remove(employee);
 			}
 		}
 //		test = true;
@@ -139,7 +139,7 @@ public class EmployeeTest extends ArquillianTest {
 				
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				employee_dao.remove(employee);
+				//employee_dao.remove(employee);
 			}
 		}
 //		test = true;

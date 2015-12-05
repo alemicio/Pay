@@ -26,6 +26,9 @@ public class UnionService implements Serializable{
 	@OneToMany(mappedBy="union_service")
 	private List<UnionServiceAssociation> union_service_associations;
 	
+	public int getId() {
+		return id;
+	}
 	public String getDescription() {
 		return description;
 	}

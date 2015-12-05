@@ -1,15 +1,12 @@
 package it.screwdrivers.payroll.pojo.union;
 
 import it.screwdrivers.payroll.pojo.historical.HistoricalUnionCharge;
-
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -54,8 +51,6 @@ public class UnionServiceAssociation implements Serializable {
 
 	@Id
 	private int union_service_id;
-	
-	private float price;
 
 	@ManyToOne
 	@JoinColumn(name = "union_id", referencedColumnName = "id", updatable = false, insertable = false)
@@ -68,6 +63,24 @@ public class UnionServiceAssociation implements Serializable {
 	@OneToMany(mappedBy="union_service_association")
 	private List<HistoricalUnionCharge> historical_union_charge;
 	
+	private float price;
+	
+	public int getUnion_id() {
+		return union_id;
+	}
+
+	public void setUnion_id(int union_id) {
+		this.union_id = union_id;
+	}
+
+	public int getUnion_service_id() {
+		return union_service_id;
+	}
+
+	public void setUnion_service_id(int union_service_id) {
+		this.union_service_id = union_service_id;
+	}
+
 	public float getPrice() {
 		return price;
 	}
