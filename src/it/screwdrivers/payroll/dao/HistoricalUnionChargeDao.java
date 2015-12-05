@@ -1,10 +1,14 @@
 package it.screwdrivers.payroll.dao;
 
 import it.screwdrivers.payroll.pojo.historical.HistoricalUnionCharge;
+
 import java.util.List;
+
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Stateless
 public class HistoricalUnionChargeDao {
 
 	@PersistenceContext

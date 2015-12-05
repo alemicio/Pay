@@ -46,8 +46,8 @@ public class UnionServiceAssociationTest extends ArquillianTest {
 		// ===========================================================
 		
 		UnionServiceAssociation usa = new UnionServiceAssociation();
-		usa.setUnion_id(union.getId());
-		usa.setUnion_service_id(union_service.getId());
+		usa.setUnion(union);
+		usa.setUnion_service(union_service);
 		usa.setPrice(999);
 		
 		Boolean test = false;
@@ -60,9 +60,9 @@ public class UnionServiceAssociationTest extends ArquillianTest {
 			if (union_service_association.getPrice() == 999) {
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				//union_service_association_dao.remove(usa);
-				//union_dao.remove(union);
-				//union_service_dao.remove(union_service);
+				union_service_association_dao.remove(usa);
+				union_dao.remove(union);
+				union_service_dao.remove(union_service);
 			}
 		}
 

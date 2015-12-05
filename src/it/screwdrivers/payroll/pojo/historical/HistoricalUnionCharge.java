@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,21 +22,16 @@ public class HistoricalUnionCharge implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private float amount;
-	private Date date;
-	
 	@ManyToOne
 	@JoinColumn(name="employeeId", referencedColumnName="employeeId")
 	private Employee employee;
-	
-	// In questa @ManyToOne ho dovuto mettere due JoinComlumn dato che
-	// la tabella UnionServiceAssociation ha una CHIAVE PRIMARIA COMPOSTA
+
 	@ManyToOne
-	@JoinColumns({	
-		@JoinColumn(name = "union_id", referencedColumnName = "union_id", insertable = false, updatable = false),             
-	    @JoinColumn(name = "union_service_id", referencedColumnName = "union_service_id", insertable = false, updatable = false)
-	})
+	@JoinColumn(name = "union_service_association_id", referencedColumnName = "id")
 	private UnionServiceAssociation union_service_association;
+	
+	private float amount;
+	private Date date;
 	
 	public float getAmount() {
 		return amount;
@@ -56,6 +50,14 @@ public class HistoricalUnionCharge implements Serializable {
 	}
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	
+	public UnionServiceAssociation getUnion_service_association() {
+		return union_service_association;
+	}
+	public void setUnion_service_association(
+			UnionServiceAssociation union_service_association) {
+		this.union_service_association = union_service_association;
 	}
 	public int getId() {
 		return id;
