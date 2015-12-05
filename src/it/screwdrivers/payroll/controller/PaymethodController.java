@@ -18,7 +18,7 @@ public class PaymethodController {
 
 	@Inject
 	PaymethodDao paymethod_dao;
-
+	
 	@Inject
 	EmployeeDao employee_dao;
 
@@ -41,7 +41,7 @@ public class PaymethodController {
 
 		updatePaymethod(employee, postal);
 	}
-
+	
 	public void setWithDrawPaymethod(Employee employee,
 			WithDrawPaymethod withdraw) {
 
