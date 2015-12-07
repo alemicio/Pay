@@ -27,7 +27,7 @@ public class UnionServiceAssociationController {
 			
 			//fetch out the union associated with the employee
 			// check if the union id of the employee matches with the union id in the db
-			if(employee.getUnion().getId() != u.getUnion_id()){
+			if(employee.getUnion().getId() == u.getUnion_id()){
 				
 				//if is not associated to the correct union 
 				//it is removed from the list
