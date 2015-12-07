@@ -97,7 +97,7 @@
 
 						<div class="col-lg-6" style="text-align: left;">
 							<h3>
-								Payment: <b>#{paymentmethod.getPaymethodType(employee.retrived_employee)}</b>
+								Payment: #{paymentmethod.getPaymethodType(employee.retrived_employee)}
 							</h3>
 
 							<b:modal id="modalpay"
@@ -212,10 +212,7 @@
 								size="lg" />
 						</div>
 						<div class="col-lg-6" style="text-align: left;">
-							<h3>
-								Union: <b id="unionName">#{union.getUnion(employee.retrived_employee)}</b>
-								<p>ciao</p>
-							</h3>
+							<h3>Union:#{union.getUnion(employee.retrived_employee)}</h3>
 
 							<b:modal id="modalunion" title="Here you can Modify your Union"
 								styleClass="modalPseudoClassU">
@@ -269,6 +266,29 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- <div class="container-fluid" id="sfondo">
+		<div class="container">
+			<br></br>
+			<div class="jumbotron" id="jumbotrone">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<b:selectMultiMenu value="#{union.services_selected}" required="true"
+							fieldSize="lg" label="Select services offered by this union">
+							<f:facet name="prepend">
+								<h:outputText value="@service" />
+							</f:facet>
+							todo ritonare tutte le union del db
+							<f:selectItems value="#{union.associated_service}" />
+
+						</b:selectMultiMenu>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">

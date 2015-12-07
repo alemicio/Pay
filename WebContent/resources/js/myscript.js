@@ -1,10 +1,10 @@
 $(document).ready(function() {
- 
-	var micio = $("unionName").Text;
-	
-	if ( micio == "Not setted") {
-		$("p").Text("merda lurida");
-	}else {
-		 $( "p" ).Text(micio);
+
+	if ('#{union.getUnion(employee.retrived_employee)}' == 'Not setted') {
+		alert("dioporco non è settato");
+
+	} else {
+		alert("dioporco ha gia una union cazzo");
+
 	}
- });
+});

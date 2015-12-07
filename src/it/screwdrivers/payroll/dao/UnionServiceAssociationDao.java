@@ -19,7 +19,7 @@ public class UnionServiceAssociationDao {
 	}
 
 	public List<UnionServiceAssociation> findAll() {
-		List<UnionServiceAssociation> union_service_associations = em.createQuery("select p from UnionServiceAssociation s", UnionServiceAssociation.class).getResultList();
+		List<UnionServiceAssociation> union_service_associations = em.createQuery("select p from UnionServiceAssociation p", UnionServiceAssociation.class).getResultList();
 		return union_service_associations;
 	}
 

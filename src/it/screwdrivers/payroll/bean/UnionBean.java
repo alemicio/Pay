@@ -34,7 +34,8 @@ public class UnionBean implements Serializable {
 	
 	private String union_name;
 	private List<String> associated_unions;
-	private List<UnionServiceAssociation> usa_list;
+	private List<UnionServiceAssociation> associated_service;
+	private String services_selected;
 	
 	
 	public String getUnion(Employee e) {
@@ -42,6 +43,7 @@ public class UnionBean implements Serializable {
 		//firstly we populate the list of all unions available on db
 		//SGAMO MICIO --> maybe replaced by @postcustruct
 		affiliatedUnions();
+		getUnionServiceAvailable(e);
 		
 		
 		// // This method returns a paymethod for a given employee.
@@ -71,8 +73,8 @@ public class UnionBean implements Serializable {
 		associated_unions = u_controller.affiliatedUnions();
 	}
 	
-	public void getUnionServiceAvailable(Employee e){
-		usa_list = usa_controller.retriveUnionSerive(e);
+	private void getUnionServiceAvailable(Employee e){
+		associated_service = usa_controller.retriveUnionService(e);
 	}
 	
 
@@ -93,6 +95,27 @@ public class UnionBean implements Serializable {
 	public void setAssociated_unions(List<String> associated_unions) {
 		this.associated_unions = associated_unions;
 	}
+
+	
+
+	public List<UnionServiceAssociation> getAssociated_service() {
+		return associated_service;
+	}
+
+	public void setAssociated_service(
+			List<UnionServiceAssociation> associated_service) {
+		this.associated_service = associated_service;
+	}
+
+	public String getServices_selected() {
+		return services_selected;
+	}
+
+	public void setServices_selected(String services_selected) {
+		this.services_selected = services_selected;
+	}
+	
+	
 	
 	
 	

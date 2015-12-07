@@ -91,5 +91,22 @@ public class UnionServiceAssociation implements Serializable {
 	public void setUnion_service_id(int union_service_id) {
 		this.union_service_id = union_service_id;
 	}
+
+	public Union getUnion() {
+		return union;
+	}
+
+	public void setUnion(Union union) {
+		this.union = union;
+	}
+
+	public UnionService getUnion_service() {
+		return union_service;
+	}
+
+	public void setUnion_service(UnionService union_service) {
+		this.union_service = union_service;
+	}
+	
 	
 }
