@@ -11,6 +11,7 @@
 <h:head>
 	<title>Salaried Dashboard</title>
 	<h:outputStylesheet library="css" name="common.css"></h:outputStylesheet>
+	<h:outputScript library="js" name="myscript.js"></h:outputScript>
 
 	<link
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -95,8 +96,9 @@
 					<div class="col-lg-12">
 
 						<div class="col-lg-6" style="text-align: left;">
-							<h3>Payment:
-								#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
+							<h3>
+								Payment: <b>#{paymentmethod.getPaymethodType(employee.retrived_employee)}</b>
+							</h3>
 
 							<b:modal id="modalpay"
 								title="Here you can Modify you Payment method"
@@ -133,7 +135,7 @@
 											<!-- Tab panes -->
 											<div class="tab-content">
 												<div role="tabpanel" class="tab-pane active" id="home">
-												
+
 													<!--  This is the form in which we will insert the new bank paymethod data -->
 													<h:form>
 														<b:inputText fieldSize="lg" value="#{paymentmethod.IBAN}">
@@ -141,23 +143,25 @@
 																<h:outputText value="IBAN" />
 															</f:facet>
 														</b:inputText>
-	
-														<b:inputText fieldSize="lg" value="#{paymentmethod.filial}">
+
+														<b:inputText fieldSize="lg"
+															value="#{paymentmethod.filial}">
 															<f:facet name="prepend">
 																<h:outputText value="filial" />
 															</f:facet>
 														</b:inputText>
-	
+
 														<b:button value="close" size="lg" dismiss="modal"
 															onclick="return false;" />
-														
-														<b:commandButton value="OK" action="#{paymentmethod.setBankPaymethod(employee.retrived_employee)}"></b:commandButton>
+
+														<b:commandButton value="OK"
+															action="#{paymentmethod.setBankPaymethod(employee.retrived_employee)}"></b:commandButton>
 													</h:form>
 													<!-- ===================================================================== -->
-												
+
 												</div>
 												<div role="tabpanel" class="tab-pane" id="profile">
-												
+
 													<!--  This is the form in which we will insert the new postal paymethod data -->
 													<h:form>
 														<b:inputText fieldSize="lg"
@@ -166,17 +170,18 @@
 																<h:outputText value="Residential Address" />
 															</f:facet>
 														</b:inputText>
-														
+
 														<b:button value="close" size="lg" dismiss="modal"
 															onclick="return false;" />
-															
-														<b:commandButton value="OK" action="#{paymentmethod.setPostalPaymethod(employee.retrived_employee)}"></b:commandButton>
+
+														<b:commandButton value="OK"
+															action="#{paymentmethod.setPostalPaymethod(employee.retrived_employee)}"></b:commandButton>
 													</h:form>
 													<!-- ===================================================================== -->
-													
+
 												</div>
 												<div role="tabpanel" class="tab-pane" id="messages">
-												
+
 													<!--  This is the form in which we will insert the new withdraw paymethod data -->
 													<h:form>
 														<b:inputText fieldSize="lg"
@@ -185,27 +190,21 @@
 																<h:outputText value="Headquarter" />
 															</f:facet>
 														</b:inputText>
-														
+
 														<b:button value="close" size="lg" dismiss="modal"
 															onclick="return false;" />
-														
-														<b:commandButton value="OK" action="#{paymentmethod.setWithDrawPaymethod(employee.retrived_employee)}"></b:commandButton>
+
+														<b:commandButton value="OK"
+															action="#{paymentmethod.setWithDrawPaymethod(employee.retrived_employee)}"></b:commandButton>
 													</h:form>
 													<!-- ===================================================================== -->
-													
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<!-- <f:facet name="footer">
-									<b:button value="close" size="lg" dismiss="modal"
-										onclick="return false;" />
-									<h:form>
-										<b:commandButton value="OK"></b:commandButton>
-									</h:form>
-								</f:facet>  -->
 							</b:modal>
 
 							<b:button value="Change Paymethod" look="info"
@@ -213,12 +212,15 @@
 								size="lg" />
 						</div>
 						<div class="col-lg-6" style="text-align: left;">
-							<h3>Union: #{union.getUnion(employee.retrived_employee)}</h3>
+							<h3>
+								Union: <b id="unionName">#{union.getUnion(employee.retrived_employee)}</b>
+								<p>ciao</p>
+							</h3>
 
 							<b:modal id="modalunion" title="Here you can Modify your Union"
 								styleClass="modalPseudoClassU">
 								<h:form id="unionset">
-								
+
 									<div class="row">
 										<div class="col-lg-12">
 											<h:graphicImage library="images" name="unipv2.png"
@@ -232,14 +234,14 @@
 									<div class="row" style="margin-top: 2rem;">
 										<div class="col-lg-12">
 
-											<b:selectOneMenu value="#{union.union_name}" required="true" fieldSize="lg" 
-												label="Select a Union to belong">
+											<b:selectOneMenu value="#{union.union_name}" required="true"
+												fieldSize="lg" label="Select a Union to belong">
 												<f:facet name="prepend">
 													<h:outputText value="@union" />
 												</f:facet>
 												<!-- todo ritonare tutte le union del db -->
-												<f:selectItems value="#{union.associated_unions}"/>
-							
+												<f:selectItems value="#{union.associated_unions}" />
+
 											</b:selectOneMenu>
 											<b:inputText value="#{union.union_name}" disabled="true"></b:inputText>
 										</div>
@@ -248,10 +250,11 @@
 									<div class="row" style="margin-top: 2rem;">
 										<div class="col-lg-12">
 											<b:commandButton value="Ok" size="lg" look="success"
-												dismiss="modal"  action="#{union.setUnion(employee.retrived_employee)}" />
+												dismiss="modal"
+												action="#{union.setUnion(employee.retrived_employee)}" />
 										</div>
 									</div>
-									
+
 								</h:form>
 							</b:modal>
 

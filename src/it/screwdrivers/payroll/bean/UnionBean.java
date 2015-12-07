@@ -3,8 +3,10 @@ package it.screwdrivers.payroll.bean;
 import it.screwdrivers.payroll.controller.UnionController;
 
 
+import it.screwdrivers.payroll.controller.UnionServiceAssociationController;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.union.Union;
+import it.screwdrivers.payroll.pojo.union.UnionServiceAssociation;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -25,10 +27,14 @@ public class UnionBean implements Serializable {
 	UnionController u_controller;
 	
 	@Inject
+	UnionServiceAssociationController usa_controller;
+	
+	@Inject
 	Union unione;
 	
 	private String union_name;
 	private List<String> associated_unions;
+	private List<UnionServiceAssociation> usa_list;
 	
 	
 	public String getUnion(Employee e) {
@@ -63,8 +69,12 @@ public class UnionBean implements Serializable {
 	
 	private void affiliatedUnions(){
 		associated_unions = u_controller.affiliatedUnions();
-
 	}
+	
+	public void getUnionServiceAvailable(Employee e){
+		usa_list = usa_controller.retriveUnionSerive(e);
+	}
+	
 
 	
 

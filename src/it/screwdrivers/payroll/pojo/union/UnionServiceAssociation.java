@@ -75,4 +75,21 @@ public class UnionServiceAssociation implements Serializable {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+
+	public int getUnion_id() {
+		return union_id;
+	}
+
+	public void setUnion_id(int union_id) {
+		this.union_id = union_id;
+	}
+
+	public int getUnion_service_id() {
+		return union_service_id;
+	}
+
+	public void setUnion_service_id(int union_service_id) {
+		this.union_service_id = union_service_id;
+	}
+	
 }
