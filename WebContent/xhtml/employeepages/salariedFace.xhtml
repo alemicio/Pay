@@ -96,9 +96,8 @@
 					<div class="col-lg-12">
 
 						<div class="col-lg-6" style="text-align: left;">
-							<h3>
-								Payment: #{paymentmethod.getPaymethodType(employee.retrived_employee)}
-							</h3>
+							<h3>Payment:
+								#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
 
 							<b:modal id="modalpay"
 								title="Here you can Modify you Payment method"
@@ -236,7 +235,7 @@
 												<f:facet name="prepend">
 													<h:outputText value="@union" />
 												</f:facet>
-			
+
 												<f:selectItems value="#{union.associated_unions}" />
 
 											</b:selectOneMenu>
@@ -259,7 +258,6 @@
 								onclick="$('.modalPseudoClassU').modal();return false;"
 								size="lg" />
 						</div>
-
 					</div>
 
 				</div>
@@ -273,41 +271,43 @@
 			<div class="jumbotron" id="jumbotrone">
 				<div class="row">
 					<div class="col-lg-12">
-					
-						<h:form>
-						<b:selectMultiMenu value="#{union.services_selected}" required="true"
-							fieldSize="lg" label="Select services offered by this union">
-							<f:facet name="prepend">
-								<h:outputText value="@service" />
-							</f:facet>
-							
-							<f:selectItems value="#{union.service_names}" />
 
-						</b:selectMultiMenu>
-						
-						<b:modal id="modalservice"
-								title="Resume of your Services order"
-								styleClass="modalPseudoClassS">
-								
-								<div class="row">
-										<div class="col-lg-12">
-											<h:graphicImage library="images" name="unipv2.png"
-												class="img-responsive center-block" alt="Responsive image" />
-										</div>
-									</div>
+						<h:form>
+
+							<b:selectMultiMenu value="#{union.services_selected}"
+								required="true" fieldSize="lg"
+								label="Select services offered by this union">
+								<f:facet name="prepend">
+									<h:outputText value="@service" />
+								</f:facet>
+								<f:selectItems value="#{union.service_names}" />
+							</b:selectMultiMenu>
+							
+							<b:modal id="modalservice" title="Resume of your Services order"
+							styleClass="modalPseudoClassS">
+							<div class="row">
+								<div class="col-lg-12">
+									<h:graphicImage library="images" name="unipv2.png"
+										class="img-responsive center-block" alt="Responsive image" />
+								</div>
+							</div>
+							<p>selezione : #{union.services_selected}</p>
+							
 						</b:modal>
-						
-						<b:button value="Send Order" look="info"
-								onclick="$('.modalPseudoClassS').modal();return false;"
-								size="lg" />
-						
+
+						<b:commandButton value="Send Order" look="info" size="lg" />
+
+
 						</h:form>
+						
+
+						
 
 					</div>
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">

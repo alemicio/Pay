@@ -38,9 +38,7 @@ public class UnionBean implements Serializable {
 	private List<UnionServiceAssociation> associated_service;
 	private List<String> service_names;
 	
-	@NotNull
 	private String services_selected;
-	
 	
 	public String generateUnionInfo(Employee e) {
 		
