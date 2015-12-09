@@ -74,7 +74,7 @@ public class LogBean implements Serializable {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user_id", retrived_employee.getId());
 		}
 		
-		e_bean.setRetrived_employee(retrived_employee);
+		e_bean.setRetrieved_employee(retrived_employee);
 		
 		return type;
 	}

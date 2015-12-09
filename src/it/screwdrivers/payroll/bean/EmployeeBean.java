@@ -18,20 +18,20 @@ public class EmployeeBean implements Serializable {
 	@Inject
 	EmployeeController e_controller;
 
-	private Employee retrived_employee;
+	private Employee retrieved_employee;
 	private Employee updated_employee;
 	
 	public Employee retrieveEmployee(String username, String password) {
 
-		retrived_employee = e_controller.retrieveEmployee(username, password);
-		return retrived_employee;
+		retrieved_employee = e_controller.retrieveEmployee(username, password);
+		return retrieved_employee;
 	}
 
-	public Employee getRetrived_employee() {
-		return retrived_employee;
+	public Employee getRetrieved_employee() {
+		return retrieved_employee;
 	}
 
-	public void setRetrived_employee(Employee retrived_employee) {
-		this.retrived_employee = retrived_employee;
+	public void setRetrieved_employee(Employee retrieved_employee) {
+		this.retrieved_employee = retrieved_employee;
 	}
 }

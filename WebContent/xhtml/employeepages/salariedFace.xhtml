@@ -97,7 +97,7 @@
 
 						<div class="col-lg-6" style="text-align: left;">
 							<h3>Payment:
-								#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
+								#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
 
 							<b:modal id="modalpay"
 								title="Here you can Modify you Payment method"
@@ -112,7 +112,7 @@
 									<div class="row">
 										<div class="col-lg-12">
 											<h3>Actual:
-												#{paymentmethod.getPaymethodType(employee.retrived_employee)}</h3>
+												#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
 										</div>
 									</div>
 									<div class="row">
@@ -154,7 +154,7 @@
 															onclick="return false;" />
 
 														<b:commandButton value="OK"
-															action="#{paymentmethod.setBankPaymethod(employee.retrived_employee)}"></b:commandButton>
+															action="#{paymentmethod.setBankPaymethod(employee.retrieved_employee)}"></b:commandButton>
 													</h:form>
 													<!-- ===================================================================== -->
 
@@ -174,7 +174,7 @@
 															onclick="return false;" />
 
 														<b:commandButton value="OK"
-															action="#{paymentmethod.setPostalPaymethod(employee.retrived_employee)}"></b:commandButton>
+															action="#{paymentmethod.setPostalPaymethod(employee.retrieved_employee)}"></b:commandButton>
 													</h:form>
 													<!-- ===================================================================== -->
 
@@ -194,7 +194,7 @@
 															onclick="return false;" />
 
 														<b:commandButton value="OK"
-															action="#{paymentmethod.setWithDrawPaymethod(employee.retrived_employee)}"></b:commandButton>
+															action="#{paymentmethod.setWithDrawPaymethod(employee.retrieved_employee)}"></b:commandButton>
 													</h:form>
 													<!-- ===================================================================== -->
 
@@ -211,7 +211,7 @@
 								size="lg" />
 						</div>
 						<div class="col-lg-6" style="text-align: left;">
-							<h3>Union:#{union.getUnion(employee.retrived_employee)}</h3>
+							<h3>Union:#{union.getUnion(employee.retrieved_employee)}</h3>
 
 							<b:modal id="modalunion" title="Here you can Modify your Union"
 								styleClass="modalPseudoClassU">
@@ -247,7 +247,7 @@
 										<div class="col-lg-12">
 											<b:commandButton value="Ok" size="lg" look="success"
 												dismiss="modal"
-												action="#{union.setUnion(employee.retrived_employee)}" />
+												action="#{union.setUnion(employee.retrieved_employee)}" />
 										</div>
 									</div>
 
