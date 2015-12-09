@@ -1,14 +1,16 @@
 package it.screwdrivers.payroll.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.UnionDao;
+import it.screwdrivers.payroll.dao.UnionServiceAssociationDao;
+import it.screwdrivers.payroll.dao.UnionServiceDao;
 import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
-import it.screwdrivers.payroll.pojo.payment.Paymethod;
 import it.screwdrivers.payroll.pojo.union.Union;
+import it.screwdrivers.payroll.pojo.union.UnionService;
+import it.screwdrivers.payroll.pojo.union.UnionServiceAssociation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -18,8 +20,12 @@ public class UnionController {
 
 	@Inject
 	UnionDao u_dao;
+	
 	@Inject
 	EmployeeDao employee_dao;
+	
+	@Inject
+	UnionServiceAssociationDao usa_dao;
 
 	public boolean isUnionSet(Employee employee) {
 		if (employee.getUnion() == null) {
@@ -40,12 +46,10 @@ public class UnionController {
 			if (u.getName().equals(union_name)) {
 				updateUnion(employee, u);
 			}
-
 		}
-		
-
 	}
-	public List<String> affiliatedUnions() {
+	
+	public List<String> getUnionsNames() {
 
 		// this method return all names of associated unions in the db
 		List<Union> unions = u_dao.findAll();
@@ -64,4 +68,18 @@ public class UnionController {
 		employee_dao.update(employee);
 	}
 
+	public UnionServiceAssociation getUnionServiceAssociationByUnionAndServiceName(Union union, String service_name){
+		
+		UnionServiceAssociation union_service_association = new UnionServiceAssociation();
+		List<UnionServiceAssociation> union_service_associations = usa_dao.findAll();
+		
+		for(UnionServiceAssociation usa : union_service_associations){
+			if(usa.getUnion().getName().equals(union.getName()) && usa.getUnion_service().getName().equals(service_name)){
+				
+				union_service_association = usa;
+			}
+		}
+		
+		return union_service_association;
+	}
 }
