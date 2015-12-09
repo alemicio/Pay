@@ -26,8 +26,8 @@ public class UnionBean implements Serializable {
 	@Inject
 	UnionServiceAssociationController usa_controller;
 	
-	@Inject
-	Union unione;
+	@Inject 
+	Union union;
 	
 	private String union_name;
 	private List<String> associated_unions;
@@ -52,6 +52,7 @@ public class UnionBean implements Serializable {
 
 		if (is_union_set == true) {
 			name_union = u_controller.findUnionName(e.getUnion());
+			this.union = e.getUnion();
 		} 
 		else {
 			name_union = "Not setted";
@@ -62,8 +63,8 @@ public class UnionBean implements Serializable {
 	
 	public void setUnion(Employee e){
 		
-		System.out.println("unione scelta dalla tendina"+union_name);
-		u_controller.setUnion(e,union_name);
+		System.out.println("Union scelta dalla tendina: " + union_name);
+		u_controller.setUnion(e, union_name);
 	}
 	
 	private void populateUnionsNames(){
@@ -76,21 +77,29 @@ public class UnionBean implements Serializable {
 	
 	public String[] getSelectedUnionServicesNames(){
 		
-		String[] names = this.services_selected.split(";");
+		String[] names;
+		
+		if(services_selected.contains(",")){
+			names = services_selected.split(",");
+		} else {
+			names = new String[1];
+			names[0] = services_selected;
+		}
+		
 		return names;
 	}
 	
 	public void updateSelectedUnionServiceAssociations(){
 		
-		System.out.println("UWQEYBCQIUWCEBYQWIUB");
+		String[] selected_services_names = getSelectedUnionServicesNames();
+		
+		System.out.println(selected_services_names[0]);
+		
+		for(String service_name : selected_services_names){
+			selected_union_service_associations.add(u_controller.getUnionServiceAssociationByUnionAndServiceName(this.union, service_name));
+		}
+		
 		System.out.println(selected_union_service_associations.get(0).getPrice());
-		
-		//String[] selected_services_names = getSelectedUnionServicesNames();
-		
-		//for(String service_name : selected_services_names){
-			
-		//	this.selected_union_service_associations.add(u_controller.getUnionServiceAssociationByUnionAndServiceName(unione, service_name));
-		//}
 	}
 	
 	// ===========================

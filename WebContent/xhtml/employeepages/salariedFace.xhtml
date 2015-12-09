@@ -288,44 +288,42 @@
 							</b:selectMultiMenu>
 
 							<b:commandButton value="Send Order" look="info" size="lg"
-											 action="{#union.updateSelectedUnionServiceAssociations()}"/>
+											 action="#{union.updateSelectedUnionServiceAssociations()}"
+											 onclick="$('.modalPseudoClassS').modal();return false;"/>
 							
-							<!-- onclick="$('.modalPseudoClassS').modal();return false;" -->				 
-							
+							<!-- =============================================== -->
+							<!-- === This is the modal that has to be shown  === -->
+							<!-- === since we submit the "Send Order" button === -->
+							<!-- =============================================== -->
+							<b:modal id="modalservice" title="Resume of your Services order"
+								     styleClass="modalPseudoClassS">
+								<div class="row">
+									<div class="col-lg-12">
+										<h:graphicImage library="images" name="unipv2.png"
+											class="img-responsive center-block" alt="Responsive image" />
+									</div>
+								</div>
+								
+								<p>You've selected: #{union.services_selected}</p>
+								
+								<!-- This is the table in which we will show the services the user has selected -->
+								<h:dataTable value="#{union.selected_union_service_associations}" var="susa">	
+					    			<h:column>
+					    				<!-- column header -->
+					    				<f:facet name="header">Name</f:facet>
+					    				<!-- row record -->
+					    				#{susa.union_service.name}
+					    			</h:column>	
+					    							    			
+					    			<h:column>
+					    				<f:facet name="header">Price</f:facet>
+					    				#{susa.price}
+					    			</h:column>				    		
+					    		</h:dataTable>
+							</b:modal>		 
 						</h:form>
 						<!-- ===================================== -->
-						
-						<!-- =============================================== -->
-						<!-- === This is the modal that has to be shown  === -->
-						<!-- === since we submit the "Send Order" button === -->
-						<!-- =============================================== -->
-						<b:modal id="modalservice" title="Resume of your Services order"
-							     styleClass="modalPseudoClassS">
-							<div class="row">
-								<div class="col-lg-12">
-									<h:graphicImage library="images" name="unipv2.png"
-										class="img-responsive center-block" alt="Responsive image" />
-								</div>
-							</div>
-							
-							<p>You've selected: #{union.services_selected}</p>
-							
-							<!-- This is the table in which we will show the services the user has selected -->
-							<h:dataTable value="#{union.selected_union_service_associations}" var="susa">	
-				    			<h:column>
-				    				<!-- column header -->
-				    				<f:facet name="header">Name</f:facet>
-				    				<!-- row record -->
-				    				#{susa.union_service.name}
-				    			</h:column>	
-				    							    			
-				    			<h:column>
-				    				<f:facet name="header">Price</f:facet>
-				    				#{susa.price}
-				    			</h:column>				    		
-				    		</h:dataTable>
-						</b:modal>
-						<!-- =============================================== -->
+	
 					</div>
 				</div>
 			</div>
