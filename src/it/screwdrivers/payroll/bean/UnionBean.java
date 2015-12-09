@@ -52,7 +52,7 @@ public class UnionBean implements Serializable {
 		//here we have populated the list of service name to show in the face
 		service_names = usa_controller.getUnionServiceNames(associated_service);
 		
-		//This method returns a paymethod for a given employee.
+		//This method returns a union for a given employee.
 		String name_union = null;
 		boolean is_union_set = u_controller.isUnionSet(e);
 
@@ -80,7 +80,7 @@ public class UnionBean implements Serializable {
 	}
 	
 	private void getUnionServiceAvailable(Employee e){
-		associated_service = usa_controller.retriveUnionService(e);
+		associated_service = usa_controller.retrieveUnionServiceAssociations(e);
 	}
 	
 
