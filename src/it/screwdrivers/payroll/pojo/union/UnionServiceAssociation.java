@@ -58,13 +58,4 @@ public class UnionServiceAssociation implements Serializable {
 	public void setUnion_service(UnionService union_service) {
 		this.union_service = union_service;
 	}
-
-	public List<HistoricalUnionCharge> getHistorical_union_charge() {
-		return historical_union_charge;
-	}
-
-	public void setHistorical_union_charge(
-			List<HistoricalUnionCharge> historical_union_charge) {
-		this.historical_union_charge = historical_union_charge;
-	}
 }

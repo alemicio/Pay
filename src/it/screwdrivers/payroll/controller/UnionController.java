@@ -28,7 +28,6 @@ public class UnionController {
 			return true;
 		}
 	}
-
 	public String findUnionName(Union union) {
 		return union.getName();
 	}
@@ -46,7 +45,6 @@ public class UnionController {
 		
 
 	}
-
 	public List<String> affiliatedUnions() {
 
 		// this method return all names of associated unions in the db
@@ -60,8 +58,6 @@ public class UnionController {
 
 		return nomi_unioni;
 	}
-
-	
 
 	private void updateUnion(Employee employee, Union u) {
 		employee.setUnion(u);
