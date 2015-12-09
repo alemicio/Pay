@@ -80,7 +80,6 @@ public class HistoricalUnionChargeTest extends ArquillianTest {
 		HistoricalUnionCharge huc = new HistoricalUnionCharge();
 		huc.setEmployee(employee_salaried);
 		huc.setUnion_service_association(usa);
-		huc.setAmount(1);
 		huc.setDate(new Date());
 		
 		historical_union_charge_dao.add(huc);
