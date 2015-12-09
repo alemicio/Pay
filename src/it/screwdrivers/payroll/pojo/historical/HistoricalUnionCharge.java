@@ -30,15 +30,8 @@ public class HistoricalUnionCharge implements Serializable {
 	@JoinColumn(name = "union_service_association_id", referencedColumnName = "id")
 	private UnionServiceAssociation union_service_association;
 	
-	private float amount;
 	private Date date;
 	
-	public float getAmount() {
-		return amount;
-	}
-	public void setAmount(float amount) {
-		this.amount = amount;
-	}
 	public Date getDate() {
 		return date;
 	}

@@ -42,7 +42,7 @@ public class UnionBean implements Serializable {
 	private String services_selected;
 	
 	
-	public String getUnion(Employee e) {
+	public String generateUnionInfo(Employee e) {
 		
 		//firstly we populate the list of all unions available on db
 		//SGAMO MICIO --> maybe replaced by @postcustruct
