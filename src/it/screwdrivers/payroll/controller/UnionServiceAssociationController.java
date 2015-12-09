@@ -38,4 +38,17 @@ public class UnionServiceAssociationController {
 		}
 		return filtered_list;	
 	}
+	
+	public List<String> getUnionServiceNames(List<UnionServiceAssociation> service_list){
+		
+		//this method returns a new list with names of service associated
+		// to the employee union
+		List<String> service_names = new ArrayList<String>();
+		
+		for(UnionServiceAssociation u : service_list){
+			service_names.add(u.getUnion_service().getName());
+		}
+		
+		return service_names;
+	}
 }

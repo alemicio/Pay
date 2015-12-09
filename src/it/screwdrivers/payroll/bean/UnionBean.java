@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 
 @Named("union")
 @SessionScoped
@@ -35,6 +36,9 @@ public class UnionBean implements Serializable {
 	private String union_name;
 	private List<String> associated_unions;
 	private List<UnionServiceAssociation> associated_service;
+	private List<String> service_names;
+	
+	@NotNull
 	private String services_selected;
 	
 	
@@ -45,8 +49,10 @@ public class UnionBean implements Serializable {
 		affiliatedUnions();
 		getUnionServiceAvailable(e);
 		
+		//here we have populated the list of service name to show in the face
+		service_names = usa_controller.getUnionServiceNames(associated_service);
 		
-		// // This method returns a paymethod for a given employee.
+		//This method returns a paymethod for a given employee.
 		String name_union = null;
 		boolean is_union_set = u_controller.isUnionSet(e);
 
@@ -114,6 +120,16 @@ public class UnionBean implements Serializable {
 	public void setServices_selected(String services_selected) {
 		this.services_selected = services_selected;
 	}
+
+	public List<String> getService_names() {
+		return service_names;
+	}
+
+	public void setService_names(List<String> service_names) {
+		this.service_names = service_names;
+	}
+	
+	
 	
 	
 	

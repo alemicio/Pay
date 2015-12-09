@@ -236,7 +236,7 @@
 												<f:facet name="prepend">
 													<h:outputText value="@union" />
 												</f:facet>
-												<!-- todo ritonare tutte le union del db -->
+			
 												<f:selectItems value="#{union.associated_unions}" />
 
 											</b:selectOneMenu>
@@ -273,16 +273,35 @@
 			<div class="jumbotron" id="jumbotrone">
 				<div class="row">
 					<div class="col-lg-12">
-
+					
+						<h:form>
 						<b:selectMultiMenu value="#{union.services_selected}" required="true"
 							fieldSize="lg" label="Select services offered by this union">
 							<f:facet name="prepend">
 								<h:outputText value="@service" />
 							</f:facet>
-							todo ritonare tutte le union del db
-							<f:selectItems value="#{union.associated_service}" />
+							
+							<f:selectItems value="#{union.service_names}" />
 
 						</b:selectMultiMenu>
+						
+						<b:modal id="modalservice"
+								title="Resume of your Services order"
+								styleClass="modalPseudoClassS">
+								
+								<div class="row">
+										<div class="col-lg-12">
+											<h:graphicImage library="images" name="unipv2.png"
+												class="img-responsive center-block" alt="Responsive image" />
+										</div>
+									</div>
+						</b:modal>
+						
+						<b:button value="Send Order" look="info"
+								onclick="$('.modalPseudoClassS').modal();return false;"
+								size="lg" />
+						
+						</h:form>
 
 					</div>
 				</div>
