@@ -63,13 +63,23 @@ public class HistoricalUnionChargeController {
 
 					// check if the service is already requested in the current
 					// week for the given employee
-					if (service_name.equals(service_name_indb)
-							&& e.getId() == h.getEmployee().getId()
-							&& current_week_number == service_week_number) {
-						response += "," + service_name;
-
-						continue;
+					System.out.println(service_name);
+					System.out.println(service_name_indb);
+					System.out.println();
+					System.out.println(current_week_number);
+					System.out.println(service_week_number);
+					System.out.println();
+					System.out.println(e.getId());
+					System.out.println(h.getEmployee().getId());
+					
+					if (service_name.equals(service_name_indb)  
+						&& e.getId() == h.getEmployee().getId()  
+						&& current_week_number == service_week_number) {
+						
+						response = "failed";
+						break;
 					}
+					
 					System.out.println("sto scrivendo nel db");
 					HistoricalUnionCharge huc = new HistoricalUnionCharge();
 					huc.setUnion_service_association(susa);
@@ -83,7 +93,7 @@ public class HistoricalUnionChargeController {
 			}
 		}
 
-		response += ",success";
+		response = "success";
 		return response;
 	}
 
