@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -89,7 +90,9 @@ public class UnionBean implements Serializable {
 		return names;
 	}
 	
-	public void updateSelectedUnionServiceAssociations(){
+	// We used ActionEvent object to make this method became a listener for
+	// ajax requests.
+	public void updateSelectedUnionServiceAssociations(ActionEvent actionEvent){
 		
 		String[] selected_services_names = getSelectedUnionServicesNames();
 		
