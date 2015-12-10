@@ -276,7 +276,7 @@
 						<!-- === Union services selection form === -->
 						<!-- ===================================== -->
 						<h:form>
-						
+							<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 							<!-- This is the services select menu -->
 							<b:selectMultiMenu value="#{union.services_selected}"
 											   required="true" fieldSize="lg"
@@ -296,6 +296,7 @@
 							 				 styleClass="ui-priority-primary" />
 										     
 							<!-- This is the table in which we will show the services the user has selected -->
+							<br> </br>
 							<h:dataTable id="data-table" border="1" value="#{union.selected_union_service_associations}" var="susa">	
 				    			<h:column>
 				    				<!-- column header -->
@@ -309,9 +310,9 @@
 				    				#{susa.price}
 				    			</h:column>				    		
 				    		</h:dataTable>		
-				    		
+				    		<br></br>
 				    		<p:commandButton value="Confirm Order" id="ajax-send-order" 
-											 update="data-table" action="#{union.confirmOrder(employee.retrieved_employee)}"
+											 update="growl" action="#{union.confirmOrder(employee.retrieved_employee)}"
 							 				 styleClass="ui-priority-primary" />
 				    	</h:form>		
 					</div>

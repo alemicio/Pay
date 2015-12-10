@@ -25,6 +25,7 @@ public class HistoricalUnionChargeController {
 			List<UnionServiceAssociation> selected_union_service_associations) {
 
 		String response = null;
+		
 
 		// get the current system date and time(week number)
 		Calendar calendar = new GregorianCalendar();
@@ -35,6 +36,8 @@ public class HistoricalUnionChargeController {
 
 		for (UnionServiceAssociation susa : selected_union_service_associations) {
 
+			boolean disableOrdering = false;
+			
 			// service name i of the list
 			String service_name = susa.getUnion_service().getName();
 
@@ -61,39 +64,34 @@ public class HistoricalUnionChargeController {
 					int service_week_number = service_calendar
 							.get(Calendar.WEEK_OF_YEAR);
 
+
 					// check if the service is already requested in the current
 					// week for the given employee
-					System.out.println(service_name);
-					System.out.println(service_name_indb);
-					System.out.println();
-					System.out.println(current_week_number);
-					System.out.println(service_week_number);
-					System.out.println();
-					System.out.println(e.getId());
-					System.out.println(h.getEmployee().getId());
-					
 					if (service_name.equals(service_name_indb)  
 						&& e.getId() == h.getEmployee().getId()  
 						&& current_week_number == service_week_number) {
 						
-						response = "failed";
-						break;
+						disableOrdering = true;
+						response+=","+service_name;
 					}
+				}
+				
+				if(disableOrdering == false){
 					
-					System.out.println("sto scrivendo nel db");
+					System.out.println("i can write in the db the order of the service");
 					HistoricalUnionCharge huc = new HistoricalUnionCharge();
 					huc.setUnion_service_association(susa);
 					huc.setEmployee(e);
 					huc.setDate(date);
 
 					huc_dao.add(huc);
-
 				}
 
+				
 			}
 		}
 
-		response = "success";
+		response+=",success";
 		return response;
 	}
 
