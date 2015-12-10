@@ -93,12 +93,12 @@ public class UnionBean implements Serializable {
 		
 		String[] selected_services_names = getSelectedUnionServicesNames();
 		
-		System.out.println(selected_services_names[0]);
-		
+		selected_union_service_associations.clear();
 		for(String service_name : selected_services_names){
 			selected_union_service_associations.add(u_controller.getUnionServiceAssociationByUnionAndServiceName(this.union, service_name));
 		}
 		
+		System.out.println(selected_services_names[0]);
 		System.out.println(selected_union_service_associations.get(0).getPrice());
 	}
 	

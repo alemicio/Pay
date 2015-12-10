@@ -286,10 +286,15 @@
 								</f:facet>
 									<f:selectItems value="#{union.service_names}" />
 							</b:selectMultiMenu>
-
+							
+							<b:commandButton value="Set Order" look="info" size="lg"
+										     action="#{union.updateSelectedUnionServiceAssociations()}"								     
+										     />
+							
 							<b:commandButton value="Send Order" look="info" size="lg"
-											 action="#{union.updateSelectedUnionServiceAssociations()}"
-											 onclick="$('.modalPseudoClassS').modal();return false;"/>
+											 onclick="$('.modalPseudoClassS').modal();return false;"	
+										     style="margin-left:10px;"								     
+										     />
 							
 							<!-- =============================================== -->
 							<!-- === This is the modal that has to be shown  === -->
@@ -303,8 +308,6 @@
 											class="img-responsive center-block" alt="Responsive image" />
 									</div>
 								</div>
-								
-								<p>You've selected: #{union.services_selected}</p>
 								
 								<!-- This is the table in which we will show the services the user has selected -->
 								<h:dataTable value="#{union.selected_union_service_associations}" var="susa">	
