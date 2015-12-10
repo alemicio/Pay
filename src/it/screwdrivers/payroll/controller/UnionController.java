@@ -23,9 +23,6 @@ public class UnionController {
 	
 	@Inject
 	EmployeeDao employee_dao;
-	
-	@Inject
-	UnionServiceAssociationDao usa_dao;
 
 	public boolean isUnionSet(Employee employee) {
 		if (employee.getUnion() == null) {
@@ -66,20 +63,5 @@ public class UnionController {
 	private void updateUnion(Employee employee, Union u) {
 		employee.setUnion(u);
 		employee_dao.update(employee);
-	}
-
-	public UnionServiceAssociation getUnionServiceAssociationByUnionAndServiceName(Union union, String service_name){
-		
-		UnionServiceAssociation union_service_association = new UnionServiceAssociation();
-		List<UnionServiceAssociation> union_service_associations = usa_dao.findAll();
-		
-		for(UnionServiceAssociation usa : union_service_associations){
-			if(usa.getUnion().getName().equals(union.getName()) && usa.getUnion_service().getName().equals(service_name)){
-				
-				union_service_association = usa;
-			}
-		}
-		
-		return union_service_association;
 	}
 }
