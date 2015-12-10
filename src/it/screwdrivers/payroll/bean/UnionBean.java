@@ -1,5 +1,6 @@
 package it.screwdrivers.payroll.bean;
 
+import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
 import it.screwdrivers.payroll.controller.UnionController;
 import it.screwdrivers.payroll.controller.UnionServiceAssociationController;
 import it.screwdrivers.payroll.pojo.employee.Employee;
@@ -21,6 +22,9 @@ public class UnionBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Inject 
+	Union union;
+	
 	@Inject
 	UnionController u_controller;
 	
@@ -28,13 +32,12 @@ public class UnionBean implements Serializable {
 	UnionServiceAssociationController usa_controller;
 	
 	@Inject 
-	Union union;
+	HistoricalUnionChargeController huc_controller;
 	
 	private String union_name;
 	private List<String> associated_unions;
 	private List<UnionServiceAssociation> union_service_associations;
 	private List<String> service_names;
-	
 	private String services_selected;
 	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();; 
 	
@@ -100,9 +103,12 @@ public class UnionBean implements Serializable {
 		for(String service_name : selected_services_names){
 			selected_union_service_associations.add(usa_controller.getUnionServiceAssociationByUnionAndServiceName(this.union, service_name));
 		}
+	}
+	
+	public void confirmOrder(ActionEvent actionEvent, Employee e){
 		
-		System.out.println(selected_services_names[0]);
-		System.out.println(selected_union_service_associations.get(0).getPrice());
+		String response = null;
+		response = huc_controller.confirmOrder(e, selected_union_service_associations);
 	}
 	
 	// ===========================
