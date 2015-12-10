@@ -291,12 +291,12 @@
 							     union.updateSelectedUnionServiceAssociations method.
 							     It updates data-table which contains service's name
 							     and price -->
-							<p:commandButton value="Prepare Order" id="ajax" 
+							<p:commandButton value="Prepare Order" id="ajax-prepare-order" 
 											 update="data-table" actionListener="#{union.updateSelectedUnionServiceAssociations}"
 							 				 styleClass="ui-priority-primary" />
 										     
 							<!-- This is the table in which we will show the services the user has selected -->
-							<h:dataTable id="data-table" value="#{union.selected_union_service_associations}" var="susa">	
+							<h:dataTable id="data-table" border="1" value="#{union.selected_union_service_associations}" var="susa">	
 				    			<h:column>
 				    				<!-- column header -->
 				    				<f:facet name="header">Name</f:facet>
@@ -309,6 +309,10 @@
 				    				#{susa.price}
 				    			</h:column>				    		
 				    		</h:dataTable>		
+				    		
+				    		<p:commandButton value="Confirm Order" id="ajax-send-order" 
+											 update="data-table" actionListener="#{union.confirmOrder(employee.retrieved_employee)}"
+							 				 styleClass="ui-priority-primary" />
 				    	</h:form>		
 					</div>
 				</div>
