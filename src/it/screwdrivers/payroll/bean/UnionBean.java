@@ -25,6 +25,8 @@ public class UnionBean implements Serializable {
 	@Inject 
 	Union union;
 	
+	
+	
 	@Inject
 	UnionController u_controller;
 	
@@ -42,6 +44,7 @@ public class UnionBean implements Serializable {
 	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();; 
 	
 	public String getUnion(Employee e) {
+		
 		
 		//SGAMO MICIO --> maybe replaced by @postcustruct
 		populateUnionsNames();
@@ -105,10 +108,12 @@ public class UnionBean implements Serializable {
 		}
 	}
 	
-	public void confirmOrder(ActionEvent actionEvent, Employee e){
+	public void confirmOrder(Employee e){
 		
 		String response = null;
 		response = huc_controller.confirmOrder(e, selected_union_service_associations);
+		
+		System.out.println(response);
 	}
 	
 	// ===========================
