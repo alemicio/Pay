@@ -147,15 +147,5 @@ public class EmployeeTest extends ArquillianTest {
 //		
 //	}
 	
-	@Test
-	public void stampa(){
-		//List<Employee> employees = employee_dao.findAll();
-		
-		List<ContractorEmployee> c_employees = employee_dao.findAllContractor(); 
-		
-		for(ContractorEmployee c : c_employees){
-			System.out.println(c.getHourly_rate());
-		}
 
-	}
 }

@@ -1,6 +1,7 @@
 package it.screwdrivers.payroll.controller;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -56,7 +57,18 @@ public class TimeCardController {
 		t_dao.add(timecard);
 		
 		return "success";
-		
+	}
 	
+	public List<TimeCard> retriveByEmployee(Employee e){
+		List<TimeCard> timecards = t_dao.findAll();
+		List<TimeCard> retrieved = new ArrayList<TimeCard>();
+		
+		for(TimeCard t: timecards){
+			if (t.getId() == e.getId()) {
+				retrieved.add(t);
+			}
+		}
+		
+		return retrieved;
 	}
 }
