@@ -34,7 +34,7 @@ public abstract class Employee implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int employeeId;
-
+	
 	private String username;
 	private String password;
 	private String name;
@@ -69,7 +69,8 @@ public abstract class Employee implements Serializable {
 		return super.equals(obj);
 	}
 	
-	
+
+
 	public String getUsername() {
 		return username;
 	}

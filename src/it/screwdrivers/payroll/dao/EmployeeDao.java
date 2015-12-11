@@ -2,15 +2,17 @@ package it.screwdrivers.payroll.dao;
 
 import java.util.List;
 
+import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
 @Stateless
 public class EmployeeDao {
-
+	
 	@PersistenceContext
 	EntityManager em;
 
@@ -36,5 +38,10 @@ public class EmployeeDao {
 	// This method allows to delete an existing employee record
 	public void remove(Employee employee) {
 		em.remove(em.merge(employee));
+	}
+	
+	public List<ContractorEmployee> findAllContractor() {
+		List<ContractorEmployee> employees = em.createQuery("select p from ContractorEmployee p", ContractorEmployee.class).getResultList();
+		return employees;
 	}
 }
