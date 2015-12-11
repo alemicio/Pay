@@ -1,7 +1,6 @@
 package it.screwdrivers.payroll.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -78,7 +77,6 @@ public class HistoricalUnionChargeController {
 				
 				if(disableOrdering == false){
 					
-					System.out.println("i can write in the db the order of the service");
 					HistoricalUnionCharge huc = new HistoricalUnionCharge();
 					huc.setUnion_service_association(susa);
 					huc.setEmployee(e);
