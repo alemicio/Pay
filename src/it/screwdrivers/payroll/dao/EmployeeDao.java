@@ -2,8 +2,11 @@ package it.screwdrivers.payroll.dao;
 
 import java.util.List;
 
+import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
+import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
+import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -42,6 +45,18 @@ public class EmployeeDao {
 	
 	public List<ContractorEmployee> findAllContractor() {
 		List<ContractorEmployee> employees = em.createQuery("select p from ContractorEmployee p", ContractorEmployee.class).getResultList();
+		return employees;
+	}
+	public List<CommissionedEmployee> findAllCommissioned() {
+		List<CommissionedEmployee> employees = em.createQuery("select p from CommissionedEmployee p", CommissionedEmployee.class).getResultList();
+		return employees;
+	}
+	public List<EmployeeManager> findAllManager() {
+		List<EmployeeManager> employees = em.createQuery("select p from EmployeeManager p", EmployeeManager.class).getResultList();
+		return employees;
+	}
+	public List<SalariedEmployee> findAllSalaried() {
+		List<SalariedEmployee> employees = em.createQuery("select p from SalariedEmployee p", SalariedEmployee.class).getResultList();
 		return employees;
 	}
 }
