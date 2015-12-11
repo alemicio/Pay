@@ -1,5 +1,7 @@
 package it.screwdrivers.payroll.engine;
 
+import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
+
 public class PayrollEngine {
 
 	PayEngineFactory pay_engine_factory = new PayEngineFactory();
@@ -11,6 +13,8 @@ public class PayrollEngine {
 		if (c.isFriday()) {
 
 			// TODO pay contractor employees
+			pay_engine = pay_engine_factory.getPayEngine(ContractorEmployee.class.getSimpleName());
+			pay_engine.pay();
 
 			if (c.isWeekNumberPair()) {
 				// TODO pay commisioned employees commissions
@@ -27,6 +31,10 @@ public class PayrollEngine {
 				// TODO pay salaried employees
 				// TODO Pat commissioned standard salary
 			}
+		}
+		
+		if(c.isLastDayOfYear()){
+			// TODO pay manager
 		}
 	}
 

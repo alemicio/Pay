@@ -73,5 +73,15 @@ public class PayrollCalendar {
 		
 		return false;
 	}
+	public boolean isLastDayOfYear(){
+		
+		calendar = new GregorianCalendar();
+		if(calendar.get(Calendar.DAY_OF_YEAR) == 365){
+			return true;
+		}
+		
+		return false;
+		
+	}
 
 }

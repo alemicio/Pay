@@ -8,21 +8,21 @@ import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
 public class PayEngineFactory {
 
-	public IPayEngine getPayEngine(Employee employee) {
+	public IPayEngine getPayEngine(String employee_class) {
 
-		if (employee == null) {
+		if (employee_class == null) {
 			return null;
 		}
-		if (employee instanceof CommissionedEmployee) {
+		if (employee_class.equals("CommissionedEmployee") ) {
 			return new CommissionedPayEngine();
 
-		} else if (employee instanceof ContractorEmployee) {
+		} else if (employee_class.equals("ContractorEmployee")) {
 			return new ContractorPayEngine();
 
-		} else if (employee instanceof SalariedEmployee) {
+		} else if (employee_class.equals("SalariedEmployee")) {
 			return new SalariedPayEngine();
 			
-		} else if (employee instanceof EmployeeManager) {
+		} else if (employee_class.equals("EmployeeManager")) {
 			return new ManagerPayEngine();
 		}
 		
