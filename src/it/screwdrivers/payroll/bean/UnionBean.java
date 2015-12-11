@@ -1,5 +1,6 @@
 package it.screwdrivers.payroll.bean;
 
+import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
 import it.screwdrivers.payroll.controller.UnionController;
 import it.screwdrivers.payroll.controller.UnionServiceAssociationController;
 import it.screwdrivers.payroll.pojo.employee.Employee;
@@ -11,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,6 +24,11 @@ public class UnionBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Inject 
+	Union union;
+	
+	
+	
 	@Inject
 	UnionController u_controller;
 	
@@ -27,17 +36,17 @@ public class UnionBean implements Serializable {
 	UnionServiceAssociationController usa_controller;
 	
 	@Inject 
-	Union union;
+	HistoricalUnionChargeController huc_controller;
 	
 	private String union_name;
 	private List<String> associated_unions;
 	private List<UnionServiceAssociation> union_service_associations;
 	private List<String> service_names;
-	
 	private String services_selected;
 	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();; 
 	
 	public String getUnion(Employee e) {
+		
 		
 		//SGAMO MICIO --> maybe replaced by @postcustruct
 		populateUnionsNames();
@@ -89,7 +98,9 @@ public class UnionBean implements Serializable {
 		return names;
 	}
 	
-	public void updateSelectedUnionServiceAssociations(){
+	// We used ActionEvent object to make this method became a listener for
+	// ajax requests.
+	public void updateSelectedUnionServiceAssociations(ActionEvent actionEvent){
 		
 		String[] selected_services_names = getSelectedUnionServicesNames();
 		
@@ -97,9 +108,30 @@ public class UnionBean implements Serializable {
 		for(String service_name : selected_services_names){
 			selected_union_service_associations.add(usa_controller.getUnionServiceAssociationByUnionAndServiceName(this.union, service_name));
 		}
+	}
+	
+	public void confirmOrder(Employee e){
 		
-		System.out.println(selected_services_names[0]);
-		System.out.println(selected_union_service_associations.get(0).getPrice());
+		String response = null;
+		response = huc_controller.confirmOrder(e, selected_union_service_associations);
+		
+		System.out.println(response);
+		
+		
+		if (response == "success") {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Congratulations",
+					"your order is correctly submitted"));
+
+		}
+		else{
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Error:",
+					"impossible to confirm your order for today, another order was submitted for this week"));
+		}
+			
 	}
 	
 	// ===========================

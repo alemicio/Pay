@@ -276,7 +276,7 @@
 						<!-- === Union services selection form === -->
 						<!-- ===================================== -->
 						<h:form>
-						
+							<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 							<!-- This is the services select menu -->
 							<b:selectMultiMenu value="#{union.services_selected}"
 											   required="true" fieldSize="lg"
@@ -287,46 +287,34 @@
 									<f:selectItems value="#{union.service_names}" />
 							</b:selectMultiMenu>
 							
-							<b:commandButton value="Set Order" look="info" size="lg"
-										     action="#{union.updateSelectedUnionServiceAssociations()}"								     
-										     />
-							
-							<b:commandButton value="Send Order" look="info" size="lg"
-											 onclick="$('.modalPseudoClassS').modal();return false;"	
-										     style="margin-left:10px;"								     
-										     />
-							
-							<!-- =============================================== -->
-							<!-- === This is the modal that has to be shown  === -->
-							<!-- === since we submit the "Send Order" button === -->
-							<!-- =============================================== -->
-							<b:modal id="modalservice" title="Resume of your Services order"
-								     styleClass="modalPseudoClassS">
-								<div class="row">
-									<div class="col-lg-12">
-										<h:graphicImage library="images" name="unipv2.png"
-											class="img-responsive center-block" alt="Responsive image" />
-									</div>
-								</div>
-								
-								<!-- This is the table in which we will show the services the user has selected -->
-								<h:dataTable value="#{union.selected_union_service_associations}" var="susa">	
-					    			<h:column>
-					    				<!-- column header -->
-					    				<f:facet name="header">Name</f:facet>
-					    				<!-- row record -->
-					    				#{susa.union_service.name}
-					    			</h:column>	
-					    							    			
-					    			<h:column>
-					    				<f:facet name="header">Price</f:facet>
-					    				#{susa.price}
-					    			</h:column>				    		
-					    		</h:dataTable>
-							</b:modal>		 
-						</h:form>
-						<!-- ===================================== -->
-	
+							<!-- This button allows to perform an ajax call to
+							     union.updateSelectedUnionServiceAssociations method.
+							     It updates data-table which contains service's name
+							     and price -->
+							<p:commandButton value="Prepare Order" id="ajax-prepare-order" 
+											 update="data-table" actionListener="#{union.updateSelectedUnionServiceAssociations}"
+							 				 styleClass="ui-priority-primary" />
+										     
+							<!-- This is the table in which we will show the services the user has selected -->
+							<br> </br>
+							<h:dataTable id="data-table" border="1" value="#{union.selected_union_service_associations}" var="susa">	
+				    			<h:column>
+				    				<!-- column header -->
+				    				<f:facet name="header">Name</f:facet>
+				    				<!-- row record -->
+				    				#{susa.union_service.name}
+				    			</h:column>	
+				    							    			
+				    			<h:column>
+				    				<f:facet name="header">Price</f:facet>
+				    				#{susa.price}
+				    			</h:column>				    		
+				    		</h:dataTable>		
+				    		<br></br>
+				    		<p:commandButton value="Confirm Order" id="ajax-send-order" 
+											 update="growl" action="#{union.confirmOrder(employee.retrieved_employee)}"
+							 				 styleClass="ui-priority-primary" />
+				    	</h:form>		
 					</div>
 				</div>
 			</div>
