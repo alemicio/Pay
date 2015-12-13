@@ -1,7 +1,9 @@
 package it.screwdrivers.payroll.engine;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class PayrollCalendar {
 
@@ -81,6 +83,21 @@ public class PayrollCalendar {
 		}
 		
 		return false;
+		
+	}
+	
+	public List<Calendar> contractorLastWeek(){
+		
+		calendar = new GregorianCalendar();
+		List<Calendar> working_days = new ArrayList<Calendar>();
+		
+		
+		for(int i=0;i<7;i++){
+			calendar.add(Calendar.DATE, -i);
+			working_days.add(calendar);
+		}
+				
+		return working_days;
 		
 	}
 

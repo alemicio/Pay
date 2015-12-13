@@ -68,5 +68,10 @@ public class DateTest extends ArquillianTest {
 		
 	}
 	
+	@Test
+	public void contractorDays(){
+		
+		
+	}
 
 }
