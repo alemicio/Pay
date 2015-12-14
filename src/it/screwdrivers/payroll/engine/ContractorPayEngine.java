@@ -33,23 +33,37 @@ public class ContractorPayEngine implements IPayEngine {
 		List<TimeCard> retrieved;
 		List<Date> working_days = p_calendar.contractorLastWeek();
 		float total = 0;
+		float extra_hours = 0;
 		
 		for(ContractorEmployee c: c_employees){
 			
+			//this method return a list if timecard associated to the 
+			//given employee
 			retrieved = t_controller.retriveByEmployee(c);
 			
+			//check if the timeCard has a date matching with 
+			// one of the date of the current week
 			for(TimeCard t: retrieved){
 				
 				for (Date wd : working_days) {
 					
+					//check on the date field
 					if(wd == t.getDate()){
 						
-						if (t.getHours_worked() >= 8) {
-							total+= (t.getHours_worked()*1.5*c.getHourly_rate());
+						//if it works extra hours
+						// he will be paid 1,5 times his hourly rate
+						// fro each extra hour
+						if (t.getHours_worked() > 8) {
+							//get extra hours 
+							extra_hours = t.getHours_worked()-8;
+							
+							total+= (c.getHourly_rate()*8) +(1.5*c.getHourly_rate()*extra_hours) ;
 						}
 						else {
 							total+= (t.getHours_worked()*c.getHourly_rate());
 						}
+						break;
+						
 					}
 				}
 			}
