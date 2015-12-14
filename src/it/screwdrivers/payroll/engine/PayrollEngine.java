@@ -1,6 +1,9 @@
 package it.screwdrivers.payroll.engine;
 
+import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
+import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
+import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
 public class PayrollEngine {
 
@@ -12,29 +15,37 @@ public class PayrollEngine {
 
 		if (c.isFriday()) {
 
-			// TODO pay contractor employees
+			//  pay contractor employees
 			pay_engine = pay_engine_factory.getPayEngine(ContractorEmployee.class.getSimpleName());
 			pay_engine.pay();
 
 			if (c.isWeekNumberPair()) {
-				// TODO pay commisioned employees commissions
+				
+				//pay commissions sales
+				pay_engine = pay_engine_factory.getPayEngine(CommissionedEmployee.class.getSimpleName());
+				pay_engine.pay();
 			}
 
 			if (c.d3ChangeMounth()) {
-				// TODO pay salaried employees
-				// TODO Pat commissioned standard salary
+				//  pay salaried employees && commissioned standard salary
+				pay_engine = pay_engine_factory.getPayEngine(SalariedEmployee.class.getSimpleName());
+				pay_engine.pay();
+				
 			}
 		}
 		else{
 			
 			if(c.d1ChangeMounth()){
-				// TODO pay salaried employees
-				// TODO Pat commissioned standard salary
+				//pay salaried employees && commissioned standard salary
+				pay_engine = pay_engine_factory.getPayEngine(SalariedEmployee.class.getSimpleName());
+				pay_engine.pay();
 			}
 		}
 		
 		if(c.isLastDayOfYear()){
 			// TODO pay manager
+			pay_engine = pay_engine_factory.getPayEngine(EmployeeManager.class.getSimpleName());
+			pay_engine.pay();
 		}
 	}
 

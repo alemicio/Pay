@@ -115,5 +115,19 @@ public class PayrollCalendar {
 		return working_days;
 	}
 
+	public List<Date> commissionedLast2Week() {
+		
+		calendar = new GregorianCalendar();
+		List<Date> working_days = new ArrayList<Date>();
+		
+		for(int i=0;i<14;i++){
+			calendar.add(Calendar.DATE, -i);
+			
+			working_days.add(wrapDate(calendar));
+		}
+				
+		return working_days;
+	}
+
 	
 }
