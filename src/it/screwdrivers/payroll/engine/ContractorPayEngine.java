@@ -33,6 +33,7 @@ public class ContractorPayEngine implements IPayEngine {
 		List<ContractorEmployee> c_employees = e_dao.findAllContractor();
 		List<Date> working_days = p_calendar.lastWeekList();
 		float total = 0;
+		float dues = 0;
 		float total_charges = 0;
 
 		for (ContractorEmployee c : c_employees) {
@@ -43,9 +44,12 @@ public class ContractorPayEngine implements IPayEngine {
 				h_controller.registerPay(c, total);
 			}
 			else{
+				
 				total = payContractor(working_days, total, c);
+				dues =  (c.getUnion().getUnion_dues() )* total;
 				total_charges = huc_controller.UnionChargeByEmployee(c);
-				h_controller.registerPay(c, total,total_charges);
+				
+				h_controller.registerPay(c, total, (total_charges+dues) );
 			}
 		}
 

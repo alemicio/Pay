@@ -24,6 +24,7 @@ public class Union implements Serializable{
 	
 	private String phone_number;
 	private String name;
+	private float union_dues;
 	
 	// Since a Union may be associated to one or more Employee,
 	// this attribute must be a List
@@ -48,5 +49,12 @@ public class Union implements Serializable{
 	public int getId() {
 		return id;
 	}
+	public float getUnion_dues() {
+		return union_dues;
+	}
+	public void setUnion_dues(float union_dues) {
+		this.union_dues = union_dues;
+	}
+	
 	
 }

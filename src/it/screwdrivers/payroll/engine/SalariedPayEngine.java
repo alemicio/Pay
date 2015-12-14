@@ -28,6 +28,7 @@ public class SalariedPayEngine implements IPayEngine {
 	private void paySalaried() {
 		List<SalariedEmployee> s_employees = e_dao.findAllSalaried();
 		float total_charges = 0;
+		float dues = 0;
 
 		for (SalariedEmployee s : s_employees) {
 
@@ -35,8 +36,9 @@ public class SalariedPayEngine implements IPayEngine {
 				h_controller.registerPay(s);
 			}
 			else {
+				dues = s.getMonthly_salary()* s.getUnion().getUnion_dues();
 				total_charges = huc_controller.UnionChargeByEmployee(s);
-				h_controller.registerPay(s,total_charges);
+				h_controller.registerPay(s, (total_charges+dues) );
 				
 			}
 				
