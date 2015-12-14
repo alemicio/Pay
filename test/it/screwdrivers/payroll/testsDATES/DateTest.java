@@ -2,11 +2,6 @@ package it.screwdrivers.payroll.testsDATES;
 
 import static org.junit.Assert.*;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
-import javax.inject.Inject;
-
 import it.screwdrivers.payroll.engine.PayrollCalendar;
 import it.screwdrivers.payroll.testsDB.ArquillianTest;
 

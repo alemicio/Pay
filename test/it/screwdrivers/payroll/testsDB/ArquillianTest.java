@@ -19,17 +19,18 @@ public class ArquillianTest {
 
 		WebArchive archive = ShrinkWrap
 				.create(WebArchive.class, "TestPayroll.war")
-				.addPackages(true, "it.screwdrivers.payroll.pojo.card")
-				.addPackages(true, "it.screwdrivers.payroll.pojo.employee")
-				.addPackages(true, "it.screwdrivers.payroll.pojo.payment")
-				.addPackages(true, "it.screwdrivers.payroll.pojo.union")
 				.addPackages(true, "it.screwdrivers.payroll.bean")
 				.addPackages(true, "it.screwdrivers.payroll.controller")
-				.addPackages(true, "it.screwdrivers.payroll.engine")
 				.addPackages(true, "it.screwdrivers.payroll.dao")
+				.addPackages(true, "it.screwdrivers.payroll.engine")
+				.addPackages(true, "it.screwdrivers.payroll.pojo.card")
+				.addPackages(true, "it.screwdrivers.payroll.pojo.employee")
 				.addPackages(true,  "it.screwdrivers.payroll.pojo.historical")
-				.addPackages(true, "it.screwdrivers.payroll.testsDB")
+				.addPackages(true, "it.screwdrivers.payroll.pojo.payment")
+				.addPackages(true, "it.screwdrivers.payroll.pojo.union")
+				.addPackages(true, "it.screwdrivers.payroll.testENGINE")
 				.addPackages(true, "it.screwdrivers.payroll.testsDATES")
+				.addPackages(true, "it.screwdrivers.payroll.testsDB")
 				.addAsResource("META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE,
 						ArchivePaths.create("beans.xml"));
