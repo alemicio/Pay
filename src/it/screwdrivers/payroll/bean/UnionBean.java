@@ -26,9 +26,7 @@ public class UnionBean implements Serializable {
 	
 	@Inject 
 	Union union;
-	
-	
-	
+
 	@Inject
 	UnionController u_controller;
 	
@@ -50,18 +48,22 @@ public class UnionBean implements Serializable {
 		
 		//SGAMO MICIO --> maybe replaced by @postcustruct
 		populateUnionsNames();
-		populateUnionServiceAssociations(e);
 		
-		//here we have populated the list of service name to show in the face
-		service_names = usa_controller.getUnionServiceNames(union_service_associations);
 		
 		//This method returns a union for a given employee.
 		String name_union = null;
 		boolean is_union_set = u_controller.isUnionSet(e);
 
 		if (is_union_set == true) {
+			
+			populateUnionServiceAssociations(e);
+			//here we have populated the list of service name to show in the face
+			service_names = usa_controller.getUnionServiceNames(union_service_associations);
+			
 			name_union = u_controller.findUnionName(e.getUnion());
 			this.union = e.getUnion();
+			
+			
 		} 
 		else {
 			name_union = "Not setted";
