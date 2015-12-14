@@ -31,6 +31,8 @@ public class HistoricalSalarycontroller {
 		h.setAmount(e.getMonthly_salary());
 		
 		h_dao.add(h);
+		
+		// TODO send a email to notify payment
 	}
 	
 	public void registerPay(ContractorEmployee e, float amount){

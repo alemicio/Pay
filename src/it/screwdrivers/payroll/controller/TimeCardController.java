@@ -69,7 +69,7 @@ public class TimeCardController {
 		List<TimeCard> retrieved = new ArrayList<TimeCard>();
 
 		for (TimeCard t : timecards) {
-			if (t.getId() == e.getId()) {
+			if (t.getContractor_employee().getId() == e.getId()) {
 				retrieved.add(t);
 			}
 		}
