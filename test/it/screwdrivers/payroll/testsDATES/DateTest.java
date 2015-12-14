@@ -21,8 +21,6 @@ public class DateTest extends ArquillianTest {
 		
 		
 		int currentDayNumber = p_calendar.getCurrentNumberDay();
-		
-		System.out.println(currentDayNumber);
 
 		assertEquals(345, currentDayNumber);
 		
@@ -69,7 +67,8 @@ public class DateTest extends ArquillianTest {
 	}
 	
 	@Test
-	public void contractorDays(){
+	public void dateToDay(){
+		System.out.println(p_calendar.getToday());
 		
 		
 	}

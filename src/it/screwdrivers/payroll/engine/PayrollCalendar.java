@@ -1,5 +1,6 @@
 package it.screwdrivers.payroll.engine;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -9,6 +10,7 @@ public class PayrollCalendar {
 
 	private Calendar calendar;
 
+	
 	public int getCurrentNumberDay() {
 
 		calendar = new GregorianCalendar();
@@ -34,9 +36,8 @@ public class PayrollCalendar {
 		calendar = new GregorianCalendar();
 
 		int d_month = calendar.get(Calendar.MONTH);
-		System.out.println(calendar.getTime());
+
 		calendar.add(Calendar.DATE, 1); // set the next day
-		System.out.println(calendar.getTime());
 
 		int d1_month = calendar.get(Calendar.MONTH);
 
@@ -85,20 +86,33 @@ public class PayrollCalendar {
 		return false;
 		
 	}
+	public Date wrapDate(Calendar c){
+		Date date = new Date(c.get(Calendar.YEAR)-1900,c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
+		return date;
+	}
 	
-	public List<Calendar> contractorLastWeek(){
+	@SuppressWarnings("deprecation")
+	public Date getToday(){
+		calendar = new GregorianCalendar();
+		
+		Date date = wrapDate(calendar);
+		
+		return date;
+	}
+
+	public List<Date> contractorLastWeek(){
 		
 		calendar = new GregorianCalendar();
-		List<Calendar> working_days = new ArrayList<Calendar>();
-		
+		List<Date> working_days = new ArrayList<Date>();
 		
 		for(int i=0;i<7;i++){
 			calendar.add(Calendar.DATE, -i);
-			working_days.add(calendar);
+			
+			working_days.add(wrapDate(calendar));
 		}
 				
 		return working_days;
-		
 	}
 
+	
 }

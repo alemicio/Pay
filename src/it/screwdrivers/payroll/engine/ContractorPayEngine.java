@@ -1,8 +1,10 @@
 package it.screwdrivers.payroll.engine;
 
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
+import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
 import it.screwdrivers.payroll.controller.TimeCardController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.pojo.card.TimeCard;
@@ -20,6 +22,8 @@ public class ContractorPayEngine implements IPayEngine {
 	@Inject
 	TimeCardController t_controller;
 	@Inject
+	HistoricalSalarycontroller h_controller;
+	@Inject
 	PayrollCalendar p_calendar;
 
 	@Override
@@ -27,7 +31,8 @@ public class ContractorPayEngine implements IPayEngine {
 
 		List<ContractorEmployee> c_employees = e_dao.findAllContractor();
 		List<TimeCard> retrieved;
-		List<Calendar> working_days = p_calendar.contractorLastWeek();
+		List<Date> working_days = p_calendar.contractorLastWeek();
+		float total = 0;
 		
 		for(ContractorEmployee c: c_employees){
 			
@@ -35,13 +40,21 @@ public class ContractorPayEngine implements IPayEngine {
 			
 			for(TimeCard t: retrieved){
 				
-				for (Calendar wd : working_days) {
+				for (Date wd : working_days) {
 					
-					if(wd.d == t.getDate()){
+					if(wd == t.getDate()){
 						
+						if (t.getHours_worked() >= 8) {
+							total+= (t.getHours_worked()*1.5*c.getHourly_rate());
+						}
+						else {
+							total+= (t.getHours_worked()*c.getHourly_rate());
+						}
 					}
 				}
 			}
+			
+			h_controller.registerPay(c, total);
 		}
 		
 	}
