@@ -59,4 +59,5 @@ public class EmployeeDao {
 		List<SalariedEmployee> employees = em.createQuery("select p from SalariedEmployee p", SalariedEmployee.class).getResultList();
 		return employees;
 	}
+
 }

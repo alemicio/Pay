@@ -101,7 +101,7 @@ public class PayrollCalendar {
 		return date;
 	}
 
-	public List<Date> contractorLastWeek(){
+	public List<Date> lastWeekList(){
 		
 		calendar = new GregorianCalendar();
 		List<Date> working_days = new ArrayList<Date>();
@@ -115,7 +115,7 @@ public class PayrollCalendar {
 		return working_days;
 	}
 
-	public List<Date> commissionedLast2Week() {
+	public List<Date> last2WeeksList() {
 		
 		calendar = new GregorianCalendar();
 		List<Date> working_days = new ArrayList<Date>();

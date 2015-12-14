@@ -1,6 +1,7 @@
 package it.screwdrivers.payroll.engine;
 
 import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
+import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
@@ -15,33 +16,30 @@ public class SalariedPayEngine implements IPayEngine {
 	EmployeeDao e_dao;
 	@Inject
 	HistoricalSalarycontroller h_controller;
+	@Inject
+	HistoricalUnionChargeController huc_controller;
 
 	@Override
 	public void pay() {
 
 		paySalaried();
-		payCommissioned();
-
 	}
-
-	
-	private void payCommissioned() {
-		List<CommissionedEmployee> c_employees = e_dao.findAllCommissioned();
-		
-		for(CommissionedEmployee c: c_employees){
-			
-			h_controller.registerPay(c);
-		
-		}
-	}
-
 	
 	private void paySalaried() {
 		List<SalariedEmployee> s_employees = e_dao.findAllSalaried();
+		float total_charges = 0;
 
 		for (SalariedEmployee s : s_employees) {
 
-			h_controller.registerPay(s);
+			if(s.getUnion() == null){
+				h_controller.registerPay(s);
+			}
+			else {
+				total_charges = huc_controller.UnionChargeByEmployee(s);
+				h_controller.registerPay(s,total_charges);
+				
+			}
+				
 
 		}
 	}

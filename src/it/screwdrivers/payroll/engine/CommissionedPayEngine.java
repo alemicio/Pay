@@ -28,24 +28,24 @@ public class CommissionedPayEngine implements IPayEngine {
 
 		List<CommissionedEmployee> c_employees = e_dao.findAllCommissioned();
 		List<SalesCard> s_cards;
-		List<Date> working_days = p_calendar.commissionedLast2Week();
+		List<Date> working_days = p_calendar.last2WeeksList();
 		float total = 0;
 
 		for (CommissionedEmployee c : c_employees) {
 
-			s_cards = s_controller.retriveByEmployee(c);
+				s_cards = s_controller.retriveByEmployee(c);
 
-			for (SalesCard s : s_cards) {
+				for (SalesCard s : s_cards) {
 
-				for (Date wd : working_days) {
+					for (Date wd : working_days) {
 
-					if (wd == s.getDate()) {
-						total += c.getSale_rate() * s.getAmount();
+						if (wd == s.getDate()) {
+							total += c.getSale_rate() * s.getAmount();
+						}
+						break;
 					}
-					break;
 				}
-			}
-			h_controller.registerPay(c, total);
+				h_controller.registerPay(c, total);
 
 		}
 	}
