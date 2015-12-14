@@ -86,12 +86,13 @@ public class PayrollCalendar {
 		return false;
 		
 	}
-	public Date wrapDate(Calendar c){
+	private Date wrapDate(Calendar c){
+		@SuppressWarnings("deprecation")
 		Date date = new Date(c.get(Calendar.YEAR)-1900,c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
 		return date;
 	}
 	
-	@SuppressWarnings("deprecation")
+	
 	public Date getToday(){
 		calendar = new GregorianCalendar();
 		
