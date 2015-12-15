@@ -21,7 +21,7 @@ public class PayrollEngine {
 		System.out.println("Payroll task running now");
 		System.out.println("E' venerdi?"+c.isFriday());
 
-		if (c.isFriday() == false) {
+		if (c.isFriday()) {
 			
 			System.out.println("is friday");
 			//  pay contractor employees
