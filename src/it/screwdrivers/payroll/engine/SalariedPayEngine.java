@@ -7,8 +7,10 @@ import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+@Stateless
 public class SalariedPayEngine implements IPayEngine {
 
 	@Inject

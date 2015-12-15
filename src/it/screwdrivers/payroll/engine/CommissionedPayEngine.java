@@ -10,8 +10,10 @@ import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 import java.sql.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+@Stateless
 public class CommissionedPayEngine implements IPayEngine {
 
 	@Inject

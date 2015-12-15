@@ -12,8 +12,10 @@ import it.screwdrivers.payroll.pojo.card.TimeCard;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+@Stateless
 public class ContractorPayEngine implements IPayEngine {
 
 	@Inject

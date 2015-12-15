@@ -23,7 +23,6 @@ import java.util.Date;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 
-
 //@Singleton
 public class SchedulableExample {
   

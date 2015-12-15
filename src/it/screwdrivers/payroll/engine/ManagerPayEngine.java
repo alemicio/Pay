@@ -7,8 +7,10 @@ import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+@Stateless
 public class ManagerPayEngine implements IPayEngine {
 
 	@Inject
