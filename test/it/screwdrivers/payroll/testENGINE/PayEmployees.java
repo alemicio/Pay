@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
-import it.screwdrivers.payroll.engine.IPayEngine;
+import it.screwdrivers.payroll.engine.PayEngine;
 import it.screwdrivers.payroll.engine.PayEngineFactory;
 import it.screwdrivers.payroll.engine.SalariedPayEngine;
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
@@ -26,9 +26,11 @@ import it.screwdrivers.payroll.testsDB.ArquillianTest;
 public class PayEmployees extends ArquillianTest {
 	@Inject
 	HistoricalSalaryDao hs_dao;
+	
 	@Inject
 	PayEngineFactory pay_engine_factory;
-	IPayEngine pay_engine;
+	@Inject
+	PayEngine pay_engine;
 
 	@Test
 	public void PaymentSalaried(){

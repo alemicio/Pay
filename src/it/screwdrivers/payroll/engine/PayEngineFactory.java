@@ -1,5 +1,6 @@
 package it.screwdrivers.payroll.engine;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -16,29 +17,33 @@ public class PayEngineFactory {
 //	CommissionedPayEngine commissioned_pe;
 //	@Inject
 //	ContractorPayEngine contractor_pe;
-//	@Inject
-//	SalariedPayEngine salaried_pe;
+	@Inject
+	SalariedPayEngine salaried_pe;
 //	@Inject
 //	ManagerPayEngine manager_pe;
-	
 
-	public IPayEngine getPayEngine(String employee_class) {
+
+	public PayEngine getPayEngine(String employee_class) {
+		
+		System.out.println("guasco merda 0");
 
 		if (employee_class == null) {
 			return null;
 		}
-		if (employee_class.equals("CommissionedEmployee") ) {
-			return new CommissionedPayEngine();
-
-		} else if (employee_class.equals("ContractorEmployee")) {
-			return new ContractorPayEngine();
-
-		} else if (employee_class.equals("SalariedEmployee")) {
-			return new SalariedPayEngine();
-			
-		} else if (employee_class.equals("EmployeeManager")) {
-			return new ManagerPayEngine();
+		 
+		if (employee_class.equals("SalariedEmployee") ) {
+			System.out.println("guasco merda");
+			return salaried_pe;
 		}
+//		} else if (employee_class.equals("ContractorEmployee")) {
+//			return new ContractorPayEngine();
+//
+//		} else if (employee_class.equals("CommissionedEmployee")) {
+//			return new CommissionedPayEngine();
+//			
+//		} else if (employee_class.equals("EmployeeManager")) {
+//			return new ManagerPayEngine();
+//		}
 		
 		return null;
 

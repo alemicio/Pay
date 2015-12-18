@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class ManagerPayEngine implements IPayEngine {
+public class ManagerPayEngine implements PayEngine {
 
 	@Inject
 	EmployeeDao e_dao;

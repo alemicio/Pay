@@ -17,7 +17,8 @@ public class PayrollEngine {
 	PayEngineFactory pay_engine_factory;
 	@Inject
 	PayrollCalendar c;
-	IPayEngine pay_engine;
+	
+	PayEngine pay_engine;
 	
 
 	//@Schedule(second="*/6", minute="*",hour="*", persistent=false)
