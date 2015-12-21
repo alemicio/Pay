@@ -2,6 +2,10 @@ package it.screwdrivers.payroll.testsDATES;
 
 import static org.junit.Assert.*;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import it.screwdrivers.payroll.engine.PayrollCalendar;
 import it.screwdrivers.payroll.testsDB.ArquillianTest;
 
@@ -63,9 +67,33 @@ public class DateTest extends ArquillianTest {
 	
 	@Test
 	public void dateToDay(){
+		System.out.println("TO DAY:");
 		System.out.println(p_calendar.getToday());
-		
-		
+		System.out.println("\n");
 	}
-
+	
+	@Test
+	public void lastWeek(){
+		
+		List<Date> working_days = new ArrayList<Date>();
+		working_days = p_calendar.lastWeekList();
+		System.out.println("number of days: \t" + working_days.size());
+		for(Date d: working_days){
+			System.out.println(d);
+		}
+		
+		System.out.println("\n");
+	}
+	@Test
+	public void last2Week(){
+		
+		List<Date> working_days = new ArrayList<Date>();
+		working_days = p_calendar.last2WeeksList();
+		System.out.println("number of days: \t" + working_days.size());
+		for(Date d: working_days){
+			System.out.println(d);
+		}
+		
+		System.out.println("\n");
+	}
 }

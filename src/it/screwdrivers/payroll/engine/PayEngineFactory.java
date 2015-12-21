@@ -25,14 +25,11 @@ public class PayEngineFactory {
 
 	public PayEngine getPayEngine(String employee_class) {
 		
-		System.out.println("guasco merda 0");
-
 		if (employee_class == null) {
 			return null;
 		}
 		 
 		if (employee_class.equals("SalariedEmployee") ) {
-			System.out.println("guasco merda");
 			return salaried_pe;
 		}
 //		} else if (employee_class.equals("ContractorEmployee")) {

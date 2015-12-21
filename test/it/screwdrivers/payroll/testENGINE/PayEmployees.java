@@ -2,9 +2,11 @@ package it.screwdrivers.payroll.testENGINE;
 
 import static org.junit.Assert.*;
 
+import java.lang.annotation.Inherited;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.validation.constraints.AssertTrue;
 
 import org.jboss.arquillian.junit.Arquillian;
@@ -24,32 +26,23 @@ import it.screwdrivers.payroll.testsDB.ArquillianTest;
 
 @RunWith(Arquillian.class)
 public class PayEmployees extends ArquillianTest {
-	@Inject
-	HistoricalSalaryDao hs_dao;
+
 	
 	@Inject
 	PayEngineFactory pay_engine_factory;
-	@Inject
-	PayEngine pay_engine;
-
+	
 	@Test
 	public void PaymentSalaried(){
 		
 		int count = 0;
 		
-		//pagamento dei salaried
-		pay_engine = pay_engine_factory.getPayEngine("SalariedEmployee");
 		
-		//System.out.println(pay_engine.toString());
+		
+		//pagamento dei salaried
+		PayEngine pay_engine = pay_engine_factory.getPayEngine("SalariedEmployee");
+		
 		pay_engine.pay();
 		
-		
-//		List<SalariedEmployee> s_employees = e_dao.findAllSalaried();
-//		System.out.println(s_employees.size());
-		
-//		for(SalariedEmployee s : s_employees){
-//			System.out.println(s.getName());
-//		}
 		
 		//verifica avvenuto pagamento
 //		List<HistoricalSalary> hs = hs_dao.findAll();

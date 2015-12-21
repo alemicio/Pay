@@ -1,10 +1,11 @@
 package it.screwdrivers.payroll.controller;
 
-
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalUnionChargeDao;
@@ -21,10 +22,8 @@ public class HistoricalUnionChargeController {
 
 	@Inject
 	HistoricalUnionChargeDao huc_dao;
-	
 	@Inject
 	EmployeeDao e_dao;
-	
 	@Inject
 	PayrollCalendar p_calendar;
 
@@ -32,7 +31,6 @@ public class HistoricalUnionChargeController {
 			List<UnionServiceAssociation> selected_union_service_associations) {
 
 		String response = null;
-		
 
 		// get the current system date and time(week number)
 		Calendar calendar = new GregorianCalendar();
@@ -44,7 +42,7 @@ public class HistoricalUnionChargeController {
 		for (UnionServiceAssociation susa : selected_union_service_associations) {
 
 			boolean disableOrdering = false;
-			
+
 			// service name i of the list
 			String service_name = susa.getUnion_service().getName();
 
@@ -56,8 +54,7 @@ public class HistoricalUnionChargeController {
 				huc.setDate(date);
 
 				huc_dao.add(huc);
-			} 
-			else {
+			} else {
 				// check the order service with the one in the db
 				for (HistoricalUnionCharge h : huc_list) {
 
@@ -71,20 +68,19 @@ public class HistoricalUnionChargeController {
 					int service_week_number = service_calendar
 							.get(Calendar.WEEK_OF_YEAR);
 
-
 					// check if the service is already requested in the current
 					// week for the given employee
-					if (service_name.equals(service_name_indb)  
-						&& e.getId() == h.getEmployee().getId()  
-						&& current_week_number == service_week_number) {
-						
+					if (service_name.equals(service_name_indb)
+							&& e.getId() == h.getEmployee().getId()
+							&& current_week_number == service_week_number) {
+
 						disableOrdering = true;
-						response+=","+service_name;
+						response += "," + service_name;
 					}
 				}
-				
-				if(disableOrdering == false){
-					
+
+				if (disableOrdering == false) {
+
 					HistoricalUnionCharge huc = new HistoricalUnionCharge();
 					huc.setUnion_service_association(susa);
 					huc.setEmployee(e);
@@ -93,52 +89,57 @@ public class HistoricalUnionChargeController {
 					huc_dao.add(huc);
 				}
 
-				
 			}
 		}
 
-		response+=",success";
+		response += ",success";
 		return response;
 	}
-	
+
 	public float UnionChargeByEmployee(Employee e) {
-		
+
 		List<Date> working_days = p_calendar.lastWeekList();
 		List<HistoricalUnionCharge> hucs = retrieveUnionServiceChargeByEmployee(e);
 		
 		float total_charges = 0;
+
+		int i=0;
 		
-		for(HistoricalUnionCharge huc: hucs){
-			
-			for(Date wd : working_days){
-				
-				if(wd == huc.getDate()){
+		if (hucs != null) {
+			for (HistoricalUnionCharge huc : hucs) {
+
+				for (Date wd : working_days) {
 					
-					total_charges += huc.getUnion_service_association().getPrice();
+					if (wd.getDate() == huc.getDate().getDate() && wd.getMonth()==huc.getDate().getMonth()&& wd.getYear()==huc.getDate().getYear()){
+
+						total_charges += huc.getUnion_service_association().getPrice();
+						break;
+					}
 				}
-				break;
 			}
-			
+		}
+		else{
+			total_charges = 0;
 		}
 
 		return total_charges;
 	}
 
 	private List<HistoricalUnionCharge> retrieveUnionServiceChargeByEmployee(Employee e) {
-		
+
 		List<HistoricalUnionCharge> hucs = huc_dao.findAll();
+
+		List<HistoricalUnionCharge> retrieved_hucs = new ArrayList<HistoricalUnionCharge>();
 		
-		List<HistoricalUnionCharge> retrieved_hucs = null;
-		
-		for(HistoricalUnionCharge huc: hucs){
+		for (HistoricalUnionCharge huc : hucs) {
 			
-			if(huc.getEmployee().getId() == e.getId()){
+
+			if (huc.getEmployee().getId() == e.getId()) {
 				retrieved_hucs.add(huc);
 			}
 		}
-		
-		
-		return hucs;
+
+		return retrieved_hucs;
 	}
 
 }

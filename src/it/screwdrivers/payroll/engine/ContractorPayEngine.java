@@ -14,9 +14,11 @@ import it.screwdrivers.payroll.pojo.employee.Employee;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+@Named("contractorEngine")
 @Stateless
-public class ContractorPayEngine implements PayEngine {
+public class ContractorPayEngine extends PayEngine {
 
 	@Inject
 	EmployeeDao e_dao;
@@ -28,6 +30,10 @@ public class ContractorPayEngine implements PayEngine {
 	PayrollCalendar p_calendar;
 	@Inject
 	HistoricalUnionChargeController huc_controller;
+
+	public ContractorPayEngine() {
+		super();
+	}
 
 	@Override
 	public void pay() {
@@ -92,5 +98,11 @@ public class ContractorPayEngine implements PayEngine {
 			}
 		}
 		return total;
+	}
+
+	@Override
+	public void initList() {
+		// TODO Auto-generated method stub
+		
 	}
 }

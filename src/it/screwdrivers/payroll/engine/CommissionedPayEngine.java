@@ -12,9 +12,11 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+@Named("commissionedEngine")
 @Stateless
-public class CommissionedPayEngine implements PayEngine {
+public class CommissionedPayEngine extends PayEngine {
 
 	@Inject
 	EmployeeDao e_dao;
@@ -24,6 +26,11 @@ public class CommissionedPayEngine implements PayEngine {
 	PayrollCalendar p_calendar;
 	@Inject
 	SalesCardController s_controller;
+
+	
+	public CommissionedPayEngine() {
+		super();
+	}
 
 	@Override
 	public void pay() {
@@ -50,6 +57,12 @@ public class CommissionedPayEngine implements PayEngine {
 				h_controller.registerPay(c, total);
 
 		}
+	}
+
+	@Override
+	public void initList() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

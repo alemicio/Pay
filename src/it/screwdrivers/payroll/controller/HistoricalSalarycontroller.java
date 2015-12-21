@@ -26,13 +26,14 @@ public class HistoricalSalarycontroller {
 	
 	
 	public void registerPay(SalariedEmployee e){
+		
 		Date date = p_calendar.getToday();
 		
 		h.setEmployee(e);
 		h.setDate(date);
 		h.setAmount(e.getMonthly_salary());
 		
-		h_dao.add(h);
+		h_dao.update(h);
 		
 		// TODO send a email to notify payment
 	}
@@ -42,8 +43,7 @@ public class HistoricalSalarycontroller {
 		h.setEmployee(e);
 		h.setDate(date);
 		h.setAmount(e.getMonthly_salary()-total_charges);
-		
-		h_dao.add(h);
+		h_dao.update(h);
 		
 		// TODO send a email to notify payment
 	}

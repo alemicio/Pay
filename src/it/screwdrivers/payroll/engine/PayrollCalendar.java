@@ -98,8 +98,8 @@ public class PayrollCalendar {
 	
 	public Date getToday(){
 		calendar = new GregorianCalendar();
-		
-		Date date = wrapDate(calendar);
+		Date date = new Date(0);
+		date = wrapDate(calendar);
 		
 		return date;
 	}
@@ -110,9 +110,8 @@ public class PayrollCalendar {
 		List<Date> working_days = new ArrayList<Date>();
 		
 		for(int i=0;i<7;i++){
-			calendar.add(Calendar.DATE, -i);
-			
 			working_days.add(wrapDate(calendar));
+			calendar.add(Calendar.DATE, -1);
 		}
 				
 		return working_days;
@@ -124,9 +123,8 @@ public class PayrollCalendar {
 		List<Date> working_days = new ArrayList<Date>();
 		
 		for(int i=0;i<14;i++){
-			calendar.add(Calendar.DATE, -i);
-			
 			working_days.add(wrapDate(calendar));
+			calendar.add(Calendar.DATE, -1);
 		}
 				
 		return working_days;
