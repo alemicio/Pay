@@ -96,6 +96,7 @@ public class HistoricalUnionChargeController {
 		return response;
 	}
 
+	@SuppressWarnings("deprecation")
 	public float UnionChargeByEmployee(Employee e) {
 
 		List<Date> working_days = p_calendar.lastWeekList();
@@ -103,14 +104,17 @@ public class HistoricalUnionChargeController {
 		
 		float total_charges = 0;
 
-		int i=0;
-		
 		if (hucs != null) {
 			for (HistoricalUnionCharge huc : hucs) {
-
+				
+				
 				for (Date wd : working_days) {
 					
-					if (wd.getDate() == huc.getDate().getDate() && wd.getMonth()==huc.getDate().getMonth()&& wd.getYear()==huc.getDate().getYear()){
+					if (wd.getDate()  == huc.getDate().getDate() &&
+						wd.getMonth() == huc.getDate().getMonth()&&
+						wd.getYear()  == huc.getDate().getYear()){
+						
+						System.out.println(huc.getUnion_service_association().getPrice());
 
 						total_charges += huc.getUnion_service_association().getPrice();
 						break;
