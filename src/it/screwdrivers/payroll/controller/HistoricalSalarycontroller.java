@@ -56,7 +56,9 @@ public class HistoricalSalarycontroller {
 		h.setDate(date);
 		h.setAmount(amount);
 		
-		h_dao.add(h);
+		h_dao.update(h);
+		
+		// TODO send a email to notify payment
 	}
 	public void registerPay(ContractorEmployee e, float amount, float total_charges){
 		Date date = p_calendar.getToday();
@@ -65,7 +67,9 @@ public class HistoricalSalarycontroller {
 		h.setDate(date);
 		h.setAmount(amount-total_charges);
 		
-		h_dao.add(h);
+		h_dao.update(h);
+		
+		// TODO send a email to notify payment
 	}
 	
 	
@@ -77,7 +81,7 @@ public class HistoricalSalarycontroller {
 		h.setAmount(amount);
 		h.setCommission(true);
 		
-		h_dao.add(h);
+		h_dao.update(h);
 	}
 
 	public void registerPay(EmployeeManager e) {
@@ -87,7 +91,7 @@ public class HistoricalSalarycontroller {
 		h.setDate(date);
 		h.setAmount(e.getAnnual_rate());
 		
-		h_dao.add(h);
+		h_dao.update(h);
 
 	}
 	public void registerPay(EmployeeManager e, float total_charges) {
@@ -97,7 +101,7 @@ public class HistoricalSalarycontroller {
 		h.setDate(date);
 		h.setAmount(e.getAnnual_rate()-total_charges);
 		
-		h_dao.add(h);
+		h_dao.update(h);
 
 	}
 

@@ -12,6 +12,7 @@ import it.screwdrivers.payroll.pojo.card.TimeCard;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,17 +35,23 @@ public class ContractorPayEngine extends PayEngine {
 	public ContractorPayEngine() {
 		super();
 	}
+	
+	@PostConstruct
+	@Override
+	public void initList() {
+		setCon_employees(e_dao.findAllContractor());
+		
+	}
 
 	@Override
 	public void pay() {
 
-		List<ContractorEmployee> c_employees = e_dao.findAllContractor();
 		List<Date> working_days = p_calendar.lastWeekList();
 		float total = 0;
 		float dues = 0;
 		float total_charges = 0;
 
-		for (ContractorEmployee c : c_employees) {
+		for (ContractorEmployee c : getCon_employees()) {
 
 			if (c.getUnion() == null) {
 
@@ -63,33 +70,44 @@ public class ContractorPayEngine extends PayEngine {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private float payContractor(List<Date> working_days, float total,ContractorEmployee c) {
 		
-		List<TimeCard> retrieved;
 		float extra_hours;
 		// this method return a list if timecard associated to the
 		// given employee
-		retrieved = t_controller.retriveByEmployee(c);
+		List<TimeCard> retrieved = t_controller.retriveByEmployee(c);
 
 		// check if the timeCard has a date matching with
 		// one of the date of the current week
 		for (TimeCard t : retrieved) {
+			
+			System.out.println("id_timecard: "+t.getId());
 
 			for (Date wd : working_days) {
+				
+				System.out.println(wd);
 
 				// check on the date field
-				if (wd == t.getDate()) {
+				if (wd.getDate()  == t.getDate().getDate() &&
+						wd.getMonth() == t.getDate().getMonth()&&
+						wd.getYear()  == t.getDate().getYear()) {
+					
+					System.out.println("id_timecard: "+t.getId());
 
 					// if it works extra hours
 					// he will be paid 1,5 times his hourly rate
 					// fro each extra hour
 					if (t.getHours_worked() > 8) {
+						
+						System.out.println("ha sgobbato piu' di otto ore");
 						// get extra hours
 						extra_hours = t.getHours_worked() - 8;
 
 						total += (c.getHourly_rate() * 8)+ (1.5 * c.getHourly_rate() * extra_hours);
 					} 
 					else {
+						System.out.println("lavorato solo 8 ore");
 						total += (t.getHours_worked() * c.getHourly_rate());
 					}
 					break;
@@ -99,10 +117,6 @@ public class ContractorPayEngine extends PayEngine {
 		}
 		return total;
 	}
-
-	@Override
-	public void initList() {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 }

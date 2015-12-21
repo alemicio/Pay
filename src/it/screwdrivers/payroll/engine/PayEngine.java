@@ -11,13 +11,16 @@ import javax.ejb.Stateless;
 
 @Stateless
 public abstract class PayEngine {
-	
+
 	private List<SalariedEmployee> s_employees;
 	private List<CommissionedEmployee> com_employees;
 	private List<EmployeeManager> m_employees;
 	private List<ContractorEmployee> con_employees;
-	
-	
+
+	public abstract void pay();
+
+	public abstract void initList();
+
 	public List<SalariedEmployee> getS_employees() {
 		return s_employees;
 	}
@@ -49,11 +52,7 @@ public abstract class PayEngine {
 	public void setCon_employees(List<ContractorEmployee> con_employees) {
 		this.con_employees = con_employees;
 	}
-
 	
 	
-	public abstract void pay();
-	
-	public abstract void initList();
 
 }
