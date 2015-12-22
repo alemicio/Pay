@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalUnionChargeDao;
 import it.screwdrivers.payroll.engine.PayrollCalendar;
@@ -88,7 +86,6 @@ public class HistoricalUnionChargeController {
 
 					huc_dao.add(huc);
 				}
-
 			}
 		}
 
@@ -99,15 +96,13 @@ public class HistoricalUnionChargeController {
 	@SuppressWarnings("deprecation")
 	public float UnionChargeByEmployee(Employee e) {
 
-		List<Date> working_days = p_calendar.lastWeekList();
+		List<Date> working_days = p_calendar.lastMonthList();
 		List<HistoricalUnionCharge> hucs = retrieveUnionServiceChargeByEmployee(e);
 		
 		float total_charges = 0;
 
 		if (hucs != null) {
 			for (HistoricalUnionCharge huc : hucs) {
-				
-				
 				for (Date wd : working_days) {
 					
 					if (wd.getDate()  == huc.getDate().getDate() &&
@@ -121,8 +116,7 @@ public class HistoricalUnionChargeController {
 					}
 				}
 			}
-		}
-		else{
+		} else {
 			total_charges = 0;
 		}
 
@@ -132,7 +126,6 @@ public class HistoricalUnionChargeController {
 	private List<HistoricalUnionCharge> retrieveUnionServiceChargeByEmployee(Employee e) {
 
 		List<HistoricalUnionCharge> hucs = huc_dao.findAll();
-
 		List<HistoricalUnionCharge> retrieved_hucs = new ArrayList<HistoricalUnionCharge>();
 		
 		for (HistoricalUnionCharge huc : hucs) {
@@ -145,5 +138,4 @@ public class HistoricalUnionChargeController {
 
 		return retrieved_hucs;
 	}
-
 }
