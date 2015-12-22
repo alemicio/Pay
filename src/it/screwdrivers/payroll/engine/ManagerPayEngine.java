@@ -1,12 +1,11 @@
 package it.screwdrivers.payroll.engine;
 
-import java.util.List;
-
 import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
 import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,15 +24,28 @@ public class ManagerPayEngine extends PayEngine {
 	public ManagerPayEngine() {
 		super();
 	}
+	
+	// Since the ManagerPayEngine object is created,
+	// this method will be called. It fills the list
+	// of Manager employees that we can find inside 
+	// the PayEngine abstract class
+	@PostConstruct
+	@Override
+	public void initList() {
+		setM_employees(e_dao.findAllManager());
+	}
 
 	@Override
 	public void pay() {
 
-		List<EmployeeManager> m_employees = e_dao.findAllManager();
 		float dues = 0;
 		float total_charges = 0;
 
-		for (EmployeeManager m : m_employees) {
+		// For each manager employee we check if he
+		// belongs to a union. If he does not belong
+		// to a union we perform registerPay; otherwise,
+		// we have also to compute dues and total_charges
+		for (EmployeeManager m : getM_employees()) {
 
 			if(m.getUnion() == null){
 				h_controller.registerPay(m);
@@ -41,18 +53,9 @@ public class ManagerPayEngine extends PayEngine {
 			else {
 				dues = m.getAnnual_rate()* m.getUnion().getUnion_dues();
 				total_charges = huc_controller.UnionChargeByEmployee(m);
-				h_controller.registerPay(m, (total_charges+dues) );
 				
+				h_controller.registerPay(m, (total_charges+dues) );	
 			}
-
 		}
-
 	}
-
-	@Override
-	public void initList() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

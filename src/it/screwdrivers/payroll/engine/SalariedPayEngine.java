@@ -36,7 +36,6 @@ public class SalariedPayEngine extends PayEngine {
 
 		float total_charges = 0;
 		float dues = 0;
-		
 
 		for (SalariedEmployee s : getS_employees()) {
 
@@ -51,6 +50,4 @@ public class SalariedPayEngine extends PayEngine {
 			}
 		}
 	}
-	
-	
 }
