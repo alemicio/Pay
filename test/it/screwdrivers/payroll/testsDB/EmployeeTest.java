@@ -146,4 +146,17 @@ public class EmployeeTest extends ArquillianTest {
 		assertTrue(test);
 		
 	}
+	
+	@Test
+	public void RetrieveUnionedEmployee(){
+		
+		List<SalariedEmployee> s_employees = employee_dao.findAllSalaried();
+		
+		for(SalariedEmployee e: s_employees){
+			System.out.println(e.getName());
+		}
+		
+	}
+	
+
 }

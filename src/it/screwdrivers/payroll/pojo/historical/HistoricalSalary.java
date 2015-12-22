@@ -23,6 +23,7 @@ public class HistoricalSalary {
 	
 	private float amount;
 	private Date date;
+	private boolean isCommission;
 	
 	@ManyToOne
 	@JoinColumn(name="employeeId", referencedColumnName="employeeId")
@@ -49,4 +50,11 @@ public class HistoricalSalary {
 	public int getId() {
 		return id;
 	}
+	public boolean isCommission() {
+		return isCommission;
+	}
+	public void setCommission(boolean isCommission) {
+		this.isCommission = isCommission;
+	}
+	
 }
