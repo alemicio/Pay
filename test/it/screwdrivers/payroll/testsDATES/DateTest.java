@@ -18,19 +18,15 @@ public class DateTest extends ArquillianTest {
 	@Test
 	public void testNumberOfDay() {
 		
-		
 		int currentDayNumber = p_calendar.getCurrentNumberDay();
-
 		assertEquals(345, currentDayNumber);
-		
 	}
+	
 	@Test
 	public void isFriday(){
 		
 		boolean response = false;
-		
 		response= p_calendar.isFriday();
-		
 		assertTrue(response);
 	}
 	
@@ -38,31 +34,24 @@ public class DateTest extends ArquillianTest {
 	public void d1ChangeMounth(){
 		
 		boolean response = false;
-		
 		response = p_calendar.d1ChangeMounth();
-		
 		assertTrue(response);
-		
 	}
+	
 	@Test
 	public void d3ChangeMounth(){
 		
 		boolean response = false;
-		
 		response = p_calendar.d3ChangeMounth();
-		
 		assertTrue(response);
-		
 	}
+	
 	@Test
 	public void isWeekNumberPair(){
 		
 		boolean response = false;
-		
 		response = p_calendar.isWeekNumberPair();
-		
 		assertTrue(response);
-		
 	}
 	
 	@Test
@@ -84,6 +73,7 @@ public class DateTest extends ArquillianTest {
 		
 		System.out.println("\n");
 	}
+	
 	@Test
 	public void last2Week(){
 		
@@ -95,5 +85,22 @@ public class DateTest extends ArquillianTest {
 		}
 		
 		System.out.println("\n");
+	}
+	
+	// The following is not properly a test since
+	// the check is not done automatically but 
+	// we have to do it. The aim of this test method
+	// is to print the output list of 
+	// PayrollCalendar's lastMonthList method
+	@Test
+	public void printLastMonthList(){
+		
+		List<Date> working_days = p_calendar.lastMonthList();
+		System.out.println("==========================================");
+		System.out.println("==== PayrollCalendar - lastMonthList =====");
+		for(Date d: working_days){
+			System.out.println(d);
+		}
+		System.out.println("==========================================\n");
 	}
 }

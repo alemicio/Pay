@@ -6,20 +6,14 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.ejb.Stateless;
-
-
 public class PayrollCalendar {
 
 	private Calendar calendar;
 
-	
 	public int getCurrentNumberDay() {
-
+		
 		calendar = new GregorianCalendar();
-
 		return calendar.get(Calendar.DAY_OF_YEAR);
-
 	}
 
 	public boolean isFriday() {
@@ -37,11 +31,8 @@ public class PayrollCalendar {
 	public boolean d1ChangeMounth() {
 
 		calendar = new GregorianCalendar();
-
 		int d_month = calendar.get(Calendar.MONTH);
-
 		calendar.add(Calendar.DATE, 1); // set the next day
-
 		int d1_month = calendar.get(Calendar.MONTH);
 
 		if (d_month != d1_month) {
@@ -52,12 +43,10 @@ public class PayrollCalendar {
 	}
 
 	public boolean d3ChangeMounth() {
+		
 		calendar = new GregorianCalendar();
-
 		int d_month = calendar.get(Calendar.MONTH);
-
 		calendar.add(Calendar.DATE, 3); // set the next day
-
 		int d3_month = calendar.get(Calendar.MONTH);
 
 		if (d_month != d3_month) {
@@ -65,7 +54,6 @@ public class PayrollCalendar {
 		}
 
 		return false;
-		
 	}
 
 	public boolean isWeekNumberPair() {
@@ -79,6 +67,7 @@ public class PayrollCalendar {
 		
 		return false;
 	}
+	
 	public boolean isLastDayOfYear(){
 		
 		calendar = new GregorianCalendar();
@@ -87,14 +76,14 @@ public class PayrollCalendar {
 		}
 		
 		return false;
-		
 	}
+	
 	private Date wrapDate(Calendar c){
+		
 		@SuppressWarnings("deprecation")
 		Date date = new Date(c.get(Calendar.YEAR)-1900,c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
 		return date;
 	}
-	
 	
 	public Date getToday(){
 		calendar = new GregorianCalendar();
@@ -129,6 +118,38 @@ public class PayrollCalendar {
 				
 		return working_days;
 	}
-
 	
+	// This method retrieves a list of Date elements
+	// corresponding to all last month's working days
+	public List<Date> lastMonthList(){
+		
+		// This is the list of working days which will be 
+		// retrieved by the method
+		List<Date> working_days = new ArrayList<Date>();
+		
+		calendar = new GregorianCalendar();
+		
+		// Get the current month number [0..12] => [January..December]
+		int current_month = calendar.get(Calendar.MONTH);
+		
+		// Since we have set the current month, we will
+		// decrease by one day the calendar date until
+		// the calendar month is equal to the current_month
+		// set before
+		while(calendar.get(Calendar.MONTH) == current_month){
+			
+			int saturday = 7;
+			int sunday = 1;
+			int calendar_day_of_week = calendar.get(Calendar.DAY_OF_WEEK);
+			
+			// We will add the Date element to the working_days
+			// list only if it is not Saturday or Sunday
+			if(calendar_day_of_week != saturday && calendar_day_of_week != sunday)
+				working_days.add(wrapDate(calendar));
+			
+			calendar.add(Calendar.DAY_OF_MONTH, -1);
+		}
+		
+		return working_days;
+	}
 }
