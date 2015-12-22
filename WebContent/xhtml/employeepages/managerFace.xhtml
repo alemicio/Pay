@@ -5,11 +5,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
-	
+
 <f:event listener="#{login.checkIfLogged}" type="preRenderView" />
 
 <h:head>
-	<title>Salaried Dashboard</title>
+	<title>Manager Dashboard</title>
 	<h:outputStylesheet library="css" name="common.css"></h:outputStylesheet>
 
 	<link
@@ -26,7 +26,6 @@
 </h:head>
 
 <body>
-
 	<div class="container-fluid" id="sfondo">
 
 		<b:navBar brand="Magic ScrewDriver" brandHref="#" fluid="true"
@@ -36,10 +35,11 @@
 				<b:navLink value="About US" href="#"></b:navLink>
 				<b:navLink value="Contacts" href="#"></b:navLink>
 			</b:navbarLinks>
+
 			<b:navbarLinks pull="right">
 				<b:navLink value="Payments received" href="#"></b:navLink>
 				<b:navLink value="Union Services" href="#"></b:navLink>
-				<h:form><b:commandButton look="link" value="LOGOUT" action="#{login.performLogout}"/></h:form>
+				<b:navLink value="Manage" href="#"></b:navLink>
 			</b:navbarLinks>
 		</b:navBar>
 
@@ -63,24 +63,24 @@
 								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
 							</div>
 						</div>
+
 						<div class="row">
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Payment: #{login.retrived_employee.paymethod}</h3>
+							<div class="col-lg-3 col-lg-offset-4">
+								<b:button value="Change Detail" size="lg" action=""
+									look="success" />
 							</div>
-							<div class="col-lg-6" style="text-align: left;">
-								<h3>Union: #{login.retrived_employee.union}</h3>
-							</div>
+
 						</div>
 
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-3" style="text-align: center;">
 						<h:graphicImage library="images" name="logo_unipv.png"
 							class="img-responsive center-block" alt="Responsive image"
 							id="bordino" />
-
-						<b:button value="Change Detail" size="lg" action=""
-							style="color:rgb(58, 130, 133);" />
-
+						<h:form>
+							<b:commandButton size="lg" value="LOGOUT"
+								action="#{login.performLogout}" look="danger"></b:commandButton>
+						</h:form>
 					</div>
 
 				</div>
@@ -89,11 +89,313 @@
 	</div>
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
-			<div class="row" id="bordino2">
-				<div class="col-lg-12"></div>
+			<br></br>
+			<div class="jumbotron" id="jumbotrone">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Payment:
+								#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
+
+							<b:modal id="modalpay"
+								title="Here you can Modify you Payment method"
+								styleClass="modalPseudoClassP">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<h:graphicImage library="images" name="unipv2.png"
+												class="img-responsive center-block" alt="Responsive image" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Actual:#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active"><a href="#home"
+													aria-controls="home" role="tab" data-toggle="tab">BANK</a></li>
+												<li role="presentation"><a href="#profile"
+													aria-controls="profile" role="tab" data-toggle="tab">POSTAL</a></li>
+												<li role="presentation"><a href="#messages"
+													aria-controls="messages" role="tab" data-toggle="tab">WITHDRAW</a></li>
+											</ul>
+										</div>
+									</div>
+
+									<div class="row" style="margin-top: 2rem;">
+										<div class="col-lg-12">
+											<!-- Tab panes -->
+											<div class="tab-content">
+												<div role="tabpanel" class="tab-pane active" id="home">
+
+													<!--  This is the form in which we will insert the new bank paymethod data -->
+													<h:form>
+														<b:inputText fieldSize="lg" value="#{paymentmethod.IBAN}">
+															<f:facet name="prepend">
+																<h:outputText value="IBAN" />
+															</f:facet>
+														</b:inputText>
+
+														<b:inputText fieldSize="lg"
+															value="#{paymentmethod.filial}">
+															<f:facet name="prepend">
+																<h:outputText value="filial" />
+															</f:facet>
+														</b:inputText>
+
+														<b:button value="close" size="lg" dismiss="modal"
+															onclick="return false;" />
+
+														<b:commandButton value="OK"
+															action="#{paymentmethod.setBankPaymethod(employee.retrieved_employee)}"></b:commandButton>
+													</h:form>
+													<!-- ===================================================================== -->
+
+												</div>
+												<div role="tabpanel" class="tab-pane" id="profile">
+
+													<!--  This is the form in which we will insert the new postal paymethod data -->
+													<h:form>
+														<b:inputText fieldSize="lg"
+															value="#{paymentmethod.residential_address}">
+															<f:facet name="prepend">
+																<h:outputText value="Residential Address" />
+															</f:facet>
+														</b:inputText>
+
+														<b:button value="close" size="lg" dismiss="modal"
+															onclick="return false;" />
+
+														<b:commandButton value="OK"
+															action="#{paymentmethod.setPostalPaymethod(employee.retrieved_employee)}"></b:commandButton>
+													</h:form>
+													<!-- ===================================================================== -->
+
+												</div>
+												<div role="tabpanel" class="tab-pane" id="messages">
+
+													<!--  This is the form in which we will insert the new withdraw paymethod data -->
+													<h:form>
+														<b:inputText fieldSize="lg"
+															value="#{paymentmethod.headquarter}">
+															<f:facet name="prepend">
+																<h:outputText value="Headquarter" />
+															</f:facet>
+														</b:inputText>
+
+														<b:button value="close" size="lg" dismiss="modal"
+															onclick="return false;" />
+
+														<b:commandButton value="OK"
+															action="#{paymentmethod.setWithDrawPaymethod(employee.retrieved_employee)}"></b:commandButton>
+													</h:form>
+													<!-- ===================================================================== -->
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</b:modal>
+
+							<b:button value="Change Paymethod" look="info"
+								onclick="$('.modalPseudoClassP').modal();return false;"
+								size="lg" />
+						</div>
+						<div class="col-lg-6" style="text-align: left;">
+							<h3>Union:#{union.getUnion(employee.retrieved_employee)}</h3>
+
+							<b:modal id="modalunion" title="Here you can Modify your Union"
+								styleClass="modalPseudoClassU">
+								<h:form id="unionset">
+
+									<div class="row">
+										<div class="col-lg-12">
+											<h:graphicImage library="images" name="unipv2.png"
+												class="img-responsive center-block" alt="Responsive image" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12"></div>
+									</div>
+
+									<div class="row" style="margin-top: 2rem;">
+										<div class="col-lg-12">
+
+											<b:selectOneMenu value="#{union.union_name}" required="true"
+												fieldSize="lg" label="Select a Union to belong">
+												<f:facet name="prepend">
+													<h:outputText value="@union" />
+												</f:facet>
+
+												<f:selectItems value="#{union.associated_unions}" />
+
+											</b:selectOneMenu>
+											<b:inputText value="#{union.union_name}" disabled="true"></b:inputText>
+										</div>
+									</div>
+
+									<div class="row" style="margin-top: 2rem;">
+										<div class="col-lg-12">
+											<b:commandButton value="Ok" size="lg" look="success"
+												dismiss="modal"
+												action="#{union.setUnion(employee.retrieved_employee)}" />
+										</div>
+									</div>
+
+								</h:form>
+							</b:modal>
+
+							<b:button value="Change Union" look="info"
+								onclick="$('.modalPseudoClassU').modal();return false;"
+								size="lg" />
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="container-fluid" id="sfondo">
+		<div class="container">
+			<br></br>
+			<div class="jumbotron" id="jumbotrone">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<!-- ===================================== -->
+						<!-- === Union services selection form === -->
+						<!-- ===================================== -->
+						<h:form>
+							<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+							<!-- This is the services select menu -->
+							<b:selectMultiMenu value="#{union.services_selected}"
+								required="true" fieldSize="lg"
+								label="Select services offered by this union">
+								<f:facet name="prepend">
+									<h:outputText value="@service" />
+								</f:facet>
+								<f:selectItems value="#{union.service_names}" />
+							</b:selectMultiMenu>
+
+							<!-- This button allows to perform an ajax call to
+							     union.updateSelectedUnionServiceAssociations method.
+							     It updates data-table which contains service's name
+							     and price -->
+							<p:commandButton value="Prepare Order" id="ajax-prepare-order"
+								update="data-table"
+								actionListener="#{union.updateSelectedUnionServiceAssociations}"
+								styleClass="ui-priority-primary" />
+
+							<!-- This is the table in which we will show the services the user has selected -->
+							<br> </br>
+							<h:dataTable id="data-table" border="1"
+								value="#{union.selected_union_service_associations}" var="susa">
+								<h:column>
+									<!-- column header -->
+									<f:facet name="header">Name</f:facet>
+									<!-- row record -->
+				    				#{susa.union_service.name}
+				    			</h:column>
+
+								<h:column>
+									<f:facet name="header">Price</f:facet>
+				    				#{susa.price}
+				    			</h:column>
+							</h:dataTable>
+							<br></br>
+							<p:commandButton value="Confirm Order" id="ajax-send-order"
+								update="growl"
+								action="#{union.confirmOrder(employee.retrieved_employee)}"
+								styleClass="ui-priority-primary" />
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container-fluid" id="sfondo2">
+	
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+
+			<p:dataTable id="cars1" var="car" value="#{dtEditView.cars1}"
+				editable="true" style="margin-bottom:20px">
+				<f:facet name="header">EMPLOYEE</f:facet>
+
+				<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}"
+					update=":form:msgs" />
+
+				<p:column headerText="Id">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{car.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="modelInput" value="#{car.id}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Year">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{car.year}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{car.year}" style="width:100%" label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Brand">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{car.brand}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:selectOneMenu value="#{car.brand}" style="width:100%">
+								<f:selectItems value="#{dtEditView.brands}" var="man"
+									itemLabel="#{man}" itemValue="#{man}" />
+							</h:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Color">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{car.color}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:selectOneMenu value="#{car.color}" style="width:100%">
+								<f:selectItems value="#{dtEditView.colors}" var="color"
+									itemLabel="#{color}" itemValue="#{color}" />
+							</h:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:32px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+
+			
+		</h:form>
+	</div>
+
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">
@@ -106,8 +408,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
+	
 </body>
 </html>
