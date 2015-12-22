@@ -34,4 +34,8 @@ public class EmployeeBean implements Serializable {
 	public void setRetrieved_employee(Employee retrieved_employee) {
 		this.retrieved_employee = retrieved_employee;
 	}
+	
+	public void changeDetails(){
+		e_controller.changeDetails(retrieved_employee);
+	}
 }

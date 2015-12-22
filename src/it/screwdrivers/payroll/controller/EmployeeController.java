@@ -36,4 +36,8 @@ public class EmployeeController {
 		type = e.getClass().getSimpleName();
 		return type;
 	}
+
+	public void changeDetails(Employee retrieved_employee) {
+		e_dao.update(retrieved_employee);
+	}
 }

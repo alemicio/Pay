@@ -66,11 +66,43 @@
 						</div>
 
 						<div class="row">
-							<div class="col-lg-3 col-lg-offset-4">
-								<b:button value="Change Detail" size="lg" action=""
-									look="success" />
-							</div>
+							<!-- This is the form through which employee's details --> 
+							<!-- will be updated                                   -->
+							<h:form>
+								<b:inputText fieldSize="lg"
+									value="#{employee.retrieved_employee.name}">
+									<f:facet name="prepend">
+										<h:outputText value="Name" />
+									</f:facet>
+								</b:inputText>
+								
+								<b:inputText fieldSize="lg"
+									value="#{employee.retrieved_employee.surname}">
+									<f:facet name="prepend">
+										<h:outputText value="Surname" />
+									</f:facet>
+								</b:inputText>
+								
+								<b:inputText fieldSize="lg"
+									value="#{employee.retrieved_employee.phone_number}">
+									<f:facet name="prepend">
+										<h:outputText value="Phone Number" />
+									</f:facet>
+								</b:inputText>
+								
+								<b:inputText fieldSize="lg"
+									value="#{employee.retrieved_employee.postal_address}">
+									<f:facet name="prepend">
+										<h:outputText value="Postal Address" />
+									</f:facet>
+								</b:inputText>
 
+								<b:button value="close" size="lg" dismiss="modal"
+									onclick="return false;" />
+
+								<b:commandButton value="Change Details"
+									action="#{employee.changeDetails()}"></b:commandButton>
+							</h:form>
 						</div>
 
 					</div>
