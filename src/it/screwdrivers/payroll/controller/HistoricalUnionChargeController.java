@@ -96,7 +96,7 @@ public class HistoricalUnionChargeController {
 	@SuppressWarnings("deprecation")
 	public float UnionChargeByEmployee(Employee e) {
 
-		List<Date> working_days = p_calendar.lastWeekList();
+		List<Date> working_days = p_calendar.lastMonthList();
 		List<HistoricalUnionCharge> hucs = retrieveUnionServiceChargeByEmployee(e);
 		
 		float total_charges = 0;
@@ -117,7 +117,6 @@ public class HistoricalUnionChargeController {
 				}
 			}
 		} else {
-			
 			total_charges = 0;
 		}
 
