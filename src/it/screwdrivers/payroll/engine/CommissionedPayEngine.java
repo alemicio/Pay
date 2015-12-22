@@ -10,6 +10,7 @@ import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 import java.sql.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,16 +32,23 @@ public class CommissionedPayEngine extends PayEngine {
 	public CommissionedPayEngine() {
 		super();
 	}
+	
+	@PostConstruct
+	@Override
+	public void initList() {
+		setCom_employees(e_dao.findAllCommissioned());
+		
+	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void pay() {
 
-		List<CommissionedEmployee> c_employees = e_dao.findAllCommissioned();
 		List<SalesCard> s_cards;
 		List<Date> working_days = p_calendar.last2WeeksList();
 		float total = 0;
 
-		for (CommissionedEmployee c : c_employees) {
+		for (CommissionedEmployee c : getCom_employees()) {
 
 				s_cards = s_controller.retriveByEmployee(c);
 
@@ -48,8 +56,11 @@ public class CommissionedPayEngine extends PayEngine {
 
 					for (Date wd : working_days) {
 
-						if (wd == s.getDate()) {
-							total += c.getSale_rate() * s.getAmount();
+						if (wd.getDate()  == s.getDate().getDate() &&
+							wd.getMonth() == s.getDate().getMonth()&&
+							wd.getYear()  == s.getDate().getYear()) {
+							
+								total += c.getSale_rate() * s.getAmount();
 						}
 						break;
 					}
@@ -59,10 +70,6 @@ public class CommissionedPayEngine extends PayEngine {
 		}
 	}
 
-	@Override
-	public void initList() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

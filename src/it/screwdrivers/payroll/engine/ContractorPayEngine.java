@@ -86,31 +86,27 @@ public class ContractorPayEngine extends PayEngine {
 
 			for (Date wd : working_days) {
 				
-				System.out.println(wd);
 
 				// check on the date field
 				if (wd.getDate()  == t.getDate().getDate() &&
-						wd.getMonth() == t.getDate().getMonth()&&
-						wd.getYear()  == t.getDate().getYear()) {
+					wd.getMonth() == t.getDate().getMonth()&&
+					wd.getYear()  == t.getDate().getYear()) {
 					
-					System.out.println("id_timecard: "+t.getId());
 
-					// if it works extra hours
-					// he will be paid 1,5 times his hourly rate
-					// fro each extra hour
-					if (t.getHours_worked() > 8) {
-						
-						System.out.println("ha sgobbato piu' di otto ore");
-						// get extra hours
-						extra_hours = t.getHours_worked() - 8;
-
-						total += (c.getHourly_rate() * 8)+ (1.5 * c.getHourly_rate() * extra_hours);
-					} 
-					else {
-						System.out.println("lavorato solo 8 ore");
-						total += (t.getHours_worked() * c.getHourly_rate());
-					}
-					break;
+						// if it works extra hours
+						// he will be paid 1,5 times his hourly rate
+						// fro each extra hour
+						if (t.getHours_worked() > 8) {
+							
+							// get extra hours
+							extra_hours = t.getHours_worked() - 8;
+	
+							total += (c.getHourly_rate() * 8)+ (1.5 * c.getHourly_rate() * extra_hours);
+						} 
+						else {
+							total += (t.getHours_worked() * c.getHourly_rate());
+						}
+						break;
 
 				}
 			}

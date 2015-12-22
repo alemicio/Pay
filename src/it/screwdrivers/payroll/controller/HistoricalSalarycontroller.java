@@ -32,6 +32,7 @@ public class HistoricalSalarycontroller {
 		h.setEmployee(e);
 		h.setDate(date);
 		h.setAmount(e.getMonthly_salary());
+		h.setCommission(false);
 		
 		h_dao.update(h);
 		
@@ -43,6 +44,7 @@ public class HistoricalSalarycontroller {
 		h.setEmployee(e);
 		h.setDate(date);
 		h.setAmount(e.getMonthly_salary()-total_charges);
+		h.setCommission(false);
 		h_dao.update(h);
 		
 		// TODO send a email to notify payment
@@ -55,6 +57,7 @@ public class HistoricalSalarycontroller {
 		h.setEmployee(e);
 		h.setDate(date);
 		h.setAmount(amount);
+		h.setCommission(false);
 		
 		h_dao.update(h);
 		
@@ -66,6 +69,7 @@ public class HistoricalSalarycontroller {
 		h.setEmployee(e);
 		h.setDate(date);
 		h.setAmount(amount-total_charges);
+		h.setCommission(false);
 		
 		h_dao.update(h);
 		
@@ -90,6 +94,7 @@ public class HistoricalSalarycontroller {
 		h.setEmployee(e);
 		h.setDate(date);
 		h.setAmount(e.getAnnual_rate());
+		h.setCommission(false);
 		
 		h_dao.update(h);
 
@@ -100,6 +105,7 @@ public class HistoricalSalarycontroller {
 		h.setEmployee(e);
 		h.setDate(date);
 		h.setAmount(e.getAnnual_rate()-total_charges);
+		h.setCommission(false);
 		
 		h_dao.update(h);
 
