@@ -1,16 +1,13 @@
 package it.screwdrivers.payroll.controller;
 
-import java.sql.Date;
-
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
 import it.screwdrivers.payroll.engine.PayrollCalendar;
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
-
+import java.sql.Date;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -23,7 +20,6 @@ public class HistoricalSalarycontroller {
 	HistoricalSalaryDao h_dao;
 	@Inject
 	PayrollCalendar p_calendar;
-	
 	
 	public void registerPay(SalariedEmployee e){
 		
@@ -38,6 +34,7 @@ public class HistoricalSalarycontroller {
 		
 		// TODO send a email to notify payment
 	}
+	
 	public void registerPay(SalariedEmployee e,float total_charges){
 		Date date = p_calendar.getToday();
 		
@@ -50,7 +47,6 @@ public class HistoricalSalarycontroller {
 		// TODO send a email to notify payment
 	}
 	
-
 	public void registerPay(ContractorEmployee e, float amount){
 		Date date = p_calendar.getToday();
 		
@@ -63,6 +59,7 @@ public class HistoricalSalarycontroller {
 		
 		// TODO send a email to notify payment
 	}
+	
 	public void registerPay(ContractorEmployee e, float amount, float total_charges){
 		Date date = p_calendar.getToday();
 		
@@ -75,7 +72,6 @@ public class HistoricalSalarycontroller {
 		
 		// TODO send a email to notify payment
 	}
-	
 	
 	public void registerPay(CommissionedEmployee e, float amount){
 		Date date = p_calendar.getToday();
@@ -97,8 +93,8 @@ public class HistoricalSalarycontroller {
 		h.setCommission(false);
 		
 		h_dao.update(h);
-
 	}
+	
 	public void registerPay(EmployeeManager e, float total_charges) {
 		Date date = p_calendar.getToday();
 		
@@ -108,7 +104,6 @@ public class HistoricalSalarycontroller {
 		h.setCommission(false);
 		
 		h_dao.update(h);
-
 	}
 
 }
