@@ -324,76 +324,88 @@
 
 
 	<div class="container-fluid" id="sfondo2">
-	
-		<h:form id="form">
-			<p:growl id="msgs" showDetail="true" />
+		<div class="container">
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" />
 
-			<p:dataTable id="cars1" var="car" value="#{dtEditView.cars1}"
-				editable="true" style="margin-bottom:20px">
-				<f:facet name="header">EMPLOYEE</f:facet>
+				<p:dataTable id="salariedEmployeeList" var="SalariedEmployee"
+					value="#{manager.s_employees}" editable="true"
+					style="margin-bottom:20px">
+					<f:facet name="header">SALARIED EMPLOYEES</f:facet>
 
-				<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}"
-					update=":form:msgs" />
+					<p:ajax event="rowEdit" listener="#{manager.onRowEdit}"
+						update=":form:msgs" />
+					<p:ajax event="rowEditCancel" listener="#{manager.onRowCancel}"
+						update=":form:msgs" />
 
-				<p:column headerText="Id">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText id="modelInput" value="#{car.id}" style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:column headerText="Name">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput" value="#{SalariedEmployee.name}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-				<p:column headerText="Year">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.year}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{car.year}" style="width:100%" label="Year" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:column headerText="Surname">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.surname}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{SalariedEmployee.surname}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-				<p:column headerText="Brand">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.brand}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:selectOneMenu value="#{car.brand}" style="width:100%">
-								<f:selectItems value="#{dtEditView.brands}" var="man"
-									itemLabel="#{man}" itemValue="#{man}" />
-							</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:column headerText="E-mail">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.e_mail}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{SalariedEmployee.e_mail}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-				<p:column headerText="Color">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.color}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:selectOneMenu value="#{car.color}" style="width:100%">
-								<f:selectItems value="#{dtEditView.colors}" var="color"
-									itemLabel="#{color}" itemValue="#{color}" />
-							</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:column headerText="Telephone">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.phone_number}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{SalariedEmployee.phone_number}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-				<p:column style="width:32px">
-					<p:rowEditor />
-				</p:column>
-			</p:dataTable>
+					<p:column headerText="Montly Salary">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.monthly_salary}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{SalariedEmployee.monthly_salary}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-			
-		</h:form>
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+				</p:dataTable>
+
+
+			</h:form>
+		</div>
 	</div>
 
 
@@ -408,6 +420,6 @@
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>
