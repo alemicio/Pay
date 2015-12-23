@@ -38,8 +38,10 @@ public class ManagerBean implements Serializable {
 	@PostConstruct
 	public void init(){
 		
-		s_employees =e_controller.getAllSalaried();
-		// TODO ALTRI TIPI EMPLOYEE
+		s_employees   = e_controller.getAllSalaried();
+		com_employees = e_controller.getAllCommissioned();
+		con_employees = e_controller.getAllContractors();
+		m_employees   = e_controller.getAllManagers();
 	}
 	
 	public void onRowEdit(RowEditEvent event) {

@@ -2,7 +2,9 @@ package it.screwdrivers.payroll.controller;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
+import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
+import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
 import java.util.ArrayList;
@@ -52,9 +54,6 @@ public class EmployeeController {
 			
 			//get only the salaried memebers that are not commissioned
 			if(s instanceof CommissionedEmployee ){
-				
-				System.out.println("Sono un commissioned --> non devi aggiungermi al db");
-				System.out.println(s.getUsername());
 				continue;
 			}
 			else{
@@ -63,5 +62,23 @@ public class EmployeeController {
 		}
 		
 		return only_salaried;
+	}
+	
+	public List<CommissionedEmployee> getAllCommissioned(){
+		
+		List<CommissionedEmployee> comm_list = e_dao.findAllCommissioned();
+		return comm_list;
+	}
+	
+	public List<ContractorEmployee> getAllContractors(){
+		
+		List<ContractorEmployee> con_list = e_dao.findAllContractor();
+		return con_list;
+	}
+	
+	public List<EmployeeManager> getAllManagers(){
+		
+		List<EmployeeManager> man_list = e_dao.findAllManager();
+		return man_list;
 	}
 }
