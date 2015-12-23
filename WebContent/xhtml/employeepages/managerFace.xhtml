@@ -325,26 +325,26 @@
 
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
-			<h:form id="form">
-				<p:growl id="msgs" showDetail="true" />
+			<h:form id="salaried_form_list">
+				<p:growl id="salaried_list_msgs" showDetail="true" />
 
 				<p:dataTable id="salariedEmployeeList" var="SalariedEmployee"
 					value="#{manager.s_employees}" editable="true"
 					style="margin-bottom:20px">
 					<f:facet name="header">SALARIED EMPLOYEES</f:facet>
 
-					<p:ajax event="rowEdit" listener="#{manager.onRowEdit}"
-						update=":form:msgs" />
-					<p:ajax event="rowEditCancel" listener="#{manager.onRowCancel}"
-						update=":form:msgs" />
+					<p:ajax event="rowEdit" listener="#{manager.onSalariedRowEdit}"
+						update=":salaried_form_list:salaried_list_msgs" />
+					<p:ajax event="rowEditCancel" listener="#{manager.onSalariedRowCancel}"
+						update=":salaried_form_list:salaried_list_msgs" />
 
 					<p:column headerText="Name">
 						<p:cellEditor>
 							<f:facet name="output">
 								<h:outputText value="#{SalariedEmployee.name}" />
 							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="modelInput" value="#{SalariedEmployee.name}"
+							<f:facet name="input" >
+								<p:inputText disabled="true" id="modelInput" value="#{SalariedEmployee.name}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -356,7 +356,7 @@
 								<h:outputText value="#{SalariedEmployee.surname}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{SalariedEmployee.surname}"
+								<p:inputText  disabled="true" value="#{SalariedEmployee.surname}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -368,7 +368,7 @@
 								<h:outputText value="#{SalariedEmployee.e_mail}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{SalariedEmployee.e_mail}"
+								<p:inputText  disabled="true" value="#{SalariedEmployee.e_mail}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -380,7 +380,7 @@
 								<h:outputText value="#{SalariedEmployee.phone_number}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{SalariedEmployee.phone_number}"
+								<p:inputText   disabled="true" value="#{SalariedEmployee.phone_number}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -407,6 +407,192 @@
 			</h:form>
 		</div>
 	</div>
+	
+	<div class="container-fluid" id="sfondo2">
+		<div class="container">
+			<h:form id="commissioned_form_list">
+				<p:growl id="commissioned_list_msgs" showDetail="true" />
+
+				<p:dataTable id="commissionedEmployeeList" var="CommissionedEmployee"
+					value="#{manager.com_employees}" editable="true"
+					style="margin-bottom:20px">
+					<f:facet name="header">COMMISSIONED EMPLOYEES</f:facet>
+
+					<p:ajax event="rowEdit" listener="#{manager.onCommissionedRowEdit}"
+						update=":commissioned_form_list:commissioned_list_msgs" />
+					<p:ajax event="rowEditCancel" listener="#{manager.onCommissionedRowCancel}"
+						update=":commissioned_form_list:commissioned_list_msgs" />
+
+					<p:column headerText="Name">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput2" value="#{CommissionedEmployee.name}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Surname">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.surname}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{CommissionedEmployee.surname}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="E-mail">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.e_mail}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{CommissionedEmployee.e_mail}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Telephone">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.phone_number}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{CommissionedEmployee.phone_number}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Montly Salary">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.monthly_salary}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{CommissionedEmployee.monthly_salary}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					
+					<p:column headerText="Sales Rate">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.sale_rate}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{CommissionedEmployee.sale_rate}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+				</p:dataTable>
+
+
+			</h:form>
+		</div>
+	</div>
+	
+	<div class="container-fluid" id="sfondo2">
+		<div class="container">
+			<h:form id="contractor_form_list">
+				<p:growl id="contractor_list_msgs" showDetail="true" />
+
+				<p:dataTable id="contractorEmployeeList" var="ContractorEmployee"
+					value="#{manager.con_employees}" editable="true"
+					style="margin-bottom:20px">
+					<f:facet name="header">CONTRACTOR EMPLOYEES</f:facet>
+
+					<p:ajax event="rowEdit" listener="#{manager.onContractorRowEdit}"
+						update=":contractor_form_list:contractor_list_msgs" />
+					<p:ajax event="rowEditCancel" listener="#{manager.onContractorRowCancel}"
+						update=":contractor_form_list:contractor_list_msgs" />
+
+					<p:column headerText="Name">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput2" value="#{ContractorEmployee.name}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Surname">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.surname}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ContractorEmployee.surname}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="E-mail">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.e_mail}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ContractorEmployee.e_mail}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Telephone">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.phone_number}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ContractorEmployee.phone_number}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Hourly Rate">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.hourly_rate}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ContractorEmployee.hourly_rate}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					
+				
+
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+				</p:dataTable>
+
+
+			</h:form>
+		</div>
+	</div>
+	
+	
 
 
 	<div class="container-fluid" id="sfondo">

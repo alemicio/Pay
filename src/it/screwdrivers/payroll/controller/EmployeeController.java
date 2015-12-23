@@ -81,4 +81,19 @@ public class EmployeeController {
 		List<EmployeeManager> man_list = e_dao.findAllManager();
 		return man_list;
 	}
+	
+	public void updateSalariedEmployeeMonthlySalary(int id_employee,float monthly_salary){
+		
+		//get the employee row from the db
+		List<SalariedEmployee> salaried_list = e_dao.findAllSalaried();
+		
+		for(SalariedEmployee s: salaried_list){
+			if(s.getId() == id_employee){
+				
+				s.setMonthly_salary(monthly_salary);
+				e_dao.update(s);
+			}
+		}
+
+	}
 }

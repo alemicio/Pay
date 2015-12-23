@@ -44,15 +44,44 @@ public class ManagerBean implements Serializable {
 		m_employees   = e_controller.getAllManagers();
 	}
 	
-	public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Salaried Employee Edited", ((SalariedEmployee) event.getObject()).getSurname());
+	public void onSalariedRowEdit(RowEditEvent event) {
+		
+		//here i want to update the db
+		int id_employee = ((SalariedEmployee) event.getObject()).getId();
+		float monthly_salary = ((SalariedEmployee) event.getObject()).getMonthly_salary();
+		
+		//set new values from the face of manager
+		e_controller.updateSalariedEmployeeMonthlySalary(id_employee, monthly_salary);
+		
+        FacesMessage msg = new FacesMessage("Monthly Salary updated for employee :", ((SalariedEmployee) event.getObject()).getSurname());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      
-    public void onRowCancel(RowEditEvent event) {
+    public void onSalariedRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled",((SalariedEmployee) event.getObject()).getSurname());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+    public void onCommissionedRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Commissioned Employee Edited", ((CommissionedEmployee) event.getObject()).getSurname());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onCommissionedRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled",((CommissionedEmployee) event.getObject()).getSurname());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public void onContractorRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Contractor Employee Edited", ((ContractorEmployee) event.getObject()).getSurname());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onContractorRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled",((ContractorEmployee) event.getObject()).getSurname());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    
      
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
@@ -61,8 +90,6 @@ public class ManagerBean implements Serializable {
         if(newValue != null && !newValue.equals(oldValue)) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
-            
-            //TODO here ww will update the db 
         }
     }
 	
