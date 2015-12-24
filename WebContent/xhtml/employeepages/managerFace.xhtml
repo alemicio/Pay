@@ -337,7 +337,11 @@
 						update=":salaried_form_list:salaried_list_msgs" />
 					<p:ajax event="rowEditCancel" listener="#{manager.onSalariedRowCancel}"
 						update=":salaried_form_list:salaried_list_msgs" />
-
+	
+					
+	
+	
+	
 					<p:column headerText="Name">
 						<p:cellEditor>
 							<f:facet name="output">
@@ -397,6 +401,17 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
+					
+					<p:column headerText="Delete">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:commandButton action="#{manager.deleteSalariedRow(SalariedEmployee)}" value="Delete" />
+							</f:facet>
+							<f:facet name="input" >
+								<h:commandButton disabled="true" action="#{manager.deleteSalariedRow(SalariedEmployee)}" value="Delete" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
 					<p:column style="width:32px">
 						<p:rowEditor />
@@ -429,7 +444,7 @@
 								<h:outputText value="#{CommissionedEmployee.name}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="modelInput2" value="#{CommissionedEmployee.name}"
+								<p:inputText id="modelInput2" disabled="true" value="#{CommissionedEmployee.name}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -441,7 +456,7 @@
 								<h:outputText value="#{CommissionedEmployee.surname}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{CommissionedEmployee.surname}"
+								<p:inputText disabled="true" value="#{CommissionedEmployee.surname}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -453,7 +468,7 @@
 								<h:outputText value="#{CommissionedEmployee.e_mail}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{CommissionedEmployee.e_mail}"
+								<p:inputText disabled="true"  value="#{CommissionedEmployee.e_mail}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -465,7 +480,7 @@
 								<h:outputText value="#{CommissionedEmployee.phone_number}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{CommissionedEmployee.phone_number}"
+								<p:inputText disabled="true" value="#{CommissionedEmployee.phone_number}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -526,7 +541,7 @@
 								<h:outputText value="#{ContractorEmployee.name}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="modelInput2" value="#{ContractorEmployee.name}"
+								<p:inputText id="modelInput2" disabled="true" value="#{ContractorEmployee.name}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -538,7 +553,7 @@
 								<h:outputText value="#{ContractorEmployee.surname}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{ContractorEmployee.surname}"
+								<p:inputText disabled="true" value="#{ContractorEmployee.surname}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -550,7 +565,7 @@
 								<h:outputText value="#{ContractorEmployee.e_mail}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{ContractorEmployee.e_mail}"
+								<p:inputText disabled="true" value="#{ContractorEmployee.e_mail}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -562,7 +577,7 @@
 								<h:outputText value="#{ContractorEmployee.phone_number}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{ContractorEmployee.phone_number}"
+								<p:inputText disabled="true"  value="#{ContractorEmployee.phone_number}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>

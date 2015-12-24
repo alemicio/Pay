@@ -62,6 +62,15 @@ public class ManagerBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     public void onCommissionedRowEdit(RowEditEvent event) {
+    	
+    	//here i want to update the db
+    	int id_employee = ((CommissionedEmployee) event.getObject()).getId();
+    	float monthly_salary = ((CommissionedEmployee) event.getObject()).getMonthly_salary();
+    	float sale_rate =  ((CommissionedEmployee) event.getObject()).getSale_rate();
+    	
+    	//set new values from the face of manager
+    	e_controller.updateCommissionedEmployeeMonthlySalarySaleRate(id_employee, monthly_salary,sale_rate);
+    	
         FacesMessage msg = new FacesMessage("Commissioned Employee Edited", ((CommissionedEmployee) event.getObject()).getSurname());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
@@ -72,6 +81,13 @@ public class ManagerBean implements Serializable {
     }
     
     public void onContractorRowEdit(RowEditEvent event) {
+    	
+    	int id_employee = ((ContractorEmployee) event.getObject()).getId();
+		float hourly_rate = ((ContractorEmployee) event.getObject()).getHourly_rate();
+		
+		//set new values from the face of manager
+    	e_controller.updateContractorEmployeeHourlyRate(id_employee,hourly_rate);
+		
         FacesMessage msg = new FacesMessage("Contractor Employee Edited", ((ContractorEmployee) event.getObject()).getSurname());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
@@ -92,6 +108,12 @@ public class ManagerBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
+    
+    public void deleteSalariedRow(SalariedEmployee salaried) {  
+        
+    	System.out.println("sto cancellando un employee salariato");
+    	System.out.println(salaried.getUsername());
+    }  
 	
 	
 	

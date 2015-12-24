@@ -96,4 +96,33 @@ public class EmployeeController {
 		}
 
 	}
+
+	public void updateCommissionedEmployeeMonthlySalarySaleRate(int id_employee, float monthly_salary, float sale_rate) {
+		//get the employee row from the db
+		List<CommissionedEmployee> commissioned_list = e_dao.findAllCommissioned();
+				
+				for(CommissionedEmployee c: commissioned_list){
+					if(c.getId() == id_employee){
+						
+						c.setMonthly_salary(monthly_salary);
+						c.setSale_rate(sale_rate);
+						e_dao.update(c);
+					}
+				}
+		
+	}
+
+	public void updateContractorEmployeeHourlyRate(int id_employee,float hourly_rate) {
+		//get the employee row from the db
+		List<ContractorEmployee> contractor_list = e_dao.findAllContractor();
+						
+				for(ContractorEmployee c: contractor_list){
+					if(c.getId() == id_employee){
+								
+						c.setHourly_rate(hourly_rate);
+						e_dao.update(c);
+					}
+				}
+		
+	}
 }
