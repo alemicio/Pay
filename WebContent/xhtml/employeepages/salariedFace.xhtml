@@ -11,7 +11,7 @@
 <h:head>
 	<title>Salaried Dashboard</title>
 	<h:outputStylesheet library="css" name="common.css"></h:outputStylesheet>
-	<h:outputScript library="js" name="myscript.js"></h:outputScript>
+	<h:outputScript library="js" name="form_validation.js"></h:outputScript>
 
 	<link
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -64,45 +64,47 @@
 								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
 							</div>
 						</div>
-
+						<br />
 						<div class="row">
-							<!-- This is the form through which employee's details --> 
-							<!-- will be updated                                   -->
-							<h:form>
-								<b:inputText fieldSize="lg"
-									value="#{employee.retrieved_employee.name}">
-									<f:facet name="prepend">
+							<div class="col-lg-6" style="text-align: left;">
+								<!-- This is the form through which employee's details -->
+								<!-- can be updated                                   -->
+								<h:form name="f">
+									<h:panelGrid columns="2">
+										<h:outputText value="Username" />
+										<h:inputText value="#{employee.retrieved_employee.username}" label="Username">
+											<f:validateRequired />
+										</h:inputText>	
+										<h:outputText value="Password" />
+										<h:inputText value="#{employee.retrieved_employee.password}" label="Password">
+											<f:validateRequired />
+										</h:inputText>	
 										<h:outputText value="Name" />
-									</f:facet>
-								</b:inputText>
-								
-								<b:inputText fieldSize="lg"
-									value="#{employee.retrieved_employee.surname}">
-									<f:facet name="prepend">
+										<h:inputText value="#{employee.retrieved_employee.name}" label="Name">
+											<f:validateRequired />
+										</h:inputText>	
 										<h:outputText value="Surname" />
-									</f:facet>
-								</b:inputText>
-								
-								<b:inputText fieldSize="lg"
-									value="#{employee.retrieved_employee.phone_number}">
-									<f:facet name="prepend">
+										<h:inputText value="#{employee.retrieved_employee.surname}" label="Surname">
+											<f:validateRequired />
+										</h:inputText>	
+										<h:outputText value="E-mail" />
+										<h:inputText value="#{employee.retrieved_employee.e_mail}" label="E-mail">
+											<f:validateRequired />
+										</h:inputText>
 										<h:outputText value="Phone Number" />
-									</f:facet>
-								</b:inputText>
-								
-								<b:inputText fieldSize="lg"
-									value="#{employee.retrieved_employee.postal_address}">
-									<f:facet name="prepend">
+										<h:inputText value="#{employee.retrieved_employee.phone_number}" label="Phone Number">
+											<f:validateRequired />
+										</h:inputText>	
 										<h:outputText value="Postal Address" />
-									</f:facet>
-								</b:inputText>
+										<h:inputText value="#{employee.retrieved_employee.postal_address}" label="Postal Address">
+											<f:validateRequired />
+										</h:inputText>	
+									</h:panelGrid>
 
-								<b:button value="close" size="lg" dismiss="modal"
-									onclick="return false;" />
-
-								<b:commandButton value="Change Details"
-									action="#{employee.changeDetails()}"></b:commandButton>
-							</h:form>
+									<h:commandButton value="Change Details"
+										action="#{employee.changeDetails()}" />
+								</h:form>
+							</div>
 						</div>
 
 					</div>
@@ -303,7 +305,7 @@
 			<div class="jumbotron" id="jumbotrone">
 				<div class="row">
 					<div class="col-lg-12">
-						
+
 						<!-- ===================================== -->
 						<!-- === Union services selection form === -->
 						<!-- ===================================== -->
@@ -311,42 +313,45 @@
 							<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 							<!-- This is the services select menu -->
 							<b:selectMultiMenu value="#{union.services_selected}"
-											   required="true" fieldSize="lg"
-								               label="Select services offered by this union">
+								required="true" fieldSize="lg"
+								label="Select services offered by this union">
 								<f:facet name="prepend">
 									<h:outputText value="@service" />
 								</f:facet>
-									<f:selectItems value="#{union.service_names}" />
+								<f:selectItems value="#{union.service_names}" />
 							</b:selectMultiMenu>
-							
+
 							<!-- This button allows to perform an ajax call to
 							     union.updateSelectedUnionServiceAssociations method.
 							     It updates data-table which contains service's name
 							     and price -->
-							<p:commandButton value="Prepare Order" id="ajax-prepare-order" 
-											 update="data-table" actionListener="#{union.updateSelectedUnionServiceAssociations}"
-							 				 styleClass="ui-priority-primary" />
-										     
+							<p:commandButton value="Prepare Order" id="ajax-prepare-order"
+								update="data-table"
+								actionListener="#{union.updateSelectedUnionServiceAssociations}"
+								styleClass="ui-priority-primary" />
+
 							<!-- This is the table in which we will show the services the user has selected -->
 							<br> </br>
-							<h:dataTable id="data-table" border="1" value="#{union.selected_union_service_associations}" var="susa">	
-				    			<h:column>
-				    				<!-- column header -->
-				    				<f:facet name="header">Name</f:facet>
-				    				<!-- row record -->
+							<h:dataTable id="data-table" border="1"
+								value="#{union.selected_union_service_associations}" var="susa">
+								<h:column>
+									<!-- column header -->
+									<f:facet name="header">Name</f:facet>
+									<!-- row record -->
 				    				#{susa.union_service.name}
-				    			</h:column>	
-				    							    			
-				    			<h:column>
-				    				<f:facet name="header">Price</f:facet>
+				    			</h:column>
+
+								<h:column>
+									<f:facet name="header">Price</f:facet>
 				    				#{susa.price}
-				    			</h:column>				    		
-				    		</h:dataTable>		
-				    		<br></br>
-				    		<p:commandButton value="Confirm Order" id="ajax-send-order" 
-											 update="growl" action="#{union.confirmOrder(employee.retrieved_employee)}"
-							 				 styleClass="ui-priority-primary" />
-				    	</h:form>		
+				    			</h:column>
+							</h:dataTable>
+							<br></br>
+							<p:commandButton value="Confirm Order" id="ajax-send-order"
+								update="growl"
+								action="#{union.confirmOrder(employee.retrieved_employee)}"
+								styleClass="ui-priority-primary" />
+						</h:form>
 					</div>
 				</div>
 			</div>
