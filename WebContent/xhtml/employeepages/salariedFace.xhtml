@@ -66,59 +66,64 @@
 						</div>
 						<br />
 						<div class="row">
-							<div class="col-lg-6" style="text-align: left;">
+							<div class="col-lg-6">
 								<!-- This is the form through which employee's details -->
-								<!-- can be updated                                   -->
-								<h:form name="f">
-									<h:panelGrid columns="2">
-										<h:outputText value="Username" />
-										<h:inputText value="#{employee.retrieved_employee.username}"
-											label="Username" validatorMessage="Username must be not empty.">
-											<f:validateRequired />
-										</h:inputText>
-										<h:outputText value="Password" />
-										<h:inputSecret value="#{employee.retrieved_employee.password}"
-											label="Password" validatorMessage="Password must be not empty.">
-											<f:validateRequired />
-										</h:inputSecret>
-										<h:outputText value="Name" />
-										<h:inputText value="#{employee.retrieved_employee.name}"
-											label="Name" validatorMessage="Name must be not empty.">
-											<f:validateRequired />
-										</h:inputText>
-										<h:outputText value="Surname" />
-										<h:inputText value="#{employee.retrieved_employee.surname}"
-											label="Surname" validatorMessage="Surname must be not empty.">
-											<f:validateRequired />
-										</h:inputText>
-										<h:outputText value="E-mail" />
-										<h:inputText value="#{employee.retrieved_employee.e_mail}"
-											label="E-mail"
-											validatorMessage="Invalid email format">
-											<f:validateRegex
-												pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-										</h:inputText>
-										<h:outputText value="Phone Number" />
-										<h:inputText
-											value="#{employee.retrieved_employee.phone_number}"
-											label="Phone Number" validatorMessage="Phone number must be not empty.">
-											<f:validateRequired />
-										</h:inputText>
-										<h:outputText value="Postal Address" />
-										<h:inputText
-											value="#{employee.retrieved_employee.postal_address}"
-											label="Postal Address" validatorMessage="Postal address must be not empty.">
-											<f:validateRequired />
-										</h:inputText>
-									</h:panelGrid>
-
-									<h:commandButton value="Change Details"
+								<!-- can be updated                                    -->
+								<h:form>
+									<h:outputText value="Username:  " />
+									<p:inputText value="#{employee.retrieved_employee.username}"
+										required="true" requiredMessage="Username field is empty">
+									</p:inputText>
+									<br />
+									<br />
+									<h:outputText value="Password:  " />
+									<p:password value="#{employee.retrieved_employee.password}"
+										required="true" requiredMessage="Password field is empty">
+									</p:password>
+									<br />
+									<br />
+									<h:outputText value="Name:  " />
+									<p:inputText value="#{employee.retrieved_employee.name}"
+										required="true" requiredMessage="Name field is empty">
+									</p:inputText>
+									<br />
+									<br />
+									<h:outputText value="Surname:  " />
+									<p:inputText value="#{employee.retrieved_employee.surname}"
+										required="true" requiredMessage="Surname field is empty">
+									</p:inputText>
+									<br />
+									<br />
+									<h:outputText value="E-mail:  " />
+									<p:inputText value="#{employee.retrieved_employee.e_mail}"
+										label="E-mail:" validatorMessage="Invalid email format">
+										<f:validateRegex
+											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									</p:inputText>
+									<br />
+									<br />
+									<h:outputText value="Phone Number:  " />
+									<p:inputText
+										value="#{employee.retrieved_employee.phone_number}"
+										required="true" requiredMessage="Phone number field is empty">
+									</p:inputText>
+									<br />
+									<br />
+									<h:outputText value="Postal Address:  " />
+									<p:inputText
+										value="#{employee.retrieved_employee.postal_address}"
+										required="true"
+										requiredMessage="Postal address field is empty">
+									</p:inputText>
+									<br />
+									<br />
+									<p:commandButton value="Save"
 										action="#{employee.changeDetails()}" />
 								</h:form>
 							</div>
 						</div>
-
 					</div>
+
 					<div class="col-lg-3" style="text-align: center;">
 						<h:graphicImage library="images" name="logo_unipv.png"
 							class="img-responsive center-block" alt="Responsive image"
@@ -342,7 +347,8 @@
 								styleClass="ui-priority-primary" />
 
 							<!-- This is the table in which we will show the services the user has selected -->
-							<br> </br>
+							<br />
+							<br />
 							<h:dataTable id="data-table" border="1"
 								value="#{union.selected_union_service_associations}" var="susa">
 								<h:column>
@@ -357,7 +363,8 @@
 				    				#{susa.price}
 				    			</h:column>
 							</h:dataTable>
-							<br></br>
+							<br />
+							<br />
 							<p:commandButton value="Confirm Order" id="ajax-send-order"
 								update="growl"
 								action="#{union.confirmOrder(employee.retrieved_employee)}"
