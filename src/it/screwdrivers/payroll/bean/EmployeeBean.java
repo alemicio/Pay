@@ -37,5 +37,7 @@ public class EmployeeBean implements Serializable {
 	
 	public void changeDetails(){
 		e_controller.changeDetails(retrieved_employee);
+		
+		System.out.println(retrieved_employee.getUsername());
 	}
 }

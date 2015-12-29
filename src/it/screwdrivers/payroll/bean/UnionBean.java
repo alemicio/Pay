@@ -23,119 +23,121 @@ import javax.inject.Named;
 public class UnionBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Inject 
+
+	@Inject
 	Union union;
 
 	@Inject
 	UnionController u_controller;
-	
+
 	@Inject
 	UnionServiceAssociationController usa_controller;
-	
-	@Inject 
+
+	@Inject
 	HistoricalUnionChargeController huc_controller;
-	
+
 	private String union_name;
 	private List<String> associated_unions;
 	private List<UnionServiceAssociation> union_service_associations;
 	private List<String> service_names;
 	private String services_selected;
-	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();; 
-	
+	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();;
+
 	public String getUnion(Employee e) {
-		
-		
-		//SGAMO MICIO --> maybe replaced by @postcustruct
+
+		// SGAMO MICIO --> maybe replaced by @postcustruct
 		populateUnionsNames();
-		
-		
-		//This method returns a union for a given employee.
+
+		// This method returns a union for a given employee.
 		String name_union = null;
 		boolean is_union_set = u_controller.isUnionSet(e);
 
 		if (is_union_set == true) {
-			
+
 			populateUnionServiceAssociations(e);
-			//here we have populated the list of service name to show in the face
-			service_names = usa_controller.getUnionServiceNames(union_service_associations);
-			
+			// here we have populated the list of service name to show in the
+			// face
+			service_names = usa_controller
+					.getUnionServiceNames(union_service_associations);
+
 			name_union = u_controller.findUnionName(e.getUnion());
 			this.union = e.getUnion();
-			
-			
-		} 
-		else {
+
+		} else {
 			name_union = "Not setted";
 		}
-		
+
 		return name_union;
 	}
-	
-	public void setUnion(Employee e){
-		
+
+	public void setUnion(Employee e) {
+
 		System.out.println("Union scelta dalla tendina: " + union_name);
 		u_controller.setUnion(e, union_name);
 	}
-	
-	private void populateUnionsNames(){
+
+	private void populateUnionsNames() {
 		associated_unions = u_controller.getUnionsNames();
 	}
-	
-	private void populateUnionServiceAssociations(Employee e){
-		union_service_associations = usa_controller.retrieveUnionServiceAssociations(e);
+
+	private void populateUnionServiceAssociations(Employee e) {
+		union_service_associations = usa_controller
+				.retrieveUnionServiceAssociations(e);
 	}
-	
-	public String[] getSelectedUnionServicesNames(){
-		
+
+	public String[] getSelectedUnionServicesNames() {
+
 		String[] names;
-		
-		if(services_selected.contains(",")){
+
+		if (services_selected.contains(",")) {
 			names = services_selected.split(",");
 		} else {
 			names = new String[1];
 			names[0] = services_selected;
 		}
-		
+
 		return names;
 	}
-	
-	// We used ActionEvent object to make this method became a listener for
-	// ajax requests.
-	public void updateSelectedUnionServiceAssociations(ActionEvent actionEvent){
-		
+
+	public void updateSelectedUnionServiceAssociations() {
 		String[] selected_services_names = getSelectedUnionServicesNames();
-		
 		selected_union_service_associations.clear();
-		for(String service_name : selected_services_names){
-			selected_union_service_associations.add(usa_controller.getUnionServiceAssociationByUnionAndServiceName(this.union, service_name));
+		
+		for (String service_name : selected_services_names) {
+			selected_union_service_associations.add(usa_controller
+					.getUnionServiceAssociationByUnionAndServiceName(
+							this.union, service_name));
 		}
 	}
-	
-	public void confirmOrder(Employee e){
+
+	public void confirmOrder(Employee e) {
 		
+		System.out.println("CIAOOOOOOOOOOOOOOOOOO");
+
+		updateSelectedUnionServiceAssociations();
+
 		String response = null;
-		response = huc_controller.confirmOrder(e, selected_union_service_associations);
-		
+		response = huc_controller.confirmOrder(e,
+				selected_union_service_associations);
+
 		System.out.println(response);
-		
-		
+
 		if (response == "success") {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Congratulations",
 					"your order is correctly submitted"));
-
-		}
-		else{
+		} else {
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "Error:",
-					"impossible to confirm your order for today, another order was submitted for this week"));
+			context.addMessage(
+					null,
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"Error:",
+							"impossible to confirm your order for today, another order was submitted for this week"));
 		}
-			
 	}
-	
+
 	// ===========================
 	// === Getters and Setters ===
 	// ===========================

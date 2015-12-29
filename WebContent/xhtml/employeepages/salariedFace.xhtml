@@ -10,26 +10,99 @@
 
 <h:head>
 	<title>Salaried Dashboard</title>
-	<h:outputStylesheet library="css" name="common.css"></h:outputStylesheet>
-	<h:outputScript library="js" name="form_validation.js"></h:outputScript>
 
+	<!-- Import bootstrap css -->
 	<link
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
 		rel="stylesheet"
 		integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
 		crossorigin="anonymous" />
+
+	<!-- Import bootstrap js -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
 		integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
 		crossorigin="anonymous"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Import custom css -->
+	<h:outputStylesheet library="css" name="common.css"></h:outputStylesheet>
+
+	<!-- Import custom js -->
+	<h:outputScript library="js" name="form_validation.js"></h:outputScript>
 </h:head>
 
-<body>
+<!-- This is the modal that will be opened when the "Edit Profile" button is clicked -->
+<b:modal id="amodal" title="Edit Profile" styleClass="modalPseudoClass">
+	<!-- This is the form through which employee's details -->
+	<!-- can be updated                                    -->
+	<h:form role="form" onsubmit="return validateForm()">
 
+		<div class="form-group">
+			<h:outputText value="Username:" styleClass="control-label" />
+			<h:inputText value="#{employee.retrieved_employee.username}"
+				styleClass="form-control">
+			</h:inputText>
+		</div>
+
+		<div class="form-group">
+			<h:outputText value="Password:" styleClass="control-label" />
+			<h:inputSecret value="#{employee.retrieved_employee.password}"
+				styleClass="form-control">
+			</h:inputSecret>
+		</div>
+
+		<div class="form-group">
+			<h:outputText value="Name:" styleClass="control-label" />
+			<h:inputText value="#{employee.retrieved_employee.name}"
+				styleClass="form-control">
+			</h:inputText>
+		</div>
+
+		<div class="form-group">
+			<h:outputText value="Surname:" styleClass="control-label" />
+			<h:inputText value="#{employee.retrieved_employee.surname}"
+				styleClass="form-control">
+			</h:inputText>
+		</div>
+
+		<div class="form-group">
+			<h:outputText value="E-mail:" styleClass="control-label" />
+			<h:inputText value="#{employee.retrieved_employee.e_mail}"
+				styleClass="form-control">
+			</h:inputText>
+		</div>
+
+		<div class="form-group">
+			<h:outputText value="Phone Number:" styleClass="control-label" />
+			<h:inputText value="#{employee.retrieved_employee.phone_number}"
+				styleClass="form-control">
+			</h:inputText>
+		</div>
+
+		<div class="form-group">
+			<h:outputText value="Postal Address:" styleClass="control-label" />
+			<h:inputText value="#{employee.retrieved_employee.postal_address}"
+				styleClass="form-control">
+			</h:inputText>
+		</div>
+
+		<div class="text-right">
+			<button class="btn btn-default" data-dismiss="modal"
+				aria-hidden="true">Cancel</button>
+			<h:commandButton type="submit" value="Save"
+				action="#{employee.changeDetails()}" styleClass="btn btn-success"
+				style="margin-left: 1rem" />
+		</div>
+
+	</h:form>
+</b:modal>
+
+<body>
 	<div class="container-fluid" id="sfondo">
 
+		<!-- Bootstrap implementation of the navbar through BootFaces -->
 		<b:navBar brand="Magic ScrewDriver" brandHref="#" fluid="true"
 			id="navbar">
 			<b:navbarLinks pull="left">
@@ -46,13 +119,38 @@
 
 		<div class="container">
 
+			<!-- This jumbotron contains the user's profile details -->
 			<div class="jumbotron" id="jumbotrone">
 				<div class="row">
 
+					<div class="col-lg-3" style="text-align: center;">
+						<div class="row">
+							<div class="col-xs-12">
+								<h:graphicImage library="images" name="logo_unipv.png"
+									class="img-responsive center-block" alt="Responsive image"
+									id="bordino" />
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-lg-6" style="text-align: center;">
+								<h:form>
+									<b:button value="Edit Profile" look="info"
+										onclick="$('.modalPseudoClass').modal();return false;"
+										size="lg"></b:button>
+								</h:form>
+							</div>
+							<div class="col-lg-6" style="text-align: center;">
+								<h:form>
+									<b:commandButton size="lg" value="Logout"
+										action="#{login.performLogout}" look="danger"></b:commandButton>
+								</h:form>
+							</div>
+						</div>
+					</div>
+
 					<div class="col-lg-9">
-
 						<h1>Benvenuto #{login.retrived_employee.username}</h1>
-
 						<div class="row">
 							<div class="col-lg-6" style="text-align: left;">
 								<h3>Name: #{login.retrived_employee.name}</h3>
@@ -64,79 +162,12 @@
 								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
 							</div>
 						</div>
-						<br />
-						<div class="row">
-							<div class="col-lg-6">
-								<!-- This is the form through which employee's details -->
-								<!-- can be updated                                    -->
-								<h:form>
-									<h:outputText value="Username:  " />
-									<p:inputText value="#{employee.retrieved_employee.username}"
-										required="true" requiredMessage="Username field is empty">
-									</p:inputText>
-									<br />
-									<br />
-									<h:outputText value="Password:  " />
-									<p:password value="#{employee.retrieved_employee.password}"
-										required="true" requiredMessage="Password field is empty">
-									</p:password>
-									<br />
-									<br />
-									<h:outputText value="Name:  " />
-									<p:inputText value="#{employee.retrieved_employee.name}"
-										required="true" requiredMessage="Name field is empty">
-									</p:inputText>
-									<br />
-									<br />
-									<h:outputText value="Surname:  " />
-									<p:inputText value="#{employee.retrieved_employee.surname}"
-										required="true" requiredMessage="Surname field is empty">
-									</p:inputText>
-									<br />
-									<br />
-									<h:outputText value="E-mail:  " />
-									<p:inputText value="#{employee.retrieved_employee.e_mail}"
-										label="E-mail:" validatorMessage="Invalid email format">
-										<f:validateRegex
-											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-									</p:inputText>
-									<br />
-									<br />
-									<h:outputText value="Phone Number:  " />
-									<p:inputText
-										value="#{employee.retrieved_employee.phone_number}"
-										required="true" requiredMessage="Phone number field is empty">
-									</p:inputText>
-									<br />
-									<br />
-									<h:outputText value="Postal Address:  " />
-									<p:inputText
-										value="#{employee.retrieved_employee.postal_address}"
-										required="true"
-										requiredMessage="Postal address field is empty">
-									</p:inputText>
-									<br />
-									<br />
-									<p:commandButton value="Save"
-										action="#{employee.changeDetails()}" />
-								</h:form>
-							</div>
-						</div>
 					</div>
-
-					<div class="col-lg-3" style="text-align: center;">
-						<h:graphicImage library="images" name="logo_unipv.png"
-							class="img-responsive center-block" alt="Responsive image"
-							id="bordino" />
-						<h:form>
-							<b:commandButton size="lg" value="LOGOUT"
-								action="#{login.performLogout}" look="danger"></b:commandButton>
-						</h:form>
-					</div>
-
 				</div>
 			</div>
+
 		</div>
+
 	</div>
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
@@ -253,20 +284,19 @@
 										</div>
 									</div>
 								</div>
-
 							</b:modal>
 
 							<b:button value="Change Paymethod" look="info"
 								onclick="$('.modalPseudoClassP').modal();return false;"
 								size="lg" />
 						</div>
+
 						<div class="col-lg-6" style="text-align: left;">
 							<h3>Union:#{union.getUnion(employee.retrieved_employee)}</h3>
 
 							<b:modal id="modalunion" title="Here you can Modify your Union"
 								styleClass="modalPseudoClassU">
 								<h:form id="unionset">
-
 									<div class="row">
 										<div class="col-lg-12">
 											<h:graphicImage library="images" name="unipv2.png"
@@ -300,7 +330,6 @@
 												action="#{union.setUnion(employee.retrieved_employee)}" />
 										</div>
 									</div>
-
 								</h:form>
 							</b:modal>
 
@@ -326,47 +355,21 @@
 						<!-- === Union services selection form === -->
 						<!-- ===================================== -->
 						<h:form>
-							<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 							<!-- This is the services select menu -->
-							<b:selectMultiMenu value="#{union.services_selected}"
-								required="true" fieldSize="lg"
-								label="Select services offered by this union">
-								<f:facet name="prepend">
-									<h:outputText value="@service" />
-								</f:facet>
-								<f:selectItems value="#{union.service_names}" />
-							</b:selectMultiMenu>
+							<p:outputLabel for="union-services"
+								value="Select union services:" />
 
-							<!-- This button allows to perform an ajax call to
-							     union.updateSelectedUnionServiceAssociations method.
-							     It updates data-table which contains service's name
-							     and price -->
-							<p:commandButton value="Prepare Order" id="ajax-prepare-order"
-								update="data-table"
-								actionListener="#{union.updateSelectedUnionServiceAssociations}"
-								styleClass="ui-priority-primary" />
+							<p:selectManyMenu id="union-services"
+								value="#{union.services_selected}" var="us" filter="true"
+								filterMatchMode="contains" showCheckbox="true">
+								<f:selectItems value="#{union.service_names}" var="us"
+									itemLabel="#{us}" itemValue="#{us}" />
+								<p:column>
+									<h:outputText value="#{us}" />
+								</p:column>
+							</p:selectManyMenu>
 
-							<!-- This is the table in which we will show the services the user has selected -->
-							<br />
-							<br />
-							<h:dataTable id="data-table" border="1"
-								value="#{union.selected_union_service_associations}" var="susa">
-								<h:column>
-									<!-- column header -->
-									<f:facet name="header">Name</f:facet>
-									<!-- row record -->
-				    				#{susa.union_service.name}
-				    			</h:column>
-
-								<h:column>
-									<f:facet name="header">Price</f:facet>
-				    				#{susa.price}
-				    			</h:column>
-							</h:dataTable>
-							<br />
-							<br />
 							<p:commandButton value="Confirm Order" id="ajax-send-order"
-								update="growl"
 								action="#{union.confirmOrder(employee.retrieved_employee)}"
 								styleClass="ui-priority-primary" />
 						</h:form>
