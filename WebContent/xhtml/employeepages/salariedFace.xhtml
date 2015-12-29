@@ -37,53 +37,53 @@
 <b:modal id="amodal" title="Edit Profile" styleClass="modalPseudoClass">
 	<!-- This is the form through which employee's details -->
 	<!-- can be updated                                    -->
-	<h:form role="form" onsubmit="return validateForm()">
+	<h:form id="change-detail-form" role="form" onsubmit="return validateForm()">
 
 		<div class="form-group">
 			<h:outputText value="Username:" styleClass="control-label" />
-			<h:inputText value="#{employee.retrieved_employee.username}"
+			<h:inputText id="username" value="#{employee.retrieved_employee.username}"
 				styleClass="form-control">
 			</h:inputText>
 		</div>
 
 		<div class="form-group">
 			<h:outputText value="Password:" styleClass="control-label" />
-			<h:inputSecret value="#{employee.retrieved_employee.password}"
+			<h:inputSecret id="password" value="#{employee.retrieved_employee.password}"
 				styleClass="form-control">
 			</h:inputSecret>
 		</div>
 
 		<div class="form-group">
 			<h:outputText value="Name:" styleClass="control-label" />
-			<h:inputText value="#{employee.retrieved_employee.name}"
+			<h:inputText id="name" value="#{employee.retrieved_employee.name}"
 				styleClass="form-control">
 			</h:inputText>
 		</div>
 
 		<div class="form-group">
 			<h:outputText value="Surname:" styleClass="control-label" />
-			<h:inputText value="#{employee.retrieved_employee.surname}"
+			<h:inputText id="surname" value="#{employee.retrieved_employee.surname}"
 				styleClass="form-control">
 			</h:inputText>
 		</div>
 
 		<div class="form-group">
 			<h:outputText value="E-mail:" styleClass="control-label" />
-			<h:inputText value="#{employee.retrieved_employee.e_mail}"
+			<h:inputText id="email" value="#{employee.retrieved_employee.e_mail}"
 				styleClass="form-control">
 			</h:inputText>
 		</div>
 
 		<div class="form-group">
 			<h:outputText value="Phone Number:" styleClass="control-label" />
-			<h:inputText value="#{employee.retrieved_employee.phone_number}"
+			<h:inputText id="phonenumber" value="#{employee.retrieved_employee.phone_number}"
 				styleClass="form-control">
 			</h:inputText>
 		</div>
 
 		<div class="form-group">
 			<h:outputText value="Postal Address:" styleClass="control-label" />
-			<h:inputText value="#{employee.retrieved_employee.postal_address}"
+			<h:inputText id="postaladdress" value="#{employee.retrieved_employee.postal_address}"
 				styleClass="form-control">
 			</h:inputText>
 		</div>
