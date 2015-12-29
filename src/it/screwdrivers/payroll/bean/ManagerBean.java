@@ -94,8 +94,26 @@ public class ManagerBean implements Serializable {
     }
      
     public void onCommissionedRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled",((CommissionedEmployee) event.getObject()).getSurname());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    	
+    	CommissionedEmployee c = ((CommissionedEmployee) event.getObject());
+    	int id_employee = c.getId();
+    	
+    	System.out.println(c.getUsername());
+    	
+    	boolean response = e_controller.deleteEmployee(id_employee);
+    	
+    	//get the data a second time in order to refresh the datatable in the managerface
+    	com_employees = e_controller.getAllCommissioned();
+    	
+    	
+    	if(response){
+    		FacesMessage msg = new FacesMessage("Employee deleted: ",((CommissionedEmployee) event.getObject()).getSurname());
+    		FacesContext.getCurrentInstance().addMessage(null, msg);
+    	}
+    	else{
+    		FacesMessage msg = new FacesMessage("Error: impossible delete employee :",((CommissionedEmployee) event.getObject()).getSurname());
+    		FacesContext.getCurrentInstance().addMessage(null, msg);
+    	}
     }
     
     public void onContractorRowEdit(RowEditEvent event) {
@@ -111,8 +129,24 @@ public class ManagerBean implements Serializable {
     }
      
     public void onContractorRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled",((ContractorEmployee) event.getObject()).getSurname());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    	
+    	ContractorEmployee c = ((ContractorEmployee) event.getObject());
+    	int id_employee = c.getId();
+    	
+    	boolean response = e_controller.deleteEmployee(id_employee);
+    	
+    	//get the data a second time in order to refresh the datatable in the managerface
+    	con_employees = e_controller.getAllContractors();
+    	
+    	
+    	if(response){
+    		FacesMessage msg = new FacesMessage("Employee deleted: ",((ContractorEmployee) event.getObject()).getSurname());
+    		FacesContext.getCurrentInstance().addMessage(null, msg);
+    	}
+    	else{
+    		FacesMessage msg = new FacesMessage("Error: impossible delete employee :",((ContractorEmployee) event.getObject()).getSurname());
+    		FacesContext.getCurrentInstance().addMessage(null, msg);
+    	}
     }
     
     

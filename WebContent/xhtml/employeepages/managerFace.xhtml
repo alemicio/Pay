@@ -335,14 +335,8 @@
 
 					<p:ajax event="rowEdit" listener="#{manager.onSalariedRowEdit}"
 						update=":salaried_form_list:salaried_list_msgs" />
-					<p:ajax event="rowEditCancel" update=":salaried_form_list:salaried_list_msgs, :salaried_form_list:" listener="#{manager.onSalariedRowCancel}" oncomplete="javascript:location.reload(true)"/>
-					
-					
-	
-					
-	
-	
-	
+					<p:ajax event="rowEditCancel" update=":salaried_form_list:salaried_list_msgs, :salaried_form_list:salariedEmployeeList" listener="#{manager.onSalariedRowCancel}" oncomplete="javascript:location.reload(true)"/>
+		
 					<p:column headerText="Name">
 						<p:cellEditor>
 							<f:facet name="output">
@@ -428,8 +422,7 @@
 
 					<p:ajax event="rowEdit" listener="#{manager.onCommissionedRowEdit}"
 						update=":commissioned_form_list:commissioned_list_msgs" />
-					<p:ajax event="rowEditCancel" listener="#{manager.onCommissionedRowCancel}"
-						update=":commissioned_form_list:commissioned_list_msgs" />
+					<p:ajax event="rowEditCancel" update=":commissioned_form_list:commissioned_list_msgs, :commissioned_form_list:commissionedEmployeeList" listener="#{manager.onCommissionedRowCancel}" oncomplete="javascript:location.reload(true)"/>
 
 					<p:column headerText="Name">
 						<p:cellEditor>
@@ -525,8 +518,7 @@
 
 					<p:ajax event="rowEdit" listener="#{manager.onContractorRowEdit}"
 						update=":contractor_form_list:contractor_list_msgs" />
-					<p:ajax event="rowEditCancel" listener="#{manager.onContractorRowCancel}"
-						update=":contractor_form_list:contractor_list_msgs" />
+					<p:ajax event="rowEditCancel" update=":contractor_form_list:contractor_list_msgs, :contractor_form_list:contractorEmployeeList" listener="#{manager.onContractorRowCancel}" oncomplete="javascript:location.reload(true)"/>
 
 					<p:column headerText="Name">
 						<p:cellEditor>

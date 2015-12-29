@@ -125,9 +125,8 @@ public class EmployeeController {
 						break;
 					}
 				}
-		
 	}
-
+	
 	public boolean deleteEmployee(int id_employee) {
 		
 		List<Employee> employees = e_dao.findAll();
@@ -141,7 +140,6 @@ public class EmployeeController {
 				break;
 			}
 		}
-		
 		return response;
 	}
 }

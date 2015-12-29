@@ -34,7 +34,7 @@ public class GenerateEmployees extends ArquillianTest {
 			employee_salaried.setSurname("clone"+i);
 			employee_salaried.setUsername("clone"+i);
 			employee_salaried.setPassword("clone"+i);
-			employee_salaried.setE_mail("clone@clone.it");
+			employee_salaried.setE_mail("clone@salaried.it");
 			employee_salaried.setPhone_number("3331112233");
 			employee_salaried.setPostal_address("via roma 1");
 			employee_salaried.setMonthly_salary(1000);
@@ -48,7 +48,82 @@ public class GenerateEmployees extends ArquillianTest {
 
 		for (Employee employee : employees) {
 
-			if (employee.getE_mail().equals("clone@clone.it")) {
+			if (employee.getE_mail().equals("clone@salaried.it")) {
+				
+				count++;
+			}
+		}
+		
+		if(10 == count){
+			condition = true;
+		}
+		
+		assertTrue("ho aggiunto tutti e 10 i cloni correttamente al db", condition);
+		
+	}
+	@Test
+	public void testAddingContractorClones() {
+		
+		//add a several number of employees in order to populate the db
+		for(int i = 0; i < 10 ; i++){
+			ContractorEmployee employee_contractor = new ContractorEmployee();
+			employee_contractor.setName("clone"+i);
+			employee_contractor.setSurname("clone"+i);
+			employee_contractor.setUsername("clone"+i);
+			employee_contractor.setPassword("clone"+i);
+			employee_contractor.setE_mail("clone@contractor.it");
+			employee_contractor.setPhone_number("3331112233");
+			employee_contractor.setPostal_address("via roma 1");
+			employee_contractor.setHourly_rate(8);
+			employee_dao.add(employee_contractor);
+		}
+
+		int count = 0;
+		boolean condition = false;
+
+		List<Employee> employees = employee_dao.findAll();
+
+		for (Employee employee : employees) {
+
+			if (employee.getE_mail().equals("clone@contractor.it")) {
+				
+				count++;
+			}
+		}
+		
+		if(10 == count){
+			condition = true;
+		}
+		
+		assertTrue("ho aggiunto tutti e 10 i cloni correttamente al db", condition);
+		
+	}
+	@Test
+	public void testAddingCommissionedClones() {
+		
+		//add a several number of employees in order to populate the db
+		for(int i = 0; i < 10 ; i++){
+			CommissionedEmployee employee_commissioned = new CommissionedEmployee();
+			employee_commissioned.setName("clone"+i);
+			employee_commissioned.setSurname("clone"+i);
+			employee_commissioned.setUsername("clone"+i);
+			employee_commissioned.setPassword("clone"+i);
+			employee_commissioned.setE_mail("clone@commissioned.it");
+			employee_commissioned.setPhone_number("3331112233");
+			employee_commissioned.setPostal_address("via roma 1");
+			employee_commissioned.setMonthly_salary(1200);
+			employee_commissioned.setSale_rate((float) 0.1);
+			employee_dao.add(employee_commissioned);
+		}
+
+		int count = 0;
+		boolean condition = false;
+
+		List<Employee> employees = employee_dao.findAll();
+
+		for (Employee employee : employees) {
+
+			if (employee.getE_mail().equals("clone@commissioned.it")) {
 				
 				count++;
 			}
