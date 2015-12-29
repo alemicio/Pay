@@ -58,9 +58,27 @@ public class ManagerBean implements Serializable {
     }
      
     public void onSalariedRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled",((SalariedEmployee) event.getObject()).getSurname());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    	
+    	SalariedEmployee s = ((SalariedEmployee) event.getObject());
+    	int id_employee = s.getId();
+    	
+    	boolean response = e_controller.deleteEmployee(id_employee);
+    	
+    	//get the data a second time in order to refresh the datatable in the managerface
+    	s_employees = e_controller.getAllSalaried();
+    	
+    	
+    	if(response){
+    		FacesMessage msg = new FacesMessage("Employee deleted: ",((SalariedEmployee) event.getObject()).getSurname());
+    		FacesContext.getCurrentInstance().addMessage(null, msg);
+    	}
+    	else{
+    		FacesMessage msg = new FacesMessage("Error: impossible delete employee :",((SalariedEmployee) event.getObject()).getSurname());
+    		FacesContext.getCurrentInstance().addMessage(null, msg);
+    	}
+    		
     }
+    
     public void onCommissionedRowEdit(RowEditEvent event) {
     	
     	//here i want to update the db
@@ -109,16 +127,6 @@ public class ManagerBean implements Serializable {
         }
     }
     
-    public void deleteSalariedRow(SalariedEmployee salaried) {  
-        
-    	System.out.println("sto cancellando un employee salariato");
-    	System.out.println(salaried.getUsername());
-    }  
-	
-	
-	
-	
-	
 	
 	public List<SalariedEmployee> getS_employees() {
 		return s_employees;

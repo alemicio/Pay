@@ -335,8 +335,9 @@
 
 					<p:ajax event="rowEdit" listener="#{manager.onSalariedRowEdit}"
 						update=":salaried_form_list:salaried_list_msgs" />
-					<p:ajax event="rowEditCancel" listener="#{manager.onSalariedRowCancel}"
-						update=":salaried_form_list:salaried_list_msgs" />
+					<p:ajax event="rowEditCancel" update=":salaried_form_list:salaried_list_msgs, :salaried_form_list:" listener="#{manager.onSalariedRowCancel}" oncomplete="javascript:location.reload(true)"/>
+					
+					
 	
 					
 	
@@ -402,16 +403,8 @@
 						</p:cellEditor>
 					</p:column>
 					
-					<p:column headerText="Delete">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:commandButton action="#{manager.deleteSalariedRow(SalariedEmployee)}" value="Delete" />
-							</f:facet>
-							<f:facet name="input" >
-								<h:commandButton disabled="true" action="#{manager.deleteSalariedRow(SalariedEmployee)}" value="Delete" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
+					
+					
 
 					<p:column style="width:32px">
 						<p:rowEditor />

@@ -60,7 +60,6 @@ public class EmployeeController {
 				only_salaried.add(s);
 			}
 		}
-		
 		return only_salaried;
 	}
 	
@@ -92,6 +91,7 @@ public class EmployeeController {
 				
 				s.setMonthly_salary(monthly_salary);
 				e_dao.update(s);
+				break;
 			}
 		}
 
@@ -107,6 +107,7 @@ public class EmployeeController {
 						c.setMonthly_salary(monthly_salary);
 						c.setSale_rate(sale_rate);
 						e_dao.update(c);
+						break;
 					}
 				}
 		
@@ -121,8 +122,26 @@ public class EmployeeController {
 								
 						c.setHourly_rate(hourly_rate);
 						e_dao.update(c);
+						break;
 					}
 				}
 		
+	}
+
+	public boolean deleteEmployee(int id_employee) {
+		
+		List<Employee> employees = e_dao.findAll();
+		boolean response = false;
+		
+		for(Employee e: employees){
+			if(e.getId() == id_employee){
+				
+				response = true;	
+				e_dao.remove(e);
+				break;
+			}
+		}
+		
+		return response;
 	}
 }
