@@ -34,70 +34,92 @@
 </h:head>
 
 <!-- This is the modal that will be opened when the "Edit Profile" button is clicked -->
-<b:modal id="amodal" title="Edit Profile" styleClass="modalPseudoClass">
-	<!-- This is the form through which employee's details -->
-	<!-- can be updated                                    -->
-	<h:form id="change-detail-form" role="form" onsubmit="return validateForm()">
+<div id="edit-profile-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
 
-		<div class="form-group">
-			<h:outputText value="Username:" styleClass="control-label" />
-			<h:inputText id="username" value="#{employee.retrieved_employee.username}"
-				styleClass="form-control">
-			</h:inputText>
+			<div class="modal-header" style="background:#C7AC34">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h1 id="label" class="modal-title" style="color:white">Edit profile</h1>
+				<h4 style="color:white">Change your details through the following form</h4>
+			</div>
+
+			<div class="modal-body">
+				<!-- This is the form through which employee's details -->
+				<!-- can be updated                                    -->
+				<h:form id="change-detail-form" role="form"
+					onsubmit="return validateForm()">
+
+					<div class="form-group">
+						<h:outputText value="Username:" styleClass="control-label" />
+						<h:inputText id="username"
+							value="#{employee.retrieved_employee.username}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Password:" styleClass="control-label" />
+						<h:inputSecret id="password"
+							value="#{employee.retrieved_employee.password}"
+							styleClass="form-control">
+						</h:inputSecret>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Name:" styleClass="control-label" />
+						<h:inputText id="name" value="#{employee.retrieved_employee.name}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Surname:" styleClass="control-label" />
+						<h:inputText id="surname"
+							value="#{employee.retrieved_employee.surname}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="E-mail:" styleClass="control-label" />
+						<h:inputText id="email"
+							value="#{employee.retrieved_employee.e_mail}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Phone Number:" styleClass="control-label" />
+						<h:inputText id="phonenumber"
+							value="#{employee.retrieved_employee.phone_number}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Postal Address:" styleClass="control-label" />
+						<h:inputText id="postaladdress"
+							value="#{employee.retrieved_employee.postal_address}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="text-right">
+						<button class="btn btn-lg btn-default" data-dismiss="modal"
+							aria-hidden="true">Cancel</button>
+						<h:commandButton type="submit" value="Save"
+							action="#{employee.changeDetails()}" styleClass="btn btn-lg btn-info"
+							style="margin-left: 1rem" />
+					</div>
+
+				</h:form>
+			</div>
+
 		</div>
-
-		<div class="form-group">
-			<h:outputText value="Password:" styleClass="control-label" />
-			<h:inputSecret id="password" value="#{employee.retrieved_employee.password}"
-				styleClass="form-control">
-			</h:inputSecret>
-		</div>
-
-		<div class="form-group">
-			<h:outputText value="Name:" styleClass="control-label" />
-			<h:inputText id="name" value="#{employee.retrieved_employee.name}"
-				styleClass="form-control">
-			</h:inputText>
-		</div>
-
-		<div class="form-group">
-			<h:outputText value="Surname:" styleClass="control-label" />
-			<h:inputText id="surname" value="#{employee.retrieved_employee.surname}"
-				styleClass="form-control">
-			</h:inputText>
-		</div>
-
-		<div class="form-group">
-			<h:outputText value="E-mail:" styleClass="control-label" />
-			<h:inputText id="email" value="#{employee.retrieved_employee.e_mail}"
-				styleClass="form-control">
-			</h:inputText>
-		</div>
-
-		<div class="form-group">
-			<h:outputText value="Phone Number:" styleClass="control-label" />
-			<h:inputText id="phonenumber" value="#{employee.retrieved_employee.phone_number}"
-				styleClass="form-control">
-			</h:inputText>
-		</div>
-
-		<div class="form-group">
-			<h:outputText value="Postal Address:" styleClass="control-label" />
-			<h:inputText id="postaladdress" value="#{employee.retrieved_employee.postal_address}"
-				styleClass="form-control">
-			</h:inputText>
-		</div>
-
-		<div class="text-right">
-			<button class="btn btn-default" data-dismiss="modal"
-				aria-hidden="true">Cancel</button>
-			<h:commandButton type="submit" value="Save"
-				action="#{employee.changeDetails()}" styleClass="btn btn-success"
-				style="margin-left: 1rem" />
-		</div>
-
-	</h:form>
-</b:modal>
+	</div>
+</div>
 
 <body>
 	<div class="container-fluid" id="sfondo">
@@ -134,11 +156,8 @@
 						<div class="row">
 
 							<div class="col-lg-6" style="text-align: center;">
-								<h:form>
-									<b:button value="Edit Profile" look="info"
-										onclick="$('.modalPseudoClass').modal();return false;"
-										size="lg"></b:button>
-								</h:form>
+								<button class="btn btn-lg btn-info" data-toggle="modal"
+									data-target="#edit-profile-modal">Edit Profile</button>
 							</div>
 							<div class="col-lg-6" style="text-align: center;">
 								<h:form>
