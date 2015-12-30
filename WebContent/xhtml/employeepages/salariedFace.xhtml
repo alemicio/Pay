@@ -176,6 +176,9 @@
 							</div>
 						</div>
 
+						<hr
+							style="margin: 0; width: 100%; height: 1px; background: black; border: none;" />
+
 						<div class="row">
 							<div class="col-lg-6" style="text-align: left;">
 								<h3>Name: #{login.retrived_employee.name}</h3>
@@ -394,39 +397,67 @@
 					<br /> <br />
 
 					<div class="jumbotron" id="jumbotrone">
-						<h2>Union Services Order</h2>
-						<h4>Select the union's services you want to order</h4>
+						<div class="row">
+							<div class="col-lg-6 col-lg-offset-3">
 
-						<hr
-							style="margin: 0; width: 100%; height: 1px; background: black; border: none;" />
+								<div class="row">
+									<div class="col-xs-12">
+										<h2>Union Services Order</h2>
+										<h4>Select the union's services you want to order</h4>
 
-						<br />
-
-						<!-- ===================================== -->
-						<!-- === Union services selection form === -->
-						<!-- ===================================== -->
-						<h:form role="form">
-
-							<div class="form-group">
-								<p:selectManyMenu id="union-services"
-									value="#{union.services_selected}" var="union_service"
-									filter="true" filterMatchMode="contains" showCheckbox="true">
-									<f:selectItems value="#{union.service_names}"
-										var="union_service" itemLabel="#{union_service}"
-										itemValue="#{union_service}" />
-									<p:column>
-										<h:outputText value="#{union_service}" />
-									</p:column>
-								</p:selectManyMenu>
+										<hr
+											style="margin: 0; width: 100%; height: 1px; background: black; border: none;" />
+									</div>
+								</div>
 
 								<br />
 
-								<h:commandButton value="Confirm Order"
-									action="#{union.confirmOrder(employee.retrieved_employee)}"
-									styleClass="btn btn-lg btn-info" />
-							</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<!-- ===================================== -->
+										<!-- === Union services selection form === -->
+										<!-- ===================================== -->
+										<h:form role="form" styleClass="form-horizontal">
 
-						</h:form>
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<div class="col-xs-5 selectContainer">
+
+															<!-- <p:selectManyMenu id="union-services"
+															value="#{union.services_selected}" var="union_service"
+															filter="true" filterMatchMode="contains" showCheckbox="true"
+															styleClass="form-control">
+															<f:selectItems value="#{union.service_names}"
+																var="union_service" itemLabel="#{union_service}"
+																itemValue="#{union_service}" />
+															<p:column>
+																<h:outputText value="#{union_service}" />
+															</p:column>
+														</p:selectManyMenu>  -->
+
+															<select name="union-services" class="form-control"
+																title="Select services"
+																value="#{union.services_selected}">
+															</select> 
+														</div>
+													</div>
+												</div>
+
+
+												<div class="col-lg-6" style="text-align: right">
+													<h:commandButton value="Confirm Order"
+														action="#{union.confirmOrder(employee.retrieved_employee)}"
+														styleClass="btn btn-lg btn-info" />
+												</div>
+											</div>
+
+										</h:form>
+									</div>
+								</div>
+
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
