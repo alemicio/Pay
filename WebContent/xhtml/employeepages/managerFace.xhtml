@@ -46,16 +46,14 @@
 
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
-						<h:inputText id="username"
-							value="#{manager.username}"
+						<h:inputText id="username" value="#{manager.username}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Password:" styleClass="control-label" />
-						<h:inputSecret id="password"
-							value="#{manager.password}"
+						<h:inputSecret id="password" value="#{manager.password}"
 							styleClass="form-control">
 						</h:inputSecret>
 					</div>
@@ -69,40 +67,35 @@
 
 					<div class="form-group">
 						<h:outputText value="Surname:" styleClass="control-label" />
-						<h:inputText id="surname"
-							value="#{manager.surname}"
+						<h:inputText id="surname" value="#{manager.surname}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="E-mail:" styleClass="control-label" />
-						<h:inputText id="email"
-							value="#{manager.email}"
+						<h:inputText id="email" value="#{manager.email}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Phone Number:" styleClass="control-label" />
-						<h:inputText id="phonenumber"
-							value="#{manager.phone_number}"
+						<h:inputText id="phonenumber" value="#{manager.phone_number}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Postal Address:" styleClass="control-label" />
-						<h:inputText id="postaladdress"
-							value="#{manager.postal_address}"
+						<h:inputText id="postaladdress" value="#{manager.postal_address}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
-					
+
 					<div class="form-group">
 						<h:outputText value="Monthly Salary:" styleClass="control-label" />
-						<h:inputText id="monthlysalary"
-							value="#{manager.monthly_salary}"
+						<h:inputText id="monthlysalary" value="#{manager.monthly_salary}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -110,9 +103,12 @@
 					<div class="text-right">
 						<button class="btn btn-lg btn-default" data-dismiss="modal"
 							aria-hidden="true">Cancel</button>
+							
 						<h:commandButton type="submit" value="Save"
 							action="#{manager.addSalariedEmployee()}"
-							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
+							<f:ajax execute="@form" render=":salaried_form_list:salariedEmployeeList" />
+						</h:commandButton>
 					</div>
 
 				</h:form>
@@ -122,7 +118,8 @@
 	</div>
 </div>
 
-<div id="add-commissioned-employee-modal" class="modal fade" role="dialog">
+<div id="add-commissioned-employee-modal" class="modal fade"
+	role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 
@@ -143,16 +140,14 @@
 
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
-						<h:inputText id="username"
-							value="#{manager.username}"
+						<h:inputText id="username" value="#{manager.username}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Password:" styleClass="control-label" />
-						<h:inputSecret id="password"
-							value="#{manager.password}"
+						<h:inputSecret id="password" value="#{manager.password}"
 							styleClass="form-control">
 						</h:inputSecret>
 					</div>
@@ -166,48 +161,42 @@
 
 					<div class="form-group">
 						<h:outputText value="Surname:" styleClass="control-label" />
-						<h:inputText id="surname"
-							value="#{manager.surname}"
+						<h:inputText id="surname" value="#{manager.surname}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="E-mail:" styleClass="control-label" />
-						<h:inputText id="email"
-							value="#{manager.email}"
+						<h:inputText id="email" value="#{manager.email}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Phone Number:" styleClass="control-label" />
-						<h:inputText id="phonenumber"
-							value="#{manager.phone_number}"
+						<h:inputText id="phonenumber" value="#{manager.phone_number}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Postal Address:" styleClass="control-label" />
-						<h:inputText id="postaladdress"
-							value="#{manager.postal_address}"
+						<h:inputText id="postaladdress" value="#{manager.postal_address}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
-					
+
 					<div class="form-group">
 						<h:outputText value="Monthly Salary:" styleClass="control-label" />
-						<h:inputText id="monthlysalary"
-							value="#{manager.monthly_salary}"
+						<h:inputText id="monthlysalary" value="#{manager.monthly_salary}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
-					
+
 					<div class="form-group">
 						<h:outputText value="Sale Rate:" styleClass="control-label" />
-						<h:inputText id="salerate"
-							value="#{manager.sale_rate}"
+						<h:inputText id="salerate" value="#{manager.sale_rate}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -215,9 +204,12 @@
 					<div class="text-right">
 						<button class="btn btn-lg btn-default" data-dismiss="modal"
 							aria-hidden="true">Cancel</button>
+							
 						<h:commandButton type="submit" value="Save"
 							action="#{manager.addCommissionedEmployee()}"
-							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
+							<f:ajax execute="@form" render=":commissioned_form_list:commissionedEmployeeList" />
+						</h:commandButton>
 					</div>
 
 				</h:form>
@@ -248,16 +240,14 @@
 
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
-						<h:inputText id="username"
-							value="#{manager.username}"
+						<h:inputText id="username" value="#{manager.username}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Password:" styleClass="control-label" />
-						<h:inputSecret id="password"
-							value="#{manager.password}"
+						<h:inputSecret id="password" value="#{manager.password}"
 							styleClass="form-control">
 						</h:inputSecret>
 					</div>
@@ -271,50 +261,48 @@
 
 					<div class="form-group">
 						<h:outputText value="Surname:" styleClass="control-label" />
-						<h:inputText id="surname"
-							value="#{manager.surname}"
+						<h:inputText id="surname" value="#{manager.surname}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="E-mail:" styleClass="control-label" />
-						<h:inputText id="email"
-							value="#{manager.email}"
+						<h:inputText id="email" value="#{manager.email}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Phone Number:" styleClass="control-label" />
-						<h:inputText id="phonenumber"
-							value="#{manager.phone_number}"
+						<h:inputText id="phonenumber" value="#{manager.phone_number}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Postal Address:" styleClass="control-label" />
-						<h:inputText id="postaladdress"
-							value="#{manager.postal_address}"
+						<h:inputText id="postaladdress" value="#{manager.postal_address}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
-					
+
 					<div class="form-group">
 						<h:outputText value="Hourly Rate:" styleClass="control-label" />
-						<h:inputText id="hourlyrate"
-							value="#{manager.hourly_rate}"
+						<h:inputText id="hourlyrate" value="#{manager.hourly_rate}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
-					
+
 					<div class="text-right">
 						<button class="btn btn-lg btn-default" data-dismiss="modal"
 							aria-hidden="true">Cancel</button>
+							
 						<h:commandButton type="submit" value="Save"
 							action="#{manager.addContractorEmployee()}"
-							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
+							<f:ajax execute="@form" render=":contractor_form_list:contractorEmployeeList" />
+						</h:commandButton>
 					</div>
 
 				</h:form>
@@ -634,7 +622,8 @@
 					style="margin-bottom:20px">
 					<f:facet name="header">
 						SALARIED EMPLOYEES
-						<a data-toggle="modal" href="#add-salaried-employee-modal" style="float:right;"><i class="glyphicon glyphicon-plus"></i></a>
+						<a data-toggle="modal" href="#add-salaried-employee-modal"
+							style="float: right;"><i class="glyphicon glyphicon-plus"></i></a>
 					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onSalariedRowEdit}"
@@ -724,7 +713,8 @@
 					editable="true" style="margin-bottom:20px">
 					<f:facet name="header">
 						COMMISSIONED EMPLOYEES
-						<a data-toggle="modal" href="#add-commissioned-employee-modal" style="float:right;"><i class="glyphicon glyphicon-plus"></i></a>
+						<a data-toggle="modal" href="#add-commissioned-employee-modal"
+							style="float: right;"><i class="glyphicon glyphicon-plus"></i></a>
 					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onCommissionedRowEdit}"
@@ -825,7 +815,8 @@
 					style="margin-bottom:20px">
 					<f:facet name="header">
 						CONTRACTOR EMPLOYEES
-						<a data-toggle="modal" href="#add-contractor-employee-modal" style="float:right;"><i class="glyphicon glyphicon-plus"></i></a>
+						<a data-toggle="modal" href="#add-contractor-employee-modal"
+							style="float: right;"><i class="glyphicon glyphicon-plus"></i></a>
 					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onContractorRowEdit}"

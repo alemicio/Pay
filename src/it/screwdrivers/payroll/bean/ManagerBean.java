@@ -6,6 +6,7 @@ import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
