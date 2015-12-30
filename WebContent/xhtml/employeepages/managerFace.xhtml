@@ -47,7 +47,7 @@
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
 						<h:inputText id="username"
-							value="#{employee.username}"
+							value="#{manager.username}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -55,14 +55,14 @@
 					<div class="form-group">
 						<h:outputText value="Password:" styleClass="control-label" />
 						<h:inputSecret id="password"
-							value="#{employee.password}"
+							value="#{manager.password}"
 							styleClass="form-control">
 						</h:inputSecret>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Name:" styleClass="control-label" />
-						<h:inputText id="name" value="#{employee.name}"
+						<h:inputText id="name" value="#{manager.name}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -70,7 +70,7 @@
 					<div class="form-group">
 						<h:outputText value="Surname:" styleClass="control-label" />
 						<h:inputText id="surname"
-							value="#{employee.surname}"
+							value="#{manager.surname}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -78,7 +78,7 @@
 					<div class="form-group">
 						<h:outputText value="E-mail:" styleClass="control-label" />
 						<h:inputText id="email"
-							value="#{employee.email}"
+							value="#{manager.email}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -86,7 +86,7 @@
 					<div class="form-group">
 						<h:outputText value="Phone Number:" styleClass="control-label" />
 						<h:inputText id="phonenumber"
-							value="#{employee.phone_number}"
+							value="#{manager.phone_number}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -94,7 +94,7 @@
 					<div class="form-group">
 						<h:outputText value="Postal Address:" styleClass="control-label" />
 						<h:inputText id="postaladdress"
-							value="#{employee.postal_address}"
+							value="#{manager.postal_address}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -102,7 +102,7 @@
 					<div class="form-group">
 						<h:outputText value="Monthly Salary:" styleClass="control-label" />
 						<h:inputText id="monthlysalary"
-							value="#{employee.monthly_salary}"
+							value="#{manager.monthly_salary}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -111,7 +111,7 @@
 						<button class="btn btn-lg btn-default" data-dismiss="modal"
 							aria-hidden="true">Cancel</button>
 						<h:commandButton type="submit" value="Save"
-							action="#{employee.addSalariedEmployee()}"
+							action="#{manager.addSalariedEmployee()}"
 							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
 					</div>
 
@@ -144,7 +144,7 @@
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
 						<h:inputText id="username"
-							value="#{employee.username}"
+							value="#{manager.username}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -152,14 +152,14 @@
 					<div class="form-group">
 						<h:outputText value="Password:" styleClass="control-label" />
 						<h:inputSecret id="password"
-							value="#{employee.password}"
+							value="#{manager.password}"
 							styleClass="form-control">
 						</h:inputSecret>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Name:" styleClass="control-label" />
-						<h:inputText id="name" value="#{employee.name}"
+						<h:inputText id="name" value="#{manager.name}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -167,7 +167,7 @@
 					<div class="form-group">
 						<h:outputText value="Surname:" styleClass="control-label" />
 						<h:inputText id="surname"
-							value="#{employee.surname}"
+							value="#{manager.surname}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -175,7 +175,7 @@
 					<div class="form-group">
 						<h:outputText value="E-mail:" styleClass="control-label" />
 						<h:inputText id="email"
-							value="#{employee.email}"
+							value="#{manager.email}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -183,7 +183,7 @@
 					<div class="form-group">
 						<h:outputText value="Phone Number:" styleClass="control-label" />
 						<h:inputText id="phonenumber"
-							value="#{employee.phone_number}"
+							value="#{manager.phone_number}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -191,7 +191,7 @@
 					<div class="form-group">
 						<h:outputText value="Postal Address:" styleClass="control-label" />
 						<h:inputText id="postaladdress"
-							value="#{employee.postal_address}"
+							value="#{manager.postal_address}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -199,7 +199,7 @@
 					<div class="form-group">
 						<h:outputText value="Monthly Salary:" styleClass="control-label" />
 						<h:inputText id="monthlysalary"
-							value="#{employee.monthly_salary}"
+							value="#{manager.monthly_salary}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -207,7 +207,7 @@
 					<div class="form-group">
 						<h:outputText value="Sale Rate:" styleClass="control-label" />
 						<h:inputText id="salerate"
-							value="#{employee.sale_rate}"
+							value="#{manager.sale_rate}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -216,7 +216,7 @@
 						<button class="btn btn-lg btn-default" data-dismiss="modal"
 							aria-hidden="true">Cancel</button>
 						<h:commandButton type="submit" value="Save"
-							action="#{employee.addCommissionedEmployee()}"
+							action="#{manager.addCommissionedEmployee()}"
 							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
 					</div>
 
@@ -249,7 +249,7 @@
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
 						<h:inputText id="username"
-							value="#{employee.username}"
+							value="#{manager.username}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -257,14 +257,14 @@
 					<div class="form-group">
 						<h:outputText value="Password:" styleClass="control-label" />
 						<h:inputSecret id="password"
-							value="#{employee.password}"
+							value="#{manager.password}"
 							styleClass="form-control">
 						</h:inputSecret>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Name:" styleClass="control-label" />
-						<h:inputText id="name" value="#{employee.name}"
+						<h:inputText id="name" value="#{manager.name}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -272,7 +272,7 @@
 					<div class="form-group">
 						<h:outputText value="Surname:" styleClass="control-label" />
 						<h:inputText id="surname"
-							value="#{employee.surname}"
+							value="#{manager.surname}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -280,7 +280,7 @@
 					<div class="form-group">
 						<h:outputText value="E-mail:" styleClass="control-label" />
 						<h:inputText id="email"
-							value="#{employee.email}"
+							value="#{manager.email}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -288,7 +288,7 @@
 					<div class="form-group">
 						<h:outputText value="Phone Number:" styleClass="control-label" />
 						<h:inputText id="phonenumber"
-							value="#{employee.phone_number}"
+							value="#{manager.phone_number}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -296,7 +296,7 @@
 					<div class="form-group">
 						<h:outputText value="Postal Address:" styleClass="control-label" />
 						<h:inputText id="postaladdress"
-							value="#{employee.postal_address}"
+							value="#{manager.postal_address}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -304,7 +304,7 @@
 					<div class="form-group">
 						<h:outputText value="Hourly Rate:" styleClass="control-label" />
 						<h:inputText id="hourlyrate"
-							value="#{employee.hourly_rate}"
+							value="#{manager.hourly_rate}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -313,7 +313,7 @@
 						<button class="btn btn-lg btn-default" data-dismiss="modal"
 							aria-hidden="true">Cancel</button>
 						<h:commandButton type="submit" value="Save"
-							action="#{employee.addContractorEmployee()}"
+							action="#{manager.addContractorEmployee()}"
 							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
 					</div>
 

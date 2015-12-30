@@ -32,6 +32,21 @@ public class ManagerBean implements Serializable {
 	private List<CommissionedEmployee> com_employees;
 	private List<EmployeeManager> m_employees;
 	private List<ContractorEmployee> con_employees;
+	
+	// These are all the employees attributes. They will be initialized
+	// to null (0 for the float attributes) and used as
+	// temporary attributes during employee creation. Since
+	// the employee is created, they will be reset
+	private String username;
+	private String password;
+	private String name;
+	private String surname;
+	private String email;
+	private String phone_number;
+	private String postal_address;
+	private float monthly_salary;
+	private float sale_rate;
+	private float hourly_rate;
 
 	@PostConstruct
 	public void init() {
@@ -40,6 +55,17 @@ public class ManagerBean implements Serializable {
 		com_employees = e_controller.getAllCommissioned();
 		con_employees = e_controller.getAllContractors();
 		m_employees = e_controller.getAllManagers();
+		
+		username = null;
+		password = null;
+		name = null;
+		surname = null;
+		email = null;
+		phone_number = null;
+		postal_address = null;
+		monthly_salary = 0;
+		sale_rate = 0;
+		hourly_rate = 0;
 	}
 
 	public void onSalariedRowEdit(RowEditEvent event) {
@@ -175,6 +201,78 @@ public class ManagerBean implements Serializable {
 		}
 	}
 
+	public void addSalariedEmployee() {
+
+		SalariedEmployee se = new SalariedEmployee();
+
+		se.setUsername(username);
+		se.setPassword(password);
+		se.setName(name);
+		se.setSurname(surname);
+		se.setE_mail(email);
+		se.setPhone_number(phone_number);
+		se.setPostal_address(postal_address);
+		se.setMonthly_salary(monthly_salary);
+
+		e_controller.addEmployee(se);
+		resetAttributes();
+
+		updateSalariedEmployeeList();
+	}
+
+	public void addCommissionedEmployee() {
+
+		CommissionedEmployee ce = new CommissionedEmployee();
+
+		ce.setUsername(username);
+		ce.setPassword(password);
+		ce.setName(name);
+		ce.setSurname(surname);
+		ce.setE_mail(email);
+		ce.setPhone_number(phone_number);
+		ce.setPostal_address(postal_address);
+		ce.setMonthly_salary(monthly_salary);
+		ce.setSale_rate(sale_rate);
+
+		e_controller.addEmployee(ce);
+		resetAttributes();
+
+		updateCommissionedEmployeeList();
+	}
+
+	public void addContractorEmployee() {
+
+		ContractorEmployee ce = new ContractorEmployee();
+
+		ce.setUsername(username);
+		ce.setPassword(password);
+		ce.setName(name);
+		ce.setSurname(surname);
+		ce.setE_mail(email);
+		ce.setPhone_number(phone_number);
+		ce.setPostal_address(postal_address);
+		ce.setHourly_rate(hourly_rate);
+
+		e_controller.addEmployee(ce);
+		resetAttributes();
+
+		updateContractorEmployeeList();
+	}
+
+	private void resetAttributes() {
+		username = null;
+		password = null;
+		name = null;
+		surname = null;
+		email = null;
+		phone_number = null;
+		postal_address = null;
+		monthly_salary = 0;
+		sale_rate = 0;
+		hourly_rate = 0;
+	}
+
+	//=== Lists update methods ===
 	public void updateSalariedEmployeeList() {
 		s_employees = e_controller.getAllSalaried();
 	}
@@ -191,6 +289,8 @@ public class ManagerBean implements Serializable {
 		m_employees = e_controller.getAllManagers();
 	}
 
+	
+	//=== Getters and Setters ===
 	public List<SalariedEmployee> getS_employees() {
 		return s_employees;
 	}
@@ -206,5 +306,85 @@ public class ManagerBean implements Serializable {
 	public List<ContractorEmployee> getCon_employees() {
 		return con_employees;
 	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+
+	public String getPostal_address() {
+		return postal_address;
+	}
+
+	public void setPostal_address(String postal_address) {
+		this.postal_address = postal_address;
+	}
+
+	public float getMonthly_salary() {
+		return monthly_salary;
+	}
+
+	public void setMonthly_salary(float monthly_salary) {
+		this.monthly_salary = monthly_salary;
+	}
+
+	public float getSale_rate() {
+		return sale_rate;
+	}
+
+	public void setSale_rate(float sale_rate) {
+		this.sale_rate = sale_rate;
+	}
+
+	public float getHourly_rate() {
+		return hourly_rate;
+	}
+
+	public void setHourly_rate(float hourly_rate) {
+		this.hourly_rate = hourly_rate;
+	}
+	
 }
