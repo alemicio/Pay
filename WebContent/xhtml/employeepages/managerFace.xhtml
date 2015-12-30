@@ -325,26 +325,37 @@
 
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
+			<br/>
+		
 			<h:form id="salaried_form_list">
 				<p:growl id="salaried_list_msgs" showDetail="true" />
 
 				<p:dataTable id="salariedEmployeeList" var="SalariedEmployee"
 					value="#{manager.s_employees}" editable="true"
 					style="margin-bottom:20px">
-					<f:facet name="header">SALARIED EMPLOYEES</f:facet>
+					<f:facet name="header">
+						SALARIED EMPLOYEES
+						<h:commandLink action="#{order.deleteAction(o)}"
+							style="float:right;">
+							<i class="glyphicon glyphicon-plus"></i>
+						</h:commandLink>
+					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onSalariedRowEdit}"
 						update=":salaried_form_list:salaried_list_msgs" />
-					<p:ajax event="rowEditCancel" update=":salaried_form_list:salaried_list_msgs, :salaried_form_list:salariedEmployeeList" listener="#{manager.onSalariedRowCancel}" oncomplete="javascript:location.reload(true)"/>
-		
+					<p:ajax event="rowEditCancel"
+						update=":salaried_form_list:salaried_list_msgs, :salaried_form_list:salariedEmployeeList"
+						listener="#{manager.onSalariedRowCancel}"
+						oncomplete="javascript:location.reload(true)" />
+
 					<p:column headerText="Name">
 						<p:cellEditor>
 							<f:facet name="output">
 								<h:outputText value="#{SalariedEmployee.name}" />
 							</f:facet>
-							<f:facet name="input" >
-								<p:inputText disabled="true" id="modelInput" value="#{SalariedEmployee.name}"
-									style="width:100%" />
+							<f:facet name="input">
+								<p:inputText disabled="true" id="modelInput"
+									value="#{SalariedEmployee.name}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -355,7 +366,7 @@
 								<h:outputText value="#{SalariedEmployee.surname}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText  disabled="true" value="#{SalariedEmployee.surname}"
+								<p:inputText disabled="true" value="#{SalariedEmployee.surname}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -367,7 +378,7 @@
 								<h:outputText value="#{SalariedEmployee.e_mail}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText  disabled="true" value="#{SalariedEmployee.e_mail}"
+								<p:inputText disabled="true" value="#{SalariedEmployee.e_mail}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -379,8 +390,8 @@
 								<h:outputText value="#{SalariedEmployee.phone_number}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText   disabled="true" value="#{SalariedEmployee.phone_number}"
-									style="width:100%" />
+								<p:inputText disabled="true"
+									value="#{SalariedEmployee.phone_number}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -396,33 +407,45 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					
-					
-					
 
-					<p:column style="width:32px">
-						<p:rowEditor />
+					<p:column headerText="Actions" style="width:7rem">
+						<div>
+							<p:rowEditor style="float: left;" />
+							<h:commandLink action="#{order.deleteAction(o)}"
+								style="float:left; margin-left:1rem">
+								<i class="glyphicon glyphicon-minus"></i>
+							</h:commandLink>
+						</div>
 					</p:column>
-				</p:dataTable>
 
+				</p:dataTable>
 
 			</h:form>
 		</div>
 	</div>
-	
+
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
 			<h:form id="commissioned_form_list">
 				<p:growl id="commissioned_list_msgs" showDetail="true" />
 
-				<p:dataTable id="commissionedEmployeeList" var="CommissionedEmployee"
-					value="#{manager.com_employees}" editable="true"
-					style="margin-bottom:20px">
-					<f:facet name="header">COMMISSIONED EMPLOYEES</f:facet>
+				<p:dataTable id="commissionedEmployeeList"
+					var="CommissionedEmployee" value="#{manager.com_employees}"
+					editable="true" style="margin-bottom:20px">
+					<f:facet name="header">
+						COMMISSIONED EMPLOYEES
+						<h:commandLink action="#{order.deleteAction(o)}"
+							style="float:right;">
+							<i class="glyphicon glyphicon-plus"></i>
+						</h:commandLink>
+					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onCommissionedRowEdit}"
 						update=":commissioned_form_list:commissioned_list_msgs" />
-					<p:ajax event="rowEditCancel" update=":commissioned_form_list:commissioned_list_msgs, :commissioned_form_list:commissionedEmployeeList" listener="#{manager.onCommissionedRowCancel}" oncomplete="javascript:location.reload(true)"/>
+					<p:ajax event="rowEditCancel"
+						update=":commissioned_form_list:commissioned_list_msgs, :commissioned_form_list:commissionedEmployeeList"
+						listener="#{manager.onCommissionedRowCancel}"
+						oncomplete="javascript:location.reload(true)" />
 
 					<p:column headerText="Name">
 						<p:cellEditor>
@@ -430,8 +453,8 @@
 								<h:outputText value="#{CommissionedEmployee.name}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="modelInput2" disabled="true" value="#{CommissionedEmployee.name}"
-									style="width:100%" />
+								<p:inputText id="modelInput2" disabled="true"
+									value="#{CommissionedEmployee.name}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -442,8 +465,8 @@
 								<h:outputText value="#{CommissionedEmployee.surname}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText disabled="true" value="#{CommissionedEmployee.surname}"
-									style="width:100%" />
+								<p:inputText disabled="true"
+									value="#{CommissionedEmployee.surname}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -454,8 +477,8 @@
 								<h:outputText value="#{CommissionedEmployee.e_mail}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText disabled="true"  value="#{CommissionedEmployee.e_mail}"
-									style="width:100%" />
+								<p:inputText disabled="true"
+									value="#{CommissionedEmployee.e_mail}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -466,8 +489,8 @@
 								<h:outputText value="#{CommissionedEmployee.phone_number}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText disabled="true" value="#{CommissionedEmployee.phone_number}"
-									style="width:100%" />
+								<p:inputText disabled="true"
+									value="#{CommissionedEmployee.phone_number}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -483,7 +506,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					
+
 					<p:column headerText="Sales Rate">
 						<p:cellEditor>
 							<f:facet name="output">
@@ -496,16 +519,21 @@
 						</p:cellEditor>
 					</p:column>
 
-					<p:column style="width:32px">
-						<p:rowEditor />
+					<p:column headerText="Actions" style="width:7rem">
+						<div>
+							<p:rowEditor style="float: left;" />
+							<h:commandLink action="#{order.deleteAction(o)}"
+								style="float:left; margin-left:1rem">
+								<i class="glyphicon glyphicon-minus"></i>
+							</h:commandLink>
+						</div>
 					</p:column>
+
 				</p:dataTable>
-
-
 			</h:form>
 		</div>
 	</div>
-	
+
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
 			<h:form id="contractor_form_list">
@@ -514,11 +542,20 @@
 				<p:dataTable id="contractorEmployeeList" var="ContractorEmployee"
 					value="#{manager.con_employees}" editable="true"
 					style="margin-bottom:20px">
-					<f:facet name="header">CONTRACTOR EMPLOYEES</f:facet>
+					<f:facet name="header">
+						CONTRACTOR EMPLOYEES 
+						<h:commandLink action="#{order.deleteAction(o)}"
+							style="float:right;">
+							<i class="glyphicon glyphicon-plus"></i>
+						</h:commandLink>
+					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onContractorRowEdit}"
 						update=":contractor_form_list:contractor_list_msgs" />
-					<p:ajax event="rowEditCancel" update=":contractor_form_list:contractor_list_msgs, :contractor_form_list:contractorEmployeeList" listener="#{manager.onContractorRowCancel}" oncomplete="javascript:location.reload(true)"/>
+					<p:ajax event="rowEditCancel"
+						update=":contractor_form_list:contractor_list_msgs, :contractor_form_list:contractorEmployeeList"
+						listener="#{manager.onContractorRowCancel}"
+						oncomplete="javascript:location.reload(true)" />
 
 					<p:column headerText="Name">
 						<p:cellEditor>
@@ -526,8 +563,8 @@
 								<h:outputText value="#{ContractorEmployee.name}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="modelInput2" disabled="true" value="#{ContractorEmployee.name}"
-									style="width:100%" />
+								<p:inputText id="modelInput2" disabled="true"
+									value="#{ContractorEmployee.name}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -538,8 +575,8 @@
 								<h:outputText value="#{ContractorEmployee.surname}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText disabled="true" value="#{ContractorEmployee.surname}"
-									style="width:100%" />
+								<p:inputText disabled="true"
+									value="#{ContractorEmployee.surname}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -550,8 +587,8 @@
 								<h:outputText value="#{ContractorEmployee.e_mail}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText disabled="true" value="#{ContractorEmployee.e_mail}"
-									style="width:100%" />
+								<p:inputText disabled="true"
+									value="#{ContractorEmployee.e_mail}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -562,8 +599,8 @@
 								<h:outputText value="#{ContractorEmployee.phone_number}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText disabled="true"  value="#{ContractorEmployee.phone_number}"
-									style="width:100%" />
+								<p:inputText disabled="true"
+									value="#{ContractorEmployee.phone_number}" style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -579,21 +616,21 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					
-				
 
-					<p:column style="width:32px">
-						<p:rowEditor />
+					<p:column headerText="Actions" style="width:7rem">
+						<div>
+							<p:rowEditor style="float: left;" />
+							<h:commandLink action="#{order.deleteAction(o)}"
+								style="float:left; margin-left:1rem">
+								<i class="glyphicon glyphicon-minus"></i>
+							</h:commandLink>
+						</div>
 					</p:column>
+
 				</p:dataTable>
-
-
 			</h:form>
 		</div>
 	</div>
-	
-	
-
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">
