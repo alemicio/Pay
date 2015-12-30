@@ -523,8 +523,8 @@
 					editable="true" style="margin-bottom:20px">
 					<f:facet name="header">
 						COMMISSIONED EMPLOYEES
-						<h:commandLink action="#{order.deleteAction(o)}"
-							style="float:right;">
+						<h:commandLink onclick="$('#add-contractor-employee-modal').modal('show');"
+							immediate="true" style="float:right;">
 							<i class="glyphicon glyphicon-plus"></i>
 						</h:commandLink>
 					</f:facet>
@@ -632,9 +632,9 @@
 					value="#{manager.con_employees}" editable="true"
 					style="margin-bottom:20px">
 					<f:facet name="header">
-						CONTRACTOR EMPLOYEES 
-						<h:commandLink action="#{order.deleteAction(o)}"
-							style="float:right;">
+						CONTRACTOR EMPLOYEES
+						<h:commandLink onclick="$('#add-contractor-employee-modal').modal('show');"
+							immediate="true" style="float:right;">
 							<i class="glyphicon glyphicon-plus"></i>
 						</h:commandLink>
 					</f:facet>
