@@ -25,6 +25,192 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 
+<div id="add-salaried-employee-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header" style="background: #C7AC34">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h1 id="label" class="modal-title" style="color: white">Add
+					Salaried Employee</h1>
+				<h4 style="color: white">Insert employee's details in the
+					following form</h4>
+			</div>
+
+			<div class="modal-body">
+				<!-- This is the form through which employee's details -->
+				<!-- can be updated                                    -->
+				<h:form id="add-salaried-employee-form" role="form"
+					onsubmit="return validateForm()">
+
+					<div class="form-group">
+						<h:outputText value="Username:" styleClass="control-label" />
+						<h:inputText id="username"
+							value="#{employee.username}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Password:" styleClass="control-label" />
+						<h:inputSecret id="password"
+							value="#{employee.password}"
+							styleClass="form-control">
+						</h:inputSecret>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Name:" styleClass="control-label" />
+						<h:inputText id="name" value="#{employee.name}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Surname:" styleClass="control-label" />
+						<h:inputText id="surname"
+							value="#{employee.surname}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="E-mail:" styleClass="control-label" />
+						<h:inputText id="email"
+							value="#{employee.email}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Phone Number:" styleClass="control-label" />
+						<h:inputText id="phonenumber"
+							value="#{employee.phone_number}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Postal Address:" styleClass="control-label" />
+						<h:inputText id="postaladdress"
+							value="#{employee.postal_address}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+					
+					<div class="form-group">
+						<h:outputText value="Monthly Salary:" styleClass="control-label" />
+						<h:inputText id="monthlysalary"
+							value="#{employee.monthly_salary}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="text-right">
+						<button class="btn btn-lg btn-default" data-dismiss="modal"
+							aria-hidden="true">Cancel</button>
+						<h:commandButton type="submit" value="Save"
+							action="#{employee.addSalariedEmployee()}"
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
+					</div>
+
+				</h:form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="add-commissioned-employee-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header" style="background: #C7AC34">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h1 id="label" class="modal-title" style="color: white">Add
+					Commissioned Employee</h1>
+				<h4 style="color: white">Insert employee's details in the
+					following form</h4>
+			</div>
+
+			<div class="modal-body">
+				<!-- This is the form through which employee's details -->
+				<!-- can be updated                                    -->
+				<h:form id="add-commissioned-employee-form" role="form"
+					onsubmit="return validateForm()">
+
+					<div class="form-group">
+						<h:outputText value="Username:" styleClass="control-label" />
+						<h:inputText id="username"
+							value="#{employee.retrieved_employee.username}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Password:" styleClass="control-label" />
+						<h:inputSecret id="password"
+							value="#{employee.retrieved_employee.password}"
+							styleClass="form-control">
+						</h:inputSecret>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Name:" styleClass="control-label" />
+						<h:inputText id="name" value="#{employee.retrieved_employee.name}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Surname:" styleClass="control-label" />
+						<h:inputText id="surname"
+							value="#{employee.retrieved_employee.surname}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="E-mail:" styleClass="control-label" />
+						<h:inputText id="email"
+							value="#{employee.retrieved_employee.e_mail}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Phone Number:" styleClass="control-label" />
+						<h:inputText id="phonenumber"
+							value="#{employee.retrieved_employee.phone_number}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Postal Address:" styleClass="control-label" />
+						<h:inputText id="postaladdress"
+							value="#{employee.retrieved_employee.postal_address}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="text-right">
+						<button class="btn btn-lg btn-default" data-dismiss="modal"
+							aria-hidden="true">Cancel</button>
+						<h:commandButton type="submit" value="Save"
+							action="#{employee.changeDetails()}"
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
+					</div>
+
+				</h:form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
 <div id="add-contractor-employee-modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -41,7 +227,7 @@
 			<div class="modal-body">
 				<!-- This is the form through which employee's details -->
 				<!-- can be updated                                    -->
-				<h:form id="change-detail-form" role="form"
+				<h:form id="add-contractor-employee-form" role="form"
 					onsubmit="return validateForm()">
 
 					<div class="form-group">
@@ -424,10 +610,7 @@
 					style="margin-bottom:20px">
 					<f:facet name="header">
 						SALARIED EMPLOYEES
-						<h:commandLink action="#{order.deleteAction(o)}"
-							style="float:right;">
-							<i class="glyphicon glyphicon-plus"></i>
-						</h:commandLink>
+						<a data-toggle="modal" href="#add-salaried-employee-modal" style="float:right;"><i class="glyphicon glyphicon-plus"></i></a>
 					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onSalariedRowEdit}"
@@ -523,10 +706,7 @@
 					editable="true" style="margin-bottom:20px">
 					<f:facet name="header">
 						COMMISSIONED EMPLOYEES
-						<h:commandLink onclick="$('#add-contractor-employee-modal').modal('show');"
-							immediate="true" style="float:right;">
-							<i class="glyphicon glyphicon-plus"></i>
-						</h:commandLink>
+						<a data-toggle="modal" href="#add-commissioned-employee-modal" style="float:right;"><i class="glyphicon glyphicon-plus"></i></a>
 					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onCommissionedRowEdit}"
@@ -633,10 +813,7 @@
 					style="margin-bottom:20px">
 					<f:facet name="header">
 						CONTRACTOR EMPLOYEES
-						<h:commandLink onclick="$('#add-contractor-employee-modal').modal('show');"
-							immediate="true" style="float:right;">
-							<i class="glyphicon glyphicon-plus"></i>
-						</h:commandLink>
+						<a data-toggle="modal" href="#add-contractor-employee-modal" style="float:right;"><i class="glyphicon glyphicon-plus"></i></a>
 					</f:facet>
 
 					<p:ajax event="rowEdit" listener="#{manager.onContractorRowEdit}"

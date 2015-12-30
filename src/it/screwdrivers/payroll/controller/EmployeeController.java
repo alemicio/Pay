@@ -94,7 +94,6 @@ public class EmployeeController {
 				break;
 			}
 		}
-
 	}
 
 	public void updateCommissionedEmployeeMonthlySalarySaleRate(int id_employee, float monthly_salary, float sale_rate) {
@@ -141,5 +140,9 @@ public class EmployeeController {
 			}
 		}
 		return response;
+	}
+	
+	public void addEmployee(Employee employee){
+		e_dao.add(employee);
 	}
 }
