@@ -142,7 +142,6 @@
 		</b:navBar>
 
 		<div class="container">
-
 			<!-- This jumbotron contains the user's profile details -->
 			<div class="jumbotron" id="jumbotrone">
 				<div class="row">
@@ -155,8 +154,8 @@
 									id="bordino" />
 							</div>
 						</div>
-						<div class="row">
 
+						<div class="row">
 							<div class="col-lg-6" style="text-align: center;">
 								<button class="btn btn-lg btn-info" data-toggle="modal"
 									data-target="#edit-profile-modal">Edit Profile</button>
@@ -171,22 +170,28 @@
 					</div>
 
 					<div class="col-lg-9">
-						<h1>Benvenuto #{login.retrived_employee.username}</h1>
+						<div class="row">
+							<div class="col-xs-12">
+								<h1>Benvenuto #{login.retrived_employee.username}</h1>
+							</div>
+						</div>
+
 						<div class="row">
 							<div class="col-lg-6" style="text-align: left;">
 								<h3>Name: #{login.retrived_employee.name}</h3>
 								<h3>E-mail: #{login.retrived_employee.e_mail}</h3>
 								<h3>Address: #{login.retrived_employee.postal_address}</h3>
 							</div>
+
 							<div class="col-lg-6" style="text-align: left;">
 								<h3>Surname: #{login.retrived_employee.surname}</h3>
 								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
-
 		</div>
 
 	</div>
