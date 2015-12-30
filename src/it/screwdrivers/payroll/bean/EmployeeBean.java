@@ -183,6 +183,8 @@ public class EmployeeBean implements Serializable {
 
 		e_controller.addEmployee(ce);
 		resetAttributes();
+		
+		m_bean.updateCommissionedEmployeeList();
 	}
 
 	public void addContractorEmployee() {
@@ -200,6 +202,8 @@ public class EmployeeBean implements Serializable {
 		
 		e_controller.addEmployee(ce);
 		resetAttributes();
+		
+		m_bean.updateContractorEmployeeList();
 	}
 
 	private void resetAttributes() {
