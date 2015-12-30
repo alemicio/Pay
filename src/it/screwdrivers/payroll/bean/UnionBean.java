@@ -40,7 +40,7 @@ public class UnionBean implements Serializable {
 	private List<String> associated_unions;
 	private List<UnionServiceAssociation> union_service_associations;
 	private List<String> service_names;
-	private String services_selected;
+	private List<String> services_selected;
 	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();;
 
 	public String getUnion(Employee e) {
@@ -85,42 +85,42 @@ public class UnionBean implements Serializable {
 				.retrieveUnionServiceAssociations(e);
 	}
 
-	public String[] getSelectedUnionServicesNames() {
-
-		String[] names;
-
-		if (services_selected.contains(",")) {
-			names = services_selected.split(",");
-		} else {
-			names = new String[1];
-			names[0] = services_selected;
-		}
-
-		return names;
-	}
+	/*
+	 * public String[] getSelectedUnionServicesNames() {
+	 * 
+	 * String[] names;
+	 * 
+	 * if (services_selected.contains(",")) { names =
+	 * services_selected.split(","); } else { names = new String[1]; names[0] =
+	 * services_selected; }
+	 * 
+	 * return names; }
+	 */
 
 	public void updateSelectedUnionServiceAssociations() {
-		String[] selected_services_names = getSelectedUnionServicesNames();
-		selected_union_service_associations.clear();
-		
-		for (String service_name : selected_services_names) {
+
+		/*
+		 * String[] selected_services_names = getSelectedUnionServicesNames();
+		 * selected_union_service_associations.clear();
+		 */
+
+		for (String selected_service_name : services_selected) {
+
+			System.out.println(selected_service_name);
+
 			selected_union_service_associations.add(usa_controller
 					.getUnionServiceAssociationByUnionAndServiceName(
-							this.union, service_name));
+							this.union, selected_service_name));
 		}
 	}
 
 	public void confirmOrder(Employee e) {
-		
-		System.out.println("CIAOOOOOOOOOOOOOOOOOO");
 
 		updateSelectedUnionServiceAssociations();
 
 		String response = null;
 		response = huc_controller.confirmOrder(e,
 				selected_union_service_associations);
-
-		System.out.println(response);
 
 		if (response == "success") {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -166,11 +166,11 @@ public class UnionBean implements Serializable {
 		this.union_service_associations = associated_service;
 	}
 
-	public String getServices_selected() {
+	public List<String> getServices_selected() {
 		return services_selected;
 	}
 
-	public void setServices_selected(String services_selected) {
+	public void setServices_selected(List<String> services_selected) {
 		this.services_selected = services_selected;
 	}
 
