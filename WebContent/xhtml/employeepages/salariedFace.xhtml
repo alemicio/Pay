@@ -421,31 +421,20 @@
 
 											<div class="row">
 												<div class="col-lg-6">
-													<div class="form-group">
-														<div class="col-xs-5 selectContainer">
-
-															<!-- <p:selectManyMenu id="union-services"
-															value="#{union.services_selected}" var="union_service"
-															filter="true" filterMatchMode="contains" showCheckbox="true"
-															styleClass="form-control">
-															<f:selectItems value="#{union.service_names}"
-																var="union_service" itemLabel="#{union_service}"
-																itemValue="#{union_service}" />
-															<p:column>
-																<h:outputText value="#{union_service}" />
-															</p:column>
-														</p:selectManyMenu>  -->
-
-															<select name="union-services" class="form-control"
-																title="Select services"
-																value="#{union.services_selected}">
-															</select> 
-														</div>
-													</div>
+													<p:selectManyMenu id="union-services"
+														value="#{union.services_selected}" var="union_service"
+														filter="true" filterMatchMode="contains"
+														showCheckbox="true">
+														<f:selectItems value="#{union.service_names}"
+															var="union_service" itemLabel="#{union_service}"
+															itemValue="#{union_service}" />
+														<p:column>
+															<h:outputText value="#{union_service}" />
+														</p:column>
+													</p:selectManyMenu>
 												</div>
 
-
-												<div class="col-lg-6" style="text-align: right">
+												<div class="col-lg-6">
 													<h:commandButton value="Confirm Order"
 														action="#{union.confirmOrder(employee.retrieved_employee)}"
 														styleClass="btn btn-lg btn-info" />
