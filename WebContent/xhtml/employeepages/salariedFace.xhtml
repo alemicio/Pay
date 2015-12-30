@@ -38,11 +38,13 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 
-			<div class="modal-header" style="background:#C7AC34">
+			<div class="modal-header" style="background: #C7AC34">
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">x</button>
-				<h1 id="label" class="modal-title" style="color:white">Edit profile</h1>
-				<h4 style="color:white">Change your details through the following form</h4>
+				<h1 id="label" class="modal-title" style="color: white">Edit
+					profile</h1>
+				<h4 style="color: white">Change your details through the
+					following form</h4>
 			</div>
 
 			<div class="modal-body">
@@ -110,8 +112,8 @@
 						<button class="btn btn-lg btn-default" data-dismiss="modal"
 							aria-hidden="true">Cancel</button>
 						<h:commandButton type="submit" value="Save"
-							action="#{employee.changeDetails()}" styleClass="btn btn-lg btn-info"
-							style="margin-left: 1rem" />
+							action="#{employee.changeDetails()}"
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
 					</div>
 
 				</h:form>
@@ -196,165 +198,180 @@
 					<div class="col-lg-12">
 
 						<div class="col-lg-6" style="text-align: left;">
-							<h3>Payment:
-								#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
+							<div class="row">
+								<div class="col-lg-6 col-lg-offset-3">
 
-							<b:modal id="modalpay"
-								title="Here you can Modify you Payment method"
-								styleClass="modalPseudoClassP">
-								<div class="container">
-									<div class="row">
-										<div class="col-lg-12">
-											<h:graphicImage library="images" name="unipv2.png"
-												class="img-responsive center-block" alt="Responsive image" />
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-12">
-											<h3>Actual:
-												#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-12">
+									<h3>Payment:
+										#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
 
-											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active"><a href="#home"
-													aria-controls="home" role="tab" data-toggle="tab">BANK</a></li>
-												<li role="presentation"><a href="#profile"
-													aria-controls="profile" role="tab" data-toggle="tab">POSTAL</a></li>
-												<li role="presentation"><a href="#messages"
-													aria-controls="messages" role="tab" data-toggle="tab">WITHDRAW</a></li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="row" style="margin-top: 2rem;">
-										<div class="col-lg-12">
-											<!-- Tab panes -->
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane active" id="home">
-
-													<!--  This is the form in which we will insert the new bank paymethod data -->
-													<h:form>
-														<b:inputText fieldSize="lg" value="#{paymentmethod.IBAN}">
-															<f:facet name="prepend">
-																<h:outputText value="IBAN" />
-															</f:facet>
-														</b:inputText>
-
-														<b:inputText fieldSize="lg"
-															value="#{paymentmethod.filial}">
-															<f:facet name="prepend">
-																<h:outputText value="filial" />
-															</f:facet>
-														</b:inputText>
-
-														<b:button value="close" size="lg" dismiss="modal"
-															onclick="return false;" />
-
-														<b:commandButton value="OK"
-															action="#{paymentmethod.setBankPaymethod(employee.retrieved_employee)}"></b:commandButton>
-													</h:form>
-													<!-- ===================================================================== -->
-
+									<b:modal id="modalpay"
+										title="Here you can Modify you Payment method"
+										styleClass="modalPseudoClassP">
+										<div class="container">
+											<div class="row">
+												<div class="col-lg-12">
+													<h:graphicImage library="images" name="unipv2.png"
+														class="img-responsive center-block" alt="Responsive image" />
 												</div>
-												<div role="tabpanel" class="tab-pane" id="profile">
-
-													<!--  This is the form in which we will insert the new postal paymethod data -->
-													<h:form>
-														<b:inputText fieldSize="lg"
-															value="#{paymentmethod.residential_address}">
-															<f:facet name="prepend">
-																<h:outputText value="Residential Address" />
-															</f:facet>
-														</b:inputText>
-
-														<b:button value="close" size="lg" dismiss="modal"
-															onclick="return false;" />
-
-														<b:commandButton value="OK"
-															action="#{paymentmethod.setPostalPaymethod(employee.retrieved_employee)}"></b:commandButton>
-													</h:form>
-													<!-- ===================================================================== -->
-
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
+													<h3>Actual:
+														#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
 												</div>
-												<div role="tabpanel" class="tab-pane" id="messages">
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
 
-													<!--  This is the form in which we will insert the new withdraw paymethod data -->
-													<h:form>
-														<b:inputText fieldSize="lg"
-															value="#{paymentmethod.headquarter}">
-															<f:facet name="prepend">
-																<h:outputText value="Headquarter" />
-															</f:facet>
-														</b:inputText>
+													<ul class="nav nav-tabs" role="tablist">
+														<li role="presentation" class="active"><a
+															href="#home" aria-controls="home" role="tab"
+															data-toggle="tab">BANK</a></li>
+														<li role="presentation"><a href="#profile"
+															aria-controls="profile" role="tab" data-toggle="tab">POSTAL</a></li>
+														<li role="presentation"><a href="#messages"
+															aria-controls="messages" role="tab" data-toggle="tab">WITHDRAW</a></li>
+													</ul>
+												</div>
+											</div>
 
-														<b:button value="close" size="lg" dismiss="modal"
-															onclick="return false;" />
+											<div class="row" style="margin-top: 2rem;">
+												<div class="col-lg-12">
+													<!-- Tab panes -->
+													<div class="tab-content">
+														<div role="tabpanel" class="tab-pane active" id="home">
 
-														<b:commandButton value="OK"
-															action="#{paymentmethod.setWithDrawPaymethod(employee.retrieved_employee)}"></b:commandButton>
-													</h:form>
-													<!-- ===================================================================== -->
+															<!--  This is the form in which we will insert the new bank paymethod data -->
+															<h:form>
+																<b:inputText fieldSize="lg"
+																	value="#{paymentmethod.IBAN}">
+																	<f:facet name="prepend">
+																		<h:outputText value="IBAN" />
+																	</f:facet>
+																</b:inputText>
 
+																<b:inputText fieldSize="lg"
+																	value="#{paymentmethod.filial}">
+																	<f:facet name="prepend">
+																		<h:outputText value="filial" />
+																	</f:facet>
+																</b:inputText>
+
+																<b:button value="close" size="lg" dismiss="modal"
+																	onclick="return false;" />
+
+																<b:commandButton value="OK"
+																	action="#{paymentmethod.setBankPaymethod(employee.retrieved_employee)}"></b:commandButton>
+															</h:form>
+															<!-- ===================================================================== -->
+
+														</div>
+														<div role="tabpanel" class="tab-pane" id="profile">
+
+															<!--  This is the form in which we will insert the new postal paymethod data -->
+															<h:form>
+																<b:inputText fieldSize="lg"
+																	value="#{paymentmethod.residential_address}">
+																	<f:facet name="prepend">
+																		<h:outputText value="Residential Address" />
+																	</f:facet>
+																</b:inputText>
+
+																<b:button value="close" size="lg" dismiss="modal"
+																	onclick="return false;" />
+
+																<b:commandButton value="OK"
+																	action="#{paymentmethod.setPostalPaymethod(employee.retrieved_employee)}"></b:commandButton>
+															</h:form>
+															<!-- ===================================================================== -->
+
+														</div>
+														<div role="tabpanel" class="tab-pane" id="messages">
+
+															<!--  This is the form in which we will insert the new withdraw paymethod data -->
+															<h:form>
+																<b:inputText fieldSize="lg"
+																	value="#{paymentmethod.headquarter}">
+																	<f:facet name="prepend">
+																		<h:outputText value="Headquarter" />
+																	</f:facet>
+																</b:inputText>
+
+																<b:button value="close" size="lg" dismiss="modal"
+																	onclick="return false;" />
+
+																<b:commandButton value="OK"
+																	action="#{paymentmethod.setWithDrawPaymethod(employee.retrieved_employee)}"></b:commandButton>
+															</h:form>
+															<!-- ===================================================================== -->
+
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-							</b:modal>
+									</b:modal>
 
-							<b:button value="Change Paymethod" look="info"
-								onclick="$('.modalPseudoClassP').modal();return false;"
-								size="lg" />
+									<b:button value="Change Paymethod" look="info"
+										onclick="$('.modalPseudoClassP').modal();return false;"
+										size="lg" />
+
+								</div>
+							</div>
 						</div>
 
 						<div class="col-lg-6" style="text-align: left;">
-							<h3>Union:#{union.getUnion(employee.retrieved_employee)}</h3>
+							<div class="row">
+								<div class="col-lg-6 col-lg-offset-3">
 
-							<b:modal id="modalunion" title="Here you can Modify your Union"
-								styleClass="modalPseudoClassU">
-								<h:form id="unionset">
-									<div class="row">
-										<div class="col-lg-12">
-											<h:graphicImage library="images" name="unipv2.png"
-												class="img-responsive center-block" alt="Responsive image" />
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-12"></div>
-									</div>
+									<h3>Union: #{union.getUnion(employee.retrieved_employee)}</h3>
 
-									<div class="row" style="margin-top: 2rem;">
-										<div class="col-lg-12">
+									<b:modal id="modalunion" title="Here you can Modify your Union"
+										styleClass="modalPseudoClassU">
+										<h:form id="unionset">
+											<div class="row">
+												<div class="col-lg-12">
+													<h:graphicImage library="images" name="unipv2.png"
+														class="img-responsive center-block" alt="Responsive image" />
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12"></div>
+											</div>
 
-											<b:selectOneMenu value="#{union.union_name}" required="true"
-												fieldSize="lg" label="Select a Union to belong">
-												<f:facet name="prepend">
-													<h:outputText value="@union" />
-												</f:facet>
+											<div class="row" style="margin-top: 2rem;">
+												<div class="col-lg-12">
 
-												<f:selectItems value="#{union.associated_unions}" />
+													<b:selectOneMenu value="#{union.union_name}"
+														required="true" fieldSize="lg"
+														label="Select a Union to belong">
+														<f:facet name="prepend">
+															<h:outputText value="@union" />
+														</f:facet>
 
-											</b:selectOneMenu>
-											<b:inputText value="#{union.union_name}" disabled="true"></b:inputText>
-										</div>
-									</div>
+														<f:selectItems value="#{union.associated_unions}" />
 
-									<div class="row" style="margin-top: 2rem;">
-										<div class="col-lg-12">
-											<b:commandButton value="Ok" size="lg" look="success"
-												dismiss="modal"
-												action="#{union.setUnion(employee.retrieved_employee)}" />
-										</div>
-									</div>
-								</h:form>
-							</b:modal>
+													</b:selectOneMenu>
+													<b:inputText value="#{union.union_name}" disabled="true"></b:inputText>
+												</div>
+											</div>
 
-							<b:button value="Change Union" look="info"
-								onclick="$('.modalPseudoClassU').modal();return false;"
-								size="lg" />
+											<div class="row" style="margin-top: 2rem;">
+												<div class="col-lg-12">
+													<b:commandButton value="Ok" size="lg" look="success"
+														dismiss="modal"
+														action="#{union.setUnion(employee.retrieved_employee)}" />
+												</div>
+											</div>
+										</h:form>
+									</b:modal>
+
+									<b:button value="Change Union" look="info"
+										onclick="$('.modalPseudoClassU').modal();return false;"
+										size="lg" />
+
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -365,32 +382,45 @@
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">
-			<br></br>
-			<div class="jumbotron" id="jumbotrone">
-				<div class="row">
-					<div class="col-lg-12">
+
+			<div class="row">
+				<div class="col-lg-12">
+
+					<br /> <br />
+
+					<div class="jumbotron" id="jumbotrone">
+						<h2>Union Services Order</h2>
+						<h4>Select the union's services you want to order</h4>
+
+						<hr
+							style="margin: 0; width: 100%; height: 1px; background: black; border: none;" />
+
+						<br />
 
 						<!-- ===================================== -->
 						<!-- === Union services selection form === -->
 						<!-- ===================================== -->
-						<h:form>
-							<!-- This is the services select menu -->
-							<p:outputLabel for="union-services"
-								value="Select union services:" />
+						<h:form role="form">
 
-							<p:selectManyMenu id="union-services"
-								value="#{union.services_selected}" var="us" filter="true"
-								filterMatchMode="contains" showCheckbox="true">
-								<f:selectItems value="#{union.service_names}" var="us"
-									itemLabel="#{us}" itemValue="#{us}" />
-								<p:column>
-									<h:outputText value="#{us}" />
-								</p:column>
-							</p:selectManyMenu>
+							<div class="form-group">
+								<p:selectManyMenu id="union-services"
+									value="#{union.services_selected}" var="union_service"
+									filter="true" filterMatchMode="contains" showCheckbox="true">
+									<f:selectItems value="#{union.service_names}"
+										var="union_service" itemLabel="#{union_service}"
+										itemValue="#{union_service}" />
+									<p:column>
+										<h:outputText value="#{union_service}" />
+									</p:column>
+								</p:selectManyMenu>
 
-							<p:commandButton value="Confirm Order" id="ajax-send-order"
-								action="#{union.confirmOrder(employee.retrieved_employee)}"
-								styleClass="ui-priority-primary" />
+								<br />
+
+								<h:commandButton value="Confirm Order"
+									action="#{union.confirmOrder(employee.retrieved_employee)}"
+									styleClass="btn btn-lg btn-info" />
+							</div>
+
 						</h:form>
 					</div>
 				</div>
