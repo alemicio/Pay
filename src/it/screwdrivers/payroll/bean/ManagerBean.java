@@ -202,8 +202,9 @@ public class ManagerBean implements Serializable {
 		}
 	}
 
-	public void addSalariedEmployee() {
+	public boolean addSalariedEmployee() {
 
+		boolean available;
 		SalariedEmployee se = new SalariedEmployee();
 
 		se.setUsername(username);
@@ -215,10 +216,13 @@ public class ManagerBean implements Serializable {
 		se.setPostal_address(postal_address);
 		se.setMonthly_salary(monthly_salary);
 
-		e_controller.addEmployee(se);
+		available = e_controller.addEmployee(se);
+		
 		resetAttributes();
 
 		updateSalariedEmployeeList();
+		
+		return available;
 	}
 
 	public void addCommissionedEmployee() {

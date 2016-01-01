@@ -142,7 +142,28 @@ public class EmployeeController {
 		return response;
 	}
 	
-	public void addEmployee(Employee employee){
-		e_dao.add(employee);
+	public boolean addEmployee(Employee employee){
+		
+		boolean available = true;
+		
+		List<Employee> employee_list = e_dao.findAll();
+		for(Employee e : employee_list){
+			
+			//check if the employee we should be inserted
+			// has a username available or not
+			if(employee.getUsername().equals(e.getUsername())){
+				available = false;
+				break;
+			}
+				
+		}
+		//if the username is available we add the employee
+		if(available == true){
+			e_dao.add(employee);
+		}
+		
+		
+		return available;
+		
 	}
 }

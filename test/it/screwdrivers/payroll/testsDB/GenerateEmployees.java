@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import it.screwdrivers.payroll.controller.EmployeeController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
@@ -23,6 +24,9 @@ public class GenerateEmployees extends ArquillianTest {
 	
 	@Inject
 	EmployeeDao employee_dao;
+	
+	@Inject
+	EmployeeController e_controller;
 
 	@Test
 	public void testAddingSalariedClones() {
@@ -32,13 +36,14 @@ public class GenerateEmployees extends ArquillianTest {
 			SalariedEmployee employee_salaried = new SalariedEmployee();
 			employee_salaried.setName("clone"+i);
 			employee_salaried.setSurname("clone"+i);
-			employee_salaried.setUsername("clone"+i);
+			employee_salaried.setUsername("salaried_clone"+i);
 			employee_salaried.setPassword("clone"+i);
 			employee_salaried.setE_mail("clone@salaried.it");
 			employee_salaried.setPhone_number("3331112233");
 			employee_salaried.setPostal_address("via roma 1");
 			employee_salaried.setMonthly_salary(1000);
-			employee_dao.add(employee_salaried);
+			//employee_dao.add(employee_salaried);
+			e_controller.addEmployee(employee_salaried);
 		}
 
 		int count = 0;
@@ -69,7 +74,7 @@ public class GenerateEmployees extends ArquillianTest {
 			ContractorEmployee employee_contractor = new ContractorEmployee();
 			employee_contractor.setName("clone"+i);
 			employee_contractor.setSurname("clone"+i);
-			employee_contractor.setUsername("clone"+i);
+			employee_contractor.setUsername("contractor_clone"+i);
 			employee_contractor.setPassword("clone"+i);
 			employee_contractor.setE_mail("clone@contractor.it");
 			employee_contractor.setPhone_number("3331112233");
@@ -106,7 +111,7 @@ public class GenerateEmployees extends ArquillianTest {
 			CommissionedEmployee employee_commissioned = new CommissionedEmployee();
 			employee_commissioned.setName("clone"+i);
 			employee_commissioned.setSurname("clone"+i);
-			employee_commissioned.setUsername("clone"+i);
+			employee_commissioned.setUsername("commissioned_clone"+i);
 			employee_commissioned.setPassword("clone"+i);
 			employee_commissioned.setE_mail("clone@commissioned.it");
 			employee_commissioned.setPhone_number("3331112233");
