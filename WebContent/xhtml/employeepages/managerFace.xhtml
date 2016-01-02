@@ -25,6 +25,291 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 
+<div id="add-salaried-employee-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header" style="background: #C7AC34">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h1 id="label" class="modal-title" style="color: white">Add
+					Salaried Employee</h1>
+				<h4 style="color: white">Insert employee's details in the
+					following form</h4>
+			</div>
+
+			<div class="modal-body">
+				<!-- This is the form through which employee's details -->
+				<!-- can be updated                                    -->
+				<h:form id="add-salaried-employee-form" role="form"
+					onsubmit="return validateForm()">
+
+
+					<div class="form-group">
+						<h:outputText value="Username:" styleClass="control-label" />
+						<h:inputText id="username" value="#{manager.username}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Password:" styleClass="control-label" />
+						<h:inputSecret id="password" value="#{manager.password}"
+							styleClass="form-control">
+						</h:inputSecret>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Name:" styleClass="control-label" />
+						<h:inputText id="name" value="#{manager.name}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Surname:" styleClass="control-label" />
+						<h:inputText id="surname" value="#{manager.surname}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="E-mail:" styleClass="control-label" />
+						<h:inputText id="email" value="#{manager.email}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Phone Number:" styleClass="control-label" />
+						<h:inputText id="phonenumber" value="#{manager.phone_number}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Postal Address:" styleClass="control-label" />
+						<h:inputText id="postaladdress" value="#{manager.postal_address}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Monthly Salary:" styleClass="control-label" />
+						<h:inputText id="monthlysalary" value="#{manager.monthly_salary}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="text-right">
+						<button class="btn btn-lg btn-default" data-dismiss="modal"
+							aria-hidden="true">Cancel</button>
+
+						<h:commandButton type="submit" value="Save"
+							action="#{manager.addSalariedEmployee()}"
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
+						</h:commandButton>
+					</div>
+
+				</h:form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="add-commissioned-employee-modal" class="modal fade"
+	role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header" style="background: #C7AC34">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h1 id="label" class="modal-title" style="color: white">Add
+					Commissioned Employee</h1>
+				<h4 style="color: white">Insert employee's details in the
+					following form</h4>
+			</div>
+
+			<div class="modal-body">
+				<!-- This is the form through which employee's details -->
+				<!-- can be updated                                    -->
+				<h:form id="add-commissioned-employee-form" role="form"
+					onsubmit="return validateForm()">
+
+					<div class="form-group">
+						<h:outputText value="Username:" styleClass="control-label" />
+						<h:inputText id="username" value="#{manager.username}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Password:" styleClass="control-label" />
+						<h:inputSecret id="password" value="#{manager.password}"
+							styleClass="form-control">
+						</h:inputSecret>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Name:" styleClass="control-label" />
+						<h:inputText id="name" value="#{manager.name}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Surname:" styleClass="control-label" />
+						<h:inputText id="surname" value="#{manager.surname}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="E-mail:" styleClass="control-label" />
+						<h:inputText id="email" value="#{manager.email}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Phone Number:" styleClass="control-label" />
+						<h:inputText id="phonenumber" value="#{manager.phone_number}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Postal Address:" styleClass="control-label" />
+						<h:inputText id="postaladdress" value="#{manager.postal_address}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Monthly Salary:" styleClass="control-label" />
+						<h:inputText id="monthlysalary" value="#{manager.monthly_salary}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Sale Rate:" styleClass="control-label" />
+						<h:inputText id="salerate" value="#{manager.sale_rate}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="text-right">
+						<button class="btn btn-lg btn-default" data-dismiss="modal"
+							aria-hidden="true">Cancel</button>
+
+						<h:commandButton type="submit" value="Save"
+							action="#{manager.addCommissionedEmployee()}"
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
+						</h:commandButton>
+					</div>
+
+				</h:form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="add-contractor-employee-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header" style="background: #C7AC34">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h1 id="label" class="modal-title" style="color: white">Add
+					Contractor Employee</h1>
+				<h4 style="color: white">Insert employee's details in the
+					following form</h4>
+			</div>
+
+			<div class="modal-body">
+				<!-- This is the form through which employee's details -->
+				<!-- can be updated                                    -->
+				<h:form id="add-contractor-employee-form" role="form"
+					onsubmit="return validateForm()">
+
+					<div class="form-group">
+						<h:outputText value="Username:" styleClass="control-label" />
+						<h:inputText id="username" value="#{manager.username}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Password:" styleClass="control-label" />
+						<h:inputSecret id="password" value="#{manager.password}"
+							styleClass="form-control">
+						</h:inputSecret>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Name:" styleClass="control-label" />
+						<h:inputText id="name" value="#{manager.name}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Surname:" styleClass="control-label" />
+						<h:inputText id="surname" value="#{manager.surname}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="E-mail:" styleClass="control-label" />
+						<h:inputText id="email" value="#{manager.email}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Phone Number:" styleClass="control-label" />
+						<h:inputText id="phonenumber" value="#{manager.phone_number}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Postal Address:" styleClass="control-label" />
+						<h:inputText id="postaladdress" value="#{manager.postal_address}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="form-group">
+						<h:outputText value="Hourly Rate:" styleClass="control-label" />
+						<h:inputText id="hourlyrate" value="#{manager.hourly_rate}"
+							styleClass="form-control">
+						</h:inputText>
+					</div>
+
+					<div class="text-right">
+						<button class="btn btn-lg btn-default" data-dismiss="modal"
+							aria-hidden="true">Cancel</button>
+
+						<h:commandButton type="submit" value="Save"
+							action="#{manager.addContractorEmployee()}"
+							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
+						</h:commandButton>
+					</div>
+
+				</h:form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
 <body>
 	<div class="container-fluid" id="sfondo">
 
@@ -322,80 +607,293 @@
 		</div>
 	</div>
 
-
 	<div class="container-fluid" id="sfondo2">
-	
-		<h:form id="form">
-			<p:growl id="msgs" showDetail="true" />
+		<div class="container">
+		
+			<br />
 
-			<p:dataTable id="cars1" var="car" value="#{dtEditView.cars1}"
-				editable="true" style="margin-bottom:20px">
-				<f:facet name="header">EMPLOYEE</f:facet>
+			<h:form id="salaried_form_list">
+				<p:growl id="salaried_list_msgs" showDetail="true" />
 
-				<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}"
-					update=":form:msgs" />
+				<p:dataTable id="salariedEmployeeList" var="SalariedEmployee"
+					value="#{manager.s_employees}" editable="true"
+					style="margin-bottom:20px">
+					<f:facet name="header">
+						SALARIED EMPLOYEES
+						<a data-toggle="modal" href="#add-salaried-employee-modal"
+							style="float: right;"><i class="glyphicon glyphicon-plus"></i></a>
+					</f:facet>
 
-				<p:column headerText="Id">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText id="modelInput" value="#{car.id}" style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:ajax event="rowEdit" listener="#{manager.onSalariedRowEdit}"
+						update=":salaried_form_list:salaried_list_msgs" />
 
-				<p:column headerText="Year">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.year}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{car.year}" style="width:100%" label="Year" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:ajax event="rowEditCancel"
+						update=":salaried_form_list:salaried_list_msgs, :salaried_form_list:salariedEmployeeList"
+						listener="#{manager.onSalariedRowCancel}" />
+					<!-- oncomplete="javascript:location.reload(true)" />  -->
 
-				<p:column headerText="Brand">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.brand}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:selectOneMenu value="#{car.brand}" style="width:100%">
-								<f:selectItems value="#{dtEditView.brands}" var="man"
-									itemLabel="#{man}" itemValue="#{man}" />
-							</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:column headerText="Name">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true" id="modelInput"
+									value="#{SalariedEmployee.name}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-				<p:column headerText="Color">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.color}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:selectOneMenu value="#{car.color}" style="width:100%">
-								<f:selectItems value="#{dtEditView.colors}" var="color"
-									itemLabel="#{color}" itemValue="#{color}" />
-							</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:column headerText="Surname">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.surname}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true" value="#{SalariedEmployee.surname}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-				<p:column style="width:32px">
-					<p:rowEditor />
-				</p:column>
-			</p:dataTable>
+					<p:column headerText="E-mail">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.e_mail}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true" value="#{SalariedEmployee.e_mail}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-			
-		</h:form>
+					<p:column headerText="Telephone">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.phone_number}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true"
+									value="#{SalariedEmployee.phone_number}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Montly Salary">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{SalariedEmployee.monthly_salary}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{SalariedEmployee.monthly_salary}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+		</div>
 	</div>
 
+	<div class="container-fluid" id="sfondo2">
+		<div class="container">
+			<h:form id="commissioned_form_list">
+				<p:growl id="commissioned_list_msgs" showDetail="true" />
+
+				<p:dataTable id="commissionedEmployeeList"
+					var="CommissionedEmployee" value="#{manager.com_employees}"
+					editable="true" style="margin-bottom:20px">
+					<f:facet name="header">
+						COMMISSIONED EMPLOYEES
+						<a data-toggle="modal" href="#add-commissioned-employee-modal"
+							style="float: right;"><i class="glyphicon glyphicon-plus"></i></a>
+					</f:facet>
+
+					<p:ajax event="rowEdit" listener="#{manager.onCommissionedRowEdit}"
+						update=":commissioned_form_list:commissioned_list_msgs" />
+
+					<p:ajax event="rowEditCancel"
+						update=":commissioned_form_list:commissioned_list_msgs, :commissioned_form_list:commissionedEmployeeList"
+						listener="#{manager.onCommissionedRowCancel}" />
+					<!-- oncomplete="javascript:location.reload(true)" />  -->
+
+					<p:column headerText="Name">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput2" disabled="true"
+									value="#{CommissionedEmployee.name}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Surname">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.surname}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true"
+									value="#{CommissionedEmployee.surname}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="E-mail">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.e_mail}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true"
+									value="#{CommissionedEmployee.e_mail}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Telephone">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.phone_number}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true"
+									value="#{CommissionedEmployee.phone_number}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Montly Salary">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.monthly_salary}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{CommissionedEmployee.monthly_salary}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Sales Rate">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{CommissionedEmployee.sale_rate}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{CommissionedEmployee.sale_rate}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+		</div>
+	</div>
+
+	<div class="container-fluid" id="sfondo2">
+		<div class="container">
+			<h:form id="contractor_form_list">
+				<p:growl id="contractor_list_msgs" showDetail="true" />
+
+				<p:dataTable id="contractorEmployeeList" var="ContractorEmployee"
+					value="#{manager.con_employees}" editable="true"
+					style="margin-bottom:20px">
+					<f:facet name="header">
+						CONTRACTOR EMPLOYEES
+						<a data-toggle="modal" href="#add-contractor-employee-modal"
+							style="float: right;"><i class="glyphicon glyphicon-plus"></i></a>
+					</f:facet>
+
+					<p:ajax event="rowEdit" listener="#{manager.onContractorRowEdit}"
+						update=":contractor_form_list:contractor_list_msgs" />
+
+					<p:ajax event="rowEditCancel"
+						update=":contractor_form_list:contractor_list_msgs, :contractor_form_list:contractorEmployeeList"
+						listener="#{manager.onContractorRowCancel}" />
+					<!-- oncomplete="javascript:location.reload(true)" />  -->
+
+					<p:column headerText="Name">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput2" disabled="true"
+									value="#{ContractorEmployee.name}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Surname">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.surname}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true"
+									value="#{ContractorEmployee.surname}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="E-mail">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.e_mail}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true"
+									value="#{ContractorEmployee.e_mail}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Telephone">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.phone_number}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText disabled="true"
+									value="#{ContractorEmployee.phone_number}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Hourly Rate">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ContractorEmployee.hourly_rate}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ContractorEmployee.hourly_rate}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+		</div>
+	</div>
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">
@@ -408,6 +906,6 @@
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

@@ -44,10 +44,29 @@
 	
 	<navigation-rule>
 		<from-view-id>/xhtml/employeepages/managerFace.xhtml</from-view-id>
+		
 		<navigation-case>
 			<from-action>#{login.performLogout}</from-action>
 			<from-outcome>Logout</from-outcome>
 			<to-view-id>/xhtml/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-action>#{manager.addSalariedEmployee()}</from-action>
+			<to-view-id>/xhtml/employeepages/managerFace.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-action>#{manager.addCommissionedEmployee()}</from-action>
+			<to-view-id>/xhtml/employeepages/managerFace.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-action>#{manager.addContractorEmployee()}</from-action>
+			<to-view-id>/xhtml/employeepages/managerFace.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>	

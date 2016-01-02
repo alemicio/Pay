@@ -20,7 +20,7 @@ public class EmployeeBean implements Serializable {
 
 	private Employee retrieved_employee;
 	private Employee updated_employee;
-	
+
 	public Employee retrieveEmployee(String username, String password) {
 
 		retrieved_employee = e_controller.retrieveEmployee(username, password);
@@ -40,4 +40,5 @@ public class EmployeeBean implements Serializable {
 		
 		System.out.println(retrieved_employee.getUsername());
 	}
+	
 }

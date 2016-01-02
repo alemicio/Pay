@@ -47,6 +47,21 @@
     SHAPE="665,312,672,312,672,256,40,256,40,40,47,40"
     TARGET="rules:#xhtml#index.xhtml"
     TITLE="#{login.performLogout}:Logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{manager.addSalariedEmployee()}:#xhtml#employeepages#managerFace.xhtml"
+    NAME="output1" PATH="/xhtml/employeepages/managerFace.xhtml"
+    TARGET="rules:#xhtml#employeepages#managerFace.xhtml"
+    TITLE="#{manager.addSalariedEmployee()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{manager.addCommissionedEmployee()}:#xhtml#employeepages#managerFace.xhtml"
+    NAME="output2" PATH="/xhtml/employeepages/managerFace.xhtml"
+    TARGET="rules:#xhtml#employeepages#managerFace.xhtml"
+    TITLE="#{manager.addCommissionedEmployee()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{manager.addContractorEmployee()}:#xhtml#employeepages#managerFace.xhtml"
+    NAME="output3" PATH="/xhtml/employeepages/managerFace.xhtml"
+    TARGET="rules:#xhtml#employeepages#managerFace.xhtml"
+    TITLE="#{manager.addContractorEmployee()}:[any]" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#xhtml#employeepages#contractorFace.xhtml"

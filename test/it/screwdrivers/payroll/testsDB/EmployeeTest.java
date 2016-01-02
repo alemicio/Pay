@@ -63,7 +63,6 @@ public class EmployeeTest extends ArquillianTest {
 		employee_contractor.setE_mail("a@bi.it");
 		employee_contractor.setPhone_number("3331112233");
 		employee_contractor.setPostal_address("via roma 1");
-
 		employee_contractor.setHourly_rate(10);
 
 		Boolean test = false;
@@ -93,7 +92,6 @@ public class EmployeeTest extends ArquillianTest {
 		employee_commissioned.setE_mail("a@bi.it");
 		employee_commissioned.setPhone_number("3331112233");
 		employee_commissioned.setPostal_address("via roma 1");
-
 		employee_commissioned.setMonthly_salary(2000);
 		employee_commissioned.setSale_rate(2);
 
@@ -125,7 +123,6 @@ public class EmployeeTest extends ArquillianTest {
 		employee_manager.setE_mail("a@bi.it");
 		employee_manager.setPhone_number("3331112233");
 		employee_manager.setPostal_address("via roma 1");
-		
 		employee_manager.setAnnual_rate(12000);
 		
 		Boolean test = false;
@@ -157,6 +154,4 @@ public class EmployeeTest extends ArquillianTest {
 		}
 		
 	}
-	
-
 }
