@@ -43,7 +43,7 @@
 				<!-- can be updated                                    -->
 				<h:form id="add-salaried-employee-form" role="form"
 					onsubmit="return validateForm()">
-					
+
 
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
@@ -106,12 +106,8 @@
 							aria-hidden="true">Cancel</button>
 
 						<h:commandButton type="submit" value="Save"
-							action="#{manager.addSalariedEmployee()}" data-toggle="modal"
-							data-target="#add-salaried-employee-modal"
+							action="#{manager.addSalariedEmployee()}"
 							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
-
-							<f:ajax execute="@form"
-								render=":salaried_form_list:salariedEmployeeList" />
 						</h:commandButton>
 					</div>
 
@@ -212,9 +208,6 @@
 						<h:commandButton type="submit" value="Save"
 							action="#{manager.addCommissionedEmployee()}"
 							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
-
-							<f:ajax execute="@form"
-								render=":commissioned_form_list:commissionedEmployeeList" />
 						</h:commandButton>
 					</div>
 
@@ -307,9 +300,6 @@
 						<h:commandButton type="submit" value="Save"
 							action="#{manager.addContractorEmployee()}"
 							styleClass="btn btn-lg btn-info" style="margin-left: 1rem">
-
-							<f:ajax execute="@form"
-								render=":contractor_form_list:contractorEmployeeList" />
 						</h:commandButton>
 					</div>
 
@@ -617,9 +607,9 @@
 		</div>
 	</div>
 
-
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
+		
 			<br />
 
 			<h:form id="salaried_form_list">
@@ -636,10 +626,11 @@
 
 					<p:ajax event="rowEdit" listener="#{manager.onSalariedRowEdit}"
 						update=":salaried_form_list:salaried_list_msgs" />
+
 					<p:ajax event="rowEditCancel"
 						update=":salaried_form_list:salaried_list_msgs, :salaried_form_list:salariedEmployeeList"
-						listener="#{manager.onSalariedRowCancel}"
-						oncomplete="javascript:location.reload(true)" />
+						listener="#{manager.onSalariedRowCancel}" />
+					<!-- oncomplete="javascript:location.reload(true)" />  -->
 
 					<p:column headerText="Name">
 						<p:cellEditor>
@@ -701,12 +692,11 @@
 						</p:cellEditor>
 					</p:column>
 
-					<p:column headerText="Actions" style="width:6rem">
-						<p:rowEditor style="float: left;" />
+					<p:column style="width:32px">
+						<p:rowEditor />
 					</p:column>
 
 				</p:dataTable>
-
 			</h:form>
 		</div>
 	</div>
@@ -727,10 +717,11 @@
 
 					<p:ajax event="rowEdit" listener="#{manager.onCommissionedRowEdit}"
 						update=":commissioned_form_list:commissioned_list_msgs" />
+
 					<p:ajax event="rowEditCancel"
 						update=":commissioned_form_list:commissioned_list_msgs, :commissioned_form_list:commissionedEmployeeList"
-						listener="#{manager.onCommissionedRowCancel}"
-						oncomplete="javascript:location.reload(true)" />
+						listener="#{manager.onCommissionedRowCancel}" />
+					<!-- oncomplete="javascript:location.reload(true)" />  -->
 
 					<p:column headerText="Name">
 						<p:cellEditor>
@@ -804,8 +795,8 @@
 						</p:cellEditor>
 					</p:column>
 
-					<p:column headerText="Actions" style="width:6rem">
-						<p:rowEditor style="float: left;" />
+					<p:column style="width:32px">
+						<p:rowEditor />
 					</p:column>
 
 				</p:dataTable>
@@ -829,10 +820,11 @@
 
 					<p:ajax event="rowEdit" listener="#{manager.onContractorRowEdit}"
 						update=":contractor_form_list:contractor_list_msgs" />
+
 					<p:ajax event="rowEditCancel"
 						update=":contractor_form_list:contractor_list_msgs, :contractor_form_list:contractorEmployeeList"
-						listener="#{manager.onContractorRowCancel}"
-						oncomplete="javascript:location.reload(true)" />
+						listener="#{manager.onContractorRowCancel}" />
+					<!-- oncomplete="javascript:location.reload(true)" />  -->
 
 					<p:column headerText="Name">
 						<p:cellEditor>
@@ -894,8 +886,8 @@
 						</p:cellEditor>
 					</p:column>
 
-					<p:column headerText="Actions" style="width:6rem">
-						<p:rowEditor style="float: left;" />
+					<p:column style="width:32px">
+						<p:rowEditor />
 					</p:column>
 
 				</p:dataTable>
