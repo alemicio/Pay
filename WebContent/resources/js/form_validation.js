@@ -1,12 +1,12 @@
-function validateForm() {
+function validateEmployeeForm(formId) {
 	
-	var username = document.getElementById("change-detail-form:username").value;
-	var password = document.getElementById("change-detail-form:password").value;
-	var name = document.getElementById("change-detail-form:name").value;
-	var surname = document.getElementById("change-detail-form:surname").value;
-	var email = document.getElementById("change-detail-form:email").value;
-	var phoneNumber = document.getElementById("change-detail-form:phonenumber").value;
-	var postalAddress = document.getElementById("change-detail-form:postaladdress").value;
+	var username = document.getElementById(formId+":username").value;
+	var password = document.getElementById(formId+":password").value;
+	var name = document.getElementById(formId+":name").value;
+	var surname = document.getElementById(formId+":surname").value;
+	var email = document.getElementById(formId+":email").value;
+	var phoneNumber = document.getElementById(formId+":phonenumber").value;
+	var postalAddress = document.getElementById(formId+":postaladdress").value;
 	
 	// This is the regular expression used to check the email's validity
 	var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

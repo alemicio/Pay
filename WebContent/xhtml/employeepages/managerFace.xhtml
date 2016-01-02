@@ -50,7 +50,7 @@
 				<!-- This is the form through which employee's details -->
 				<!-- can be updated                                    -->
 				<h:form id="add-salaried-employee-form" role="form"
-					onsubmit="return validateForm()">
+					onsubmit="return validateEmployeeForm('add-salaried-employee-form')">
 
 
 					<div class="form-group">
@@ -144,7 +144,7 @@
 				<!-- This is the form through which employee's details -->
 				<!-- can be updated                                    -->
 				<h:form id="add-commissioned-employee-form" role="form"
-					onsubmit="return validateForm()">
+					onsubmit="return validateEmployeeForm('add-commissioned-employee-form')">
 
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
@@ -243,7 +243,7 @@
 				<!-- This is the form through which employee's details -->
 				<!-- can be updated                                    -->
 				<h:form id="add-contractor-employee-form" role="form"
-					onsubmit="return validateForm()">
+					onsubmit="return validateEmployeeForm('add-contractor-employee-form')">
 
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
