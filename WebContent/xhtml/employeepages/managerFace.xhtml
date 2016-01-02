@@ -558,57 +558,61 @@
 
 	<div class="container-fluid" id="sfondo">
 		<div class="container">
-			<br></br>
-			<div class="jumbotron" id="jumbotrone">
-				<div class="row">
-					<div class="col-lg-12">
 
-						<!-- ===================================== -->
-						<!-- === Union services selection form === -->
-						<!-- ===================================== -->
-						<h:form>
-							<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-							<!-- This is the services select menu -->
-							<b:selectMultiMenu value="#{union.services_selected}"
-								required="true" fieldSize="lg"
-								label="Select services offered by this union">
-								<f:facet name="prepend">
-									<h:outputText value="@service" />
-								</f:facet>
-								<f:selectItems value="#{union.service_names}" />
-							</b:selectMultiMenu>
+			<div class="row">
+				<div class="col-lg-12">
 
-							<!-- This button allows to perform an ajax call to
-							     union.updateSelectedUnionServiceAssociations method.
-							     It updates data-table which contains service's name
-							     and price -->
-							<p:commandButton value="Prepare Order" id="ajax-prepare-order"
-								update="data-table"
-								actionListener="#{union.updateSelectedUnionServiceAssociations}"
-								styleClass="ui-priority-primary" />
+					<br /> <br />
 
-							<!-- This is the table in which we will show the services the user has selected -->
-							<br> </br>
-							<h:dataTable id="data-table" border="1"
-								value="#{union.selected_union_service_associations}" var="susa">
-								<h:column>
-									<!-- column header -->
-									<f:facet name="header">Name</f:facet>
-									<!-- row record -->
-				    				#{susa.union_service.name}
-				    			</h:column>
+					<div class="jumbotron" id="jumbotrone">
+						<div class="row">
+							<div class="col-lg-6 col-lg-offset-3">
 
-								<h:column>
-									<f:facet name="header">Price</f:facet>
-				    				#{susa.price}
-				    			</h:column>
-							</h:dataTable>
-							<br></br>
-							<p:commandButton value="Confirm Order" id="ajax-send-order"
-								update="growl"
-								action="#{union.confirmOrder(employee.retrieved_employee)}"
-								styleClass="ui-priority-primary" />
-						</h:form>
+								<div class="row">
+									<div class="col-xs-12">
+										<h2>Union Services Order</h2>
+										<h4>Select the union's services you want to order</h4>
+
+										<hr
+											style="margin: 0; width: 100%; height: 1px; background: black; border: none;" />
+									</div>
+								</div>
+
+								<br />
+
+								<div class="row">
+									<div class="col-xs-12">
+										<!-- ===================================== -->
+										<!-- === Union services selection form === -->
+										<!-- ===================================== -->
+										<h:form role="form" styleClass="form-horizontal">
+											<div class="row">
+												<div class="col-lg-6">
+													<p:selectManyMenu id="union-services"
+														value="#{union.services_selected}" var="union_service"
+														filter="true" filterMatchMode="contains"
+														showCheckbox="true">
+														<f:selectItems value="#{union.service_names}"
+															var="union_service" itemLabel="#{union_service}"
+															itemValue="#{union_service}" />
+														<p:column>
+															<h:outputText value="#{union_service}" />
+														</p:column>
+													</p:selectManyMenu> 
+												</div>
+
+												<div class="col-lg-6">
+													<h:commandButton value="Confirm Order"
+														action="#{union.confirmOrder(employee.retrieved_employee)}"
+														styleClass="btn btn-lg btn-info" />
+												</div>
+											</div>
+										</h:form>
+									</div>
+								</div>
+
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
