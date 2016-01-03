@@ -3,11 +3,9 @@ package it.screwdrivers.payroll.bean;
 import it.screwdrivers.payroll.controller.EmployeeController;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.ExternalContext;

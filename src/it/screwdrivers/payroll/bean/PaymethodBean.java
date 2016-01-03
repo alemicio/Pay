@@ -103,4 +103,5 @@ public class PaymethodBean implements Serializable {
 
 		paymethod_controller.setWithDrawPaymethod(e, withdraw_paymethod);
 	}
+	
 }

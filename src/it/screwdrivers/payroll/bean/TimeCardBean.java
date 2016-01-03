@@ -3,7 +3,6 @@ package it.screwdrivers.payroll.bean;
 import it.screwdrivers.payroll.controller.TimeCardController;
 import it.screwdrivers.payroll.pojo.card.TimeCard;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-import it.screwdrivers.payroll.pojo.employee.Employee;
 
 import java.io.Serializable;
 import java.sql.Time;
@@ -70,9 +69,7 @@ public class TimeCardBean implements Serializable {
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Congratulations",
 					"your time card is correctly sent"));
-
 		}
-
 	}
 
 	public Date getDate() {
