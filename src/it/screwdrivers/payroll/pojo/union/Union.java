@@ -37,24 +37,29 @@ public class Union implements Serializable{
 	public String getPhone_number() {
 		return phone_number;
 	}
+	
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public int getId() {
 		return id;
 	}
+	
 	public float getUnion_dues() {
 		return union_dues;
 	}
+	
 	public void setUnion_dues(float union_dues) {
 		this.union_dues = union_dues;
 	}
-	
 	
 }

@@ -18,13 +18,17 @@ public class BankPaymethod extends Paymethod implements Serializable {
 	public String getIBAN() {
 		return IBAN;
 	}
+	
 	public void setIBAN(String iBAN) {
 		IBAN = iBAN;
 	}
+	
 	public String getFilial() {
 		return filial;
 	}
+	
 	public void setFilial(String filial) {
 		this.filial = filial;
 	}
+	
 }

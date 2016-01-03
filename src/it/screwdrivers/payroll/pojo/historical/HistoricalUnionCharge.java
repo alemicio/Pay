@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "HistoricalUnionCharge")
-
 public class HistoricalUnionCharge implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -36,12 +35,15 @@ public class HistoricalUnionCharge implements Serializable {
 	public Date getDate() {
 		return date;
 	}
+	
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
 	public Employee getEmployee() {
 		return employee;
 	}
+	
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
@@ -49,10 +51,12 @@ public class HistoricalUnionCharge implements Serializable {
 	public UnionServiceAssociation getUnion_service_association() {
 		return union_service_association;
 	}
+	
 	public void setUnion_service_association(
 			UnionServiceAssociation union_service_association) {
 		this.union_service_association = union_service_association;
 	}
+	
 	public int getId() {
 		return id;
 	}

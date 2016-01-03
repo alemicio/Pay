@@ -17,10 +17,9 @@ public class WithDrawPaymethod extends Paymethod implements Serializable {
 	public String getHeadquarter() {
 		return headquarter;
 	}
+	
 	public void setHeadquarter(String headquarter) {
 		this.headquarter = headquarter;
 	}
-	
-	
 	
 }

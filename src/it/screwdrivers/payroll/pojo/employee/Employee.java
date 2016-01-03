@@ -68,8 +68,6 @@ public abstract class Employee implements Serializable {
 		// TODO Auto-generated method stub
 		return super.equals(obj);
 	}
-	
-
 
 	public String getUsername() {
 		return username;
@@ -130,7 +128,6 @@ public abstract class Employee implements Serializable {
 	public int getId() {
 		return employeeId;
 	}
-
 
 	public Paymethod getPaymethod() {
 		return paymethod;

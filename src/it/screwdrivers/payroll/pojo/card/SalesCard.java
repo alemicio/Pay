@@ -34,31 +34,37 @@ public class SalesCard implements Serializable {
 	public float getAmount() {
 		return amount;
 	}
+	
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
+	
 	public Date getDate() {
 		return date;
 	}
+	
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
 	public CommissionedEmployee getCommissioned_employee() {
 		return commissioned_employee;
 	}
+	
 	public void setCommissioned_employee(CommissionedEmployee commissioned_employee) {
 		this.commissioned_employee = commissioned_employee;
 	}
+	
 	public int getId() {
 		return id;
 	}
+	
 	public String getCustomer() {
 		return customer;
 	}
+	
 	public void setCustomer(String customer) {
 		this.customer = customer;
 	}
-	
-	
 	
 }
