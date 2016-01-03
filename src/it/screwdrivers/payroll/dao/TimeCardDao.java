@@ -30,4 +30,5 @@ public class TimeCardDao {
 	public void remove(TimeCard time_card) {
 		em.remove(em.merge(time_card));
 	}
+	
 }

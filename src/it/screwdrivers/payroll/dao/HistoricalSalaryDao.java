@@ -28,4 +28,5 @@ public class HistoricalSalaryDao {
 	public void remove(HistoricalSalary historical_salary) {
 		em.remove(em.merge(historical_salary));
 	}
+	
 }

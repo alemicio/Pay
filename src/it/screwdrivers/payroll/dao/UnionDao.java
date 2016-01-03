@@ -30,4 +30,5 @@ public class UnionDao {
 	public void remove(Union union) {
 		em.remove(em.merge(union));
 	}
+	
 }

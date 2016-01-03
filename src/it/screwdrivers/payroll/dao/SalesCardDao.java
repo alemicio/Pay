@@ -30,4 +30,5 @@ public class SalesCardDao {
 	public void remove(SalesCard sale_card) {
 		em.remove(em.merge(sale_card));
 	}
+	
 }

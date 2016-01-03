@@ -30,4 +30,5 @@ public class HistoricalUnionChargeDao {
 	public void remove(HistoricalUnionCharge historical_union_charge) {
 		em.remove(em.merge(historical_union_charge));
 	}
+	
 }

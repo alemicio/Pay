@@ -1,16 +1,15 @@
 package it.screwdrivers.payroll.dao;
 
-import java.util.List;
-
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
 @Stateless
