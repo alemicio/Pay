@@ -1,6 +1,5 @@
 package it.screwdrivers.payroll.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +46,7 @@ public class UnionServiceAssociationController {
 				filtered_list.add(usa);
 			}
 		}
+		
 		return filtered_list;
 	}
 
@@ -81,5 +81,4 @@ public class UnionServiceAssociationController {
 		return union_service_association;
 	}
 
-	
 }

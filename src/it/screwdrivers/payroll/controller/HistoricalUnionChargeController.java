@@ -52,6 +52,7 @@ public class HistoricalUnionChargeController {
 				huc.setDate(date);
 
 				huc_dao.add(huc);
+				
 			} else {
 				// check the order service with the one in the db
 				for (HistoricalUnionCharge h : huc_list) {

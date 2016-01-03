@@ -1,17 +1,13 @@
 package it.screwdrivers.payroll.controller;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Timer;
-
 import it.screwdrivers.payroll.dao.TimeCardDao;
-import it.screwdrivers.payroll.engine.PayrollCalendar;
 import it.screwdrivers.payroll.pojo.card.TimeCard;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
+
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -25,7 +21,6 @@ public class TimeCardController {
 	@SuppressWarnings("deprecation")
 	public Time ComputeTime(int start_hour, int start_min) {
 		Time tempo = new Time(start_hour, start_min, 0);
-
 		return tempo;
 	}
 
@@ -57,6 +52,7 @@ public class TimeCardController {
 				}
 			}
 		}
+		
 		// if there is no time card sent by the logged employee
 		// in a specific date, now we persist it to the db
 		t_dao.add(timecard);
@@ -65,6 +61,7 @@ public class TimeCardController {
 	}
 
 	public List<TimeCard> retriveByEmployee(Employee e) {
+		
 		List<TimeCard> timecards = t_dao.findAll();
 		List<TimeCard> retrieved = new ArrayList<TimeCard>();
 
@@ -73,8 +70,8 @@ public class TimeCardController {
 				retrieved.add(t);
 			}
 		}
+		
 		return retrieved;
 	}
-
 
 }

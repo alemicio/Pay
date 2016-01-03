@@ -53,7 +53,6 @@ public class EmployeeController {
 		List<SalariedEmployee> sal_list = e_dao.findAllSalaried();
 		List<SalariedEmployee> only_salaried = new ArrayList<SalariedEmployee>();
 		
-		
 		for(SalariedEmployee s: sal_list){
 			
 			//get only the salaried memebers that are not commissioned
@@ -64,23 +63,21 @@ public class EmployeeController {
 				only_salaried.add(s);
 			}
 		}
+		
 		return only_salaried;
 	}
 	
 	public List<CommissionedEmployee> getAllCommissioned(){
-		
 		List<CommissionedEmployee> comm_list = e_dao.findAllCommissioned();
 		return comm_list;
 	}
 	
 	public List<ContractorEmployee> getAllContractors(){
-		
 		List<ContractorEmployee> con_list = e_dao.findAllContractor();
 		return con_list;
 	}
 	
 	public List<EmployeeManager> getAllManagers(){
-		
 		List<EmployeeManager> man_list = e_dao.findAllManager();
 		return man_list;
 	}
@@ -101,33 +98,34 @@ public class EmployeeController {
 	}
 
 	public void updateCommissionedEmployeeMonthlySalarySaleRate(int id_employee, float monthly_salary, float sale_rate) {
+		
 		//get the employee row from the db
 		List<CommissionedEmployee> commissioned_list = e_dao.findAllCommissioned();
 				
-				for(CommissionedEmployee c: commissioned_list){
-					if(c.getId() == id_employee){
-						
-						c.setMonthly_salary(monthly_salary);
-						c.setSale_rate(sale_rate);
-						e_dao.update(c);
-						break;
-					}
-				}
-		
+		for(CommissionedEmployee c: commissioned_list){
+			if(c.getId() == id_employee){
+				
+				c.setMonthly_salary(monthly_salary);
+				c.setSale_rate(sale_rate);
+				e_dao.update(c);
+				break;
+			}
+		}
 	}
 
 	public void updateContractorEmployeeHourlyRate(int id_employee,float hourly_rate) {
+		
 		//get the employee row from the db
 		List<ContractorEmployee> contractor_list = e_dao.findAllContractor();
 						
-				for(ContractorEmployee c: contractor_list){
-					if(c.getId() == id_employee){
-								
-						c.setHourly_rate(hourly_rate);
-						e_dao.update(c);
-						break;
-					}
-				}
+		for(ContractorEmployee c: contractor_list){
+			if(c.getId() == id_employee){
+						
+				c.setHourly_rate(hourly_rate);
+				e_dao.update(c);
+				break;
+			}
+		}
 	}
 	
 	public boolean deleteEmployee(int id_employee) {
@@ -143,6 +141,7 @@ public class EmployeeController {
 				break;
 			}
 		}
+		
 		return response;
 	}
 	
@@ -161,11 +160,11 @@ public class EmployeeController {
 			}
 				
 		}
+		
 		//if the username is available we add the employee
 		if(available == true){
 			e_dao.add(employee);
 		}
-		
 		
 		return available;
 	}

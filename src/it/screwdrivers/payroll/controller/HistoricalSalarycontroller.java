@@ -36,6 +36,7 @@ public class HistoricalSalarycontroller {
 	}
 	
 	public void registerPay(SalariedEmployee e,float total_charges){
+
 		Date date = p_calendar.getToday();
 		
 		h.setEmployee(e);
@@ -48,6 +49,7 @@ public class HistoricalSalarycontroller {
 	}
 	
 	public void registerPay(ContractorEmployee e, float amount){
+		
 		Date date = p_calendar.getToday();
 		
 		h.setEmployee(e);
@@ -61,6 +63,7 @@ public class HistoricalSalarycontroller {
 	}
 	
 	public void registerPay(ContractorEmployee e, float amount, float total_charges){
+		
 		Date date = p_calendar.getToday();
 		
 		h.setEmployee(e);
@@ -74,6 +77,7 @@ public class HistoricalSalarycontroller {
 	}
 	
 	public void registerPay(CommissionedEmployee e, float amount){
+		
 		Date date = p_calendar.getToday();
 		
 		h.setEmployee(e);
@@ -85,6 +89,7 @@ public class HistoricalSalarycontroller {
 	}
 
 	public void registerPay(EmployeeManager e) {
+		
 		Date date = p_calendar.getToday();
 		
 		h.setEmployee(e);
@@ -96,6 +101,7 @@ public class HistoricalSalarycontroller {
 	}
 	
 	public void registerPay(EmployeeManager e, float total_charges) {
+		
 		Date date = p_calendar.getToday();
 		
 		h.setEmployee(e);

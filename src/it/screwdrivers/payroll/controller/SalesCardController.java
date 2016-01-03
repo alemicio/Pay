@@ -1,15 +1,12 @@
 package it.screwdrivers.payroll.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.SalesCardDao;
 import it.screwdrivers.payroll.pojo.card.SalesCard;
-import it.screwdrivers.payroll.pojo.card.TimeCard;
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -52,7 +49,6 @@ public class SalesCardController {
 
 		s_dao.add(sales_card);
 		return "success";
-
 	}
 
 	public List<SalesCard> retriveByEmployee(Employee e) {
@@ -64,6 +60,8 @@ public class SalesCardController {
 				retrieved.add(s);
 			}
 		}
+		
 		return retrieved;
 	}
+	
 }

@@ -2,12 +2,8 @@ package it.screwdrivers.payroll.controller;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.UnionDao;
-import it.screwdrivers.payroll.dao.UnionServiceAssociationDao;
-import it.screwdrivers.payroll.dao.UnionServiceDao;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 import it.screwdrivers.payroll.pojo.union.Union;
-import it.screwdrivers.payroll.pojo.union.UnionService;
-import it.screwdrivers.payroll.pojo.union.UnionServiceAssociation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +21,14 @@ public class UnionController {
 	EmployeeDao employee_dao;
 
 	public boolean isUnionSet(Employee employee) {
+		
 		if (employee.getUnion() == null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
+	
 	public String findUnionName(Union union) {
 		return union.getName();
 	}
@@ -65,5 +63,4 @@ public class UnionController {
 		employee_dao.update(employee);
 	}
 	
-
 }
