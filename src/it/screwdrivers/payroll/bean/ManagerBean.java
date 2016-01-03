@@ -1,10 +1,12 @@
 package it.screwdrivers.payroll.bean;
 
 import it.screwdrivers.payroll.controller.EmployeeController;
+import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
 import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
 import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
 import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
+import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,9 +26,15 @@ import org.primefaces.event.RowEditEvent;
 public class ManagerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	LogBean log_bean;
 
 	@Inject
 	EmployeeController e_controller;
+	
+	@Inject
+	HistoricalSalarycontroller hs_controller;
 
 	private List<SalariedEmployee> s_employees;
 	private List<CommissionedEmployee> com_employees;
@@ -47,6 +55,8 @@ public class ManagerBean implements Serializable {
 	private float monthly_salary;
 	private float sale_rate;
 	private float hourly_rate;
+	
+	private List<HistoricalSalary> historical_salaries;
 
 	@PostConstruct
 	public void init() {
@@ -66,6 +76,9 @@ public class ManagerBean implements Serializable {
 		monthly_salary = 0;
 		sale_rate = 0;
 		hourly_rate = 0;
+		
+		// This is the list of all the historical salaries associated to the current EmployeeManager user
+		historical_salaries = hs_controller.getHistoricalSalariesByEmployeeId(log_bean.getRetrived_employee().getId());
 	}
 
 	public void onSalariedRowEdit(RowEditEvent event) {
@@ -389,6 +402,10 @@ public class ManagerBean implements Serializable {
 
 	public void setHourly_rate(float hourly_rate) {
 		this.hourly_rate = hourly_rate;
+	}
+
+	public List<HistoricalSalary> getHistorical_salaries() {
+		return historical_salaries;
 	}
 	
 }

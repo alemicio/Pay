@@ -21,10 +21,11 @@ public class LogBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	EmployeeController e_controller;
-	@Inject
 	EmployeeBean e_bean;
-
+	
+	@Inject
+	EmployeeController e_controller;
+	
 	private String username;
 	private String password;
 	private String type;
@@ -68,7 +69,6 @@ public class LogBean implements Serializable {
 			System.out.println(type);
 			
 			// This line will set a session attribute that we will check before rendering the pages. 
-			// --> DOPO CI RIPASSIAMO XD <--
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user_id", retrived_employee.getId());
 		}
 		
@@ -99,4 +99,5 @@ public class LogBean implements Serializable {
 			nh.handleNavigation(fc, null, "/xhtml/index.xhtml");
 		}			
 	}
+	
 }
