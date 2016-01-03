@@ -1,6 +1,7 @@
 package it.screwdrivers.payroll.bean;
 
 import it.screwdrivers.payroll.controller.EmployeeController;
+import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
 import it.screwdrivers.payroll.pojo.employee.Employee;
 
 import java.io.Serializable;
@@ -18,6 +19,9 @@ public class EmployeeBean implements Serializable {
 	@Inject
 	EmployeeController e_controller;
 
+	@Inject
+	HistoricalSalarycontroller hs_controller;
+
 	private Employee retrieved_employee;
 	private Employee updated_employee;
 
@@ -27,6 +31,9 @@ public class EmployeeBean implements Serializable {
 		return retrieved_employee;
 	}
 
+	public void changeDetails() {
+		e_controller.changeDetails(retrieved_employee);
+	}
 	public Employee getRetrieved_employee() {
 		return retrieved_employee;
 	}
@@ -34,11 +41,5 @@ public class EmployeeBean implements Serializable {
 	public void setRetrieved_employee(Employee retrieved_employee) {
 		this.retrieved_employee = retrieved_employee;
 	}
-	
-	public void changeDetails(){
-		e_controller.changeDetails(retrieved_employee);
-		
-		System.out.println(retrieved_employee.getUsername());
-	}
-	
+
 }

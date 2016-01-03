@@ -31,6 +31,7 @@
 
 	<!-- Import custom js -->
 	<h:outputScript library="js" name="form_validation.js"></h:outputScript>
+		
 </h:head>
 
 <!-- This is the modal that will be opened when the "Edit Profile" button is clicked -->
@@ -197,7 +198,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="container-fluid" id="sfondo2">
 		<div class="container">
 			<br></br>
@@ -430,7 +431,7 @@
 														<p:column>
 															<h:outputText value="#{union_service}" />
 														</p:column>
-													</p:selectManyMenu> 
+													</p:selectManyMenu>
 												</div>
 
 												<div class="col-lg-6">
@@ -448,6 +449,39 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid" id="sfondo">
+		<div class="container">
+
+			<br />
+
+			<p:dataTable id="historicalSalaries" var="hs"
+				value="#{historical_salary.historical_salaries}" editable="false"
+				style="margin-bottom:20px; text-align:center">
+				<f:facet name="header">
+						HISTORICAL SALARIES
+				</f:facet>
+
+				<p:column headerText="Date">
+					<h:outputText value="#{hs.date}" />
+				</p:column>
+
+				<p:column headerText="Amount">
+					<h:outputText value="#{hs.amount}" />
+				</p:column>
+
+				<p:column headerText="Commission">
+					<h:outputLabel rendered="#{hs.commission==true}">
+						<i class="glyphicon glyphicon-ok"></i>
+					</h:outputLabel>
+					<h:outputLabel rendered="#{hs.commission==false}">
+						<i class="glyphicon glyphicon-remove"></i>
+					</h:outputLabel>
+				</p:column>
+
+			</p:dataTable>
 		</div>
 	</div>
 

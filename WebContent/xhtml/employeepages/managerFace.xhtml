@@ -31,14 +31,6 @@
 
 	<!-- Import custom js -->
 	<h:outputScript library="js" name="form_validation.js"></h:outputScript>
-
-	<!--  Font Awesome links -->
-	<link
-		href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
-		rel="stylesheet" />
-	<link
-		href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-		rel="stylesheet" />
 		
 </h:head>
 
@@ -1038,27 +1030,27 @@
 
 			<br />
 
-			<p:dataTable id="historicalSalaries" var="historical_salary"
-				value="#{manager.historical_salaries}" editable="false"
+			<p:dataTable id="historicalSalaries" var="hs"
+				value="#{historical_salary.historical_salaries}" editable="false"
 				style="margin-bottom:20px; text-align:center">
 				<f:facet name="header">
 						HISTORICAL SALARIES
 				</f:facet>
 
 				<p:column headerText="Date">
-					<h:outputText value="#{historical_salary.date}" />
+					<h:outputText value="#{hs.date}" />
 				</p:column>
 
 				<p:column headerText="Amount">
-					<h:outputText value="#{historical_salary.amount}" />
+					<h:outputText value="#{hs.amount}" />
 				</p:column>
 
 				<p:column headerText="Commission">
-					<h:outputLabel rendered="#{historical_salary.commission==true}">
-						<i class="icon-ok"></i>
+					<h:outputLabel rendered="#{hs.commission==true}">
+						<i class="glyphicon glyphicon-ok"></i>
 					</h:outputLabel>
-					<h:outputLabel rendered="#{historical_salary.commission==false}">
-						<i class="icon-remove"></i>
+					<h:outputLabel rendered="#{hs.commission==false}">
+						<i class="glyphicon glyphicon-remove"></i>
 					</h:outputLabel>
 				</p:column>
 
