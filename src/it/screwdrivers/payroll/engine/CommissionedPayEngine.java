@@ -3,9 +3,9 @@ package it.screwdrivers.payroll.engine;
 import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
 import it.screwdrivers.payroll.controller.SalesCardController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
-import it.screwdrivers.payroll.pojo.card.SalesCard;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
+import it.screwdrivers.payroll.model.card.SalesCard;
+import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
+import it.screwdrivers.payroll.model.employee.SalariedEmployee;
 
 import java.sql.Date;
 import java.util.List;

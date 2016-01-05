@@ -1,6 +1,6 @@
-package it.screwdrivers.payroll.pojo.card;
+package it.screwdrivers.payroll.model.card;
 
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
+import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 
 import java.io.Serializable;
 import java.sql.Time;

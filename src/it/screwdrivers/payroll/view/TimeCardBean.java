@@ -1,8 +1,8 @@
-package it.screwdrivers.payroll.bean;
+package it.screwdrivers.payroll.view;
 
 import it.screwdrivers.payroll.controller.TimeCardController;
-import it.screwdrivers.payroll.pojo.card.TimeCard;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
+import it.screwdrivers.payroll.model.card.TimeCard;
+import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 
 import java.io.Serializable;
 import java.sql.Time;

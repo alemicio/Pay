@@ -6,8 +6,8 @@ import java.util.List;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.UnionDao;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-import it.screwdrivers.payroll.pojo.union.Union;
+import it.screwdrivers.payroll.model.employee.ContractorEmployee;
+import it.screwdrivers.payroll.model.union.Union;
 
 import javax.inject.Inject;
 

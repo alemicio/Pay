@@ -1,11 +1,11 @@
-package it.screwdrivers.payroll.bean;
+package it.screwdrivers.payroll.view;
 
 import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
 import it.screwdrivers.payroll.controller.UnionController;
 import it.screwdrivers.payroll.controller.UnionServiceAssociationController;
-import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.union.Union;
-import it.screwdrivers.payroll.pojo.union.UnionServiceAssociation;
+import it.screwdrivers.payroll.model.employee.Employee;
+import it.screwdrivers.payroll.model.union.Union;
+import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
 
 import java.io.Serializable;
 import java.util.ArrayList;

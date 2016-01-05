@@ -6,11 +6,11 @@ import it.screwdrivers.payroll.dao.HistoricalUnionChargeDao;
 import it.screwdrivers.payroll.dao.UnionDao;
 import it.screwdrivers.payroll.dao.UnionServiceAssociationDao;
 import it.screwdrivers.payroll.dao.UnionServiceDao;
-import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
-import it.screwdrivers.payroll.pojo.historical.HistoricalUnionCharge;
-import it.screwdrivers.payroll.pojo.union.Union;
-import it.screwdrivers.payroll.pojo.union.UnionService;
-import it.screwdrivers.payroll.pojo.union.UnionServiceAssociation;
+import it.screwdrivers.payroll.model.employee.SalariedEmployee;
+import it.screwdrivers.payroll.model.historical.HistoricalUnionCharge;
+import it.screwdrivers.payroll.model.union.Union;
+import it.screwdrivers.payroll.model.union.UnionService;
+import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
 
 import java.util.Date;
 import java.util.List;

@@ -1,11 +1,11 @@
 package it.screwdrivers.payroll.controller;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
-import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
+import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
+import it.screwdrivers.payroll.model.employee.ContractorEmployee;
+import it.screwdrivers.payroll.model.employee.Employee;
+import it.screwdrivers.payroll.model.employee.EmployeeManager;
+import it.screwdrivers.payroll.model.employee.SalariedEmployee;
 
 import java.util.ArrayList;
 import java.util.List;

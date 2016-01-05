@@ -1,9 +1,9 @@
-package it.screwdrivers.payroll.pojo.employee;
+package it.screwdrivers.payroll.model.employee;
 
-import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
-import it.screwdrivers.payroll.pojo.historical.HistoricalUnionCharge;
-import it.screwdrivers.payroll.pojo.payment.Paymethod;
-import it.screwdrivers.payroll.pojo.union.Union;
+import it.screwdrivers.payroll.model.historical.HistoricalSalary;
+import it.screwdrivers.payroll.model.historical.HistoricalUnionCharge;
+import it.screwdrivers.payroll.model.payment.Paymethod;
+import it.screwdrivers.payroll.model.union.Union;
 
 import java.io.Serializable;
 import java.util.List;

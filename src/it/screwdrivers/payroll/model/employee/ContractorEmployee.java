@@ -1,6 +1,6 @@
-package it.screwdrivers.payroll.pojo.employee;
+package it.screwdrivers.payroll.model.employee;
 
-import it.screwdrivers.payroll.pojo.card.TimeCard;
+import it.screwdrivers.payroll.model.card.TimeCard;
 
 import java.util.List;
 

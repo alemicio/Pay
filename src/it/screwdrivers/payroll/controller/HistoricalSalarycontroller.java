@@ -2,11 +2,11 @@ package it.screwdrivers.payroll.controller;
 
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
 import it.screwdrivers.payroll.engine.PayrollCalendar;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
-import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
-import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
+import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
+import it.screwdrivers.payroll.model.employee.ContractorEmployee;
+import it.screwdrivers.payroll.model.employee.EmployeeManager;
+import it.screwdrivers.payroll.model.employee.SalariedEmployee;
+import it.screwdrivers.payroll.model.historical.HistoricalSalary;
 
 import java.sql.Date;
 import java.util.ArrayList;

@@ -4,11 +4,11 @@ import java.util.List;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.PaymethodDao;
-import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.payment.BankPaymethod;
-import it.screwdrivers.payroll.pojo.payment.Paymethod;
-import it.screwdrivers.payroll.pojo.payment.PostalPaymethod;
-import it.screwdrivers.payroll.pojo.payment.WithDrawPaymethod;
+import it.screwdrivers.payroll.model.employee.Employee;
+import it.screwdrivers.payroll.model.payment.BankPaymethod;
+import it.screwdrivers.payroll.model.payment.Paymethod;
+import it.screwdrivers.payroll.model.payment.PostalPaymethod;
+import it.screwdrivers.payroll.model.payment.WithDrawPaymethod;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

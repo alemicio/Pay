@@ -1,6 +1,6 @@
 package it.screwdrivers.payroll.dao;
 
-import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
+import it.screwdrivers.payroll.model.historical.HistoricalSalary;
 
 import java.util.List;
 

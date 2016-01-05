@@ -1,8 +1,10 @@
-package it.screwdrivers.payroll.pojo.union;
+package it.screwdrivers.payroll.model.union;
 
-import it.screwdrivers.payroll.pojo.historical.HistoricalUnionCharge;
+import it.screwdrivers.payroll.model.historical.HistoricalUnionCharge;
+
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

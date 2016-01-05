@@ -2,8 +2,8 @@ package it.screwdrivers.payroll.controller;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.UnionDao;
-import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.union.Union;
+import it.screwdrivers.payroll.model.employee.Employee;
+import it.screwdrivers.payroll.model.union.Union;
 
 import java.util.ArrayList;
 import java.util.List;

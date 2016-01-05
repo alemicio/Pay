@@ -6,10 +6,13 @@ import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
 import it.screwdrivers.payroll.engine.PayEngine;
 import it.screwdrivers.payroll.engine.PayEngineFactory;
 import it.screwdrivers.payroll.engine.PayrollCalendar;
-import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
+import it.screwdrivers.payroll.model.historical.HistoricalSalary;
 import it.screwdrivers.payroll.testsDB.ArquillianTest;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;

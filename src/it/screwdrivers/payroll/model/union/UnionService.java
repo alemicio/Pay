@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.pojo.union;
+package it.screwdrivers.payroll.model.union;
 
 import java.io.Serializable;
 import java.util.List;

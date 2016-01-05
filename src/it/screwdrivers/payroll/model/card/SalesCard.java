@@ -1,6 +1,7 @@
-package it.screwdrivers.payroll.pojo.card;
+package it.screwdrivers.payroll.model.card;
 
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
+import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
+
 import java.io.Serializable;
 import java.util.Date;
 

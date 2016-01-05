@@ -1,8 +1,8 @@
-package it.screwdrivers.payroll.bean;
+package it.screwdrivers.payroll.view;
 
 import it.screwdrivers.payroll.controller.SalesCardController;
-import it.screwdrivers.payroll.pojo.card.SalesCard;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
+import it.screwdrivers.payroll.model.card.SalesCard;
+import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 
 import java.io.Serializable;
 import java.util.Date;

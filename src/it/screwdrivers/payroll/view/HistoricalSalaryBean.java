@@ -1,7 +1,7 @@
-package it.screwdrivers.payroll.bean;
+package it.screwdrivers.payroll.view;
 
 import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
-import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
+import it.screwdrivers.payroll.model.historical.HistoricalSalary;
 
 import java.io.Serializable;
 import java.util.List;

@@ -9,10 +9,10 @@ import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
 import it.screwdrivers.payroll.engine.PayEngine;
 import it.screwdrivers.payroll.engine.PayEngineFactory;
 import it.screwdrivers.payroll.engine.PayrollCalendar;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-import it.screwdrivers.payroll.pojo.employee.SalariedEmployee;
-import it.screwdrivers.payroll.pojo.historical.HistoricalSalary;
+import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
+import it.screwdrivers.payroll.model.employee.ContractorEmployee;
+import it.screwdrivers.payroll.model.employee.SalariedEmployee;
+import it.screwdrivers.payroll.model.historical.HistoricalSalary;
 import it.screwdrivers.payroll.testsDB.ArquillianTest;
 
 import javax.inject.Inject;

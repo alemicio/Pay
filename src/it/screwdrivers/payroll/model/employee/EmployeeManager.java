@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.pojo.employee;
+package it.screwdrivers.payroll.model.employee;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

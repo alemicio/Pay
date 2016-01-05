@@ -1,6 +1,6 @@
 package it.screwdrivers.payroll.dao;
 
-import it.screwdrivers.payroll.pojo.payment.Paymethod;
+import it.screwdrivers.payroll.model.payment.Paymethod;
 
 import java.util.List;
 

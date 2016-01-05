@@ -1,6 +1,6 @@
 package it.screwdrivers.payroll.dao;
 
-import it.screwdrivers.payroll.pojo.union.UnionServiceAssociation;
+import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package it.screwdrivers.payroll.engine;
 import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
 import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
-import it.screwdrivers.payroll.pojo.employee.EmployeeManager;
+import it.screwdrivers.payroll.model.employee.EmployeeManager;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;

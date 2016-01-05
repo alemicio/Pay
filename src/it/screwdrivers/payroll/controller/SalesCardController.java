@@ -1,9 +1,9 @@
 package it.screwdrivers.payroll.controller;
 
 import it.screwdrivers.payroll.dao.SalesCardDao;
-import it.screwdrivers.payroll.pojo.card.SalesCard;
-import it.screwdrivers.payroll.pojo.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.pojo.employee.Employee;
+import it.screwdrivers.payroll.model.card.SalesCard;
+import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
+import it.screwdrivers.payroll.model.employee.Employee;
 
 import java.util.ArrayList;
 import java.util.List;

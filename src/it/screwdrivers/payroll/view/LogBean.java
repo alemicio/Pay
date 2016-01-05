@@ -1,7 +1,7 @@
-package it.screwdrivers.payroll.bean;
+package it.screwdrivers.payroll.view;
 
 import it.screwdrivers.payroll.controller.EmployeeController;
-import it.screwdrivers.payroll.pojo.employee.Employee;
+import it.screwdrivers.payroll.model.employee.Employee;
 
 import java.io.Serializable;
 

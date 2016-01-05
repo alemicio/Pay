@@ -1,9 +1,10 @@
-package it.screwdrivers.payroll.pojo.historical;
+package it.screwdrivers.payroll.model.historical;
 
-import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.union.UnionServiceAssociation;
+import it.screwdrivers.payroll.model.employee.Employee;
+
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "HistoricalUnionCharge")
-public class HistoricalUnionCharge implements Serializable {
+@Table(name = "HistoricalSalary")
+public class HistoricalSalary implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -22,15 +23,21 @@ public class HistoricalUnionCharge implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	private float amount;
+	private Date date;
+	private boolean isCommission;
+	
 	@ManyToOne
 	@JoinColumn(name="employeeId", referencedColumnName="employeeId")
 	private Employee employee;
-
-	@ManyToOne
-	@JoinColumn(name = "union_service_association_id", referencedColumnName = "id")
-	private UnionServiceAssociation union_service_association;
 	
-	private Date date;
+	public float getAmount() {
+		return amount;
+	}
+	
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
 	
 	public Date getDate() {
 		return date;
@@ -48,16 +55,16 @@ public class HistoricalUnionCharge implements Serializable {
 		this.employee = employee;
 	}
 	
-	public UnionServiceAssociation getUnion_service_association() {
-		return union_service_association;
-	}
-	
-	public void setUnion_service_association(
-			UnionServiceAssociation union_service_association) {
-		this.union_service_association = union_service_association;
-	}
-	
 	public int getId() {
 		return id;
 	}
+	
+	public boolean isCommission() {
+		return isCommission;
+	}
+	
+	public void setCommission(boolean isCommission) {
+		this.isCommission = isCommission;
+	}
+	
 }

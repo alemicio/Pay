@@ -1,9 +1,9 @@
 package it.screwdrivers.payroll.controller;
 
 import it.screwdrivers.payroll.dao.TimeCardDao;
-import it.screwdrivers.payroll.pojo.card.TimeCard;
-import it.screwdrivers.payroll.pojo.employee.ContractorEmployee;
-import it.screwdrivers.payroll.pojo.employee.Employee;
+import it.screwdrivers.payroll.model.card.TimeCard;
+import it.screwdrivers.payroll.model.employee.ContractorEmployee;
+import it.screwdrivers.payroll.model.employee.Employee;
 
 import java.sql.Time;
 import java.util.ArrayList;

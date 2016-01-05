@@ -2,7 +2,7 @@ package it.screwdrivers.payroll.testsDB;
 
 import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.dao.UnionServiceDao;
-import it.screwdrivers.payroll.pojo.union.UnionService;
+import it.screwdrivers.payroll.model.union.UnionService;
 
 import java.util.List;
 

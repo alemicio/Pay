@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalUnionChargeDao;
 import it.screwdrivers.payroll.engine.PayrollCalendar;
-import it.screwdrivers.payroll.pojo.employee.Employee;
-import it.screwdrivers.payroll.pojo.historical.HistoricalUnionCharge;
-import it.screwdrivers.payroll.pojo.union.UnionServiceAssociation;
+import it.screwdrivers.payroll.model.employee.Employee;
+import it.screwdrivers.payroll.model.historical.HistoricalUnionCharge;
+import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
