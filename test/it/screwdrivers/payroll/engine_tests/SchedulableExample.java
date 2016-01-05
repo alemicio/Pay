@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.testENGINE;
+package it.screwdrivers.payroll.engine_tests;
 
 /*
  * JBoss, Home of Professional Open Source

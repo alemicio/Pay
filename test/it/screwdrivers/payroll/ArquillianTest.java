@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.testsDB;
+package it.screwdrivers.payroll;
 
 import java.io.File;
 
@@ -28,9 +28,9 @@ public class ArquillianTest {
 				.addPackages(true,  "it.screwdrivers.payroll.model.historical")
 				.addPackages(true, "it.screwdrivers.payroll.model.payment")
 				.addPackages(true, "it.screwdrivers.payroll.model.union")
-				.addPackages(true, "it.screwdrivers.payroll.testENGINE")
+				.addPackages(true, "it.screwdrivers.payroll.engine_tests")
 				.addPackages(true, "it.screwdrivers.payroll.testsDATES")
-				.addPackages(true, "it.screwdrivers.payroll.testsDB")
+				.addPackages(true, "it.screwdrivers.payroll.model_tests")
 				.addAsResource("META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE,
 						ArchivePaths.create("beans.xml"));

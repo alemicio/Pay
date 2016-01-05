@@ -1,9 +1,10 @@
-package it.screwdrivers.payroll.testENGINE;
+package it.screwdrivers.payroll.engine_tests;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
+import it.screwdrivers.payroll.ArquillianTest;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
 import it.screwdrivers.payroll.engine.PayEngine;
@@ -13,7 +14,6 @@ import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
 import it.screwdrivers.payroll.model.historical.HistoricalSalary;
-import it.screwdrivers.payroll.testsDB.ArquillianTest;
 
 import javax.inject.Inject;
 
