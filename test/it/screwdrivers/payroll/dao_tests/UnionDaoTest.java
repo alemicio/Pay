@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.model_tests;
+package it.screwdrivers.payroll.dao_tests;
 
 import static org.junit.Assert.assertTrue;
 
@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class UnionTest extends ArquillianTest {
+public class UnionDaoTest extends ArquillianTest {
 
 	@Inject
 	UnionDao union_dao;
@@ -50,7 +50,7 @@ public class UnionTest extends ArquillianTest {
 		assertTrue("Union correctly added in the db", isAdded);
 
 		 //finally i remove it from the db
-		//union_dao.remove(union);
+		union_dao.remove(union);
 	}
 
 	@Test

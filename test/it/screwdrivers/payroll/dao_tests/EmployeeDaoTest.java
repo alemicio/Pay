@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.model_tests;
+package it.screwdrivers.payroll.dao_tests;
 
 import static org.junit.Assert.*;
 
@@ -19,13 +19,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class EmployeeTest extends ArquillianTest {
+public class EmployeeDaoTest extends ArquillianTest {
 
 	@Inject
 	EmployeeDao employee_dao;
 
 	@Test
 	public void testAddingSalaried() {
+		
 		SalariedEmployee employee_salaried = new SalariedEmployee();
 		employee_salaried.setName("davide");
 		employee_salaried.setSurname("bonamico");
@@ -42,20 +43,20 @@ public class EmployeeTest extends ArquillianTest {
 		List<Employee> employees = employee_dao.findAll();
 
 		for (Employee employee : employees) {
-
 			if (employee.getUsername().equals("bonaz")) {
-				test = true;
+				
+				test = true;				
 				//Once you have verified that the employee was written is deleted from the db
-				//employee_dao.remove(employee);
+				employee_dao.remove(employee);
 			}
 		}
-
-		// test = true;
+		
 		assertTrue(test);
 	}
 
 	@Test
 	public void testAddingContractor() {
+		
 		ContractorEmployee employee_contractor = new ContractorEmployee();
 		employee_contractor.setName("andrea");
 		employee_contractor.setSurname("mognaschi");
@@ -72,19 +73,20 @@ public class EmployeeTest extends ArquillianTest {
 		List<Employee> employees = employee_dao.findAll();
 
 		for (Employee employee : employees) {
-
 			if (employee.getUsername().equals("munci")) {
+				
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				//employee_dao.remove(employee);
+				employee_dao.remove(employee);
 			}
 		}
-//		 test = true;
+		
 		assertTrue(test);
 	}
 
 	@Test
 	public void testAddingCommissioned() {
+		
 		CommissionedEmployee employee_commissioned = new CommissionedEmployee();
 		employee_commissioned.setName("gianpaolo");
 		employee_commissioned.setSurname("molinelli");
@@ -102,19 +104,20 @@ public class EmployeeTest extends ArquillianTest {
 		List<Employee> employees = employee_dao.findAll();
 
 		for (Employee employee : employees) {
-
 			if (employee.getUsername().equals("moli")) {
 				
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				//employee_dao.remove(employee);
+				employee_dao.remove(employee);
 			}
 		}
-//		test = true;
+		
 		assertTrue(test);
 	}
+	
 	@Test
 	public void testAddingEmployeeManager(){
+		
 		EmployeeManager employee_manager = new EmployeeManager();
 		
 		employee_manager.setName("daniele");
@@ -132,27 +135,14 @@ public class EmployeeTest extends ArquillianTest {
 		List<Employee> employees = employee_dao.findAll();
 
 		for (Employee employee : employees) {
-
 			if (employee.getUsername().equals("danny")) {
 				
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				//employee_dao.remove(employee);
+				employee_dao.remove(employee);
 			}
 		}
-//		test = true;
+		
 		assertTrue(test);
-		
-	}
-	
-	@Test
-	public void RetrieveUnionedEmployee(){
-		
-		List<SalariedEmployee> s_employees = employee_dao.findAllSalaried();
-		
-		for(SalariedEmployee e: s_employees){
-			System.out.println(e.getName());
-		}
-		
 	}
 }

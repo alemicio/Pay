@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.model_tests;
+package it.screwdrivers.payroll.dao_tests;
 
 import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.ArquillianTest;
@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class HistoricalUnionChargeTest extends ArquillianTest {
+public class HistoricalUnionChargeDaoTest extends ArquillianTest {
 	
 	@Inject
 	EmployeeDao employee_dao;
@@ -93,14 +93,13 @@ public class HistoricalUnionChargeTest extends ArquillianTest {
 			if (union_service_association.getPrice() == 999) {
 				test = true;
 				//Once you have verified that the employee was written is deleted from the db
-				//union_service_association_dao.remove(usa);
-				//union_dao.remove(union);
-				//union_service_dao.remove(union_service);
-				//employee_dao.remove(employee_salaried);
+				union_service_association_dao.remove(usa);
+				union_dao.remove(union);
+				union_service_dao.remove(union_service);
+				employee_dao.remove(employee_salaried);
 			}
 		}
-
-		// test = true;
+		
 		assertTrue(test);
 	}
 	

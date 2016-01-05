@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.model_tests;
+package it.screwdrivers.payroll.dao_tests;
 
 import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.ArquillianTest;
@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class UnionServiceAssociationTest extends ArquillianTest {
+public class UnionServiceAssociationDaoTest extends ArquillianTest {
 	
 	@Inject
 	UnionDao union_dao;
@@ -66,8 +66,7 @@ public class UnionServiceAssociationTest extends ArquillianTest {
 				union_service_dao.remove(union_service);
 			}
 		}
-
-		// test = true;
+		
 		assertTrue(test);
 	}
 	

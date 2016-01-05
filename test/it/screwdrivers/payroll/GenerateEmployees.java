@@ -1,18 +1,13 @@
-package it.screwdrivers.payroll.model_tests;
+package it.screwdrivers.payroll;
 
-
-import static org.junit.Assert.*;
-
-import java.util.List;
-
-import it.screwdrivers.payroll.ArquillianTest;
-import it.screwdrivers.payroll.controller.EmployeeController;
+import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.Employee;
-import it.screwdrivers.payroll.model.employee.EmployeeManager;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,9 +20,6 @@ public class GenerateEmployees extends ArquillianTest {
 	
 	@Inject
 	EmployeeDao employee_dao;
-	
-	@Inject
-	EmployeeController e_controller;
 
 	@Test
 	public void testAddingSalariedClones() {
@@ -43,8 +35,7 @@ public class GenerateEmployees extends ArquillianTest {
 			employee_salaried.setPhone_number("3331112233");
 			employee_salaried.setPostal_address("via roma 1");
 			employee_salaried.setMonthly_salary(1000);
-			//employee_dao.add(employee_salaried);
-			e_controller.addEmployee(employee_salaried);
+			employee_dao.add(employee_salaried);
 		}
 
 		int count = 0;
@@ -53,7 +44,6 @@ public class GenerateEmployees extends ArquillianTest {
 		List<Employee> employees = employee_dao.findAll();
 
 		for (Employee employee : employees) {
-
 			if (employee.getE_mail().equals("clone@salaried.it")) {
 				
 				count++;
@@ -65,8 +55,8 @@ public class GenerateEmployees extends ArquillianTest {
 		}
 		
 		assertTrue("ho aggiunto tutti e 10 i cloni correttamente al db", condition);
-		
 	}
+	
 	@Test
 	public void testAddingContractorClones() {
 		
@@ -90,7 +80,6 @@ public class GenerateEmployees extends ArquillianTest {
 		List<Employee> employees = employee_dao.findAll();
 
 		for (Employee employee : employees) {
-
 			if (employee.getE_mail().equals("clone@contractor.it")) {
 				
 				count++;
@@ -102,8 +91,8 @@ public class GenerateEmployees extends ArquillianTest {
 		}
 		
 		assertTrue("ho aggiunto tutti e 10 i cloni correttamente al db", condition);
-		
 	}
+	
 	@Test
 	public void testAddingCommissionedClones() {
 		
@@ -128,7 +117,6 @@ public class GenerateEmployees extends ArquillianTest {
 		List<Employee> employees = employee_dao.findAll();
 
 		for (Employee employee : employees) {
-
 			if (employee.getE_mail().equals("clone@commissioned.it")) {
 				
 				count++;
@@ -140,6 +128,5 @@ public class GenerateEmployees extends ArquillianTest {
 		}
 		
 		assertTrue("ho aggiunto tutti e 10 i cloni correttamente al db", condition);
-		
 	}
 }

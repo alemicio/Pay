@@ -9,8 +9,11 @@ import java.util.List;
 import it.screwdrivers.payroll.ArquillianTest;
 import it.screwdrivers.payroll.engine.PayrollCalendar;
 
+import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(Arquillian.class)
 public class PayrollCalendarTest extends ArquillianTest {
 	
 	PayrollCalendar p_calendar = new PayrollCalendar();

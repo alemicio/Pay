@@ -18,7 +18,9 @@ public class ArquillianTest {
 	public static Archive<?> createDeployment() {
 
 		WebArchive archive = ShrinkWrap
-				.create(WebArchive.class, "TestPayroll.war")
+				.create(WebArchive.class, "test_archive.war")
+				.addClass(ArquillianTest.class)
+				.addClass(GenerateEmployees.class)
 				.addPackages(true, "it.screwdrivers.payroll.view")
 				.addPackages(true, "it.screwdrivers.payroll.controller")
 				.addPackages(true, "it.screwdrivers.payroll.dao")
@@ -29,15 +31,13 @@ public class ArquillianTest {
 				.addPackages(true, "it.screwdrivers.payroll.model.payment")
 				.addPackages(true, "it.screwdrivers.payroll.model.union")
 				.addPackages(true, "it.screwdrivers.payroll.engine_tests")
-				.addPackages(true, "it.screwdrivers.payroll.testsDATES")
-				.addPackages(true, "it.screwdrivers.payroll.model_tests")
+				.addPackages(true, "it.screwdrivers.payroll.dao_tests")
 				.addAsResource("META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE,
 						ArchivePaths.create("beans.xml"));
 
-		// Esportazione di prova per controllo
 		archive.as(ZipExporter.class).exportTo(
-				new File("target/arquillianPackage.war"), true);
+				new File("target/test_archive.war"), true);
 
 		return archive;
 	}

@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.model_tests;
+package it.screwdrivers.payroll.dao_tests;
 
 import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.ArquillianTest;
@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class PaymentTest extends ArquillianTest {
+public class PaymethodDaoTest extends ArquillianTest {
 
 	@Inject
 	PaymethodDao paymethod_dao;
