@@ -25,8 +25,8 @@ public class EmployeeDao {
 	}
 
 	// This method returns all employee records from employee table
-	// The query is made using java persistance query language(see
-	// documentation)
+	// The query is made using java persistence query language 
+	// (see documentation)
 	public List<Employee> findAll() {
 		List<Employee> employees = em.createQuery("select p from Employee p", Employee.class).getResultList();
 		return employees;
@@ -46,14 +46,17 @@ public class EmployeeDao {
 		List<ContractorEmployee> employees = em.createQuery("select p from ContractorEmployee p", ContractorEmployee.class).getResultList();
 		return employees;
 	}
+	
 	public List<CommissionedEmployee> findAllCommissioned() {
 		List<CommissionedEmployee> employees = em.createQuery("select p from CommissionedEmployee p", CommissionedEmployee.class).getResultList();
 		return employees;
 	}
+	
 	public List<EmployeeManager> findAllManager() {
 		List<EmployeeManager> employees = em.createQuery("select p from EmployeeManager p", EmployeeManager.class).getResultList();
 		return employees;
 	}
+	
 	public List<SalariedEmployee> findAllSalaried() {
 		List<SalariedEmployee> employees = em.createQuery("select p from SalariedEmployee p", SalariedEmployee.class).getResultList();
 		return employees;

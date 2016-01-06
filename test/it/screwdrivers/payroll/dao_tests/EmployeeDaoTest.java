@@ -26,7 +26,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 
 	@Test
 	public void testAddingSalaried() {
-		
+
 		SalariedEmployee employee_salaried = new SalariedEmployee();
 		employee_salaried.setName("davide");
 		employee_salaried.setSurname("bonamico");
@@ -44,19 +44,20 @@ public class EmployeeDaoTest extends ArquillianTest {
 
 		for (Employee employee : employees) {
 			if (employee.getUsername().equals("bonaz")) {
-				
-				test = true;				
-				//Once you have verified that the employee was written is deleted from the db
+
+				test = true;
+				// Once you have verified that the employee was written is
+				// deleted from the db
 				employee_dao.remove(employee);
 			}
 		}
-		
+
 		assertTrue(test);
 	}
 
 	@Test
 	public void testAddingContractor() {
-		
+
 		ContractorEmployee employee_contractor = new ContractorEmployee();
 		employee_contractor.setName("andrea");
 		employee_contractor.setSurname("mognaschi");
@@ -74,19 +75,20 @@ public class EmployeeDaoTest extends ArquillianTest {
 
 		for (Employee employee : employees) {
 			if (employee.getUsername().equals("munci")) {
-				
+
 				test = true;
-				//Once you have verified that the employee was written is deleted from the db
+				// Once you have verified that the employee was written is
+				// deleted from the db
 				employee_dao.remove(employee);
 			}
 		}
-		
+
 		assertTrue(test);
 	}
 
 	@Test
 	public void testAddingCommissioned() {
-		
+
 		CommissionedEmployee employee_commissioned = new CommissionedEmployee();
 		employee_commissioned.setName("gianpaolo");
 		employee_commissioned.setSurname("molinelli");
@@ -105,21 +107,115 @@ public class EmployeeDaoTest extends ArquillianTest {
 
 		for (Employee employee : employees) {
 			if (employee.getUsername().equals("moli")) {
-				
+
 				test = true;
-				//Once you have verified that the employee was written is deleted from the db
+				// Once you have verified that the employee was written is
+				// deleted from the db
 				employee_dao.remove(employee);
 			}
 		}
-		
+
 		assertTrue(test);
 	}
-	
+
 	@Test
-	public void testAddingEmployeeManager(){
-		
+	public void testAddingEmployeeManager() {
+
 		EmployeeManager employee_manager = new EmployeeManager();
+		employee_manager.setName("daniele");
+		employee_manager.setSurname("montagna");
+		employee_manager.setUsername("danny");
+		employee_manager.setPassword("danny");
+		employee_manager.setE_mail("a@bi.it");
+		employee_manager.setPhone_number("3331112233");
+		employee_manager.setPostal_address("via roma 1");
+		employee_manager.setAnnual_rate(12000);
+
+		Boolean test = false;
+		employee_dao.add(employee_manager);
+
+		List<Employee> employees = employee_dao.findAll();
+
+		for (Employee employee : employees) {
+			if (employee.getUsername().equals("danny")) {
+
+				test = true;
+				// Once you have verified that the employee was written is
+				// deleted from the db
+				employee_dao.remove(employee);
+			}
+		}
+
+		assertTrue(test);
+	}
+
+	// This methods tests Employee record update. In particular,
+	// it tests if an EmployeeManager's name was correctly updated,
+	// after it was persisted in the database
+	@Test
+	public void testEmployeeUpdate() {
+
+		boolean was_updated = false;
+
+		// EmployeeManager object instantiation
+		EmployeeManager employee_manager = new EmployeeManager();
+		employee_manager.setName("daniele");
+		employee_manager.setSurname("montagna");
+		employee_manager.setUsername("danny");
+		employee_manager.setPassword("danny");
+		employee_manager.setE_mail("a@bi.it");
+		employee_manager.setPhone_number("3331112233");
+		employee_manager.setPostal_address("via roma 1");
+		employee_manager.setAnnual_rate(12000);
+
+		// Here it persists the EmployeeManager object in the db
+		employee_dao.add(employee_manager);
+
+		// Iterates over employees list retrieved by findAll method
+		// to find an employee with username "danny"; than, it changes
+		// EmployeeManager's name from "daniele" to "alberto" and calls
+		// update method to persist this change in the db
+		List<Employee> employees = employee_dao.findAll();
+		for (Employee employee : employees) {
+			if (employee.getUsername().equals("danny")) {
+
+				employee.setName("alberto");
+				employee_dao.update(employee);
+			}
+		}
+
+		// Iterates over the employees list to find an
+		// EmployeeManager with username "danny" and
+		// name "alberto". If it founds thi EmployeeManager,
+		// the was_updated variable is set to true and the
+		// employee removed from the db
+		employees = employee_dao.findAll();
+		for (Employee employee : employees) {
+
+			if (employee.getUsername().equals("danny")) {
+				if (employee.getName().equals("alberto")) {
+
+					was_updated = true;
+					employee_dao.remove(employee);
+				}
+			}
+		}
+
+		assertTrue(was_updated);
+	}
+
+	// This method tests if the findAll method retrieves a List
+	// of EmployeeManager objects which corresponds to all 
+	// the employee table's records.
+	// We make an initial hypothesis: there are no records in
+	// employee table
+	@Test
+	public void testFindAllEmployees() {
 		
+		boolean test = false;
+		
+		// Here it instantiates three employees
+		EmployeeManager employee_manager = new EmployeeManager();
 		employee_manager.setName("daniele");
 		employee_manager.setSurname("montagna");
 		employee_manager.setUsername("danny");
@@ -129,18 +225,44 @@ public class EmployeeDaoTest extends ArquillianTest {
 		employee_manager.setPostal_address("via roma 1");
 		employee_manager.setAnnual_rate(12000);
 		
-		Boolean test = false;
+		CommissionedEmployee employee_commissioned = new CommissionedEmployee();
+		employee_commissioned.setName("gianpaolo");
+		employee_commissioned.setSurname("molinelli");
+		employee_commissioned.setUsername("moli");
+		employee_commissioned.setPassword("moli");
+		employee_commissioned.setE_mail("a@bi.it");
+		employee_commissioned.setPhone_number("3331112233");
+		employee_commissioned.setPostal_address("via roma 1");
+		employee_commissioned.setMonthly_salary(2000);
+		employee_commissioned.setSale_rate(2);
+		
+		ContractorEmployee employee_contractor = new ContractorEmployee();
+		employee_contractor.setName("andrea");
+		employee_contractor.setSurname("mognaschi");
+		employee_contractor.setUsername("munci");
+		employee_contractor.setPassword("munci");
+		employee_contractor.setE_mail("a@bi.it");
+		employee_contractor.setPhone_number("3331112233");
+		employee_contractor.setPostal_address("via roma 1");
+		employee_contractor.setHourly_rate(10);
+		
+		// The three employees are persisted in the db
 		employee_dao.add(employee_manager);
-
+		employee_dao.add(employee_commissioned);
+		employee_dao.add(employee_contractor);
+		
+		// Now, since they were persisted, the number of
+		// employee records in the employee table should
+		// be three
 		List<Employee> employees = employee_dao.findAll();
-
-		for (Employee employee : employees) {
-			if (employee.getUsername().equals("danny")) {
-				
-				test = true;
-				//Once you have verified that the employee was written is deleted from the db
-				employee_dao.remove(employee);
-			}
+		
+		if(employees.size() == 3){
+			
+			test = true;
+			
+			employee_dao.remove(employee_manager);
+			employee_dao.remove(employee_commissioned);
+			employee_dao.remove(employee_contractor);
 		}
 		
 		assertTrue(test);
