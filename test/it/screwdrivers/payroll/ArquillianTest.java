@@ -13,7 +13,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 public class ArquillianTest {
 
-	@Deployment(name = "FirstTest")
+	@Deployment(name = "Test")
 	@OverProtocol("Servlet 3.0")
 	public static Archive<?> createDeployment() {
 
@@ -36,8 +36,8 @@ public class ArquillianTest {
 				.addAsWebInfResource(EmptyAsset.INSTANCE,
 						ArchivePaths.create("beans.xml"));
 
-		archive.as(ZipExporter.class).exportTo(
-				new File("target/test_archive.war"), true);
+		//archive.as(ZipExporter.class).exportTo(
+		//		new File("target/test_archive.war"), true);
 
 		return archive;
 	}
