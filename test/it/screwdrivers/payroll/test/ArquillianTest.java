@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll;
+package it.screwdrivers.payroll.test;
 
 import java.io.File;
 
@@ -30,8 +30,8 @@ public class ArquillianTest {
 				.addPackages(true,  "it.screwdrivers.payroll.model.historical")
 				.addPackages(true, "it.screwdrivers.payroll.model.payment")
 				.addPackages(true, "it.screwdrivers.payroll.model.union")
-				.addPackages(true, "it.screwdrivers.payroll.engine_tests")
-				.addPackages(true, "it.screwdrivers.payroll.dao_tests")
+				.addPackages(true, "it.screwdrivers.payroll.test.engine")
+				.addPackages(true, "it.screwdrivers.payroll.test.dao")
 				.addAsResource("META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE,
 						ArchivePaths.create("beans.xml"));

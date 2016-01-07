@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll;
+package it.screwdrivers.payroll.test;
 
 import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.dao.EmployeeDao;

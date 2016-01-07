@@ -1,16 +1,16 @@
-package it.screwdrivers.payroll.dao_tests;
+package it.screwdrivers.payroll.test.dao;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
-import it.screwdrivers.payroll.ArquillianTest;
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.Employee;
 import it.screwdrivers.payroll.model.employee.EmployeeManager;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
+import it.screwdrivers.payroll.test.ArquillianTest;
 
 import javax.inject.Inject;
 

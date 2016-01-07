@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.engine_tests;
+package it.screwdrivers.payroll.test.engine;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.screwdrivers.payroll.ArquillianTest;
 import it.screwdrivers.payroll.engine.PayrollCalendar;
+import it.screwdrivers.payroll.test.ArquillianTest;
 
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;

@@ -1,9 +1,9 @@
-package it.screwdrivers.payroll.dao_tests;
+package it.screwdrivers.payroll.test.dao;
 
 import static org.junit.Assert.assertTrue;
-import it.screwdrivers.payroll.ArquillianTest;
 import it.screwdrivers.payroll.dao.UnionServiceDao;
 import it.screwdrivers.payroll.model.union.UnionService;
+import it.screwdrivers.payroll.test.ArquillianTest;
 
 import java.util.List;
 
