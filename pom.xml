@@ -81,12 +81,31 @@
 			<version>5.3</version>
 		</dependency>
 
+		<!-- Aggiunta dipendenza di BootFaces -->
 		<dependency>
 			<groupId>net.bootsfaces</groupId>
 			<artifactId>bootsfaces</artifactId>
 			<version>0.7.0</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- Aggiunta dipendenza di Jacoco -->
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.core</artifactId>
+			<version>0.7.5.201505241946</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.agent</artifactId>
+			<version>0.7.5.201505241946</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.report</artifactId>
+			<version>0.7.5.201505241946</version>
+		</dependency>
+
 	</dependencies>
 
 	<profiles>
@@ -113,7 +132,7 @@
 				</dependency>
 			</dependencies>
 		</profile>
-		
+
 		<profile>
 			<id>arquillian-jbossas-remote</id>
 			<dependencies>
