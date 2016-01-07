@@ -38,6 +38,12 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.17</version>
 			</plugin>
+			<!-- Aggiunta plugn-in jacoco -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.6-SNAPSHOT</version>
+			</plugin>
 		</plugins>
 	</build>
 	<!-- Distribuzione completa di Arquillian -->
@@ -97,14 +103,20 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jacoco</groupId>
-			<artifactId>org.jacoco.agent</artifactId>
+			<artifactId>org.jacoco.report</artifactId>
 			<version>0.7.5.201505241946</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jacoco</groupId>
-			<artifactId>org.jacoco.report</artifactId>
+			<artifactId>org.jacoco.agent</artifactId>
 			<version>0.7.5.201505241946</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-jacoco</artifactId>
+			<version>1.0.0.Alpha8</version>
+		</dependency>
+
 
 	</dependencies>
 
