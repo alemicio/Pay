@@ -20,7 +20,7 @@ public class ArquillianTest {
 		WebArchive archive = ShrinkWrap
 				.create(WebArchive.class, "test_archive.war")
 				.addClass(ArquillianTest.class)
-				.addClass(GenerateEmployees.class)
+				.addClass(EmployeeGenerator.class)
 				.addPackages(true, "it.screwdrivers.payroll.view")
 				.addPackages(true, "it.screwdrivers.payroll.controller")
 				.addPackages(true, "it.screwdrivers.payroll.dao")

@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class GenerateEmployees extends ArquillianTest {
+public class EmployeeGenerator extends ArquillianTest {
 	
 	@Inject
 	EmployeeDao employee_dao;

@@ -6,8 +6,6 @@ import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.EmployeeManager;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
-import it.screwdrivers.payroll.model.historical.HistoricalSalary;
-
 import java.io.Serializable;
 import java.util.List;
 
