@@ -746,7 +746,7 @@
 				<p:growl id="salaried_list_msgs" showDetail="true" />
 
 				<p:dataTable id="salariedEmployeeList" var="SalariedEmployee"
-					value="#{manager.s_employees}" editable="true"
+					value="#{manager.allSalaried}" editable="true"
 					style="margin-bottom:20px">
 					<f:facet name="header">
 						SALARIED EMPLOYEES
@@ -837,7 +837,7 @@
 				<p:growl id="commissioned_list_msgs" showDetail="true" />
 
 				<p:dataTable id="commissionedEmployeeList"
-					var="CommissionedEmployee" value="#{manager.com_employees}"
+					var="CommissionedEmployee" value="#{manager.allCommissioned}"
 					editable="true" style="margin-bottom:20px">
 					<f:facet name="header">
 						COMMISSIONED EMPLOYEES
@@ -940,7 +940,7 @@
 				<p:growl id="contractor_list_msgs" showDetail="true" />
 
 				<p:dataTable id="contractorEmployeeList" var="ContractorEmployee"
-					value="#{manager.con_employees}" editable="true"
+					value="#{manager.allContractors}" editable="true"
 					style="margin-bottom:20px">
 					<f:facet name="header">
 						CONTRACTOR EMPLOYEES

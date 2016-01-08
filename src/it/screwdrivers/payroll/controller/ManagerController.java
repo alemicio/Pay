@@ -32,11 +32,6 @@ public class ManagerController implements Serializable {
 	@Inject
 	HistoricalSalaryService historical_salary_service;
 
-	private List<SalariedEmployee> s_employees;
-	private List<CommissionedEmployee> com_employees;
-	private List<EmployeeManager> m_employees;
-	private List<ContractorEmployee> con_employees;
-
 	// These are all the employees attributes. They will be initialized
 	// to null (0 for the float attributes) and used as
 	// temporary attributes during employee creation. Since
@@ -54,12 +49,6 @@ public class ManagerController implements Serializable {
 
 	@PostConstruct
 	public void init() {
-
-		s_employees = employee_service.getAllSalaried();
-		com_employees = employee_service.getAllCommissioned();
-		con_employees = employee_service.getAllContractors();
-		m_employees = employee_service.getAllManagers();
-
 		username = null;
 		password = null;
 		name = null;
@@ -110,10 +99,6 @@ public class ManagerController implements Serializable {
 
 		boolean response = employee_service.deleteEmployee(id_employee);
 
-		// get the data a second time in order to refresh the datatable in the
-		// managerface
-		s_employees = employee_service.getAllSalaried();
-
 		if (response) {
 			FacesMessage msg = new FacesMessage("Employee deleted: ",
 					((SalariedEmployee) event.getObject()).getSurname());
@@ -147,13 +132,7 @@ public class ManagerController implements Serializable {
 		CommissionedEmployee c = ((CommissionedEmployee) event.getObject());
 		int id_employee = c.getId();
 
-		System.out.println(c.getUsername());
-
 		boolean response = employee_service.deleteEmployee(id_employee);
-
-		// get the data a second time in order to refresh the datatable in the
-		// managerface
-		com_employees = employee_service.getAllCommissioned();
 
 		if (response) {
 			FacesMessage msg = new FacesMessage("Employee deleted: ",
@@ -186,10 +165,6 @@ public class ManagerController implements Serializable {
 		int id_employee = c.getId();
 
 		boolean response = employee_service.deleteEmployee(id_employee);
-
-		// get the data a second time in order to refresh the datatable in the
-		// managerface
-		con_employees = employee_service.getAllContractors();
 
 		if (response) {
 			FacesMessage msg = new FacesMessage("Employee deleted: ",
@@ -227,11 +202,9 @@ public class ManagerController implements Serializable {
 		se.setPhone_number(phone_number);
 		se.setPostal_address(postal_address);
 		se.setMonthly_salary(monthly_salary);
-
 		available = employee_service.addEmployee(se);
 
 		resetAttributes();
-		updateSalariedEmployeeList();
 
 		return available;
 	}
@@ -251,8 +224,6 @@ public class ManagerController implements Serializable {
 
 		employee_service.addEmployee(ce);
 		resetAttributes();
-
-		updateCommissionedEmployeeList();
 	}
 
 	public void addContractorEmployee() {
@@ -269,8 +240,6 @@ public class ManagerController implements Serializable {
 
 		employee_service.addEmployee(ce);
 		resetAttributes();
-
-		updateContractorEmployeeList();
 	}
 
 	private void resetAttributes() {
@@ -284,38 +253,6 @@ public class ManagerController implements Serializable {
 		monthly_salary = 0;
 		sale_rate = 0;
 		hourly_rate = 0;
-	}
-
-	public void updateSalariedEmployeeList() {
-		s_employees = employee_service.getAllSalaried();
-	}
-
-	public void updateCommissionedEmployeeList() {
-		com_employees = employee_service.getAllCommissioned();
-	}
-
-	public void updateContractorEmployeeList() {
-		con_employees = employee_service.getAllContractors();
-	}
-
-	public void updateManagerEmployeeList() {
-		m_employees = employee_service.getAllManagers();
-	}
-
-	public List<SalariedEmployee> getS_employees() {
-		return s_employees;
-	}
-
-	public List<CommissionedEmployee> getCom_employees() {
-		return com_employees;
-	}
-
-	public List<EmployeeManager> getM_employees() {
-		return m_employees;
-	}
-
-	public List<ContractorEmployee> getCon_employees() {
-		return con_employees;
 	}
 
 	public String getUsername() {
