@@ -67,6 +67,8 @@ public class HistoricalSalaryDaoTest extends ArquillianTest {
 
 	@Test
 	public void testFindAllHistoricalSalaryDao() {
+		
+		// Initial hypothesis: empty HistoricalSalary table
 
 		boolean test = false;
 
@@ -104,7 +106,6 @@ public class HistoricalSalaryDaoTest extends ArquillianTest {
 
 		List<HistoricalSalary> historical_salaries = hs_dao.findAll();
 
-		// Initial hypothesis: empty HistoricalSalary table
 		if (historical_salaries.size() == 3) {
 			test = true;
 			hs_dao.remove(historical_salary3);
@@ -118,6 +119,8 @@ public class HistoricalSalaryDaoTest extends ArquillianTest {
 
 	@Test
 	public void testRemoveHistoricalSalaryDao() {
+		
+		// Initial hypothesis: empty HistoricalSalary table
 
 		boolean was_removed = false;
 
@@ -144,7 +147,6 @@ public class HistoricalSalaryDaoTest extends ArquillianTest {
 
 		historical_salaries_size_1 = hs_dao.findAll().size();
 
-		// Initial hypothesis: empty HistoricalSalary table
 		if (historical_salaries_size_1 > 0)
 			hs_dao.remove(historical_salary);
 
@@ -201,5 +203,4 @@ public class HistoricalSalaryDaoTest extends ArquillianTest {
 
 		assertTrue(was_updated);
 	}
-
 }

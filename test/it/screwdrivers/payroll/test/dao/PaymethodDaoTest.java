@@ -30,27 +30,21 @@ public class PaymethodDaoTest extends ArquillianTest {
 	@Test
 	public void testAddingBankPaymethod() {
 
-		// =============Add BankPaymethod object==============
 		BankPaymethod bankpaymethod = new BankPaymethod();
 		bankpaymethod.setFilial("Unicredit");
 		bankpaymethod.setIBAN("865657dyr1d1y1111");
-
 		paymethod_dao.add(bankpaymethod);
-		// ===================================================
 
-		// ==========BankPaymethod object retrieval===========
 		List<Paymethod> paymethods = paymethod_dao.findAll();
 		Boolean isAdded = false;
 
 		for (Paymethod paymethod : paymethods) {
-
 			if (paymethod.getId() == bankpaymethod.getId()) {
 				// set the flag if is retrieved
 				isAdded = true;
 				paymethod_dao.remove(bankpaymethod);
 			}
 		}
-		// ===================================================
 
 		assertTrue("Paymethod object was correctly added to the db!", isAdded);
 	}

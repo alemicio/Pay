@@ -48,7 +48,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 				test = true;
 				// Once you have verified that the employee was written is
 				// deleted from the db
-				//employee_dao.remove(employee);
+				employee_dao.remove(employee);
 			}
 		}
 
@@ -79,7 +79,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 				test = true;
 				// Once you have verified that the employee was written is
 				// deleted from the db
-				//employee_dao.remove(employee);
+				employee_dao.remove(employee);
 			}
 		}
 
@@ -111,7 +111,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 				test = true;
 				// Once you have verified that the employee was written is
 				// deleted from the db
-				//employee_dao.remove(employee);
+				employee_dao.remove(employee);
 			}
 		}
 
@@ -142,7 +142,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 				test = true;
 				// Once you have verified that the employee was written is
 				// deleted from the db
-				//employee_dao.remove(employee);
+				employee_dao.remove(employee);
 			}
 		}
 
@@ -159,10 +159,10 @@ public class EmployeeDaoTest extends ArquillianTest {
 
 		// EmployeeManager object instantiation
 		EmployeeManager employee_manager = new EmployeeManager();
-		employee_manager.setName("daniele");
-		employee_manager.setSurname("montagna");
-		employee_manager.setUsername("danny");
-		employee_manager.setPassword("danny");
+		employee_manager.setName("emily");
+		employee_manager.setSurname("CTRLV");
+		employee_manager.setUsername("emy");
+		employee_manager.setPassword("password");
 		employee_manager.setE_mail("a@bi.it");
 		employee_manager.setPhone_number("3331112233");
 		employee_manager.setPostal_address("via roma 1");
@@ -172,64 +172,62 @@ public class EmployeeDaoTest extends ArquillianTest {
 		employee_dao.add(employee_manager);
 
 		// Iterates over employees list retrieved by findAll method
-		// to find an employee with username "danny"; than, it changes
-		// EmployeeManager's name from "daniele" to "alberto" and calls
+		// to find an employee with username "emy"; than, it changes
+		// EmployeeManager's name from "emily" to "emilia" and calls
 		// update method to persist this change in the db
 		List<Employee> employees = employee_dao.findAll();
 		for (Employee employee : employees) {
-			if (employee.getUsername().equals("danny")) {
+			if (employee.getUsername().equals("emy")) {
 
-				employee.setName("alberto");
+				employee.setName("emilia");
 				employee_dao.update(employee);
 			}
 		}
 
 		// Iterates over the employees list to find an
-		// EmployeeManager with username "danny" and
-		// name "alberto". If it founds thi EmployeeManager,
+		// EmployeeManager with username "emy" and
+		// name "emilia". If it founds thi EmployeeManager,
 		// the was_updated variable is set to true and the
 		// employee removed from the db
 		employees = employee_dao.findAll();
 		for (Employee employee : employees) {
 
-			if (employee.getUsername().equals("danny")) {
-				if (employee.getName().equals("alberto")) {
+			if (employee.getUsername().equals("emy")) {
+				if (employee.getName().equals("emilia")) {
 
 					was_updated = true;
 					employee_dao.remove(employee);
 				}
 			}
 		}
-
+		
 		assertTrue(was_updated);
 	}
 
 	// This method tests if the findAll method retrieves a List
 	// of EmployeeManager objects which corresponds to all 
-	// the employee table's records.
-	// We make an initial hypothesis: there are no records in
-	// employee table
+	// the employee table's records
 	@Test
 	public void testFindAllEmployees() {
 		
-		boolean test = false;
+		int initial_size = employee_dao.findAll().size();
 		
 		// Here it instantiates three employees
 		EmployeeManager employee_manager = new EmployeeManager();
-		employee_manager.setName("daniele");
-		employee_manager.setSurname("montagna");
-		employee_manager.setUsername("danny");
-		employee_manager.setPassword("danny");
+		employee_manager.setName("freddy");
+		employee_manager.setSurname("mercury");
+		employee_manager.setUsername("freddy");
+		employee_manager.setPassword("password");
 		employee_manager.setE_mail("a@bi.it");
 		employee_manager.setPhone_number("3331112233");
 		employee_manager.setPostal_address("via roma 1");
 		employee_manager.setAnnual_rate(12000);
 		
 		CommissionedEmployee employee_commissioned = new CommissionedEmployee();
-		employee_commissioned.setName("gianpaolo");
-		employee_commissioned.setSurname("molinelli");
-		employee_commissioned.setUsername("moli");
-		employee_commissioned.setPassword("moli");
+		employee_commissioned.setName("elton");
+		employee_commissioned.setSurname("john");
+		employee_commissioned.setUsername("elton");
+		employee_commissioned.setPassword("password");
 		employee_commissioned.setE_mail("a@bi.it");
 		employee_commissioned.setPhone_number("3331112233");
 		employee_commissioned.setPostal_address("via roma 1");
@@ -237,10 +235,10 @@ public class EmployeeDaoTest extends ArquillianTest {
 		employee_commissioned.setSale_rate(2);
 		
 		ContractorEmployee employee_contractor = new ContractorEmployee();
-		employee_contractor.setName("andrea");
-		employee_contractor.setSurname("mognaschi");
-		employee_contractor.setUsername("munci");
-		employee_contractor.setPassword("munci");
+		employee_contractor.setName("giorgio");
+		employee_contractor.setSurname("moroder");
+		employee_contractor.setUsername("baffo");
+		employee_contractor.setPassword("password");
 		employee_contractor.setE_mail("a@bi.it");
 		employee_contractor.setPhone_number("3331112233");
 		employee_contractor.setPostal_address("via roma 1");
@@ -256,15 +254,10 @@ public class EmployeeDaoTest extends ArquillianTest {
 		// be three
 		List<Employee> employees = employee_dao.findAll();
 		
-		if(employees.size() == 3){
-			
-			test = true;
-			
-			employee_dao.remove(employee_manager);
-			employee_dao.remove(employee_commissioned);
-			employee_dao.remove(employee_contractor);
-		}
+		assertEquals(employees.size(), initial_size + 3);
 		
-		assertTrue(test);
+		employee_dao.remove(employee_manager);
+		employee_dao.remove(employee_commissioned);
+		employee_dao.remove(employee_contractor);
 	}
 }

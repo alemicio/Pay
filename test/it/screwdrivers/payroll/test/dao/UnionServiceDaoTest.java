@@ -42,5 +42,4 @@ public class UnionServiceDaoTest extends ArquillianTest {
 		
 		assertTrue(test);
 	}
-	
 }

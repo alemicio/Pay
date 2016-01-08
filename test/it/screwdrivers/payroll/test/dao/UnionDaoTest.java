@@ -85,5 +85,4 @@ public class UnionDaoTest extends ArquillianTest {
 		employee_dao.remove(ce);
 		union_dao.remove(union);
 	}
-
 }

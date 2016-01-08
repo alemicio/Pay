@@ -32,19 +32,15 @@ public class UnionServiceAssociationDaoTest extends ArquillianTest {
 	@Test
 	public void testAddingUnionServiceAssociation() {
 		
-		// ============ CREATE A UNION FOR THE TEST=============
 		Union union = new Union();
 		union.setName("CISL");
 		union.setPhone_number("3388194740");
 		union_dao.add(union);
-		// =====================================================
 		
-		// =========== CREATE A UNIONSERVICE FOR THE TEST=============
 		UnionService union_service = new UnionService();
 		union_service .setDescription("descrizione_di_test");
 		union_service .setName("servizio_di_test");
 		union_service_dao.add(union_service );
-		// ===========================================================
 		
 		UnionServiceAssociation usa = new UnionServiceAssociation();
 		usa.setUnion(union);
@@ -69,6 +65,5 @@ public class UnionServiceAssociationDaoTest extends ArquillianTest {
 		
 		assertTrue(test);
 	}
-	
 }
 
