@@ -48,7 +48,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 				test = true;
 				// Once you have verified that the employee was written is
 				// deleted from the db
-				employee_dao.remove(employee);
+				//employee_dao.remove(employee);
 			}
 		}
 
@@ -79,7 +79,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 				test = true;
 				// Once you have verified that the employee was written is
 				// deleted from the db
-				employee_dao.remove(employee);
+				//employee_dao.remove(employee);
 			}
 		}
 
@@ -111,7 +111,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 				test = true;
 				// Once you have verified that the employee was written is
 				// deleted from the db
-				employee_dao.remove(employee);
+				//employee_dao.remove(employee);
 			}
 		}
 
@@ -142,7 +142,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 				test = true;
 				// Once you have verified that the employee was written is
 				// deleted from the db
-				employee_dao.remove(employee);
+				//employee_dao.remove(employee);
 			}
 		}
 
@@ -152,7 +152,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 	// This methods tests Employee record update. In particular,
 	// it tests if an EmployeeManager's name was correctly updated,
 	// after it was persisted in the database
-	@Test
+	//@Test
 	public void testEmployeeUpdate() {
 
 		boolean was_updated = false;
@@ -209,7 +209,7 @@ public class EmployeeDaoTest extends ArquillianTest {
 	// the employee table's records.
 	// We make an initial hypothesis: there are no records in
 	// employee table
-	@Test
+	//@Test
 	public void testFindAllEmployees() {
 		
 		boolean test = false;

@@ -57,7 +57,7 @@
 					<div class="form-group">
 						<h:outputText value="Username:" styleClass="control-label" />
 						<h:inputText id="username"
-							value="#{employee.retrieved_employee.username}"
+							value="#{login.logged_employee.username}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -65,14 +65,14 @@
 					<div class="form-group">
 						<h:outputText value="Password:" styleClass="control-label" />
 						<h:inputSecret id="password"
-							value="#{employee.retrieved_employee.password}"
+							value="#{login.logged_employee.password}"
 							styleClass="form-control">
 						</h:inputSecret>
 					</div>
 
 					<div class="form-group">
 						<h:outputText value="Name:" styleClass="control-label" />
-						<h:inputText id="name" value="#{employee.retrieved_employee.name}"
+						<h:inputText id="name" value="#{login.logged_employee.name}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -80,7 +80,7 @@
 					<div class="form-group">
 						<h:outputText value="Surname:" styleClass="control-label" />
 						<h:inputText id="surname"
-							value="#{employee.retrieved_employee.surname}"
+							value="#{login.logged_employee.surname}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -88,7 +88,7 @@
 					<div class="form-group">
 						<h:outputText value="E-mail:" styleClass="control-label" />
 						<h:inputText id="email"
-							value="#{employee.retrieved_employee.e_mail}"
+							value="#{login.logged_employee.e_mail}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -96,7 +96,7 @@
 					<div class="form-group">
 						<h:outputText value="Phone Number:" styleClass="control-label" />
 						<h:inputText id="phonenumber"
-							value="#{employee.retrieved_employee.phone_number}"
+							value="#{login.logged_employee.phone_number}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -104,7 +104,7 @@
 					<div class="form-group">
 						<h:outputText value="Postal Address:" styleClass="control-label" />
 						<h:inputText id="postaladdress"
-							value="#{employee.retrieved_employee.postal_address}"
+							value="#{login.logged_employee.postal_address}"
 							styleClass="form-control">
 						</h:inputText>
 					</div>
@@ -113,7 +113,7 @@
 						<button class="btn btn-lg btn-default" data-dismiss="modal"
 							aria-hidden="true">Cancel</button>
 						<h:commandButton type="submit" value="Save"
-							action="#{employee.changeDetails()}"
+							action="#{employee.changeDetails(login.logged_employee)}"
 							styleClass="btn btn-lg btn-info" style="margin-left: 1rem" />
 					</div>
 
@@ -458,7 +458,7 @@
 					<div class="col-lg-9">
 						<div class="row">
 							<div class="col-xs-12">
-								<h1>Benvenuto manager #{login.retrived_employee.username}</h1>
+								<h1>Benvenuto manager #{login.logged_employee.username}</h1>
 							</div>
 						</div>
 
@@ -467,14 +467,14 @@
 
 						<div class="row">
 							<div class="col-lg-6" style="text-align: left;">
-								<h3>Name: #{login.retrived_employee.name}</h3>
-								<h3>E-mail: #{login.retrived_employee.e_mail}</h3>
-								<h3>Address: #{login.retrived_employee.postal_address}</h3>
+								<h3>Name: #{login.logged_employee.name}</h3>
+								<h3>E-mail: #{login.logged_employee.e_mail}</h3>
+								<h3>Address: #{login.logged_employee.postal_address}</h3>
 							</div>
 
 							<div class="col-lg-6" style="text-align: left;">
-								<h3>Surname: #{login.retrived_employee.surname}</h3>
-								<h3>Phone: #{login.retrived_employee.phone_number}</h3>
+								<h3>Surname: #{login.logged_employee.surname}</h3>
+								<h3>Phone: #{login.logged_employee.phone_number}</h3>
 							</div>
 						</div>
 					</div>
@@ -496,7 +496,7 @@
 								<div class="col-lg-6 col-lg-offset-3">
 
 									<h3>Payment:
-										#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
+										#{paymentmethod.getPaymethodType(login.logged_employee)}</h3>
 
 									<b:modal id="modalpay"
 										title="Here you can Modify you Payment method"
@@ -511,7 +511,7 @@
 											<div class="row">
 												<div class="col-lg-12">
 													<h3>Actual:
-														#{paymentmethod.getPaymethodType(employee.retrieved_employee)}</h3>
+														#{paymentmethod.getPaymethodType(login.logged_employee)}</h3>
 												</div>
 											</div>
 											<div class="row">
@@ -555,7 +555,7 @@
 																	onclick="return false;" />
 
 																<b:commandButton value="OK"
-																	action="#{paymentmethod.setBankPaymethod(employee.retrieved_employee)}"></b:commandButton>
+																	action="#{paymentmethod.setBankPaymethod(login.logged_employee)}"></b:commandButton>
 															</h:form>
 															<!-- ===================================================================== -->
 
@@ -575,7 +575,7 @@
 																	onclick="return false;" />
 
 																<b:commandButton value="OK"
-																	action="#{paymentmethod.setPostalPaymethod(employee.retrieved_employee)}"></b:commandButton>
+																	action="#{paymentmethod.setPostalPaymethod(login.logged_employee)}"></b:commandButton>
 															</h:form>
 															<!-- ===================================================================== -->
 
@@ -595,7 +595,7 @@
 																	onclick="return false;" />
 
 																<b:commandButton value="OK"
-																	action="#{paymentmethod.setWithDrawPaymethod(employee.retrieved_employee)}"></b:commandButton>
+																	action="#{paymentmethod.setWithDrawPaymethod(login.logged_employee)}"></b:commandButton>
 															</h:form>
 															<!-- ===================================================================== -->
 
@@ -618,7 +618,7 @@
 							<div class="row">
 								<div class="col-lg-6 col-lg-offset-3">
 
-									<h3>Union: #{union.getUnion(employee.retrieved_employee)}</h3>
+									<h3>Union: #{union.getUnion(login.logged_employee)}</h3>
 
 									<b:modal id="modalunion" title="Here you can Modify your Union"
 										styleClass="modalPseudoClassU">
@@ -654,7 +654,7 @@
 												<div class="col-lg-12">
 													<b:commandButton value="Ok" size="lg" look="success"
 														dismiss="modal"
-														action="#{union.setUnion(employee.retrieved_employee)}" />
+														action="#{union.setUnion(login.logged_employee)}" />
 												</div>
 											</div>
 										</h:form>
@@ -721,7 +721,7 @@
 
 												<div class="col-lg-6">
 													<h:commandButton value="Confirm Order"
-														action="#{union.confirmOrder(employee.retrieved_employee)}"
+														action="#{union.confirmOrder(login.logged_employee)}"
 														styleClass="btn btn-lg btn-info" />
 												</div>
 											</div>
@@ -760,7 +760,7 @@
 					<p:ajax event="rowEditCancel"
 						update=":salaried_form_list:salaried_list_msgs, :salaried_form_list:salariedEmployeeList"
 						listener="#{manager.onSalariedRowCancel}" />
-					<!-- oncomplete="javascript:location.reload(true)" />  -->
+						oncomplete="javascript:location.reload(true)" />
 
 					<p:column headerText="Name">
 						<p:cellEditor>
@@ -851,7 +851,7 @@
 					<p:ajax event="rowEditCancel"
 						update=":commissioned_form_list:commissioned_list_msgs, :commissioned_form_list:commissionedEmployeeList"
 						listener="#{manager.onCommissionedRowCancel}" />
-					<!-- oncomplete="javascript:location.reload(true)" />  -->
+					    oncomplete="javascript:location.reload(true)" /> 
 
 					<p:column headerText="Name">
 						<p:cellEditor>
@@ -954,7 +954,7 @@
 					<p:ajax event="rowEditCancel"
 						update=":contractor_form_list:contractor_list_msgs, :contractor_form_list:contractorEmployeeList"
 						listener="#{manager.onContractorRowCancel}" />
-					<!-- oncomplete="javascript:location.reload(true)" />  -->
+						oncomplete="javascript:location.reload(true)" /> 
 
 					<p:column headerText="Name">
 						<p:cellEditor>

@@ -24,7 +24,7 @@ public class UnionServiceAssociationService {
 	@Inject
 	UnionServiceAssociation union_service_association;
 
-	public List<UnionServiceAssociation> retrieveUnionServiceAssociations(
+	public List<UnionServiceAssociation> getUnionServiceAssociations(
 			Employee employee) {
 
 		// retrive all unionservice associated with the union of the employee
@@ -46,7 +46,7 @@ public class UnionServiceAssociationService {
 				filtered_list.add(usa);
 			}
 		}
-		
+
 		return filtered_list;
 	}
 
@@ -80,5 +80,4 @@ public class UnionServiceAssociationService {
 
 		return union_service_association;
 	}
-
 }

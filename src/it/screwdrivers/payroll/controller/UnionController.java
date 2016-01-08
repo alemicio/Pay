@@ -24,43 +24,43 @@ public class UnionController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	UnionService union_service;
+
+	@Inject
+	UnionServiceAssociationService usa_service;
+
+	@Inject
+	HistoricalUnionChargeService huc_service;
+	
+	@Inject
 	Union union;
 
-	@Inject
-	UnionService u_controller;
-
-	@Inject
-	UnionServiceAssociationService usa_controller;
-
-	@Inject
-	HistoricalUnionChargeService huc_controller;
-
 	private String union_name;
-	private List<String> associated_unions;
-	private List<UnionServiceAssociation> union_service_associations;
+	private List<String> union_names;
 	private List<String> service_names;
 	private List<String> services_selected;
+	private List<UnionServiceAssociation> union_service_associations;
 	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();;
 
 	public String getUnion(Employee e) {
-
-		populateUnionsNames();
-
+		
+		union_names = union_service.getUnionNames();
+		
 		// This method returns a union for a given employee.
 		String name_union = null;
-		boolean is_union_set = u_controller.isUnionSet(e);
+		boolean is_union_set = union_service.isUnionSet(e);
 
-		if (is_union_set == true) {
-
-			populateUnionServiceAssociations(e);
+		if (is_union_set) {
+			union_service_associations = usa_service
+					.getUnionServiceAssociations(e);
+			
 			// here we have populated the list of service name to show in the
 			// face
-			service_names = usa_controller
+			service_names = usa_service
 					.getUnionServiceNames(union_service_associations);
 
-			name_union = u_controller.findUnionName(e.getUnion());
+			name_union = union_service.getUnionName(e.getUnion());
 			this.union = e.getUnion();
-
 		} else {
 			name_union = "Not setted";
 		}
@@ -69,55 +69,23 @@ public class UnionController implements Serializable {
 	}
 
 	public void setUnion(Employee e) {
-
-		System.out.println("Union scelta dalla tendina: " + union_name);
-		u_controller.setUnion(e, union_name);
+		union_service.setUnion(e, union_name);
 	}
-
-	private void populateUnionsNames() {
-		associated_unions = u_controller.getUnionsNames();
-	}
-
-	private void populateUnionServiceAssociations(Employee e) {
-		union_service_associations = usa_controller
-				.retrieveUnionServiceAssociations(e);
-	}
-
-	/*
-	 * public String[] getSelectedUnionServicesNames() {
-	 * 
-	 * String[] names;
-	 * 
-	 * if (services_selected.contains(",")) { names =
-	 * services_selected.split(","); } else { names = new String[1]; names[0] =
-	 * services_selected; }
-	 * 
-	 * return names; }
-	 */
 
 	public void updateSelectedUnionServiceAssociations() {
-
-		/*
-		 * String[] selected_services_names = getSelectedUnionServicesNames();
-		 * selected_union_service_associations.clear();
-		 */
-
 		for (String selected_service_name : services_selected) {
-
-			System.out.println(selected_service_name);
-
-			selected_union_service_associations.add(usa_controller
+			selected_union_service_associations.add(usa_service
 					.getUnionServiceAssociationByUnionAndServiceName(
 							this.union, selected_service_name));
 		}
 	}
 
 	public void confirmOrder(Employee e) {
-
+		
 		updateSelectedUnionServiceAssociations();
 
 		String response = null;
-		response = huc_controller.confirmOrder(e,
+		response = huc_service.confirmOrder(e,
 				selected_union_service_associations);
 
 		if (response == "success") {
@@ -136,9 +104,6 @@ public class UnionController implements Serializable {
 		}
 	}
 
-	// ===========================
-	// === Getters and Setters ===
-	// ===========================
 	public String getUnion_name() {
 		return union_name;
 	}
@@ -148,11 +113,11 @@ public class UnionController implements Serializable {
 	}
 
 	public List<String> getAssociated_unions() {
-		return associated_unions;
+		return union_names;
 	}
 
 	public void setAssociated_unions(List<String> associated_unions) {
-		this.associated_unions = associated_unions;
+		this.union_names = associated_unions;
 	}
 
 	public List<UnionServiceAssociation> getAssociated_service() {

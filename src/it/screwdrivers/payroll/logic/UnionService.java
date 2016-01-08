@@ -16,25 +16,23 @@ public class UnionService {
 
 	@Inject
 	UnionDao u_dao;
-	
+
 	@Inject
 	EmployeeDao employee_dao;
 
 	public boolean isUnionSet(Employee employee) {
-		
 		if (employee.getUnion() == null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
-	public String findUnionName(Union union) {
+
+	public String getUnionName(Union union) {
 		return union.getName();
 	}
 
 	public void setUnion(Employee employee, String union_name) {
-
 		List<Union> unions = u_dao.findAll();
 
 		for (Union u : unions) {
@@ -43,24 +41,22 @@ public class UnionService {
 			}
 		}
 	}
-	
-	public List<String> getUnionsNames() {
 
+	public List<String> getUnionNames() {
 		// this method return all names of associated unions in the db
 		List<Union> unions = u_dao.findAll();
 
-		List<String> nomi_unioni = new ArrayList<String>();
+		List<String> union_names = new ArrayList<String>();
 
 		for (Union u : unions) {
-			nomi_unioni.add(u.getName());
+			union_names.add(u.getName());
 		}
 
-		return nomi_unioni;
+		return union_names;
 	}
 
 	private void updateUnion(Employee employee, Union u) {
 		employee.setUnion(u);
 		employee_dao.update(employee);
 	}
-	
 }
