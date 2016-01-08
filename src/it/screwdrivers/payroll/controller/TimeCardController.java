@@ -21,54 +21,47 @@ public class TimeCardController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	TimeCardService t_controller;
+	TimeCardService time_card_service;
 
 	@Inject
-	TimeCard t_card;
-
-	private Date date;
-	private String response;
+	TimeCard time_card;
 
 	private int hour_start;
 	private int hour_end;
 	private int minute_start;
 	private int minute_end;
 
+	private Date date;
 	private Time start_time;
 	private Time end_time;
-
 	private float hours_worked;
 
-	@SuppressWarnings("deprecation")
 	public void submitTimeCard(ContractorEmployee logged_employee) {
+		// Compute Time object given int inputs
+		start_time = time_card_service.ComputeTime(hour_start, minute_start);
+		end_time = time_card_service.ComputeTime(hour_end, minute_end);
+		
+		hours_worked = time_card_service.computeHoursWorked(start_time, end_time);
 
-		// conversion from type int to time value
-		start_time = t_controller.ComputeTime(hour_start, minute_start);
-		end_time = t_controller.ComputeTime(hour_end, minute_end);
+		time_card.setDate(date);
+		time_card.setStart_time(start_time);
+		time_card.setEnd_time(end_time);
+		time_card.setHours_worked(hours_worked);
+		time_card.setContractor_employee(logged_employee);
 
-		hours_worked = (end_time.getHours() + (float) ((float) end_time.getMinutes() / 60))
-				     - (start_time.getHours() + (float) ((float) start_time.getMinutes() / 60));
-
-		t_card.setDate(date);
-		t_card.setStart_time(start_time);
-		t_card.setEnd_time(end_time);
-		t_card.setHours_worked(hours_worked);
-		t_card.setContractor_employee(logged_employee);
-
-
-		response = t_controller.registerTimeCard(logged_employee, t_card);
+		String response = time_card_service.registerTimeCard(logged_employee, time_card);
 
 		if (response == "failed") {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_WARN, "Error sending Time Card",
-					"A time card with thid date is already sent"));
+					"A time card with this date was already sent"));
 		}
 		if (response == "success") {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Congratulations",
-					"your time card is correctly sent"));
+					"Your time card was correctly sent"));
 		}
 	}
 
@@ -135,5 +128,4 @@ public class TimeCardController implements Serializable {
 	public void setHours_worked(float hours_worked) {
 		this.hours_worked = hours_worked;
 	}
-
 }

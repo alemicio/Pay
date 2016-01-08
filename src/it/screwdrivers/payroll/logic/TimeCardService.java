@@ -23,6 +23,14 @@ public class TimeCardService {
 		Time tempo = new Time(start_hour, start_min, 0);
 		return tempo;
 	}
+	
+	@SuppressWarnings("deprecation")
+	public float computeHoursWorked(Time start_time, Time end_time){
+		float hours_worked = (end_time.getHours() + (float) ((float) end_time.getMinutes() / 60))
+			     - (start_time.getHours() + (float) ((float) start_time.getMinutes() / 60));
+		
+		return hours_worked;
+	}
 
 	@SuppressWarnings("deprecation")
 	public String registerTimeCard(ContractorEmployee logged_employee,
@@ -60,8 +68,7 @@ public class TimeCardService {
 		return "success";
 	}
 
-	public List<TimeCard> retriveByEmployee(Employee e) {
-		
+	public List<TimeCard> getByEmployee(Employee e) {
 		List<TimeCard> timecards = t_dao.findAll();
 		List<TimeCard> retrieved = new ArrayList<TimeCard>();
 
@@ -73,5 +80,4 @@ public class TimeCardService {
 		
 		return retrieved;
 	}
-
 }

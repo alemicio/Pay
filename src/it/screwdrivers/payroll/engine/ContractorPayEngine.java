@@ -77,7 +77,7 @@ public class ContractorPayEngine extends PayEngine {
 		float extra_hours;
 		// this method return a list if timecard associated to the
 		// given employee
-		List<TimeCard> retrieved = t_controller.retriveByEmployee(c);
+		List<TimeCard> retrieved = t_controller.getByEmployee(c);
 
 		// check if the timeCard has a date matching with
 		// one of the date of the current week

@@ -53,7 +53,6 @@ public class PaymethodService {
 		updatePaymethod(employee, withdraw);
 	}
 
-	// MICIO
 	// This method checks if the employee has already set a paymethod type
 	public boolean isPaymethodSet(Employee employee) {
 		
