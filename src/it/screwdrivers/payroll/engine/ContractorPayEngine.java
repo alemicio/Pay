@@ -4,10 +4,11 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
-import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
-import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
-import it.screwdrivers.payroll.controller.TimeCardController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
+import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.HistoricalSalaryService;
+import it.screwdrivers.payroll.logic.HistoricalUnionChargeService;
+import it.screwdrivers.payroll.logic.TimeCardService;
 import it.screwdrivers.payroll.model.card.TimeCard;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.Employee;
@@ -24,13 +25,13 @@ public class ContractorPayEngine extends PayEngine {
 	@Inject
 	EmployeeDao e_dao;
 	@Inject
-	TimeCardController t_controller;
+	TimeCardService t_controller;
 	@Inject
-	HistoricalSalarycontroller h_controller;
+	HistoricalSalaryService h_controller;
 	@Inject
 	PayrollCalendar p_calendar;
 	@Inject
-	HistoricalUnionChargeController huc_controller;
+	HistoricalUnionChargeService huc_controller;
 
 	public ContractorPayEngine() {
 		super();

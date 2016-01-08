@@ -1,10 +1,10 @@
-package it.screwdrivers.payroll.controller;
+package it.screwdrivers.payroll.logic;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import it.screwdrivers.payroll.dao.UnionServiceAssociationDao;
-import it.screwdrivers.payroll.engine.PayrollCalendar;
+import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
 import it.screwdrivers.payroll.model.employee.Employee;
 import it.screwdrivers.payroll.model.union.Union;
 import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class UnionServiceAssociationController {
+public class UnionServiceAssociationService {
 
 	@Inject
 	UnionServiceAssociationDao usa_dao;

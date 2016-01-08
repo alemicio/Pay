@@ -1,7 +1,7 @@
 package it.screwdrivers.payroll.test.use_case;
 
 import static org.junit.Assert.assertEquals;
-import it.screwdrivers.payroll.controller.EmployeeController;
+import it.screwdrivers.payroll.logic.EmployeeService;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 public class AddANewEmployeeTest {
 
 	@Inject
-	EmployeeController employee_controller;
+	EmployeeService employee_controller;
 
 	@Deployment(name = "Test")
 	@OverProtocol("Servlet 3.0")
@@ -37,8 +37,8 @@ public class AddANewEmployeeTest {
 				.create(WebArchive.class, "test_archive.war")
 				.addClass(ArquillianTest.class)
 				.addClass(EmployeeGenerator.class)
-				.addPackages(true, "it.screwdrivers.payroll.view")
 				.addPackages(true, "it.screwdrivers.payroll.controller")
+				.addPackages(true, "it.screwdrivers.payroll.logic")
 				.addPackages(true, "it.screwdrivers.payroll.dao")
 				.addPackages(true, "it.screwdrivers.payroll.engine")
 				.addPackages(true, "it.screwdrivers.payroll.model.employee")

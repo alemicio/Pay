@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.screwdrivers.payroll.engine.PayrollCalendar;
+import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
 import it.screwdrivers.payroll.test.ArquillianTest;
 
 import org.jboss.arquillian.junit.Arquillian;

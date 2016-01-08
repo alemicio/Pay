@@ -1,8 +1,8 @@
 package it.screwdrivers.payroll.engine;
 
-import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
-import it.screwdrivers.payroll.controller.HistoricalUnionChargeController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
+import it.screwdrivers.payroll.logic.HistoricalSalaryService;
+import it.screwdrivers.payroll.logic.HistoricalUnionChargeService;
 import it.screwdrivers.payroll.model.employee.EmployeeManager;
 
 import javax.annotation.PostConstruct;
@@ -17,9 +17,9 @@ public class ManagerPayEngine extends PayEngine {
 	@Inject
 	EmployeeDao e_dao;
 	@Inject
-	HistoricalUnionChargeController huc_controller;
+	HistoricalUnionChargeService huc_controller;
 	@Inject
-	HistoricalSalarycontroller h_controller;
+	HistoricalSalaryService h_controller;
 
 	public ManagerPayEngine() {
 		super();

@@ -6,7 +6,7 @@ import it.screwdrivers.payroll.dao.HistoricalUnionChargeDao;
 import it.screwdrivers.payroll.dao.UnionDao;
 import it.screwdrivers.payroll.dao.UnionServiceAssociationDao;
 import it.screwdrivers.payroll.dao.UnionServiceDao;
-import it.screwdrivers.payroll.engine.PayrollCalendar;
+import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
 import it.screwdrivers.payroll.model.historical.HistoricalUnionCharge;

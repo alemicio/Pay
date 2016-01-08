@@ -1,6 +1,6 @@
-package it.screwdrivers.payroll.view;
+package it.screwdrivers.payroll.controller;
 
-import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
+import it.screwdrivers.payroll.logic.HistoricalSalaryService;
 import it.screwdrivers.payroll.model.historical.HistoricalSalary;
 
 import java.io.Serializable;
@@ -13,15 +13,12 @@ import javax.inject.Named;
 
 @Named("historical_salary")
 @SessionScoped
-public class HistoricalSalaryBean implements Serializable {
+public class HistoricalSalaryController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	EmployeeBean e_bean;
-
-	@Inject
-	HistoricalSalarycontroller hs_controller;
+	HistoricalSalaryService hs_controller;
 
 	private List<HistoricalSalary> historical_salaries;
 

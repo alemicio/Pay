@@ -1,102 +1,107 @@
 package it.screwdrivers.payroll.controller;
 
-import java.util.List;
-
-import it.screwdrivers.payroll.dao.EmployeeDao;
-import it.screwdrivers.payroll.dao.PaymethodDao;
+import it.screwdrivers.payroll.logic.PaymethodService;
 import it.screwdrivers.payroll.model.employee.Employee;
 import it.screwdrivers.payroll.model.payment.BankPaymethod;
-import it.screwdrivers.payroll.model.payment.Paymethod;
 import it.screwdrivers.payroll.model.payment.PostalPaymethod;
 import it.screwdrivers.payroll.model.payment.WithDrawPaymethod;
 
-import javax.ejb.Stateless;
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
-@Stateless
-public class PaymethodController {
+@Named("paymentmethod")
+@SessionScoped
+public class PaymethodController implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Inject
-	PaymethodDao paymethod_dao;
-	
-	@Inject
-	EmployeeDao employee_dao;
+	PaymethodService paymethod_controller;
 
-	public void setBankPaymethod(Employee employee, BankPaymethod bank_paymethod) {
+	private String IBAN;
+	private String filial;
+	private String residential_address;
+	private String headquarter;
 
-		clearPaymethod(employee.getId());
-
-		// Add the new paymethod in the db
-		paymethod_dao.add(bank_paymethod);
-
-		updatePaymethod(employee, bank_paymethod);
+	public String getIBAN() {
+		return IBAN;
 	}
 
-	public void setPostalPaymethod(Employee employee, PostalPaymethod postal) {
-
-		clearPaymethod(employee.getId());
-
-		// Add the new paymethod in the db
-		paymethod_dao.add(postal);
-
-		updatePaymethod(employee, postal);
+	public void setIBAN(String iBAN) {
+		IBAN = iBAN;
 	}
-	
-	public void setWithDrawPaymethod(Employee employee,
-			WithDrawPaymethod withdraw) {
 
-		clearPaymethod(employee.getId());
+	public String getFilial() {
+		return filial;
+	}
 
-		// Adding the new paymethod in the db
-		paymethod_dao.add(withdraw);
+	public void setFilial(String filial) {
+		this.filial = filial;
+	}
 
-		updatePaymethod(employee, withdraw);
+	public String getResidential_address() {
+		return residential_address;
+	}
+
+	public void setResidential_address(String residential_address) {
+		this.residential_address = residential_address;
+	}
+
+	public String getHeadquarter() {
+		return headquarter;
+	}
+
+	public void setHeadquarter(String headquarter) {
+		this.headquarter = headquarter;
 	}
 
 	// MICIO
-	// This method checks if the employee has already set a paymethod type
-	public boolean isPaymethodSet(Employee employee) {
-		
-		if (employee.getPaymethod() == null) {
-			return false;
+	public String getPaymethodType(Employee e) {
+		// // This method returns a paymethod for a given employee.
+		String type;
+		boolean is_paymethod_set = paymethod_controller.isPaymethodSet(e);
+
+		if (is_paymethod_set == true) {
+			type = paymethod_controller.findType(e.getPaymethod());
+			return type;
 		} else {
-			return true;
+			return "Not setted";
 		}
 	}
 
 	// MICIO
-	// Return the type of the paymetod
-	public String findType(Paymethod p) {
-		
-		String type = null;
-		
-		if (p instanceof BankPaymethod)
-			type = "Bank account";
-		if (p instanceof PostalPaymethod)
-			type = "Postal account";
-		if (p instanceof WithDrawPaymethod)
-			type = "WithDraw account";
-		
-		return type;
+	public void setBankPaymethod(Employee e) {
+
+		BankPaymethod bank_paymethod = new BankPaymethod();
+		bank_paymethod.setIBAN(IBAN);
+		bank_paymethod.setFilial(filial);
+
+		System.out.println("IBAN => " + IBAN + "\n" + "filial => " + filial
+				+ "\n");
+
+		paymethod_controller.setBankPaymethod(e, bank_paymethod);
 	}
 
-	private void clearPaymethod(int id) {
+	public void setPostalPaymethod(Employee e) {
 		
-		// delete all references of paymethod for the given employee
-		List<Employee> employees = employee_dao.findAll();
+		PostalPaymethod postal_paymethod = new PostalPaymethod();
+		postal_paymethod.setRedidential_address(residential_address);
+		
+		System.out.println("residential_address => " + residential_address + "\n");
 
-		for (Employee e : employees) {
-			if (id == e.getId()) {
-				if (e.getPaymethod() != null) {
-
-					paymethod_dao.remove(e.getPaymethod());
-				}
-			}
-		}
+		paymethod_controller.setPostalPaymethod(e, postal_paymethod);
 	}
+	
+	public void setWithDrawPaymethod(Employee e) {
 
-	private void updatePaymethod(Employee employee, Paymethod p) {
-		employee.setPaymethod(p);
-		employee_dao.update(employee);
+		WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
+		withdraw_paymethod = new WithDrawPaymethod();
+		withdraw_paymethod.setHeadquarter(headquarter);
+
+		paymethod_controller.setWithDrawPaymethod(e, withdraw_paymethod);
 	}
+	
 }

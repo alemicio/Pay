@@ -1,67 +1,82 @@
 package it.screwdrivers.payroll.controller;
 
-import it.screwdrivers.payroll.dao.SalesCardDao;
+import it.screwdrivers.payroll.logic.SalesCardService;
 import it.screwdrivers.payroll.model.card.SalesCard;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.model.employee.Employee;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Date;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
-@Stateless
-public class SalesCardController {
+@Named("salescard")
+@SessionScoped
+public class SalesCardController implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Inject
-	SalesCardDao s_dao;
+	SalesCardService s_controller;
 
-	@SuppressWarnings("deprecation")
-	public String registerTimeCard(CommissionedEmployee commissioned_employee,
-			SalesCard sales_card) {
+	@Inject
+	SalesCard sales_card;
+	private String response;
 
-		List<SalesCard> salescards = s_dao.findAll();
+	private Date date;
+	private float amount;
+	private String customer;
 
-		// check if the user tries to send a salecard that is already sent from
-		// the specific customer
-		// on a specific date
-		for (SalesCard s : salescards) {
+	public void submitSalesCard(CommissionedEmployee commissioned_employee) {
 
-			if (s.getCommissioned_employee().getId() == commissioned_employee
-					.getId()) {
+		sales_card.setDate(date);
+		sales_card.setAmount(amount);
+		sales_card.setCustomer(customer);
+		sales_card.setCommissioned_employee(commissioned_employee);
 
-				// check if there is already a salescard that refers to the
-				// given customer on that date
-				if (s.getCustomer().equals(sales_card.getCustomer())) {
-					if (s.getDate().getDay() == sales_card.getDate().getDay()
-							&& s.getDate().getMonth() == sales_card.getDate()
-									.getMonth()
-							&& s.getDate().getYear() == sales_card.getDate()
-									.getYear()) {
+		response = s_controller.registerTimeCard(commissioned_employee,
+				sales_card);
 
-						return "failed";
-					}
-				}
-
-			}
+		if (response == "success") {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Congratulations",
+					"your SalesCard is correctly sent"));
 		}
-
-		s_dao.add(sales_card);
-		return "success";
+		if (response == "failed") {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "ERROR",
+					"A sales card from that customer was already"
+					+" sent for this date"));
+		}
 	}
 
-	public List<SalesCard> retriveByEmployee(Employee e) {
-		List<SalesCard> SalesCards = s_dao.findAll();
-		List<SalesCard> retrieved = new ArrayList<SalesCard>();
-
-		for (SalesCard s : SalesCards) {
-			if (s.getCommissioned_employee().getId() == e.getId()) {
-				retrieved.add(s);
-			}
-		}
-		
-		return retrieved;
+	public Date getDate() {
+		return date;
 	}
-	
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public float getAmount() {
+		return amount;
+	}
+
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+
+	public String getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(String customer) {
+		this.customer = customer;
+	}
+
 }

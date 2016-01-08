@@ -1,7 +1,7 @@
-package it.screwdrivers.payroll.controller;
+package it.screwdrivers.payroll.logic;
 
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
-import it.screwdrivers.payroll.engine.PayrollCalendar;
+import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.EmployeeManager;
@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class HistoricalSalarycontroller {
+public class HistoricalSalaryService {
 	
 	@Inject
 	HistoricalSalary h;

@@ -1,11 +1,12 @@
-package it.screwdrivers.payroll.view;
+package it.screwdrivers.payroll.controller;
 
-import it.screwdrivers.payroll.controller.EmployeeController;
-import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
+import it.screwdrivers.payroll.logic.EmployeeService;
+import it.screwdrivers.payroll.logic.HistoricalSalaryService;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.EmployeeManager;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,15 +22,15 @@ import org.primefaces.event.RowEditEvent;
 
 @Named("manager")
 @SessionScoped
-public class ManagerBean implements Serializable {
+public class ManagerController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	EmployeeController e_controller;
+	EmployeeService e_controller;
 	
 	@Inject
-	HistoricalSalarycontroller hs_controller;
+	HistoricalSalaryService hs_controller;
 
 	private List<SalariedEmployee> s_employees;
 	private List<CommissionedEmployee> com_employees;

@@ -1,8 +1,9 @@
 package it.screwdrivers.payroll.engine;
 
-import it.screwdrivers.payroll.controller.HistoricalSalarycontroller;
-import it.screwdrivers.payroll.controller.SalesCardController;
 import it.screwdrivers.payroll.dao.EmployeeDao;
+import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.HistoricalSalaryService;
+import it.screwdrivers.payroll.logic.SalesCardService;
 import it.screwdrivers.payroll.model.card.SalesCard;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
@@ -22,11 +23,11 @@ public class CommissionedPayEngine extends PayEngine {
 	@Inject
 	EmployeeDao e_dao;
 	@Inject
-	HistoricalSalarycontroller h_controller;
+	HistoricalSalaryService h_controller;
 	@Inject
 	PayrollCalendar p_calendar;
 	@Inject
-	SalesCardController s_controller;
+	SalesCardService s_controller;
 
 	
 	public CommissionedPayEngine() {

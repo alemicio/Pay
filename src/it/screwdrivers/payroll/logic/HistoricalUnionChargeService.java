@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.controller;
+package it.screwdrivers.payroll.logic;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalUnionChargeDao;
-import it.screwdrivers.payroll.engine.PayrollCalendar;
+import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
 import it.screwdrivers.payroll.model.employee.Employee;
 import it.screwdrivers.payroll.model.historical.HistoricalUnionCharge;
 import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
@@ -17,7 +17,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class HistoricalUnionChargeController {
+public class HistoricalUnionChargeService {
 
 	@Inject
 	HistoricalUnionChargeDao huc_dao;
