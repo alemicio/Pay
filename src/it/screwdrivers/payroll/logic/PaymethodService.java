@@ -64,9 +64,8 @@ public class PaymethodService {
 		}
 	}
 
-	// MICIO
-	// Return the type of the paymetod
-	public String findType(Paymethod p) {
+	// Return the paymethod type
+	public String getPaymethodType(Paymethod p) {
 		
 		String type = null;
 		

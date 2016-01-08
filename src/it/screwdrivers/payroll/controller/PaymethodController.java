@@ -19,12 +19,44 @@ public class PaymethodController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	PaymethodService paymethod_controller;
+	PaymethodService paymethod_service;
 
 	private String IBAN;
 	private String filial;
 	private String residential_address;
 	private String headquarter;
+
+	public String getPaymethodType(Employee e) {
+		String type;
+		boolean is_paymethod_set = paymethod_service.isPaymethodSet(e);
+
+		if (is_paymethod_set) {
+			type = paymethod_service.getPaymethodType(e.getPaymethod());
+			return type;
+		} else {
+			return "Not setted";
+		}
+	}
+
+	public void setBankPaymethod(Employee e) {
+		BankPaymethod bank_paymethod = new BankPaymethod();
+		bank_paymethod.setIBAN(IBAN);
+		bank_paymethod.setFilial(filial);
+		paymethod_service.setBankPaymethod(e, bank_paymethod);
+	}
+
+	public void setPostalPaymethod(Employee e) {
+		PostalPaymethod postal_paymethod = new PostalPaymethod();
+		postal_paymethod.setRedidential_address(residential_address);
+		paymethod_service.setPostalPaymethod(e, postal_paymethod);
+	}
+
+	public void setWithDrawPaymethod(Employee e) {
+		WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
+		withdraw_paymethod = new WithDrawPaymethod();
+		withdraw_paymethod.setHeadquarter(headquarter);
+		paymethod_service.setWithDrawPaymethod(e, withdraw_paymethod);
+	}
 
 	public String getIBAN() {
 		return IBAN;
@@ -57,51 +89,4 @@ public class PaymethodController implements Serializable {
 	public void setHeadquarter(String headquarter) {
 		this.headquarter = headquarter;
 	}
-
-	// MICIO
-	public String getPaymethodType(Employee e) {
-		// // This method returns a paymethod for a given employee.
-		String type;
-		boolean is_paymethod_set = paymethod_controller.isPaymethodSet(e);
-
-		if (is_paymethod_set == true) {
-			type = paymethod_controller.findType(e.getPaymethod());
-			return type;
-		} else {
-			return "Not setted";
-		}
-	}
-
-	// MICIO
-	public void setBankPaymethod(Employee e) {
-
-		BankPaymethod bank_paymethod = new BankPaymethod();
-		bank_paymethod.setIBAN(IBAN);
-		bank_paymethod.setFilial(filial);
-
-		System.out.println("IBAN => " + IBAN + "\n" + "filial => " + filial
-				+ "\n");
-
-		paymethod_controller.setBankPaymethod(e, bank_paymethod);
-	}
-
-	public void setPostalPaymethod(Employee e) {
-		
-		PostalPaymethod postal_paymethod = new PostalPaymethod();
-		postal_paymethod.setRedidential_address(residential_address);
-		
-		System.out.println("residential_address => " + residential_address + "\n");
-
-		paymethod_controller.setPostalPaymethod(e, postal_paymethod);
-	}
-	
-	public void setWithDrawPaymethod(Employee e) {
-
-		WithDrawPaymethod withdraw_paymethod = new WithDrawPaymethod();
-		withdraw_paymethod = new WithDrawPaymethod();
-		withdraw_paymethod.setHeadquarter(headquarter);
-
-		paymethod_controller.setWithDrawPaymethod(e, withdraw_paymethod);
-	}
-	
 }
