@@ -44,7 +44,6 @@ public class UnionBean implements Serializable {
 
 	public String getUnion(Employee e) {
 
-		// SGAMO MICIO --> maybe replaced by @postcustruct
 		populateUnionsNames();
 
 		// This method returns a union for a given employee.
