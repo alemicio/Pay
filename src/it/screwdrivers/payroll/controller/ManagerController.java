@@ -27,16 +27,16 @@ public class ManagerController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	EmployeeService e_controller;
-	
+	EmployeeService employee_service;
+
 	@Inject
-	HistoricalSalaryService hs_controller;
+	HistoricalSalaryService historical_salary_service;
 
 	private List<SalariedEmployee> s_employees;
 	private List<CommissionedEmployee> com_employees;
 	private List<EmployeeManager> m_employees;
 	private List<ContractorEmployee> con_employees;
-	
+
 	// These are all the employees attributes. They will be initialized
 	// to null (0 for the float attributes) and used as
 	// temporary attributes during employee creation. Since
@@ -55,11 +55,11 @@ public class ManagerController implements Serializable {
 	@PostConstruct
 	public void init() {
 
-		s_employees = e_controller.getAllSalaried();
-		com_employees = e_controller.getAllCommissioned();
-		con_employees = e_controller.getAllContractors();
-		m_employees = e_controller.getAllManagers();
-		
+		s_employees = employee_service.getAllSalaried();
+		com_employees = employee_service.getAllCommissioned();
+		con_employees = employee_service.getAllContractors();
+		m_employees = employee_service.getAllManagers();
+
 		username = null;
 		password = null;
 		name = null;
@@ -71,16 +71,31 @@ public class ManagerController implements Serializable {
 		sale_rate = 0;
 		hourly_rate = 0;
 	}
+	
+	public List<EmployeeManager> getAllManagers() {
+		return employee_service.getAllManagers();
+	}
+	
+	public List<SalariedEmployee> getAllSalaried() {
+		return employee_service.getAllSalaried();
+	}
+	
+	public List<CommissionedEmployee> getAllCommissioned() {
+		return employee_service.getAllCommissioned();
+	}
+	
+	public List<ContractorEmployee> getAllContractors() {
+		return employee_service.getAllContractors();
+	}
 
 	public void onSalariedRowEdit(RowEditEvent event) {
-
 		// here i want to update the db
 		int id_employee = ((SalariedEmployee) event.getObject()).getId();
 		float monthly_salary = ((SalariedEmployee) event.getObject())
 				.getMonthly_salary();
 
 		// set new values from the face of manager
-		e_controller.updateSalariedEmployeeMonthlySalary(id_employee,
+		employee_service.updateSalariedEmployeeMonthlySalary(id_employee,
 				monthly_salary);
 
 		FacesMessage msg = new FacesMessage(
@@ -90,15 +105,14 @@ public class ManagerController implements Serializable {
 	}
 
 	public void onSalariedRowCancel(RowEditEvent event) {
-
 		SalariedEmployee s = ((SalariedEmployee) event.getObject());
 		int id_employee = s.getId();
 
-		boolean response = e_controller.deleteEmployee(id_employee);
+		boolean response = employee_service.deleteEmployee(id_employee);
 
 		// get the data a second time in order to refresh the datatable in the
 		// managerface
-		s_employees = e_controller.getAllSalaried();
+		s_employees = employee_service.getAllSalaried();
 
 		if (response) {
 			FacesMessage msg = new FacesMessage("Employee deleted: ",
@@ -110,11 +124,9 @@ public class ManagerController implements Serializable {
 					((SalariedEmployee) event.getObject()).getSurname());
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
-
 	}
 
 	public void onCommissionedRowEdit(RowEditEvent event) {
-
 		// here i want to update the db
 		int id_employee = ((CommissionedEmployee) event.getObject()).getId();
 		float monthly_salary = ((CommissionedEmployee) event.getObject())
@@ -123,7 +135,7 @@ public class ManagerController implements Serializable {
 				.getSale_rate();
 
 		// set new values from the face of manager
-		e_controller.updateCommissionedEmployeeMonthlySalarySaleRate(
+		employee_service.updateCommissionedEmployeeMonthlySalarySaleRate(
 				id_employee, monthly_salary, sale_rate);
 
 		FacesMessage msg = new FacesMessage("Commissioned Employee Edited",
@@ -132,17 +144,16 @@ public class ManagerController implements Serializable {
 	}
 
 	public void onCommissionedRowCancel(RowEditEvent event) {
-
 		CommissionedEmployee c = ((CommissionedEmployee) event.getObject());
 		int id_employee = c.getId();
 
 		System.out.println(c.getUsername());
 
-		boolean response = e_controller.deleteEmployee(id_employee);
+		boolean response = employee_service.deleteEmployee(id_employee);
 
 		// get the data a second time in order to refresh the datatable in the
 		// managerface
-		com_employees = e_controller.getAllCommissioned();
+		com_employees = employee_service.getAllCommissioned();
 
 		if (response) {
 			FacesMessage msg = new FacesMessage("Employee deleted: ",
@@ -157,13 +168,12 @@ public class ManagerController implements Serializable {
 	}
 
 	public void onContractorRowEdit(RowEditEvent event) {
-
 		int id_employee = ((ContractorEmployee) event.getObject()).getId();
 		float hourly_rate = ((ContractorEmployee) event.getObject())
 				.getHourly_rate();
 
 		// set new values from the face of manager
-		e_controller.updateContractorEmployeeHourlyRate(id_employee,
+		employee_service.updateContractorEmployeeHourlyRate(id_employee,
 				hourly_rate);
 
 		FacesMessage msg = new FacesMessage("Contractor Employee Edited",
@@ -172,24 +182,24 @@ public class ManagerController implements Serializable {
 	}
 
 	public void onContractorRowCancel(RowEditEvent event) {
-
 		ContractorEmployee c = ((ContractorEmployee) event.getObject());
 		int id_employee = c.getId();
 
-		boolean response = e_controller.deleteEmployee(id_employee);
+		boolean response = employee_service.deleteEmployee(id_employee);
 
 		// get the data a second time in order to refresh the datatable in the
 		// managerface
-		con_employees = e_controller.getAllContractors();
+		con_employees = employee_service.getAllContractors();
 
 		if (response) {
 			FacesMessage msg = new FacesMessage("Employee deleted: ",
 					((ContractorEmployee) event.getObject()).getSurname());
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		} else {
-			FacesMessage msg = new FacesMessage(
-					"Error: impossible delete employee :",
-					((ContractorEmployee) event.getObject()).getSurname());
+			FacesMessage msg = new FacesMessage("Error",
+					" It was impossible to delete employee :"
+							+ ((ContractorEmployee) event.getObject())
+									.getSurname());
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
@@ -206,7 +216,6 @@ public class ManagerController implements Serializable {
 	}
 
 	public boolean addSalariedEmployee() {
-
 		boolean available;
 		SalariedEmployee se = new SalariedEmployee();
 
@@ -219,16 +228,15 @@ public class ManagerController implements Serializable {
 		se.setPostal_address(postal_address);
 		se.setMonthly_salary(monthly_salary);
 
-		available = e_controller.addEmployee(se);
-		
+		available = employee_service.addEmployee(se);
+
 		resetAttributes();
 		updateSalariedEmployeeList();
-		
+
 		return available;
 	}
 
 	public void addCommissionedEmployee() {
-
 		CommissionedEmployee ce = new CommissionedEmployee();
 
 		ce.setUsername(username);
@@ -241,14 +249,13 @@ public class ManagerController implements Serializable {
 		ce.setMonthly_salary(monthly_salary);
 		ce.setSale_rate(sale_rate);
 
-		e_controller.addEmployee(ce);
+		employee_service.addEmployee(ce);
 		resetAttributes();
 
 		updateCommissionedEmployeeList();
 	}
 
 	public void addContractorEmployee() {
-
 		ContractorEmployee ce = new ContractorEmployee();
 
 		ce.setUsername(username);
@@ -260,7 +267,7 @@ public class ManagerController implements Serializable {
 		ce.setPostal_address(postal_address);
 		ce.setHourly_rate(hourly_rate);
 
-		e_controller.addEmployee(ce);
+		employee_service.addEmployee(ce);
 		resetAttributes();
 
 		updateContractorEmployeeList();
@@ -279,24 +286,22 @@ public class ManagerController implements Serializable {
 		hourly_rate = 0;
 	}
 
-	//=== Lists update methods ===
 	public void updateSalariedEmployeeList() {
-		s_employees = e_controller.getAllSalaried();
+		s_employees = employee_service.getAllSalaried();
 	}
 
 	public void updateCommissionedEmployeeList() {
-		com_employees = e_controller.getAllCommissioned();
+		com_employees = employee_service.getAllCommissioned();
 	}
 
 	public void updateContractorEmployeeList() {
-		con_employees = e_controller.getAllContractors();
+		con_employees = employee_service.getAllContractors();
 	}
 
 	public void updateManagerEmployeeList() {
-		m_employees = e_controller.getAllManagers();
+		m_employees = employee_service.getAllManagers();
 	}
-	
-	//=== Getters and Setters ===
+
 	public List<SalariedEmployee> getS_employees() {
 		return s_employees;
 	}
@@ -312,15 +317,15 @@ public class ManagerController implements Serializable {
 	public List<ContractorEmployee> getCon_employees() {
 		return con_employees;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -392,5 +397,4 @@ public class ManagerController implements Serializable {
 	public void setHourly_rate(float hourly_rate) {
 		this.hourly_rate = hourly_rate;
 	}
-	
 }

@@ -1,7 +1,6 @@
 package it.screwdrivers.payroll.controller;
 
 import it.screwdrivers.payroll.logic.EmployeeService;
-import it.screwdrivers.payroll.logic.HistoricalSalaryService;
 import it.screwdrivers.payroll.model.employee.Employee;
 
 import java.io.Serializable;
@@ -18,9 +17,6 @@ public class EmployeeController implements Serializable {
 
 	@Inject
 	EmployeeService employee_service;
-
-	@Inject
-	HistoricalSalaryService historical_salary_service;
 
 	public void changeDetails(Employee employee) {
 		employee_service.changeDetails(employee);

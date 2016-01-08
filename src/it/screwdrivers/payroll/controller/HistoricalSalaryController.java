@@ -16,23 +16,24 @@ import javax.inject.Named;
 public class HistoricalSalaryController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Inject 
+	LoginController login_controller;
 
 	@Inject
-	HistoricalSalaryService hs_controller;
+	HistoricalSalaryService historical_salary_service;
 
 	private List<HistoricalSalary> historical_salaries;
 
 	@PostConstruct
 	public void init() {
-
 		// This is the list of all the historical salaries associated to the
 		// current EmployeeManager user
-		historical_salaries = hs_controller
-				.getHistoricalSalariesByEmployeeId(e_bean.getRetrieved_employee().getId());
+		historical_salaries = historical_salary_service
+				.getHistoricalSalariesByEmployeeId(login_controller.getLogged_employee().getId());
 	}
 
 	public List<HistoricalSalary> getHistorical_salaries() {
 		return historical_salaries;
 	}
-
 }

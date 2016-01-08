@@ -8,8 +8,6 @@ import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,7 +16,7 @@ import javax.inject.Named;
 public class LoginController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	LoginService login_service;
 
@@ -37,7 +35,7 @@ public class LoginController implements Serializable {
 	// It calls the getEmployeeByUsernameAndPassword method. If
 	// the return object is null, a warning message will be showed
 	// in the view; otherwise, the type String will be set with
-	// the employee's class simple name and the user_id variable 
+	// the employee's class simple name and the user_id variable
 	// will be added to the session map. The type string is used
 	// to permit the routing to the right employee's view
 	public String performLogin() {
@@ -45,17 +43,18 @@ public class LoginController implements Serializable {
 				username, password);
 
 		if (logged_employee == null) {
-			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_WARN,
-					"Uncorrect username or password", "Invalid credentials"));
+			login_service.getFacesContext().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Uncorrect username or password",
+							"Invalid credentials"));
 		} else {
 			type = employee_service.getEmployeeClassSimpleName(logged_employee);
 
 			// This line will set a session attribute that we will check before
 			// pages rendering
-			FacesContext.getCurrentInstance().getExternalContext()
-					.getSessionMap().put("user_id", logged_employee.getId());
+			login_service.getExternalContext().getSessionMap()
+					.put("user_id", logged_employee.getId());
 		}
 
 		return type;
@@ -64,21 +63,20 @@ public class LoginController implements Serializable {
 	// This method allows to invalidate the session and route to
 	// the index view returning "Logout" string
 	public String performLogout() {
-		ExternalContext ec = FacesContext.getCurrentInstance()
-				.getExternalContext();
-		ec.invalidateSession();
+		login_service.getExternalContext().invalidateSession();
 		return "Logout";
 	}
 
 	// This method is called as pre-rendering method in each view.
-	// It gets the session attribute user_id and, if it is null, 
-	// will redirect the user to the index page 
+	// It gets the session attribute user_id and, if it is null,
+	// will redirect the user to the index page
 	public void checkIfLogged() {
 
-		Object current_user_id = login_service.getHttpSession().getAttribute("user_id");
+		Object current_user_id = login_service.getHttpSession().getAttribute(
+				"user_id");
 
 		// TODO: substitute the following code with a return
-		// the returned string has to be managed by the 
+		// the returned string has to be managed by the
 		// faces-config.xml
 		if (current_user_id == null) {
 			login_service.routeToIndex();
