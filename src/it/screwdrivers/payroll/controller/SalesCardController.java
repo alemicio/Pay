@@ -20,7 +20,7 @@ public class SalesCardController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	SalesCardService s_controller;
+	SalesCardService sales_card_service;
 
 	@Inject
 	SalesCard sales_card;
@@ -31,13 +31,12 @@ public class SalesCardController implements Serializable {
 	private String customer;
 
 	public void submitSalesCard(CommissionedEmployee commissioned_employee) {
-
 		sales_card.setDate(date);
 		sales_card.setAmount(amount);
 		sales_card.setCustomer(customer);
 		sales_card.setCommissioned_employee(commissioned_employee);
 
-		response = s_controller.registerTimeCard(commissioned_employee,
+		response = sales_card_service.registerTimeCard(commissioned_employee,
 				sales_card);
 
 		if (response == "success") {
