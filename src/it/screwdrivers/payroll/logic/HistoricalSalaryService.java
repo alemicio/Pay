@@ -133,5 +133,4 @@ public class HistoricalSalaryService {
 		
 		return filtered_historical_salaries;
 	}
-
 }

@@ -66,5 +66,4 @@ public class HistoricalSalary implements Serializable {
 	public void setCommission(boolean isCommission) {
 		this.isCommission = isCommission;
 	}
-	
 }
