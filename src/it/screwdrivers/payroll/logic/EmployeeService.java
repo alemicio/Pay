@@ -23,7 +23,7 @@ public class EmployeeService {
 
 		Employee emp = null;
 		
-		// check if the employee witch tries to enter in the web app has an
+		// check if the employee witch tries to enter in the web app has a
 		// registered account
 		List<Employee> employees = e_dao.findAll();
 
