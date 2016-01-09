@@ -53,7 +53,7 @@ public class ManagerPayEngine extends PayEngine {
 				hs_service.registerPay(m);
 			} else {
 				dues = m.getAnnual_rate() * m.getUnion().getUnion_dues();
-				total_charges = huc_service.UnionChargeByEmployee(m);
+				total_charges = huc_service.getLastMonthUnionTotalChargesByEmployee(m);
 
 				hs_service.registerPay(m, (total_charges + dues));
 			}

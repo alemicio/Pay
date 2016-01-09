@@ -31,7 +31,7 @@ public class UnionController implements Serializable {
 
 	@Inject
 	HistoricalUnionChargeService huc_service;
-	
+
 	@Inject
 	Union union;
 
@@ -43,9 +43,9 @@ public class UnionController implements Serializable {
 	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();;
 
 	public String getUnion(Employee e) {
-		
+
 		union_names = union_service.getUnionNames();
-		
+
 		// This method returns a union for a given employee.
 		String name_union = null;
 		boolean is_union_set = union_service.isUnionSet(e);
@@ -53,7 +53,7 @@ public class UnionController implements Serializable {
 		if (is_union_set) {
 			union_service_associations = usa_service
 					.getUnionServiceAssociations(e);
-			
+
 			// here we have populated the list of service name to show in the
 			// face
 			service_names = usa_service
@@ -81,7 +81,7 @@ public class UnionController implements Serializable {
 	}
 
 	public void confirmOrder(Employee e) {
-		
+
 		updateSelectedUnionServiceAssociations();
 
 		String response = null;
@@ -92,15 +92,25 @@ public class UnionController implements Serializable {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Congratulations",
-					"your order is correctly submitted"));
-		} else {
+					"All the services orders were correctly submitted"));
+			
+		} else if (response == "no-working-day") {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(
 					null,
 					new FacesMessage(
 							FacesMessage.SEVERITY_ERROR,
-							"Error:",
-							"impossible to confirm your order for today, another order was submitted for this week"));
+							"Error",
+							"The order cannot be registered since this is not a working day"));
+			
+		} else if (response != null) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(
+					null,
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"Error",
+							"It is impossible to submit the order for the following services: " + response));
 		}
 	}
 

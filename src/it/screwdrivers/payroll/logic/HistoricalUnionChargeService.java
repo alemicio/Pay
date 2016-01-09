@@ -21,99 +21,123 @@ public class HistoricalUnionChargeService {
 
 	@Inject
 	HistoricalUnionChargeDao huc_dao;
+
 	@Inject
 	EmployeeDao e_dao;
+
 	@Inject
 	PayrollCalendar p_calendar;
 
 	public String confirmOrder(Employee e,
 			List<UnionServiceAssociation> selected_union_service_associations) {
+		
+		// Return string of the method
+					String response = null;
 
-		String response = null;
-
-		// get the current system date and time(week number)
 		Calendar calendar = new GregorianCalendar();
-		java.util.Date date = calendar.getTime();
-		int current_week_number = calendar.get(Calendar.WEEK_OF_YEAR);
+		int saturday = 7;
+		int sunday = 1;
+		int calendar_day_of_week = calendar.get(Calendar.DAY_OF_WEEK);
 
-		List<HistoricalUnionCharge> huc_list = huc_dao.findAll();
+		// If it is saturday or sunday, the order cannot be registered
+		if (calendar_day_of_week != saturday && calendar_day_of_week != sunday) {
+			
+			// get the current system date and time(week number)
+			java.util.Date date = calendar.getTime();
+			int current_week_number = calendar.get(Calendar.WEEK_OF_YEAR);
 
-		for (UnionServiceAssociation susa : selected_union_service_associations) {
+			List<HistoricalUnionCharge> huc_list = huc_dao.findAll();
 
-			boolean disableOrdering = false;
+			for (UnionServiceAssociation susa : selected_union_service_associations) {
 
-			// service name i of the list
-			String service_name = susa.getUnion_service().getName();
+				// service name i of the list
+				String service_name = susa.getUnion_service().getName();
 
-			// check if the table if empty
-			if (huc_list.size() == 0) {
-				HistoricalUnionCharge huc = new HistoricalUnionCharge();
-				huc.setUnion_service_association(susa);
-				huc.setEmployee(e);
-				huc.setDate(date);
-
-				huc_dao.add(huc);
-				
-			} else {
-				// check the order service with the one in the db
-				for (HistoricalUnionCharge h : huc_list) {
-
-					// service name i of the db
-					String service_name_indb = h.getUnion_service_association()
-							.getUnion_service().getName();
-
-					// get week number of the service i in the db
-					Calendar service_calendar = Calendar.getInstance();
-					service_calendar.setTime(h.getDate());
-					int service_week_number = service_calendar
-							.get(Calendar.WEEK_OF_YEAR);
-
-					// check if the service is already requested in the current
-					// week for the given employee
-					if (service_name.equals(service_name_indb)
-							&& e.getId() == h.getEmployee().getId()
-							&& current_week_number == service_week_number) {
-
-						disableOrdering = true;
-						response += "," + service_name;
-					}
-				}
-
-				if (disableOrdering == false) {
-
+				// check if the table if empty
+				if (huc_list.size() == 0) {
 					HistoricalUnionCharge huc = new HistoricalUnionCharge();
 					huc.setUnion_service_association(susa);
 					huc.setEmployee(e);
 					huc.setDate(date);
-
 					huc_dao.add(huc);
+
+				} else {
+
+					for (HistoricalUnionCharge h : huc_list) {
+						// name of the service given the historical union charge
+						String service_name_indb = h
+								.getUnion_service_association()
+								.getUnion_service().getName();
+
+						// get current week of year
+						Calendar service_calendar = Calendar.getInstance();
+						service_calendar.setTime(h.getDate());
+						int service_week_number = service_calendar
+								.get(Calendar.WEEK_OF_YEAR);
+
+						// check if the service was already requested in the
+						// current
+						// week by the given employee
+						if (service_name.equals(service_name_indb)
+								&& e.getId() == h.getEmployee().getId()
+								&& current_week_number == service_week_number) {
+
+							response += service_name;
+							response += ",";
+
+						} else {
+
+							HistoricalUnionCharge huc = new HistoricalUnionCharge();
+							huc.setUnion_service_association(susa);
+							huc.setEmployee(e);
+							huc.setDate(date);
+							huc_dao.add(huc);
+						}
+					}
 				}
 			}
+		} else {
+			response = "no-working-day";
 		}
 
-		response += ",success";
+		if (response == null)
+			response = "success";
+
 		return response;
 	}
 
-	@SuppressWarnings("deprecation")
-	public float UnionChargeByEmployee(Employee e) {
+	// @SuppressWarnings("deprecation")
+	public float getLastMonthUnionTotalChargesByEmployee(Employee e) {
 
 		List<Date> working_days = p_calendar.lastMonthList();
-		List<HistoricalUnionCharge> hucs = retrieveUnionServiceChargeByEmployee(e);
-		
+		List<HistoricalUnionCharge> hucs = getUnionServiceChargeByEmployee(e);
+
 		float total_charges = 0;
 
 		if (hucs != null) {
 			for (HistoricalUnionCharge huc : hucs) {
 				for (Date wd : working_days) {
-					
-					if (wd.getDate()  == huc.getDate().getDate() &&
-						wd.getMonth() == huc.getDate().getMonth()&&
-						wd.getYear()  == huc.getDate().getYear()){
-						
-						System.out.println(huc.getUnion_service_association().getPrice());
 
-						total_charges += huc.getUnion_service_association().getPrice();
+					// Formatted as YYYY-MM-DD
+					String working_day_string = wd.toString();
+					String[] splitted_working_day_string = working_day_string
+							.split("-");
+					String[] splitted_huc_date = huc.getDate().toString()
+							.split("-");
+
+					/*
+					 * if (wd.getDate() == huc.getDate().getDate() &&
+					 * wd.getMonth() == huc.getDate().getMonth() && wd.getYear()
+					 * == huc.getDate().getYear()) {
+					 */
+
+					if (splitted_working_day_string[0] == splitted_huc_date[0]
+							&& splitted_working_day_string[1] == splitted_huc_date[1]
+							&& splitted_working_day_string[2].split(" ")[0] == splitted_huc_date[2]
+									.split(" ")[0]) {
+
+						total_charges += huc.getUnion_service_association()
+								.getPrice();
 						break;
 					}
 				}
@@ -125,17 +149,15 @@ public class HistoricalUnionChargeService {
 		return total_charges;
 	}
 
-	private List<HistoricalUnionCharge> retrieveUnionServiceChargeByEmployee(Employee e) {
+	private List<HistoricalUnionCharge> getUnionServiceChargeByEmployee(
+			Employee e) {
 
 		List<HistoricalUnionCharge> hucs = huc_dao.findAll();
 		List<HistoricalUnionCharge> retrieved_hucs = new ArrayList<HistoricalUnionCharge>();
-		
-		for (HistoricalUnionCharge huc : hucs) {
-			
 
-			if (huc.getEmployee().getId() == e.getId()) {
+		for (HistoricalUnionCharge huc : hucs) {
+			if (huc.getEmployee().getId() == e.getId())
 				retrieved_hucs.add(huc);
-			}
 		}
 
 		return retrieved_hucs;

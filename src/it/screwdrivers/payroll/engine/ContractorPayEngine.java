@@ -63,7 +63,7 @@ public class ContractorPayEngine extends PayEngine {
 
 				total = payContractor(working_days, total, c);
 				dues = (c.getUnion().getUnion_dues()) * total;
-				total_charges = huc_service.UnionChargeByEmployee(c);
+				total_charges = huc_service.getLastMonthUnionTotalChargesByEmployee(c);
 
 				hs_service.registerPay(c, total, (total_charges + dues));
 			}

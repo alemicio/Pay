@@ -53,7 +53,7 @@ public class UnionDaoTest extends ArquillianTest {
 		union_dao.remove(union);
 	}
 
-	@Test
+	//@Test
 	public void testThatUnionReferenceIsAddedToEmployee() {
 
 		// create an employee
