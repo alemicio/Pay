@@ -13,13 +13,15 @@ import javax.inject.Named;
 @Named("salariedEngine")
 @Stateless
 public class SalariedPayEngine extends PayEngine {
-
+	
+	@Inject
+	HistoricalSalaryService hs_service;
+	
+	@Inject
+	HistoricalUnionChargeService huc_service;
+	
 	@Inject
 	EmployeeDao e_dao;
-	@Inject
-	HistoricalSalaryService h_controller;
-	@Inject
-	HistoricalUnionChargeService huc_controller;
 
 	public SalariedPayEngine() {
 		super();
@@ -40,13 +42,12 @@ public class SalariedPayEngine extends PayEngine {
 		for (SalariedEmployee s : getS_employees()) {
 
 			if (s.getUnion() == null) {
-				h_controller.registerPay(s);
+				hs_service.registerPay(s);
 			} else {
 				dues = s.getMonthly_salary() * s.getUnion().getUnion_dues();
+				total_charges = huc_service.UnionChargeByEmployee(s);
 				
-				total_charges = huc_controller.UnionChargeByEmployee(s);
-				
-				h_controller.registerPay(s, (total_charges + dues));
+				hs_service.registerPay(s, (total_charges + dues));
 			}
 		}
 	}

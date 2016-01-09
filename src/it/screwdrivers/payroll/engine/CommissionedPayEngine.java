@@ -6,8 +6,6 @@ import it.screwdrivers.payroll.logic.HistoricalSalaryService;
 import it.screwdrivers.payroll.logic.SalesCardService;
 import it.screwdrivers.payroll.model.card.SalesCard;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
-import it.screwdrivers.payroll.model.employee.SalariedEmployee;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -21,24 +19,25 @@ import javax.inject.Named;
 public class CommissionedPayEngine extends PayEngine {
 
 	@Inject
-	EmployeeDao e_dao;
+	SalesCardService sc_service;
+
 	@Inject
-	HistoricalSalaryService h_controller;
+	HistoricalSalaryService hs_service;
+
+	@Inject
+	EmployeeDao e_dao;
+
 	@Inject
 	PayrollCalendar p_calendar;
-	@Inject
-	SalesCardService s_controller;
 
-	
 	public CommissionedPayEngine() {
 		super();
 	}
-	
+
 	@PostConstruct
 	@Override
 	public void initList() {
 		setCom_employees(e_dao.findAllCommissioned());
-		
 	}
 
 	@SuppressWarnings("deprecation")
@@ -50,27 +49,21 @@ public class CommissionedPayEngine extends PayEngine {
 		float total = 0;
 
 		for (CommissionedEmployee c : getCom_employees()) {
+			s_cards = sc_service.retriveByEmployee(c);
 
-				s_cards = s_controller.retriveByEmployee(c);
+			for (SalesCard s : s_cards) {
+				for (Date wd : working_days) {
+					if (wd.getDate() == s.getDate().getDate()
+							&& wd.getMonth() == s.getDate().getMonth()
+							&& wd.getYear() == s.getDate().getYear()) {
 
-				for (SalesCard s : s_cards) {
-
-					for (Date wd : working_days) {
-
-						if (wd.getDate()  == s.getDate().getDate() &&
-							wd.getMonth() == s.getDate().getMonth()&&
-							wd.getYear()  == s.getDate().getYear()) {
-							
-								total += c.getSale_rate() * s.getAmount();
-						}
-						break;
+						total += c.getSale_rate() * s.getAmount();
 					}
+					break;
 				}
-				h_controller.registerPay(c, total);
+			}
 
+			hs_service.registerPay(c, total);
 		}
 	}
-
-	
-
 }

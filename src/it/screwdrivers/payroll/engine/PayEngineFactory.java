@@ -8,13 +8,15 @@ public class PayEngineFactory {
 	
 	@Inject
 	CommissionedPayEngine commissioned_pe;
+	
 	@Inject
 	ContractorPayEngine contractor_pe;
+	
 	@Inject
 	SalariedPayEngine salaried_pe;
+	
 	@Inject
 	ManagerPayEngine manager_pe;
-
 
 	public PayEngine getPayEngine(String employee_class) {
 		
@@ -35,7 +37,5 @@ public class PayEngineFactory {
 		}
 		
 		return null;
-
 	}
-
 }

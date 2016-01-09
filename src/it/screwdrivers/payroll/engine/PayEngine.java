@@ -52,7 +52,4 @@ public abstract class PayEngine {
 	public void setCon_employees(List<ContractorEmployee> con_employees) {
 		this.con_employees = con_employees;
 	}
-	
-	
-
 }

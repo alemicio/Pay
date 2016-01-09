@@ -15,19 +15,21 @@ import javax.inject.Named;
 public class ManagerPayEngine extends PayEngine {
 
 	@Inject
+	HistoricalUnionChargeService huc_service;
+
+	@Inject
+	HistoricalSalaryService hs_service;
+
+	@Inject
 	EmployeeDao e_dao;
-	@Inject
-	HistoricalUnionChargeService huc_controller;
-	@Inject
-	HistoricalSalaryService h_controller;
 
 	public ManagerPayEngine() {
 		super();
 	}
-	
+
 	// Since the ManagerPayEngine object is created,
 	// this method will be called. It fills the list
-	// of Manager employees that we can find inside 
+	// of Manager employees that we can find inside
 	// the PayEngine abstract class
 	@PostConstruct
 	@Override
@@ -47,14 +49,13 @@ public class ManagerPayEngine extends PayEngine {
 		// we have also to compute dues and total_charges
 		for (EmployeeManager m : getM_employees()) {
 
-			if(m.getUnion() == null){
-				h_controller.registerPay(m);
-			}
-			else {
-				dues = m.getAnnual_rate()* m.getUnion().getUnion_dues();
-				total_charges = huc_controller.UnionChargeByEmployee(m);
-				
-				h_controller.registerPay(m, (total_charges+dues) );	
+			if (m.getUnion() == null) {
+				hs_service.registerPay(m);
+			} else {
+				dues = m.getAnnual_rate() * m.getUnion().getUnion_dues();
+				total_charges = huc_service.UnionChargeByEmployee(m);
+
+				hs_service.registerPay(m, (total_charges + dues));
 			}
 		}
 	}
