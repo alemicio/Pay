@@ -22,21 +22,23 @@ public class SalesCardController implements Serializable {
 	@Inject
 	SalesCardService sales_card_service;
 
-	@Inject
-	SalesCard sales_card;
+	//@Inject
+	//SalesCard sales_card;
 
 	private Date date;
 	private float amount;
 	private String customer;
 
 	public void submitSalesCard(CommissionedEmployee commissioned_employee) {
+		
+		SalesCard sales_card = new SalesCard();
 		sales_card.setDate(date);
 		sales_card.setAmount(amount);
 		sales_card.setCustomer(customer);
 		sales_card.setCommissioned_employee(commissioned_employee);
 
-		 String response = sales_card_service.registerTimeCard(commissioned_employee,
-				sales_card);
+		String response = sales_card_service.registerTimeCard(
+				commissioned_employee, sales_card);
 
 		if (response == "success") {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -49,7 +51,7 @@ public class SalesCardController implements Serializable {
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "ERROR",
 					"A sales card from that customer was already"
-					+" sent for this date"));
+							+ " sent for this date"));
 		}
 	}
 
@@ -76,5 +78,4 @@ public class SalesCardController implements Serializable {
 	public void setCustomer(String customer) {
 		this.customer = customer;
 	}
-
 }

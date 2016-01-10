@@ -45,7 +45,7 @@ public class ManagerPayEngine extends PayEngine {
 
 		// For each manager employee we check if he
 		// belongs to a union. If he does not belong
-		// to a union we perform registerPay; otherwise,
+		// to a union we perform only registerPay; otherwise,
 		// we have also to compute dues and total_charges
 		for (EmployeeManager m : getM_employees()) {
 
@@ -54,7 +54,6 @@ public class ManagerPayEngine extends PayEngine {
 			} else {
 				dues = m.getAnnual_rate() * m.getUnion().getUnion_dues();
 				total_charges = huc_service.getLastMonthUnionTotalChargesByEmployee(m);
-
 				hs_service.registerPay(m, (total_charges + dues));
 			}
 		}

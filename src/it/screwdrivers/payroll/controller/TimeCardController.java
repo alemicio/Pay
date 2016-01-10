@@ -23,8 +23,8 @@ public class TimeCardController implements Serializable {
 	@Inject
 	TimeCardService time_card_service;
 
-	@Inject
-	TimeCard time_card;
+	//@Inject
+	//TimeCard time_card;
 
 	private int hour_start;
 	private int hour_end;
@@ -37,12 +37,14 @@ public class TimeCardController implements Serializable {
 	private float hours_worked;
 
 	public void submitTimeCard(ContractorEmployee logged_employee) {
+		
 		// Compute Time object given int inputs
 		start_time = time_card_service.ComputeTime(hour_start, minute_start);
 		end_time = time_card_service.ComputeTime(hour_end, minute_end);
 		
 		hours_worked = time_card_service.computeHoursWorked(start_time, end_time);
 
+		TimeCard time_card = new TimeCard();
 		time_card.setDate(date);
 		time_card.setStart_time(start_time);
 		time_card.setEnd_time(end_time);

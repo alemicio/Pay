@@ -21,11 +21,14 @@ import org.junit.runner.RunWith;
 public class EmployeeManagerPayTest extends ArquillianTest {
 
 	@Inject
-	EmployeeDao e_dao;
-	@Inject
 	PayEngineFactory pay_engine_factory;
+	
+	@Inject
+	EmployeeDao e_dao;
+	
 	@Inject
 	HistoricalSalaryDao hs_dao;
+	
 	@Inject
 	PayrollCalendar p_calendar;
 
@@ -44,7 +47,6 @@ public class EmployeeManagerPayTest extends ArquillianTest {
 		// Count the number of employee manager historical salaries
 		for (HistoricalSalary h : hs) {
 			if (h.getEmployee().getClass().getSimpleName().equals("EmployeeManager")) {
-				
 				before++;
 			}
 		}
@@ -59,13 +61,9 @@ public class EmployeeManagerPayTest extends ArquillianTest {
 		// Count the number of employee manager historical salaries after pay
 		for (HistoricalSalary h : hs) {
 			if (h.getEmployee().getClass().getSimpleName().equals("EmployeeManager")) {
-
 				after++;
 			}
 		}
-		
-		System.out.println("Number of employeemanagers historical salaries before payment: " + before);
-		System.out.println("Number of employeemanagers historical salaries after payment: " + after);
 		
 		boolean condition = (after - before) == e_dao.findAllManager().size();
 		
