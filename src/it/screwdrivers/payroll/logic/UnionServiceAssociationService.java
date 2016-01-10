@@ -64,13 +64,13 @@ public class UnionServiceAssociationService {
 	}
 
 	public UnionServiceAssociation getUnionServiceAssociationByUnionAndServiceName(
-			Union union, String service_name) {
+			String union_name, String service_name) {
 
 		List<UnionServiceAssociation> union_service_associations = usa_dao
 				.findAll();
 
 		for (UnionServiceAssociation usa : union_service_associations) {
-			if (usa.getUnion().getName().equals(union.getName())
+			if (usa.getUnion().getName().equals(union_name)
 					&& usa.getUnion_service().getName().equals(service_name)) {
 
 				union_service_association = usa;

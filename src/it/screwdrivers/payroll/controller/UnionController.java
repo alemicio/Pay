@@ -4,7 +4,6 @@ import it.screwdrivers.payroll.logic.HistoricalUnionChargeService;
 import it.screwdrivers.payroll.logic.UnionService;
 import it.screwdrivers.payroll.logic.UnionServiceAssociationService;
 import it.screwdrivers.payroll.model.employee.Employee;
-import it.screwdrivers.payroll.model.union.Union;
 import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
 
 import java.io.Serializable;
@@ -32,9 +31,6 @@ public class UnionController implements Serializable {
 
 	@Inject
 	HistoricalUnionChargeService huc_service;
-
-	@Inject
-	Union union;
 
 	private String union_name;
 	private List<String> union_names;
@@ -105,7 +101,7 @@ public class UnionController implements Serializable {
 		for (String selected_service_name : services_selected) {
 			selected_union_service_associations.add(usa_service
 					.getUnionServiceAssociationByUnionAndServiceName(
-							this.union, selected_service_name));
+							union_name, selected_service_name));
 		}
 	}
 

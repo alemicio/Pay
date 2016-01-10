@@ -25,7 +25,7 @@ public class SalesCardService {
 			SalesCard sales_card) {
 
 		// If it is saturday or sunday, the sales card cannot be registered
-		if (calendar_service.isSaturday() || calendar_service.isSunday()) {
+		if (!calendar_service.isSaturday() || calendar_service.isSunday()) {
 			
 			List<SalesCard> salescards = s_dao.findAll();
 

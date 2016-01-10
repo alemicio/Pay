@@ -84,35 +84,43 @@ public class DbSeeder extends ArquillianTest {
 		union.setName("CISL");
 		union.setPhone_number("3388194740");
 		union_dao.add(union);
+		
+		
 
 		// === union services ===
 		UnionService union_service = new UnionService();
 		union_service.setDescription("descrizione di test");
 		union_service.setName("servizio1");
 		union_service_dao.add(union_service);
+		
 		UnionService union_service2 = new UnionService();
 		union_service2.setDescription("descrizione di test");
 		union_service2.setName("servizio2");
 		union_service_dao.add(union_service2);
+		
 		UnionService union_service3 = new UnionService();
 		union_service3.setDescription("descrizione di test");
 		union_service3.setName("servizio3");
 		union_service_dao.add(union_service3);
 
+		
+		
 		// === union service associations (CISL) ===
 		UnionServiceAssociation usa = new UnionServiceAssociation();
 		usa.setUnion(union);
 		usa.setUnion_service(union_service);
 		usa.setPrice(999);
 		usa_dao.add(usa);
+		
 		UnionServiceAssociation usa2 = new UnionServiceAssociation();
 		usa2.setUnion(union);
 		usa2.setUnion_service(union_service2);
 		usa2.setPrice(999);
 		usa_dao.add(usa2);
+		
 		UnionServiceAssociation usa3 = new UnionServiceAssociation();
 		usa3.setUnion(union);
-		usa3.setUnion_service(union_service2);
+		usa3.setUnion_service(union_service3);
 		usa3.setPrice(999);
 		usa_dao.add(usa3);
 	}
