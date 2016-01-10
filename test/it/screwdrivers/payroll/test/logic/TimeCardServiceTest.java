@@ -1,18 +1,15 @@
 package it.screwdrivers.payroll.test.logic;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import it.screwdrivers.payroll.dao.EmployeeDao;
-import it.screwdrivers.payroll.dao.PaymethodDao;
-import it.screwdrivers.payroll.logic.PaymethodService;
+import it.screwdrivers.payroll.dao.TimeCardDao;
+import it.screwdrivers.payroll.logic.TimeCardService;
+import it.screwdrivers.payroll.model.card.TimeCard;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
-import it.screwdrivers.payroll.model.employee.SalariedEmployee;
-import it.screwdrivers.payroll.model.payment.BankPaymethod;
-import it.screwdrivers.payroll.model.payment.PostalPaymethod;
-import it.screwdrivers.payroll.model.payment.WithDrawPaymethod;
 import it.screwdrivers.payroll.test.ArquillianTest;
 
-import java.util.List;
+import java.sql.Time;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -24,134 +21,16 @@ import org.junit.runner.RunWith;
 public class TimeCardServiceTest extends ArquillianTest {
 	
 	@Inject
-	PaymethodService paymethod_service;
+	TimeCardService timecard_service;
 	
 	@Inject
 	EmployeeDao employee_dao;
 	
 	@Inject
-	PaymethodDao paymethod_dao;
-
-	@Test
-	public void testSetBankPayMethod(){
-		
-		boolean was_updated = false;
-		
-		SalariedEmployee employee1 = new SalariedEmployee();
-		employee1.setName("davide");
-		employee1.setSurname("bonamico");
-		employee1.setUsername("bonaz");
-		employee1.setPassword("bingo");
-		employee1.setE_mail("a@bi.it");
-		employee1.setPhone_number("3331112233");
-		employee1.setPostal_address("via roma 1");
-		employee1.setMonthly_salary(1000);
-		employee_dao.add(employee1);
-		
-		BankPaymethod bankpaymethod = new BankPaymethod();
-		bankpaymethod.setFilial("Unicredit");
-		bankpaymethod.setIBAN("865657dyr1d1y1111");
-		paymethod_dao.add(bankpaymethod);
-		
-		paymethod_service.setBankPaymethod(employee1, bankpaymethod);
-		
-		List<SalariedEmployee> salaried_employees = employee_dao.findAllSalaried();
-		for(SalariedEmployee se : salaried_employees) {
-			
-			if(se.getId() == employee1.getId()) {
-				if(se.getPaymethod().getId() == bankpaymethod.getId()) {
-					
-					was_updated = true;
-				}
-			}
-		}
-		
-		employee_dao.remove(employee1);
-		paymethod_dao.remove(bankpaymethod);
-		
-		assertTrue(was_updated);
-	}
+	TimeCardDao timecard_dao;
 	
 	@Test
-	public void testSetPostalPaymethod() {
-		
-		boolean was_updated = false;
-		
-		SalariedEmployee employee1 = new SalariedEmployee();
-		employee1.setName("davide");
-		employee1.setSurname("bonamico");
-		employee1.setUsername("bonaz");
-		employee1.setPassword("bingo");
-		employee1.setE_mail("a@bi.it");
-		employee1.setPhone_number("3331112233");
-		employee1.setPostal_address("via roma 1");
-		employee1.setMonthly_salary(1000);
-		employee_dao.add(employee1);
-		
-		PostalPaymethod postalpaymethod = new PostalPaymethod();
-		postalpaymethod.setRedidential_address("27050");
-		paymethod_dao.add(postalpaymethod);
-		
-		paymethod_service.setPostalPaymethod(employee1, postalpaymethod);
-		
-		List<SalariedEmployee> salaried_employees = employee_dao.findAllSalaried();
-		for(SalariedEmployee se : salaried_employees) {
-			
-			if(se.getId() == employee1.getId()) {
-				if(se.getPaymethod().getId() == postalpaymethod.getId()) {
-					
-					was_updated = true;
-				}
-			}
-		}
-		
-		employee_dao.remove(employee1);
-		paymethod_dao.remove(postalpaymethod);
-		
-		assertTrue(was_updated);
-	}
-	
-	@Test
-	public void testSetWithDrawPaymethod() {
-		
-		boolean was_updated = false;
-		
-		SalariedEmployee employee1 = new SalariedEmployee();
-		employee1.setName("davide");
-		employee1.setSurname("bonamico");
-		employee1.setUsername("bonaz");
-		employee1.setPassword("bingo");
-		employee1.setE_mail("a@bi.it");
-		employee1.setPhone_number("3331112233");
-		employee1.setPostal_address("via roma 1");
-		employee1.setMonthly_salary(1000);
-		employee_dao.add(employee1);
-		
-		WithDrawPaymethod withdrawmethod = new WithDrawPaymethod();
-		withdrawmethod.setHeadquarter("test_headquarter");
-		paymethod_dao.add(withdrawmethod);
-		
-		paymethod_service.setWithDrawPaymethod(employee1, withdrawmethod);
-		
-		List<SalariedEmployee> salaried_employees = employee_dao.findAllSalaried();
-		for(SalariedEmployee se : salaried_employees) {
-			
-			if(se.getId() == employee1.getId()) {
-				if(se.getPaymethod().getId() == withdrawmethod.getId()) {
-					
-					was_updated = true;
-				}
-			}
-		}
-		
-		employee_dao.remove(employee1);
-		paymethod_dao.remove(withdrawmethod);
-		
-		assertTrue(was_updated);
-	}
-	
-	@Test
-	public void testIsPaymethodSet() {
+	public void testRegisterTimeCard() {
 		
 		ContractorEmployee employee1 = new ContractorEmployee();
 		employee1.setName("andrea");
@@ -164,53 +43,28 @@ public class TimeCardServiceTest extends ArquillianTest {
 		employee1.setHourly_rate(10);
 		employee_dao.add(employee1);
 		
-		SalariedEmployee employee2 = new SalariedEmployee();
-		employee2.setName("davide");
-		employee2.setSurname("bonamico");
-		employee2.setUsername("bonaz");
-		employee2.setPassword("bingo");
-		employee2.setE_mail("a@bi.it");
-		employee2.setPhone_number("3331112233");
-		employee2.setPostal_address("via roma 1");
-		employee2.setMonthly_salary(1000);
-		employee_dao.add(employee2);
+		TimeCard timecard = new TimeCard();
+		timecard.setContractor_employee(employee1);
+		timecard.setDate(new Date());
+		timecard.setStart_time(new Time(8,30,0));
+		timecard.setEnd_time(new Time(18, 0, 0));
+		timecard.setHours_worked(8);
 		
-		WithDrawPaymethod withdrawmethod = new WithDrawPaymethod();
-		withdrawmethod.setHeadquarter("test_headquarter");
-		paymethod_dao.add(withdrawmethod);
+		TimeCard timecard2 = new TimeCard();
+		timecard2.setContractor_employee(employee1);
+		timecard2.setDate(new Date());
+		timecard2.setStart_time(new Time(8,30,0));
+		timecard2.setEnd_time(new Time(18, 0, 0));
+		timecard2.setHours_worked(8);
 		
-		paymethod_service.setWithDrawPaymethod(employee2, withdrawmethod);
+		String first_outcome = timecard_service.registerTimeCard(employee1, timecard);
+		String second_outcome = timecard_service.registerTimeCard(employee1, timecard);
 		
-		boolean is_paymethod_set_for_employee_2 = paymethod_service.isPaymethodSet(employee2);
-		boolean is_paymethod_set_for_employee_1 = paymethod_service.isPaymethodSet(employee1);
-		
+		timecard_dao.remove(timecard);
+		timecard_dao.remove(timecard2);
 		employee_dao.remove(employee1);
-		employee_dao.remove(employee2);
-		paymethod_dao.remove(withdrawmethod);
 		
-		assertTrue(is_paymethod_set_for_employee_2);
-		assertTrue(!is_paymethod_set_for_employee_1);
-	}
-	
-	@Test 
-	public void testGetPaymethodType() {
-		
-		BankPaymethod bankpaymethod = new BankPaymethod();
-		bankpaymethod.setFilial("Unicredit");
-		bankpaymethod.setIBAN("865657dyr1d1y1111");
-		
-		PostalPaymethod postalpaymethod = new PostalPaymethod();
-		postalpaymethod.setRedidential_address("27050");
-		
-		WithDrawPaymethod withdrawmethod = new WithDrawPaymethod();
-		withdrawmethod.setHeadquarter("test_headquarter");
-		
-		assertEquals(paymethod_service.getPaymethodType(bankpaymethod), "Bank account");
-		assertEquals(paymethod_service.getPaymethodType(postalpaymethod), "Postal account");
-		assertEquals(paymethod_service.getPaymethodType(withdrawmethod), "WithDraw account");
-		
-		paymethod_dao.remove(postalpaymethod);
-		paymethod_dao.remove(bankpaymethod);
-		paymethod_dao.remove(withdrawmethod);
+		assertEquals(first_outcome, "success");
+		assertEquals(second_outcome, "failed");
 	}
 }
