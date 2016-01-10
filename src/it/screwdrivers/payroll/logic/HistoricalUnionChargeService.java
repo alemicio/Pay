@@ -36,7 +36,7 @@ public class HistoricalUnionChargeService {
 		Calendar calendar = new GregorianCalendar();
 
 		// If it is saturday or sunday, the order cannot be registered
-		if (!calendar_service.isSaturday() || calendar_service.isSunday()) {
+		if (!calendar_service.isSaturday() || !calendar_service.isSunday()) {
 
 			// get the current system date and time(week number)
 			java.util.Date date = calendar.getTime();

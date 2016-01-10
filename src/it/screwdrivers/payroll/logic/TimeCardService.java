@@ -42,7 +42,7 @@ public class TimeCardService {
 			TimeCard timecard) {
 
 		// If it is saturday or sunday, the time card cannot be registered
-		if (!calendar_service.isSaturday() || calendar_service.isSunday()) {
+		if (!calendar_service.isSaturday() || !calendar_service.isSunday()) {
 
 			// It checks whether another TimeCard was sent by the given employee
 			// in the same day. In that case, the method will return a "failed"
