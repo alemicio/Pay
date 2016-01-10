@@ -27,11 +27,7 @@ public class UnionService {
 			return true;
 		}
 	}
-
-	public String getUnionName(Union union) {
-		return union.getName();
-	}
-
+	
 	public void setUnion(Employee employee, String union_name) {
 		List<Union> unions = u_dao.findAll();
 
@@ -40,6 +36,15 @@ public class UnionService {
 				updateUnion(employee, u);
 			}
 		}
+	}
+	
+	private void updateUnion(Employee employee, Union u) {
+		employee.setUnion(u);
+		employee_dao.update(employee);
+	}
+	
+	public String getUnionName(Union union) {
+		return union.getName();
 	}
 
 	public List<String> getUnionNames() {
@@ -53,10 +58,5 @@ public class UnionService {
 		}
 
 		return union_names;
-	}
-
-	private void updateUnion(Employee employee, Union u) {
-		employee.setUnion(u);
-		employee_dao.update(employee);
 	}
 }
