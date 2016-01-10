@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class PaymethodServiceTest extends ArquillianTest {
+public class TimeCardServiceTest extends ArquillianTest {
 	
 	@Inject
 	PaymethodService paymethod_service;
@@ -51,6 +51,7 @@ public class PaymethodServiceTest extends ArquillianTest {
 		BankPaymethod bankpaymethod = new BankPaymethod();
 		bankpaymethod.setFilial("Unicredit");
 		bankpaymethod.setIBAN("865657dyr1d1y1111");
+		paymethod_dao.add(bankpaymethod);
 		
 		paymethod_service.setBankPaymethod(employee1, bankpaymethod);
 		
@@ -89,6 +90,7 @@ public class PaymethodServiceTest extends ArquillianTest {
 		
 		PostalPaymethod postalpaymethod = new PostalPaymethod();
 		postalpaymethod.setRedidential_address("27050");
+		paymethod_dao.add(postalpaymethod);
 		
 		paymethod_service.setPostalPaymethod(employee1, postalpaymethod);
 		
@@ -127,6 +129,7 @@ public class PaymethodServiceTest extends ArquillianTest {
 		
 		WithDrawPaymethod withdrawmethod = new WithDrawPaymethod();
 		withdrawmethod.setHeadquarter("test_headquarter");
+		paymethod_dao.add(withdrawmethod);
 		
 		paymethod_service.setWithDrawPaymethod(employee1, withdrawmethod);
 		
@@ -174,6 +177,7 @@ public class PaymethodServiceTest extends ArquillianTest {
 		
 		WithDrawPaymethod withdrawmethod = new WithDrawPaymethod();
 		withdrawmethod.setHeadquarter("test_headquarter");
+		paymethod_dao.add(withdrawmethod);
 		
 		paymethod_service.setWithDrawPaymethod(employee2, withdrawmethod);
 		

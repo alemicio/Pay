@@ -125,12 +125,6 @@ public class HistoricalUnionChargeService {
 					String[] splitted_huc_date = huc.getDate().toString()
 							.split("-");
 
-					/*
-					 * if (wd.getDate() == huc.getDate().getDate() &&
-					 * wd.getMonth() == huc.getDate().getMonth() && wd.getYear()
-					 * == huc.getDate().getYear()) {
-					 */
-
 					if (splitted_working_day_string[0] == splitted_huc_date[0]
 							&& splitted_working_day_string[1] == splitted_huc_date[1]
 							&& splitted_working_day_string[2].split(" ")[0] == splitted_huc_date[2]
