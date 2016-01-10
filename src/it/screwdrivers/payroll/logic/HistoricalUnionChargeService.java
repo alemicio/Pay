@@ -31,7 +31,7 @@ public class HistoricalUnionChargeService {
 			List<UnionServiceAssociation> selected_union_service_associations) {
 
 		// Return string of the method
-		String response = null;
+		String response = "";
 
 		Calendar calendar = new GregorianCalendar();
 
@@ -100,7 +100,7 @@ public class HistoricalUnionChargeService {
 			response = "no-working-day";
 		}
 
-		if (response == null)
+		if (response == "")
 			response = "success";
 
 		return response;

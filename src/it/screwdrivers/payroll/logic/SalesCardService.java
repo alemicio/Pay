@@ -73,5 +73,4 @@ public class SalesCardService {
 
 		return retrieved;
 	}
-
 }
