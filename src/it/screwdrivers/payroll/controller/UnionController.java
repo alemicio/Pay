@@ -42,14 +42,14 @@ public class UnionController implements Serializable {
 	private List<String> services_selected;
 	private List<UnionServiceAssociation> union_service_associations;
 	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();
-	
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		union_names = union_service.getUnionNames();
 	}
 
 	public String getUnion(Employee e) {
-		
+
 		String union_name = null;
 		boolean is_union_set = union_service.isUnionSet(e);
 
@@ -72,16 +72,7 @@ public class UnionController implements Serializable {
 		union_service.setUnion(e, union_name);
 	}
 
-	public void updateSelectedUnionServiceAssociations() {
-		for (String selected_service_name : services_selected) {
-			selected_union_service_associations.add(usa_service
-					.getUnionServiceAssociationByUnionAndServiceName(
-							this.union, selected_service_name));
-		}
-	}
-
 	public void confirmOrder(Employee e) {
-
 		updateSelectedUnionServiceAssociations();
 
 		String response = null;
@@ -93,24 +84,28 @@ public class UnionController implements Serializable {
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Congratulations",
 					"All the services orders were correctly submitted"));
-			
+
 		} else if (response == "no-working-day") {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(
 					null,
-					new FacesMessage(
-							FacesMessage.SEVERITY_ERROR,
-							"Error",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
 							"The order cannot be registered since this is not a working day"));
-			
+
 		} else if (response != null) {
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(
-					null,
-					new FacesMessage(
-							FacesMessage.SEVERITY_ERROR,
-							"Error",
-							"It is impossible to submit the order for the following services: " + response));
+			context.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Error",
+					"It is impossible to submit the order for the following services: "
+							+ response));
+		}
+	}
+
+	public void updateSelectedUnionServiceAssociations() {
+		for (String selected_service_name : services_selected) {
+			selected_union_service_associations.add(usa_service
+					.getUnionServiceAssociationByUnionAndServiceName(
+							this.union, selected_service_name));
 		}
 	}
 
