@@ -25,20 +25,16 @@ public class PaymethodService {
 	public void setBankPaymethod(Employee employee, BankPaymethod bank_paymethod) {
 
 		clearPaymethod(employee.getId());
-
 		// Add the new paymethod in the db
 		paymethod_dao.add(bank_paymethod);
-
 		updatePaymethod(employee, bank_paymethod);
 	}
 
 	public void setPostalPaymethod(Employee employee, PostalPaymethod postal) {
 
 		clearPaymethod(employee.getId());
-
 		// Add the new paymethod in the db
 		paymethod_dao.add(postal);
-
 		updatePaymethod(employee, postal);
 	}
 	
@@ -46,11 +42,14 @@ public class PaymethodService {
 			WithDrawPaymethod withdraw) {
 
 		clearPaymethod(employee.getId());
-
 		// Adding the new paymethod in the db
 		paymethod_dao.add(withdraw);
-
 		updatePaymethod(employee, withdraw);
+	}
+	
+	private void updatePaymethod(Employee employee, Paymethod p) {
+		employee.setPaymethod(p);
+		employee_dao.update(employee);
 	}
 
 	// This method checks if the employee has already set a paymethod type
@@ -78,23 +77,17 @@ public class PaymethodService {
 		return type;
 	}
 
-	private void clearPaymethod(int id) {
+	private void clearPaymethod(int employee_id) {
 		
 		// delete all references of paymethod for the given employee
 		List<Employee> employees = employee_dao.findAll();
 
 		for (Employee e : employees) {
-			if (id == e.getId()) {
+			if (employee_id == e.getId()) {
 				if (e.getPaymethod() != null) {
-
 					paymethod_dao.remove(e.getPaymethod());
 				}
 			}
 		}
-	}
-
-	private void updatePaymethod(Employee employee, Paymethod p) {
-		employee.setPaymethod(p);
-		employee_dao.update(employee);
 	}
 }

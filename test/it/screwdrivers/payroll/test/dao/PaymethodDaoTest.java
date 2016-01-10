@@ -22,6 +22,7 @@ public class PaymethodDaoTest extends ArquillianTest {
 
 	@Inject
 	PaymethodDao paymethod_dao;
+	
 	@Inject
 	EmployeeDao employee_dao;
 
