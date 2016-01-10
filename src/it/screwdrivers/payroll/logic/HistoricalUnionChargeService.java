@@ -30,9 +30,9 @@ public class HistoricalUnionChargeService {
 
 	public String confirmOrder(Employee e,
 			List<UnionServiceAssociation> selected_union_service_associations) {
-		
+
 		// Return string of the method
-					String response = null;
+		String response = null;
 
 		Calendar calendar = new GregorianCalendar();
 		int saturday = 7;
@@ -41,7 +41,7 @@ public class HistoricalUnionChargeService {
 
 		// If it is saturday or sunday, the order cannot be registered
 		if (calendar_day_of_week != saturday && calendar_day_of_week != sunday) {
-			
+
 			// get the current system date and time(week number)
 			java.util.Date date = calendar.getTime();
 			int current_week_number = calendar.get(Calendar.WEEK_OF_YEAR);
@@ -106,9 +106,7 @@ public class HistoricalUnionChargeService {
 		return response;
 	}
 
-	// @SuppressWarnings("deprecation")
 	public float getLastMonthUnionTotalChargesByEmployee(Employee e) {
-
 		List<Date> working_days = p_calendar.lastMonthList();
 		List<HistoricalUnionCharge> hucs = getUnionServiceChargeByEmployee(e);
 
@@ -122,12 +120,12 @@ public class HistoricalUnionChargeService {
 					String working_day_string = wd.toString();
 					String[] splitted_working_day_string = working_day_string
 							.split("-");
-					String[] splitted_huc_date = huc.getDate().toString()
+					String[] splitted_huc_date_string = huc.getDate().toString()
 							.split("-");
 
-					if (splitted_working_day_string[0] == splitted_huc_date[0]
-							&& splitted_working_day_string[1] == splitted_huc_date[1]
-							&& splitted_working_day_string[2].split(" ")[0] == splitted_huc_date[2]
+					if (splitted_working_day_string[0] == splitted_huc_date_string[0]
+							&& splitted_working_day_string[1] == splitted_huc_date_string[1]
+							&& splitted_working_day_string[2].split(" ")[0] == splitted_huc_date_string[2]
 									.split(" ")[0]) {
 
 						total_charges += huc.getUnion_service_association()
@@ -145,7 +143,6 @@ public class HistoricalUnionChargeService {
 
 	private List<HistoricalUnionCharge> getUnionServiceChargeByEmployee(
 			Employee e) {
-
 		List<HistoricalUnionCharge> hucs = huc_dao.findAll();
 		List<HistoricalUnionCharge> retrieved_hucs = new ArrayList<HistoricalUnionCharge>();
 

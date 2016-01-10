@@ -23,16 +23,14 @@ public class SalesCardService {
 
 		List<SalesCard> salescards = s_dao.findAll();
 
-		// check if the user tries to send a salecard that is already sent from
-		// the specific customer
-		// on a specific date
+		// It checks whether the given commissioned employee has already sent
+		// a SalesCard, specifying the same customer, in the date specified 
+		// in the given sales_card. In that case the method will return a 
+		// "failed" string; otherwise, it will return a "success" string and
+		// will register the given sales_card
 		for (SalesCard s : salescards) {
-
 			if (s.getCommissioned_employee().getId() == commissioned_employee
 					.getId()) {
-
-				// check if there is already a salescard that refers to the
-				// given customer on that date
 				if (s.getCustomer().equals(sales_card.getCustomer())) {
 					if (s.getDate().getDay() == sales_card.getDate().getDay()
 							&& s.getDate().getMonth() == sales_card.getDate()
@@ -52,16 +50,16 @@ public class SalesCardService {
 	}
 
 	public List<SalesCard> retriveByEmployee(Employee e) {
-		List<SalesCard> SalesCards = s_dao.findAll();
+		List<SalesCard> sales_cards = s_dao.findAll();
 		List<SalesCard> retrieved = new ArrayList<SalesCard>();
 
-		for (SalesCard s : SalesCards) {
+		for (SalesCard s : sales_cards) {
 			if (s.getCommissioned_employee().getId() == e.getId()) {
 				retrieved.add(s);
 			}
 		}
-		
+
 		return retrieved;
 	}
-	
+
 }

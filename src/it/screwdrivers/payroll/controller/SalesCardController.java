@@ -24,7 +24,6 @@ public class SalesCardController implements Serializable {
 
 	@Inject
 	SalesCard sales_card;
-	private String response;
 
 	private Date date;
 	private float amount;
@@ -36,14 +35,14 @@ public class SalesCardController implements Serializable {
 		sales_card.setCustomer(customer);
 		sales_card.setCommissioned_employee(commissioned_employee);
 
-		response = sales_card_service.registerTimeCard(commissioned_employee,
+		 String response = sales_card_service.registerTimeCard(commissioned_employee,
 				sales_card);
 
 		if (response == "success") {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Congratulations",
-					"your SalesCard is correctly sent"));
+					"your SalesCard was correctly sent"));
 		}
 		if (response == "failed") {
 			FacesContext context = FacesContext.getCurrentInstance();
