@@ -8,7 +8,6 @@ import java.util.List;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalUnionChargeDao;
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
 import it.screwdrivers.payroll.model.employee.Employee;
 import it.screwdrivers.payroll.model.historical.HistoricalUnionCharge;
 import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
@@ -18,15 +17,15 @@ import javax.inject.Inject;
 
 @Stateless
 public class HistoricalUnionChargeService {
+	
+	@Inject
+	CalendarService calendar_service;
 
 	@Inject
 	HistoricalUnionChargeDao huc_dao;
 
 	@Inject
 	EmployeeDao e_dao;
-
-	@Inject
-	PayrollCalendar p_calendar;
 
 	public String confirmOrder(Employee e,
 			List<UnionServiceAssociation> selected_union_service_associations) {
@@ -35,12 +34,9 @@ public class HistoricalUnionChargeService {
 		String response = null;
 
 		Calendar calendar = new GregorianCalendar();
-		int saturday = 7;
-		int sunday = 1;
-		int calendar_day_of_week = calendar.get(Calendar.DAY_OF_WEEK);
 
 		// If it is saturday or sunday, the order cannot be registered
-		if (calendar_day_of_week != saturday && calendar_day_of_week != sunday) {
+		if (calendar_service.isSaturday()) {
 
 			// get the current system date and time(week number)
 			java.util.Date date = calendar.getTime();
@@ -107,7 +103,7 @@ public class HistoricalUnionChargeService {
 	}
 
 	public float getLastMonthUnionTotalChargesByEmployee(Employee e) {
-		List<Date> working_days = p_calendar.lastMonthList();
+		List<Date> working_days = calendar_service.lastMonthList();
 		List<HistoricalUnionCharge> hucs = getUnionServiceChargeByEmployee(e);
 
 		float total_charges = 0;

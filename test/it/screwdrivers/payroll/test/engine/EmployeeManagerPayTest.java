@@ -5,7 +5,7 @@ import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
 import it.screwdrivers.payroll.engine.PayEngine;
 import it.screwdrivers.payroll.engine.PayEngineFactory;
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.CalendarService;
 import it.screwdrivers.payroll.model.historical.HistoricalSalary;
 import it.screwdrivers.payroll.test.ArquillianTest;
 
@@ -30,7 +30,7 @@ public class EmployeeManagerPayTest extends ArquillianTest {
 	HistoricalSalaryDao hs_dao;
 	
 	@Inject
-	PayrollCalendar p_calendar;
+	CalendarService p_calendar;
 
 	@Test
 	public void testIfManagerEmployeesArePaid() {

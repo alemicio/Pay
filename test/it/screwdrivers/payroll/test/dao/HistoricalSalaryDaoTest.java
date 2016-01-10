@@ -6,7 +6,7 @@ import java.util.List;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.CalendarService;
 import it.screwdrivers.payroll.model.employee.EmployeeManager;
 import it.screwdrivers.payroll.model.historical.HistoricalSalary;
 import it.screwdrivers.payroll.test.ArquillianTest;
@@ -26,7 +26,7 @@ public class HistoricalSalaryDaoTest extends ArquillianTest {
 	@Inject
 	EmployeeDao e_dao;
 
-	PayrollCalendar pc = new PayrollCalendar();
+	CalendarService pc = new CalendarService();
 
 	@Test
 	public void testAddHistoricalSalaryDao() {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.screwdrivers.payroll.dao.UnionServiceAssociationDao;
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
 import it.screwdrivers.payroll.model.employee.Employee;
 import it.screwdrivers.payroll.model.union.Union;
 import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
@@ -19,7 +18,7 @@ public class UnionServiceAssociationService {
 	UnionServiceAssociationDao usa_dao;
 
 	@Inject
-	PayrollCalendar p_calendar;
+	CalendarService p_calendar;
 
 	@Inject
 	UnionServiceAssociation union_service_association;

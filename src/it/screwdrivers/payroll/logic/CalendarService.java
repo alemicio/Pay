@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.engine.utility;
+package it.screwdrivers.payroll.logic;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -6,95 +6,91 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class PayrollCalendar {
+public class CalendarService {
 
 	private Calendar calendar;
-
-	public int getCurrentNumberDay() {
-		
-		calendar = new GregorianCalendar();
-		return calendar.get(Calendar.DAY_OF_YEAR);
-	}
-
-	public boolean isFriday() {
-
-		calendar = new GregorianCalendar();
-
-		// check if the day is friday
-		if (calendar.get(Calendar.DAY_OF_WEEK) == 6) {
-			return true;
-		}
-
-		return false;
-	}
-
-	public boolean d1ChangeMounth() {
-
-		calendar = new GregorianCalendar();
-		int d_month = calendar.get(Calendar.MONTH);
-		calendar.add(Calendar.DATE, 1); // set the next day
-		int d1_month = calendar.get(Calendar.MONTH);
-
-		if (d_month != d1_month) {
-			return true;
-		}
-
-		return false;
-	}
-
-	public boolean d3ChangeMounth() {
-		
-		calendar = new GregorianCalendar();
-		int d_month = calendar.get(Calendar.MONTH);
-		calendar.add(Calendar.DATE, 3); // set the next day
-		int d3_month = calendar.get(Calendar.MONTH);
-
-		if (d_month != d3_month) {
-			return true;
-		}
-
-		return false;
-	}
-
-	public boolean isWeekNumberPair() {
-		
-		calendar = new GregorianCalendar();
-		int week_number = calendar.get(Calendar.WEEK_OF_YEAR);
-		
-		if(week_number%2 == 0){
-			return true;
-		}
-		
-		return false;
-	}
-	
-	public boolean isLastDayOfYear(){
-		
-		calendar = new GregorianCalendar();
-		if(calendar.get(Calendar.DAY_OF_YEAR) == 365){
-			return true;
-		}
-		
-		return false;
-	}
 	
 	private Date wrapDate(Calendar c){
-		
 		@SuppressWarnings("deprecation")
 		Date date = new Date(c.get(Calendar.YEAR)-1900,c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
 		return date;
-	}
+	}	
 	
 	public Date getToday(){
 		calendar = new GregorianCalendar();
 		Date date = new Date(0);
 		date = wrapDate(calendar);
-		
 		return date;
 	}
 
-	public List<Date> lastWeekList(){
+	public int getCurrentNumberDay() {
+		calendar = new GregorianCalendar();
+		return calendar.get(Calendar.DAY_OF_YEAR);
+	}
+
+	public boolean isFriday() {
+		calendar = new GregorianCalendar();
+		// check if the day is friday
+		if (calendar.get(Calendar.DAY_OF_WEEK) == 6)
+			return true;
+		return false;
+	}
+	
+	public boolean isSaturday() {
+		calendar = new GregorianCalendar();
+		// check if the day is friday
+		if (calendar.get(Calendar.DAY_OF_WEEK) == 7)
+			return true;
+		return false;
+	}
+
+	public boolean isSunday() {
+		calendar = new GregorianCalendar();
+		// check if the day is friday
+		if (calendar.get(Calendar.DAY_OF_WEEK) == 1)
+			return true;
+		return false;
+	}
+	
+	public boolean d1ChangeMounth() {
+		calendar = new GregorianCalendar();
+		int d_month = calendar.get(Calendar.MONTH);
+		calendar.add(Calendar.DATE, 1); // set the next day
+		int d1_month = calendar.get(Calendar.MONTH);
+
+		if (d_month != d1_month)
+			return true;
+		return false;
+	}
+
+	public boolean d3ChangeMounth() {
+		calendar = new GregorianCalendar();
+		int d_month = calendar.get(Calendar.MONTH);
+		calendar.add(Calendar.DATE, 3); // set the next day
+		int d3_month = calendar.get(Calendar.MONTH);
+
+		if (d_month != d3_month)
+			return true;
+		return false;
+	}
+
+	public boolean isWeekNumberPair() {
+		calendar = new GregorianCalendar();
+		int week_number = calendar.get(Calendar.WEEK_OF_YEAR);
 		
+		if(week_number%2 == 0)
+			return true;
+		return false;
+	}
+	
+	public boolean isLastDayOfYear(){
+		calendar = new GregorianCalendar();
+		if(calendar.get(Calendar.DAY_OF_YEAR) == 365)
+			return true;
+		return false;
+	}
+
+	public List<Date> lastWeekList(){
 		calendar = new GregorianCalendar();
 		List<Date> working_days = new ArrayList<Date>();
 		
@@ -107,7 +103,6 @@ public class PayrollCalendar {
 	}
 
 	public List<Date> last2WeeksList() {
-		
 		calendar = new GregorianCalendar();
 		List<Date> working_days = new ArrayList<Date>();
 		

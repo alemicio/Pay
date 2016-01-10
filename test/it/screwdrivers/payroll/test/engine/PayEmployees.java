@@ -8,7 +8,7 @@ import it.screwdrivers.payroll.dao.EmployeeDao;
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
 import it.screwdrivers.payroll.engine.PayEngine;
 import it.screwdrivers.payroll.engine.PayEngineFactory;
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.CalendarService;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
@@ -31,7 +31,7 @@ public class PayEmployees extends ArquillianTest {
 	@Inject
 	HistoricalSalaryDao hs_dao;
 	@Inject
-	PayrollCalendar p_calendar;
+	CalendarService p_calendar;
 
 	@Test
 	public void paymentSalaried() {
@@ -135,9 +135,9 @@ public class PayEmployees extends ArquillianTest {
 //			if (h.getEmployee().getClass().getSimpleName().equals("CommissionedEmployee")) {
 //
 //				// check if i added for today the payment record
-//				if (h.getDate().getDate()  == p_calendar.getToday().getDate()  &&
-//						h.getDate().getMonth() == p_calendar.getToday().getMonth() &&
-//						h.getDate().getYear() == p_calendar.getToday().getYear()) {
+//				if (h.getDate().getDate()  == calendar_service.getToday().getDate()  &&
+//						h.getDate().getMonth() == calendar_service.getToday().getMonth() &&
+//						h.getDate().getYear() == calendar_service.getToday().getYear()) {
 //
 //						count++;
 //					}

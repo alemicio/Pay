@@ -1,7 +1,6 @@
 package it.screwdrivers.payroll.logic;
 
 import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.EmployeeManager;
@@ -25,7 +24,7 @@ public class HistoricalSalaryService {
 	HistoricalSalaryDao h_dao;
 	
 	@Inject
-	PayrollCalendar p_calendar;
+	CalendarService p_calendar;
 	
 	public void registerPay(SalariedEmployee e){
 		

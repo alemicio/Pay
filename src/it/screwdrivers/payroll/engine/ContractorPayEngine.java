@@ -1,7 +1,7 @@
 package it.screwdrivers.payroll.engine;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.CalendarService;
 import it.screwdrivers.payroll.logic.HistoricalSalaryService;
 import it.screwdrivers.payroll.logic.HistoricalUnionChargeService;
 import it.screwdrivers.payroll.logic.TimeCardService;
@@ -33,7 +33,7 @@ public class ContractorPayEngine extends PayEngine {
 	EmployeeDao e_dao;
 
 	@Inject
-	PayrollCalendar p_calendar;
+	CalendarService p_calendar;
 
 	public ContractorPayEngine() {
 		super();

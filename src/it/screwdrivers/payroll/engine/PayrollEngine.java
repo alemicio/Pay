@@ -1,6 +1,6 @@
 package it.screwdrivers.payroll.engine;
 
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.CalendarService;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.EmployeeManager;
@@ -16,7 +16,7 @@ public class PayrollEngine {
 	PayEngineFactory pay_engine_factory;
 	
 	@Inject
-	PayrollCalendar c;
+	CalendarService calendar_service;
 	
 	PayEngine pay_engine;
 
@@ -25,20 +25,20 @@ public class PayrollEngine {
 		
 		System.out.println("Payroll task running now");
 
-		if (c.isFriday()) {
+		if (calendar_service.isFriday()) {
 			System.out.println("is friday");
 			//pay contractor employees
 			pay_engine = pay_engine_factory.getPayEngine(ContractorEmployee.class.getSimpleName());
 			pay_engine.pay();
 
-			if (c.isWeekNumberPair()) {
+			if (calendar_service.isWeekNumberPair()) {
 				System.out.println("is a pair week");
 				//pay commissions sales
 				pay_engine = pay_engine_factory.getPayEngine(CommissionedEmployee.class.getSimpleName());
 				pay_engine.pay();
 			}
 
-			if (c.d3ChangeMounth()) {
+			if (calendar_service.d3ChangeMounth()) {
 				System.out.println("d+3 change mounth");
 				//  pay salaried employees && commissioned standard salary
 				pay_engine = pay_engine_factory.getPayEngine(SalariedEmployee.class.getSimpleName());
@@ -46,7 +46,7 @@ public class PayrollEngine {
 			}
 		}
 		else{
-			if(c.d1ChangeMounth()){
+			if(calendar_service.d1ChangeMounth()){
 				System.out.println("d+1 change mounth");
 				//pay salaried employees && commissioned standard salary
 				pay_engine = pay_engine_factory.getPayEngine(SalariedEmployee.class.getSimpleName());
@@ -54,7 +54,7 @@ public class PayrollEngine {
 			}
 		}
 		
-		if(c.isLastDayOfYear()){
+		if(calendar_service.isLastDayOfYear()){
 			System.out.println("is the last day of the year");
 			pay_engine = pay_engine_factory.getPayEngine(EmployeeManager.class.getSimpleName());
 			pay_engine.pay();

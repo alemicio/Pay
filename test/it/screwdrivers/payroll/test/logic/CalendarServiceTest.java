@@ -1,4 +1,4 @@
-package it.screwdrivers.payroll.test.engine;
+package it.screwdrivers.payroll.test.logic;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.CalendarService;
 import it.screwdrivers.payroll.test.ArquillianTest;
 
 import org.jboss.arquillian.junit.Arquillian;
@@ -14,9 +14,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class PayrollCalendarTest extends ArquillianTest {
+public class CalendarServiceTest extends ArquillianTest {
 	
-	PayrollCalendar p_calendar = new PayrollCalendar();
+	CalendarService p_calendar = new CalendarService();
 	
 	@Test
 	public void testNumberOfDay() {
@@ -94,13 +94,13 @@ public class PayrollCalendarTest extends ArquillianTest {
 	// the check is not done automatically but 
 	// we have to do it. The aim of this test method
 	// is to print the output list of 
-	// PayrollCalendar's lastMonthList method
+	// CalendarService's lastMonthList method
 	@Test
 	public void printLastMonthList(){
 		
 		List<Date> working_days = p_calendar.lastMonthList();
 		System.out.println("==========================================");
-		System.out.println("==== PayrollCalendar - lastMonthList =====");
+		System.out.println("==== CalendarService - lastMonthList =====");
 		for(Date d: working_days){
 			System.out.println(d);
 		}

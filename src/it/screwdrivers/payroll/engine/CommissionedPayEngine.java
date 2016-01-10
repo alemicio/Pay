@@ -1,11 +1,12 @@
 package it.screwdrivers.payroll.engine;
 
 import it.screwdrivers.payroll.dao.EmployeeDao;
-import it.screwdrivers.payroll.engine.utility.PayrollCalendar;
+import it.screwdrivers.payroll.logic.CalendarService;
 import it.screwdrivers.payroll.logic.HistoricalSalaryService;
 import it.screwdrivers.payroll.logic.SalesCardService;
 import it.screwdrivers.payroll.model.card.SalesCard;
 import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class CommissionedPayEngine extends PayEngine {
 	EmployeeDao e_dao;
 
 	@Inject
-	PayrollCalendar p_calendar;
+	CalendarService p_calendar;
 
 	public CommissionedPayEngine() {
 		super();
