@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 @Stateless
 public class HistoricalUnionChargeService {
-	
+
 	@Inject
 	CalendarService calendar_service;
 
@@ -59,6 +59,8 @@ public class HistoricalUnionChargeService {
 
 				} else {
 
+					boolean is_order_invalid = false;
+
 					for (HistoricalUnionCharge h : huc_list) {
 						// name of the service given the historical union charge
 						String service_name_indb = h
@@ -78,17 +80,19 @@ public class HistoricalUnionChargeService {
 								&& e.getId() == h.getEmployee().getId()
 								&& current_week_number == service_week_number) {
 
+							is_order_invalid = true;
 							response += service_name;
 							response += ",";
 
-						} else {
-
-							HistoricalUnionCharge huc = new HistoricalUnionCharge();
-							huc.setUnion_service_association(susa);
-							huc.setEmployee(e);
-							huc.setDate(date);
-							huc_dao.add(huc);
 						}
+					}
+
+					if (!is_order_invalid) {
+						HistoricalUnionCharge huc = new HistoricalUnionCharge();
+						huc.setUnion_service_association(susa);
+						huc.setEmployee(e);
+						huc.setDate(date);
+						huc_dao.add(huc);
 					}
 				}
 			}
@@ -116,8 +120,8 @@ public class HistoricalUnionChargeService {
 					String working_day_string = wd.toString();
 					String[] splitted_working_day_string = working_day_string
 							.split("-");
-					String[] splitted_huc_date_string = huc.getDate().toString()
-							.split("-");
+					String[] splitted_huc_date_string = huc.getDate()
+							.toString().split("-");
 
 					if (splitted_working_day_string[0] == splitted_huc_date_string[0]
 							&& splitted_working_day_string[1] == splitted_huc_date_string[1]

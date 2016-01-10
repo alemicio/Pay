@@ -57,6 +57,7 @@ public class UnionController implements Serializable {
 					.getUnionServiceNames(union_service_associations);
 
 			union_name = union_service.getUnionName(e.getUnion());
+			this.union_name = union_service.getUnionName(e.getUnion());
 		} else {
 			union_name = "Not setted";
 		}
@@ -98,11 +99,16 @@ public class UnionController implements Serializable {
 	}
 
 	public void updateSelectedUnionServiceAssociations() {
+		
+		selected_union_service_associations.clear();
+		
 		for (String selected_service_name : services_selected) {
 			selected_union_service_associations.add(usa_service
-					.getUnionServiceAssociationByUnionAndServiceName(
+					.getUnionServiceAssociationByUnionNameAndServiceName(
 							union_name, selected_service_name));
 		}
+		
+		services_selected.clear();
 	}
 
 	public String getUnion_name() {

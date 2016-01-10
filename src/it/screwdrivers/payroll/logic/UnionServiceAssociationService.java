@@ -5,7 +5,6 @@ import java.util.List;
 
 import it.screwdrivers.payroll.dao.UnionServiceAssociationDao;
 import it.screwdrivers.payroll.model.employee.Employee;
-import it.screwdrivers.payroll.model.union.Union;
 import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
 
 import javax.ejb.Stateless;
@@ -18,10 +17,7 @@ public class UnionServiceAssociationService {
 	UnionServiceAssociationDao usa_dao;
 
 	@Inject
-	CalendarService p_calendar;
-
-	@Inject
-	UnionServiceAssociation union_service_association;
+	CalendarService calendar_service;
 
 	public List<UnionServiceAssociation> getUnionServiceAssociations(
 			Employee employee) {
@@ -63,9 +59,9 @@ public class UnionServiceAssociationService {
 		return service_names;
 	}
 
-	public UnionServiceAssociation getUnionServiceAssociationByUnionAndServiceName(
+	public UnionServiceAssociation getUnionServiceAssociationByUnionNameAndServiceName(
 			String union_name, String service_name) {
-
+		
 		List<UnionServiceAssociation> union_service_associations = usa_dao
 				.findAll();
 
@@ -73,10 +69,10 @@ public class UnionServiceAssociationService {
 			if (usa.getUnion().getName().equals(union_name)
 					&& usa.getUnion_service().getName().equals(service_name)) {
 
-				union_service_association = usa;
+				return usa;
 			}
 		}
 
-		return union_service_association;
+		return null;
 	}
 }
