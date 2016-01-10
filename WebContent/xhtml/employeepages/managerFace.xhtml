@@ -643,7 +643,7 @@
 															<h:outputText value="@union" />
 														</f:facet>
 
-														<f:selectItems value="#{union.associated_unions}" />
+														<f:selectItems value="#{union.union_names}" />
 
 													</b:selectOneMenu>
 													<b:inputText value="#{union.union_name}" disabled="true"></b:inputText>
@@ -710,7 +710,7 @@
 														value="#{union.services_selected}" var="union_service"
 														filter="true" filterMatchMode="contains"
 														showCheckbox="true">
-														<f:selectItems value="#{union.service_names}"
+														<f:selectItems value="#{union.services_names}"
 															var="union_service" itemLabel="#{union_service}"
 															itemValue="#{union_service}" />
 														<p:column>

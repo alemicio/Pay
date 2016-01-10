@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -37,35 +38,34 @@ public class UnionController implements Serializable {
 
 	private String union_name;
 	private List<String> union_names;
-	private List<String> service_names;
+	private List<String> services_names;
 	private List<String> services_selected;
 	private List<UnionServiceAssociation> union_service_associations;
-	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();;
+	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();
+	
+	@PostConstruct
+	public void init(){
+		union_names = union_service.getUnionNames();
+	}
 
 	public String getUnion(Employee e) {
-
-		union_names = union_service.getUnionNames();
-
-		// This method returns a union for a given employee.
-		String name_union = null;
+		
+		String union_name = null;
 		boolean is_union_set = union_service.isUnionSet(e);
 
 		if (is_union_set) {
 			union_service_associations = usa_service
 					.getUnionServiceAssociations(e);
 
-			// here we have populated the list of service name to show in the
-			// face
-			service_names = usa_service
+			services_names = usa_service
 					.getUnionServiceNames(union_service_associations);
 
-			name_union = union_service.getUnionName(e.getUnion());
-			this.union = e.getUnion();
+			union_name = union_service.getUnionName(e.getUnion());
 		} else {
-			name_union = "Not setted";
+			union_name = "Not setted";
 		}
 
-		return name_union;
+		return union_name;
 	}
 
 	public void setUnion(Employee e) {
@@ -122,19 +122,19 @@ public class UnionController implements Serializable {
 		this.union_name = union_name;
 	}
 
-	public List<String> getAssociated_unions() {
+	public List<String> getUnion_names() {
 		return union_names;
 	}
 
-	public void setAssociated_unions(List<String> associated_unions) {
-		this.union_names = associated_unions;
+	public void setUnion_names(List<String> union_names) {
+		this.union_names = union_names;
 	}
 
-	public List<UnionServiceAssociation> getAssociated_service() {
+	public List<UnionServiceAssociation> getUnion_service_associations() {
 		return union_service_associations;
 	}
 
-	public void setAssociated_service(
+	public void setUnion_service_associations(
 			List<UnionServiceAssociation> associated_service) {
 		this.union_service_associations = associated_service;
 	}
@@ -147,12 +147,12 @@ public class UnionController implements Serializable {
 		this.services_selected = services_selected;
 	}
 
-	public List<String> getService_names() {
-		return service_names;
+	public List<String> getServices_names() {
+		return services_names;
 	}
 
-	public void setService_names(List<String> service_names) {
-		this.service_names = service_names;
+	public void setServices_names(List<String> services_names) {
+		this.services_names = services_names;
 	}
 
 	public List<UnionServiceAssociation> getSelected_union_service_associations() {
