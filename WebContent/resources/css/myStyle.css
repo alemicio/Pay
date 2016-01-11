@@ -14,7 +14,11 @@ body {
 	background-repeat: no-repeat;
 	background-position: top;
 }
-
+#sfondo3 {
+	background-image: url("/Pay/resources/images/reptile1-greenlight.png");
+	background-repeat: repeat;
+	background-position: top;
+}
 
 
 #foot {
