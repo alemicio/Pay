@@ -5,11 +5,11 @@
 	version="2.2">
 	
 	<navigation-rule>
-		<from-view-id>/xhtml/index.xhtml</from-view-id>
+		<from-view-id>/FrontEnd/indexMicio.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{login.performLogin}</from-action>
 			<from-outcome>SalariedEmployee</from-outcome>
-			<to-view-id>/xhtml/employeepages/salariedFace.xhtml</to-view-id>
+			<to-view-id>/FrontEnd/employeepages/newSalariedFace.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
