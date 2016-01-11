@@ -36,7 +36,6 @@ public class UnionController implements Serializable {
 	private List<String> union_names;
 	private List<String> services_names;
 	private List<String> services_selected;
-	private List<UnionServiceAssociation> union_service_associations;
 	private List<UnionServiceAssociation> selected_union_service_associations = new ArrayList<UnionServiceAssociation>();
 
 	@PostConstruct
@@ -44,18 +43,13 @@ public class UnionController implements Serializable {
 		union_names = union_service.getUnionNames();
 	}
 
-	public String getUnion(Employee e) {
+	public String getUnionName(Employee e) {
 
 		String union_name = null;
 		boolean is_union_set = union_service.isUnionSet(e);
 
 		if (is_union_set) {
-			union_service_associations = usa_service
-					.getUnionServiceAssociations(e);
-
-			services_names = usa_service
-					.getUnionServiceNames(union_service_associations);
-
+			services_names = usa_service.getUnionServiceNames(e);
 			union_name = union_service.getUnionName(e.getUnion());
 			this.union_name = union_service.getUnionName(e.getUnion());
 		} else {
@@ -98,16 +92,16 @@ public class UnionController implements Serializable {
 		}
 	}
 
-	public void updateSelectedUnionServiceAssociations() {
-		
+	private void updateSelectedUnionServiceAssociations() {
+
 		selected_union_service_associations.clear();
-		
+
 		for (String selected_service_name : services_selected) {
 			selected_union_service_associations.add(usa_service
 					.getUnionServiceAssociationByUnionNameAndServiceName(
 							union_name, selected_service_name));
 		}
-		
+
 		services_selected.clear();
 	}
 
@@ -125,15 +119,6 @@ public class UnionController implements Serializable {
 
 	public void setUnion_names(List<String> union_names) {
 		this.union_names = union_names;
-	}
-
-	public List<UnionServiceAssociation> getUnion_service_associations() {
-		return union_service_associations;
-	}
-
-	public void setUnion_service_associations(
-			List<UnionServiceAssociation> associated_service) {
-		this.union_service_associations = associated_service;
 	}
 
 	public List<String> getServices_selected() {

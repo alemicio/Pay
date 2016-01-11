@@ -23,9 +23,6 @@ public class TimeCardController implements Serializable {
 	@Inject
 	TimeCardService time_card_service;
 
-	//@Inject
-	//TimeCard time_card;
-
 	private int hour_start;
 	private int hour_end;
 	private int minute_start;

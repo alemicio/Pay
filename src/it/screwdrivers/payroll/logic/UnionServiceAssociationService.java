@@ -19,14 +19,25 @@ public class UnionServiceAssociationService {
 	@Inject
 	CalendarService calendar_service;
 
-	public List<UnionServiceAssociation> getUnionServiceAssociations(
-			Employee employee) {
+	public List<String> getUnionServiceNames(Employee employee) {
 
-		// retrive all unionservice associated with the union of the employee
-		List<UnionServiceAssociation> usa_list = usa_dao.findAll();
+		List<String> service_names = new ArrayList<String>();
+
+		List<UnionServiceAssociation> union_service_associations = getUnionServiceAssociations(employee);
+		for (UnionServiceAssociation usa : union_service_associations) {
+			service_names.add(usa.getUnion_service().getName());
+		}
+
+		return service_names;
+	}
+
+	private List<UnionServiceAssociation> getUnionServiceAssociations(
+			Employee employee) {
 
 		List<UnionServiceAssociation> filtered_list = new ArrayList<UnionServiceAssociation>();
 
+		// retrive all unionservice associated with the union of the employee
+		List<UnionServiceAssociation> usa_list = usa_dao.findAll();
 		for (UnionServiceAssociation usa : usa_list) {
 
 			// fetch out the union associated with the employee
@@ -45,23 +56,9 @@ public class UnionServiceAssociationService {
 		return filtered_list;
 	}
 
-	public List<String> getUnionServiceNames(
-			List<UnionServiceAssociation> service_list) {
-
-		// this method returns a new list with names of service associated
-		// to the employee union
-		List<String> service_names = new ArrayList<String>();
-
-		for (UnionServiceAssociation u : service_list) {
-			service_names.add(u.getUnion_service().getName());
-		}
-
-		return service_names;
-	}
-
 	public UnionServiceAssociation getUnionServiceAssociationByUnionNameAndServiceName(
 			String union_name, String service_name) {
-		
+
 		List<UnionServiceAssociation> union_service_associations = usa_dao
 				.findAll();
 

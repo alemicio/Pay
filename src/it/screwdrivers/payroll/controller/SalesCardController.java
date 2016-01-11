@@ -22,9 +22,6 @@ public class SalesCardController implements Serializable {
 	@Inject
 	SalesCardService sales_card_service;
 
-	//@Inject
-	//SalesCard sales_card;
-
 	private Date date;
 	private float amount;
 	private String customer;
