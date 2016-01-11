@@ -36,7 +36,7 @@ public class HistoricalUnionChargeService {
 		Calendar calendar = new GregorianCalendar();
 
 		// If it is saturday or sunday, the order cannot be registered
-		if (!calendar_service.isSaturday() || !calendar_service.isSunday()) {
+		if (!calendar_service.isSaturday() && !calendar_service.isSunday()) {
 
 			// get the current system date and time(week number)
 			java.util.Date date = calendar.getTime();
@@ -123,10 +123,10 @@ public class HistoricalUnionChargeService {
 					String[] splitted_huc_date_string = huc.getDate()
 							.toString().split("-");
 
-					if (splitted_working_day_string[0] == splitted_huc_date_string[0]
-							&& splitted_working_day_string[1] == splitted_huc_date_string[1]
-							&& splitted_working_day_string[2].split(" ")[0] == splitted_huc_date_string[2]
-									.split(" ")[0]) {
+					if (splitted_working_day_string[0].equals(splitted_huc_date_string[0])
+							&& splitted_working_day_string[1].equals(splitted_huc_date_string[1])
+							&& splitted_working_day_string[2].equals(splitted_huc_date_string[2]
+									.split(" ")[0])) {
 
 						total_charges += huc.getUnion_service_association()
 								.getPrice();

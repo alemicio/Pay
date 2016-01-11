@@ -181,6 +181,11 @@ public class HistoricalUnionChargeServiceTest extends ArquillianTest {
 	@Test
 	public void testGetLastMonthUnionTotalChargesByEmployee(){
 		
+		Union union = new Union();
+		union.setName("test_union");
+		union.setPhone_number("3388194740");
+		union_dao.add(union);
+		
 		SalariedEmployee employee1 = new SalariedEmployee();
 		employee1.setName("davide");
 		employee1.setSurname("bonamico");
@@ -191,11 +196,6 @@ public class HistoricalUnionChargeServiceTest extends ArquillianTest {
 		employee1.setPostal_address("via roma 1");
 		employee1.setMonthly_salary(1000);
 		employee_dao.add(employee1);
-
-		Union union = new Union();
-		union.setName("test_union");
-		union.setPhone_number("3388194740");
-		union_dao.add(union);
 
 		UnionService union_service = new UnionService();
 		union_service.setDescription("description");
