@@ -1,22 +1,24 @@
 @CHARSET "UTF-8";
 
 body {
-	
+
 }
 
 /* ----------------------- Roba mia --------------------------- */
-#navbar {
-	
-}
 
 #sfondo {
 	background-image: url("/Pay/resources/images/hero.jpg");
 	background-repeat: no-repeat;
 	background-position: top;
 }
-
+#sfondo3 {
+	background-image: url("/Pay/resources/images/bg-transparent.png");
+	background-repeat: repeat-x
+	background-position: top;
+}
 #sfondo2 {
 	background-image: url("/Pay/resources/images/back2.jpg");
+	background-color: transparent;
 	background-repeat: no-repeat;
 	background-position: top;
 }

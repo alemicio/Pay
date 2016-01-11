@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: 'Myriad Pro Regular';
+}
+
+#sfondo {
+	background-image: url("/Pay/resources/images/euro.jpg");
+	background-repeat: no-repeat;
+	background-position: top;
+}
+#sfondo1 {
+	background-image: url("/Pay/resources/images/10euro.jpg");
+	background-repeat: no-repeat;
+	background-position: top;
+}
+
+
+
+#foot {
+	background-color: rgb(99, 66, 66);
+	color: white;
+	text-align: center;
+}
+
+#face {
+	stroke-width: 2px;
+	stroke: #fff;
+}
+
+#hour, #min, #sec {
+	stroke-width: 1px;
+	fill: #333;
+	stroke: #555;
+}
+
+#sec {
+	stroke: #f55;
+}
