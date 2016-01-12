@@ -6,6 +6,7 @@ import it.screwdrivers.payroll.dao.HistoricalSalaryDao;
 import it.screwdrivers.payroll.engine.PayEngine;
 import it.screwdrivers.payroll.engine.PayEngineFactory;
 import it.screwdrivers.payroll.logic.CalendarService;
+import it.screwdrivers.payroll.model.employee.CommissionedEmployee;
 import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
 import it.screwdrivers.payroll.model.historical.HistoricalSalary;
@@ -24,13 +25,13 @@ public class PayEmployeesTest extends ArquillianTest {
 
 	@Inject
 	EmployeeDao e_dao;
-	
+
 	@Inject
 	HistoricalSalaryDao hs_dao;
-	
+
 	@Inject
-	PayEngineFactory pay_engine_factory;	
-	
+	PayEngineFactory pay_engine_factory;
+
 	@Inject
 	CalendarService calendar_service;
 
@@ -82,15 +83,11 @@ public class PayEmployeesTest extends ArquillianTest {
 		// to the number of employee managers. If the condition is true, it
 		// means
 		// that all the employee managers were successfully paid.
-		assertTrue("All employee managers were successfully paid.", condition);
+		assertTrue(condition);
 	}
 
-	//@Test
-	public void paymentSalaried() {
-
-		// starting with the remove of all instances of historical salary in the
-		// db
-		List<HistoricalSalary> hs = hs_dao.findAll();
+	@Test
+	public void testIfSalariedEmployeesArePaid() {
 
 		int count = 0;
 
@@ -100,19 +97,21 @@ public class PayEmployeesTest extends ArquillianTest {
 
 		pay_engine.pay();
 
-		// check if payment is made
-		for (HistoricalSalary h : hs) {
-			if (h.getEmployee().getClass().getSimpleName()
+		List<HistoricalSalary> historical_salaries = hs_dao.findAll();
+		// check if payment was performed
+		for (HistoricalSalary hs : historical_salaries) {
+			if (hs.getEmployee().getClass().getSimpleName()
 					.equals("SalariedEmployee")
-					|| h.getEmployee().getClass().getSimpleName()
+					|| hs.getEmployee().getClass().getSimpleName()
 							.equals("CommissionedEmployee")) {
 
-				// check if i added for today the payment record
-				if (h.getDate().getDate() == calendar_service.getToday().getDate()
-						&& h.getDate().getMonth() == calendar_service.getToday()
-								.getMonth()
-						&& h.getDate().getYear() == calendar_service.getToday()
-								.getYear()) {
+				// check if the historical_salary was added today
+				if (hs.getDate().getDate() == calendar_service.getToday()
+						.getDate()
+						&& hs.getDate().getMonth() == calendar_service
+								.getToday().getMonth()
+						&& hs.getDate().getYear() == calendar_service
+								.getToday().getYear()) {
 
 					count++;
 				}
@@ -121,24 +120,18 @@ public class PayEmployeesTest extends ArquillianTest {
 		}
 
 		List<SalariedEmployee> salaried_employees = e_dao.findAllSalaried();
-
-		// check if it has written pay record for each salaried employee
-		// note that the test just works fine one time per day.
 		boolean condition = salaried_employees.size() == count;
 
-		for (SalariedEmployee se : salaried_employees) {
-			e_dao.remove(se);
+		for (HistoricalSalary hs : historical_salaries) {
+			hs_dao.remove(hs);
 		}
 
-		assertTrue("Test if i add on the db rows for each salariedpay",
-				condition);
+		assertTrue(condition);
 	}
 
 	@SuppressWarnings("deprecation")
-	//@Test
-	public void paymentContractor() {
-
-		List<HistoricalSalary> hs = hs_dao.findAll();
+	@Test
+	public void testIfContractorEmployeesArePaid() {
 
 		int count = 0;
 
@@ -148,18 +141,20 @@ public class PayEmployeesTest extends ArquillianTest {
 
 		pay_engine.pay();
 
+		List<HistoricalSalary> historical_salaries = hs_dao.findAll();
 		// check if payment is made
-		for (HistoricalSalary h : hs) {
+		for (HistoricalSalary hs : historical_salaries) {
 
-			if (h.getEmployee().getClass().getSimpleName()
+			if (hs.getEmployee().getClass().getSimpleName()
 					.equals("ContractorEmployee")) {
 
 				// check if i added for today the payment record
-				if (h.getDate().getDate() == calendar_service.getToday().getDate()
-						&& h.getDate().getMonth() == calendar_service.getToday()
-								.getMonth()
-						&& h.getDate().getYear() == calendar_service.getToday()
-								.getYear()) {
+				if (hs.getDate().getDate() == calendar_service.getToday()
+						.getDate()
+						&& hs.getDate().getMonth() == calendar_service
+								.getToday().getMonth()
+						&& hs.getDate().getYear() == calendar_service
+								.getToday().getYear()) {
 
 					count++;
 				}
@@ -169,59 +164,56 @@ public class PayEmployeesTest extends ArquillianTest {
 
 		List<ContractorEmployee> contractor_employees = e_dao
 				.findAllContractor();
-
-		// check if it has written pay record for each salaried employee
-		// note that the test just works fine one time per day.
 		boolean condition = contractor_employees.size() == count;
 
-		assertTrue("Test if i add on the db rows for each contractorpay",
-				condition);
+		for (HistoricalSalary hs : historical_salaries) {
+			hs_dao.remove(hs);
+		}
 
+		assertTrue(condition);
 	}
 
 	@SuppressWarnings("deprecation")
-	//@Test
-	public void paymentCommissioned() {
-
-		List<HistoricalSalary> hs = hs_dao.findAll();
+	@Test
+	public void testIfCommissionedEmployeesArePaid() {
 
 		int count = 0;
 
-		// pay action on commission for commissioned emps.
+		// pay action for contractors
 		PayEngine pay_engine = pay_engine_factory
 				.getPayEngine("CommissionedEmployee");
 
-		System.out.println(pay_engine.toString());
 		pay_engine.pay();
 
+		List<HistoricalSalary> historical_salaries = hs_dao.findAll();
 		// check if payment is made
-		// for (HistoricalSalary h : hs) {
-		//
-		// if
-		// (h.getEmployee().getClass().getSimpleName().equals("CommissionedEmployee"))
-		// {
-		//
-		// // check if i added for today the payment record
-		// if (h.getDate().getDate() == calendar_service.getToday().getDate() &&
-		// h.getDate().getMonth() == calendar_service.getToday().getMonth() &&
-		// h.getDate().getYear() == calendar_service.getToday().getYear()) {
-		//
-		// count++;
-		// }
-		//
-		// }
-		// }
-		//
-		// List<CommissionedEmployee> commissioned_employees =
-		// e_dao.findAllCommissioned();
-		//
-		//
-		// // check if it has written pay record for each salaried employee
-		// // note that the test just works fine one time per day.
-		// boolean condition = commissioned_employees.size() == count;
-		//
-		// assertTrue("Test if i add on the db rows for each commissionedpay",condition);
+		for (HistoricalSalary hs : historical_salaries) {
 
+			if (hs.getEmployee().getClass().getSimpleName()
+					.equals("CommissionedEmployee")) {
+
+				// check if i added for today the payment record
+				if (hs.getDate().getDate() == calendar_service.getToday()
+						.getDate()
+						&& hs.getDate().getMonth() == calendar_service
+								.getToday().getMonth()
+						&& hs.getDate().getYear() == calendar_service
+								.getToday().getYear()) {
+
+					count++;
+				}
+
+			}
+		}
+
+		List<CommissionedEmployee> commissioned_employees = e_dao
+				.findAllCommissioned();
+		boolean condition = commissioned_employees.size() == count;
+
+		for (HistoricalSalary hs : historical_salaries) {
+			hs_dao.remove(hs);
+		}
+
+		assertTrue(condition);
 	}
-
 }
