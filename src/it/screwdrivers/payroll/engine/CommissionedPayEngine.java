@@ -29,7 +29,7 @@ public class CommissionedPayEngine extends PayEngine {
 	EmployeeDao e_dao;
 
 	@Inject
-	CalendarService p_calendar;
+	CalendarService calendar_service;
 
 	public CommissionedPayEngine() {
 		super();
@@ -45,26 +45,27 @@ public class CommissionedPayEngine extends PayEngine {
 	@Override
 	public void pay() {
 
-		List<SalesCard> s_cards;
-		List<Date> working_days = p_calendar.last2WeeksList();
+		List<SalesCard> sales_cards;
+		List<Date> working_days = calendar_service.last2WeeksList();
 		float total = 0;
 
-		for (CommissionedEmployee c : getCom_employees()) {
-			s_cards = sc_service.retriveByEmployee(c);
+		for (CommissionedEmployee ce : getCom_employees()) {
+			sales_cards = sc_service.retriveByEmployee(ce);
 
-			for (SalesCard s : s_cards) {
+			for (SalesCard sc : sales_cards) {
 				for (Date wd : working_days) {
-					if (wd.getDate() == s.getDate().getDate()
-							&& wd.getMonth() == s.getDate().getMonth()
-							&& wd.getYear() == s.getDate().getYear()) {
+					if (wd.getDate() == sc.getDate().getDate()
+							&& wd.getMonth() == sc.getDate().getMonth()
+							&& wd.getYear() == sc.getDate().getYear()) {
 
-						total += c.getSale_rate() * s.getAmount();
+						total += ce.getSale_rate() * sc.getAmount();
 					}
+					
 					break;
 				}
 			}
 
-			hs_service.registerPay(c, total);
+			hs_service.registerPay(ce, total);
 		}
 	}
 }

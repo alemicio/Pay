@@ -44,7 +44,10 @@ public class SalariedPayEngine extends PayEngine {
 			if (s.getUnion() == null) {
 				hs_service.registerPay(s);
 			} else {
+				// Compute union's fixed dues
 				dues = s.getMonthly_salary() * s.getUnion().getUnion_dues();
+				
+				// Compute charges associated to the requested union's services
 				total_charges = huc_service.getLastMonthUnionTotalChargesByEmployee(s);
 				
 				hs_service.registerPay(s, (total_charges + dues));

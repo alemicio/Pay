@@ -30,10 +30,10 @@ public class ContractorPayEngine extends PayEngine {
 	HistoricalUnionChargeService huc_service;
 
 	@Inject
-	EmployeeDao e_dao;
+	CalendarService calendar_service;
 
 	@Inject
-	CalendarService p_calendar;
+	EmployeeDao e_dao;
 
 	public ContractorPayEngine() {
 		super();
@@ -43,65 +43,65 @@ public class ContractorPayEngine extends PayEngine {
 	@Override
 	public void initList() {
 		setCon_employees(e_dao.findAllContractor());
-
 	}
 
 	@Override
 	public void pay() {
 
-		List<Date> working_days = p_calendar.lastWeekList();
-		float total = 0;
+		List<Date> working_days = calendar_service.lastWeekList();
+
 		float dues = 0;
 		float total_charges = 0;
 
 		for (ContractorEmployee c : getCon_employees()) {
+
+			float total = 0;
+
 			if (c.getUnion() == null) {
-
-				total = payContractor(working_days, total, c);
+				total = computeTotal(c, working_days);
 				hs_service.registerPay(c, total);
+
 			} else {
-
-				total = payContractor(working_days, total, c);
+				total = computeTotal(c, working_days);
 				dues = (c.getUnion().getUnion_dues()) * total;
-				total_charges = huc_service.getLastMonthUnionTotalChargesByEmployee(c);
-
+				total_charges = huc_service
+						.getLastMonthUnionTotalChargesByEmployee(c);
 				hs_service.registerPay(c, total, (total_charges + dues));
 			}
 		}
 	}
 
 	@SuppressWarnings("deprecation")
-	private float payContractor(List<Date> working_days, float total,
-			ContractorEmployee c) {
+	private float computeTotal(ContractorEmployee c, List<Date> working_days) {
 
-		float extra_hours;
+		float total = 0;
 
 		// this method return a list if timecard associated to the
 		// given employee
-		List<TimeCard> retrieved = tc_service.getByEmployee(c);
+		List<TimeCard> time_cards = tc_service.getByEmployee(c);
 
 		// check if the timeCard has a date matching with
 		// one of the date of the current week
-		for (TimeCard t : retrieved) {
+		for (TimeCard tc : time_cards) {
 			for (Date wd : working_days) {
 
 				// check on the date field
-				if (wd.getDate() == t.getDate().getDate()
-						&& wd.getMonth() == t.getDate().getMonth()
-						&& wd.getYear() == t.getDate().getYear()) {
+				if (wd.getDate() == tc.getDate().getDate()
+						&& wd.getMonth() == tc.getDate().getMonth()
+						&& wd.getYear() == tc.getDate().getYear()) {
 
 					// if it works extra hours
 					// he will be paid 1,5 times his hourly rate
-					// fro each extra hour
-					if (t.getHours_worked() > 8) {
+					// for each extra hour
+					if (tc.getHours_worked() > 8) {
 
 						// get extra hours
-						extra_hours = t.getHours_worked() - 8;
+						float extra_hours = tc.getHours_worked() - 8;
 
 						total += (c.getHourly_rate() * 8)
 								+ (1.5 * c.getHourly_rate() * extra_hours);
 					} else {
-						total += (t.getHours_worked() * c.getHourly_rate());
+						total += (tc.getHours_worked() * c.getHourly_rate());
 					}
 
 					break;
