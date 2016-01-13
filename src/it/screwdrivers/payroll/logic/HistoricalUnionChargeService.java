@@ -116,7 +116,58 @@ public class HistoricalUnionChargeService {
 			for (HistoricalUnionCharge huc : hucs) {
 				for (Date wd : working_days) {
 
-					// Formatted as YYYY-MM-DD
+					// It calls Date's toString() method which
+					// returns a String formatted as YYYY-MM-DD.
+					// It splits this String in order to obtain
+					// an Array of String. This action is performed
+					// for both huc.getDate() and wd.toString().
+					// The elements of the two arrays are than 
+					// compared to access if the processed historical
+					// union charge was registered in one of the 
+					// last month's working days
+					String working_day_string = wd.toString();
+					String[] splitted_working_day_string = working_day_string
+							.split("-");
+					String[] splitted_huc_date_string = huc.getDate()
+							.toString().split("-");
+
+					if (splitted_working_day_string[0].equals(splitted_huc_date_string[0])
+							&& splitted_working_day_string[1].equals(splitted_huc_date_string[1])
+							&& splitted_working_day_string[2].equals(splitted_huc_date_string[2]
+									.split(" ")[0])) {
+
+						total_charges += huc.getUnion_service_association()
+								.getPrice();
+						break;
+					}
+				}
+			}
+		} else {
+			total_charges = 0;
+		}
+
+		return total_charges;
+	}
+	
+	public float getLastWeekUnionTotalChargesByEmployee(Employee e) {
+		List<Date> working_days = calendar_service.lastWeekList();
+		List<HistoricalUnionCharge> hucs = getUnionServiceChargeByEmployee(e);
+
+		float total_charges = 0;
+
+		if (hucs != null) {
+			for (HistoricalUnionCharge huc : hucs) {
+				for (Date wd : working_days) {
+
+					// It calls Date's toString() method which
+					// returns a String formatted as YYYY-MM-DD.
+					// It splits this String in order to obtain
+					// an Array of String. This action is performed
+					// for both huc.getDate() and wd.toString().
+					// The elements of the two arrays are than 
+					// compared to access if the processed historical
+					// union charge was registered in one of the 
+					// last week's working days
 					String working_day_string = wd.toString();
 					String[] splitted_working_day_string = working_day_string
 							.split("-");
