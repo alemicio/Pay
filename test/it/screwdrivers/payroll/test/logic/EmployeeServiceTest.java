@@ -13,19 +13,56 @@ import it.screwdrivers.payroll.model.employee.ContractorEmployee;
 import it.screwdrivers.payroll.model.employee.Employee;
 import it.screwdrivers.payroll.model.employee.SalariedEmployee;
 import it.screwdrivers.payroll.test.ArquillianTest;
+import it.screwdrivers.payroll.test.DbSeeder;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ArchivePaths;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class EmployeeServiceTest extends ArquillianTest {
+public class EmployeeServiceTest {
 
 	@Inject
 	EmployeeDao employee_dao;
 
 	@Inject
 	EmployeeService employee_service;
+
+	@Deployment(name = "Test")
+	@OverProtocol("Servlet 3.0")
+	public static Archive<?> createDeployment() {
+
+		WebArchive archive = ShrinkWrap
+				.create(WebArchive.class, "test_archive.war")
+				.addClass(ArquillianTest.class)
+				.addClass(DbSeeder.class)
+				.addPackages(true, "it.screwdrivers.payroll.controller")
+				.addPackages(true, "it.screwdrivers.payroll.logic")
+				.addPackages(true, "it.screwdrivers.payroll.dao")
+				.addPackages(true, "it.screwdrivers.payroll.engine")
+				.addPackages(true, "it.screwdrivers.payroll.model.card")
+				.addPackages(true, "it.screwdrivers.payroll.model.employee")
+				.addPackages(true, "it.screwdrivers.payroll.model.historical")
+				.addPackages(true, "it.screwdrivers.payroll.model.payment")
+				.addPackages(true, "it.screwdrivers.payroll.model.union")
+				.addPackages(true, "it.screwdrivers.payroll.test.engine")
+				.addPackages(true, "it.screwdrivers.payroll.test.dao")
+				.addAsResource("META-INF/persistence.xml")
+				.addAsWebInfResource(EmptyAsset.INSTANCE,
+						ArchivePaths.create("beans.xml"));
+
+		// archive.as(ZipExporter.class).exportTo(
+		// new File("target/test_archive.war"), true);
+
+		return archive;
+	}
 
 	@Test
 	public void testGetEmployeeByUsernameAndPassword() {
@@ -224,7 +261,7 @@ public class EmployeeServiceTest extends ArquillianTest {
 
 	@Test
 	public void testAddEmployee() {
-		
+
 		boolean was_added = false;
 
 		ContractorEmployee employee1 = new ContractorEmployee();
@@ -236,27 +273,27 @@ public class EmployeeServiceTest extends ArquillianTest {
 		employee1.setPhone_number("3331112233");
 		employee1.setPostal_address("via roma 1");
 		employee1.setHourly_rate(10);
-		
+
 		employee_service.addEmployee(employee1);
-		
+
 		List<Employee> employees = employee_dao.findAll();
-		for(Employee e : employees) {
-			
-			if(e.getId() == employee1.getId())
+		for (Employee e : employees) {
+
+			if (e.getId() == employee1.getId())
 				was_added = true;
 		}
-		
+
 		assertTrue(was_added);
 		employee_dao.remove(employee1);
 	}
-	
+
 	@Test
-	public void testEmployeeIsNotAddedIfUsernameIsNotAvailable(){
-		
+	public void testEmployeeIsNotAddedIfUsernameIsNotAvailable() {
+
 		// hp: the employee table must be empty
-		
+
 		boolean was_not_added = true;
-		
+
 		ContractorEmployee employee1 = new ContractorEmployee();
 		employee1.setName("andrea");
 		employee1.setSurname("mognaschi");
@@ -266,9 +303,9 @@ public class EmployeeServiceTest extends ArquillianTest {
 		employee1.setPhone_number("3331112233");
 		employee1.setPostal_address("via roma 1");
 		employee1.setHourly_rate(10);
-		
+
 		employee_service.addEmployee(employee1);
-		
+
 		ContractorEmployee employee2 = new ContractorEmployee();
 		employee2.setName("andrew");
 		employee2.setSurname("mognussen");
@@ -278,22 +315,22 @@ public class EmployeeServiceTest extends ArquillianTest {
 		employee2.setPhone_number("3331112233");
 		employee2.setPostal_address("via roma 1");
 		employee2.setHourly_rate(10);
-		
+
 		employee_service.addEmployee(employee2);
-		
+
 		// It will test if employee2 was not added
 		List<Employee> employees = employee_dao.findAll();
-		for(Employee e : employees) {
-			
-			if(e.getId() == employee2.getId())
+		for (Employee e : employees) {
+
+			if (e.getId() == employee2.getId())
 				was_not_added = false;
 		}
-		
+
 		assertTrue(was_not_added);
-		
+
 		employee_dao.remove(employee1);
-		if(!was_not_added){
+		if (!was_not_added) {
 			employee_dao.remove(employee2);
-		}	
+		}
 	}
 }

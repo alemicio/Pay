@@ -13,6 +13,7 @@ import it.screwdrivers.payroll.model.union.Union;
 import it.screwdrivers.payroll.model.union.UnionService;
 import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
 import it.screwdrivers.payroll.test.ArquillianTest;
+import it.screwdrivers.payroll.test.DbSeeder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,13 +22,20 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ArchivePaths;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class HistoricalUnionChargeServiceTest extends ArquillianTest {
+public class HistoricalUnionChargeServiceTest {
 
 	@Inject
 	HistoricalUnionChargeService historical_union_charge_service;
@@ -47,7 +55,36 @@ public class HistoricalUnionChargeServiceTest extends ArquillianTest {
 	@Inject
 	HistoricalUnionChargeDao historical_union_charge_dao;
 
-	//@Test
+	@Deployment(name = "Test")
+	@OverProtocol("Servlet 3.0")
+	public static Archive<?> createDeployment() {
+
+		WebArchive archive = ShrinkWrap
+				.create(WebArchive.class, "test_archive.war")
+				.addClass(ArquillianTest.class)
+				.addClass(DbSeeder.class)
+				.addPackages(true, "it.screwdrivers.payroll.controller")
+				.addPackages(true, "it.screwdrivers.payroll.logic")
+				.addPackages(true, "it.screwdrivers.payroll.dao")
+				.addPackages(true, "it.screwdrivers.payroll.engine")
+				.addPackages(true, "it.screwdrivers.payroll.model.card")
+				.addPackages(true, "it.screwdrivers.payroll.model.employee")
+				.addPackages(true, "it.screwdrivers.payroll.model.historical")
+				.addPackages(true, "it.screwdrivers.payroll.model.payment")
+				.addPackages(true, "it.screwdrivers.payroll.model.union")
+				.addPackages(true, "it.screwdrivers.payroll.test.engine")
+				.addPackages(true, "it.screwdrivers.payroll.test.dao")
+				.addAsResource("META-INF/persistence.xml")
+				.addAsWebInfResource(EmptyAsset.INSTANCE,
+						ArchivePaths.create("beans.xml"));
+
+		// archive.as(ZipExporter.class).exportTo(
+		// new File("target/test_archive.war"), true);
+
+		return archive;
+	}
+
+	@Test
 	public void testConfirmOrder() {
 
 		boolean was_ordered = false;
@@ -104,11 +141,11 @@ public class HistoricalUnionChargeServiceTest extends ArquillianTest {
 		union_service_dao.remove(union_service);
 		union_dao.remove(union);
 		employee_dao.remove(employee1);
-		
+
 		assertTrue(was_ordered);
 	}
 
-	//@Test
+	@Test
 	public void testIfTheServiceWasOrderedInThisWeekItsOrderWillNotBeSaved() {
 
 		int count = 0;
@@ -156,36 +193,36 @@ public class HistoricalUnionChargeServiceTest extends ArquillianTest {
 		List<HistoricalUnionCharge> to_be_removed_after_test = new ArrayList<HistoricalUnionCharge>();
 		List<HistoricalUnionCharge> historical_union_charges = historical_union_charge_dao
 				.findAll();
-		
+
 		for (HistoricalUnionCharge huc : historical_union_charges) {
 			if (huc.getEmployee().getId() == employee1.getId()
 					&& huc.getUnion_service_association().getId() == usa
-							.getId()){
-				
-				count ++;
+							.getId()) {
+
+				count++;
 				to_be_removed_after_test.add(huc);
 			}
 		}
-		
-		for(HistoricalUnionCharge huc : to_be_removed_after_test)
+
+		for (HistoricalUnionCharge huc : to_be_removed_after_test)
 			historical_union_charge_dao.remove(huc);
 
 		union_service_association_dao.remove(usa);
 		union_service_dao.remove(union_service);
 		union_dao.remove(union);
 		employee_dao.remove(employee1);
-		
+
 		assertTrue(count == 1);
 	}
-	
+
 	@Test
-	public void testGetLastMonthUnionTotalChargesByEmployee(){
-		
+	public void testGetLastMonthUnionTotalChargesByEmployee() {
+
 		Union union = new Union();
 		union.setName("test_union");
 		union.setPhone_number("3388194740");
 		union_dao.add(union);
-		
+
 		SalariedEmployee employee1 = new SalariedEmployee();
 		employee1.setName("davide");
 		employee1.setSurname("bonamico");
@@ -215,30 +252,31 @@ public class HistoricalUnionChargeServiceTest extends ArquillianTest {
 		// "test_union"
 		historical_union_charge_service.confirmOrder(employee1,
 				selected_union_service_associations);
-		
-		float last_month_union_total_charges = historical_union_charge_service.getLastMonthUnionTotalChargesByEmployee(employee1);
-		
+
+		float last_month_union_total_charges = historical_union_charge_service
+				.getLastMonthUnionTotalChargesByEmployee(employee1);
+
 		List<HistoricalUnionCharge> historical_union_charges = historical_union_charge_dao
 				.findAll();
 		for (HistoricalUnionCharge huc : historical_union_charges) {
 			if (huc.getEmployee().getId() == employee1.getId()
 					&& huc.getUnion_service_association().getId() == usa
-							.getId()){
-				
+							.getId()) {
+
 				historical_union_charge_dao.remove(huc);
 			}
 		}
-		
+
 		union_service_association_dao.remove(usa);
 		union_service_dao.remove(union_service);
 		union_dao.remove(union);
 		employee_dao.remove(employee1);
-		
+
 		Calendar calendar = new GregorianCalendar();
 		int saturday = 7;
 		int sunday = 1;
 		int calendar_day_of_week = calendar.get(Calendar.DAY_OF_WEEK);
-		
+
 		if (calendar_day_of_week != saturday && calendar_day_of_week != sunday)
 			assertTrue(last_month_union_total_charges == 999);
 		else

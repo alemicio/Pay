@@ -24,6 +24,7 @@ import it.screwdrivers.payroll.model.historical.HistoricalUnionCharge;
 import it.screwdrivers.payroll.model.union.Union;
 import it.screwdrivers.payroll.model.union.UnionServiceAssociation;
 import it.screwdrivers.payroll.test.ArquillianTest;
+import it.screwdrivers.payroll.test.DbSeeder;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -32,12 +33,19 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ArchivePaths;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class PayEmployeesTest extends ArquillianTest {
+public class PayEmployeesTest {
 
 	@Inject
 	EmployeeDao e_dao;
@@ -56,7 +64,7 @@ public class PayEmployeesTest extends ArquillianTest {
 
 	@Inject
 	UnionServiceAssociationDao usa_dao;
-	
+
 	@Inject
 	HistoricalUnionChargeDao huc_dao;
 
@@ -74,6 +82,35 @@ public class PayEmployeesTest extends ArquillianTest {
 
 	@Inject
 	HistoricalUnionChargeService huc_service;
+
+	@Deployment(name = "Test")
+	@OverProtocol("Servlet 3.0")
+	public static Archive<?> createDeployment() {
+
+		WebArchive archive = ShrinkWrap
+				.create(WebArchive.class, "test_archive.war")
+				.addClass(ArquillianTest.class)
+				.addClass(DbSeeder.class)
+				.addPackages(true, "it.screwdrivers.payroll.controller")
+				.addPackages(true, "it.screwdrivers.payroll.logic")
+				.addPackages(true, "it.screwdrivers.payroll.dao")
+				.addPackages(true, "it.screwdrivers.payroll.engine")
+				.addPackages(true, "it.screwdrivers.payroll.model.card")
+				.addPackages(true, "it.screwdrivers.payroll.model.employee")
+				.addPackages(true, "it.screwdrivers.payroll.model.historical")
+				.addPackages(true, "it.screwdrivers.payroll.model.payment")
+				.addPackages(true, "it.screwdrivers.payroll.model.union")
+				.addPackages(true, "it.screwdrivers.payroll.test.engine")
+				.addPackages(true, "it.screwdrivers.payroll.test.dao")
+				.addAsResource("META-INF/persistence.xml")
+				.addAsWebInfResource(EmptyAsset.INSTANCE,
+						ArchivePaths.create("beans.xml"));
+
+		// archive.as(ZipExporter.class).exportTo(
+		// new File("target/test_archive.war"), true);
+
+		return archive;
+	}
 
 	@Test
 	public void testIfManagerEmployeesArePaid() {
@@ -221,9 +258,9 @@ public class PayEmployeesTest extends ArquillianTest {
 		}
 		tc_dao.remove(timecard);
 		List<HistoricalUnionCharge> hucs = huc_dao.findAll();
-		for(HistoricalUnionCharge huc : hucs){
+		for (HistoricalUnionCharge huc : hucs) {
 			huc_dao.remove(huc);
-		}		
+		}
 		usa_dao.remove(usa);
 		us_dao.remove(union_service);
 		e_dao.remove(employee_contractor);
