@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <head>
-<title>About Us</title>
+<title>Contractor Face</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
 
@@ -48,9 +48,9 @@
 					id="bs-example-navbar-collapse-1">
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="cogs.xhtml" style="border-color: #b21b7c;">COGS</a></li>
-						<li><a href="#" style="border-color: #b21b7c;">ABOUT US</a></li>
-						<li><a href="contacts.xhtml" style="border-color: #b21b7c;">CONTACTS</a></li>
+						<li><a href="cogs.xhtml" style="border-color: #F9B313">COGS</a></li>
+						<li><a href="#" style="border-color: #F9B313;">ABOUT US</a></li>
+						<li><a href="contacts.xhtml" style="border-color: #F9B313;">CONTACTS</a></li>
 					</ul>
 				</div>
 			</div>
@@ -61,12 +61,12 @@
 			<div class="jumbotron" id="jumbotron">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1>SALARIED FACE</h1>
+						<h1>CONTRACTOR FACE</h1>
 					</div>
 				</div>
 			</div>
 
-			<div class="jumbotron" id="details">
+			<div class="jumbotron" id="details" style="background-color:rgba(249, 179, 19, 0.7);">
 				<div class="row">
 
 					<div class="col-lg-3" style="text-align: center;">
@@ -120,7 +120,70 @@
 				</div>
 			</div>
 
-			<div class="jumbotron" id="details">
+			<div class="jumbotron" id="details" style="background-color:rgba(249, 179, 19, 0.7);">
+				<h:form>
+					<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+					<h1>Send Time Card</h1>
+					<div class="row">
+						<div class="col-lg-4">
+							<h:outputText value="Select date:" />
+							<b:datepicker mode="icon-toggle" showWeek="true" firstDay="1"
+								id="calendar" value="#{timecard.date}"></b:datepicker>
+						</div>
+						<div class="col-lg-4">
+							<h:outputText value="Start hour:" />
+							<b:inputText id="hs" required="true"
+								value="#{timecard.hour_start}">
+								<f:facet name="prepend">
+									<b:icon name="menu-up"></b:icon>
+								</f:facet>
+							</b:inputText>
+							<h:outputText value="Start minute:" />
+							<b:inputText id="ms" required="true"
+								value="#{timecard.minute_start}">
+								<f:facet name="prepend">
+									<b:icon name="menu-down"></b:icon>
+								</f:facet>
+							</b:inputText>
+							<h:outputText value="End hour:" />
+							<b:inputText id="he" required="true" value="#{timecard.hour_end}">
+								<f:facet name="prepend">
+									<b:icon name="menu-up"></b:icon>
+								</f:facet>
+							</b:inputText>
+							<h:outputText value="End minute:" />
+							<b:inputText id="me" required="true"
+								value="#{timecard.minute_end}">
+								<f:facet name="prepend">
+									<b:icon name="menu-down"></b:icon>
+								</f:facet>
+							</b:inputText>
+
+						</div>
+						<div class="col-lg-4">
+							<svg id="clock" viewBox="0 0 100 100">
+            						<circle id="face" cx="50" cy="50" r="45" />
+            						<g id="hands">
+                						<rect id="hour" x="48.5" y="12.5" width="5"
+									height="40" rx="2.5" ry="2.55" />
+               							<rect id="min" x="48" y="12.5" width="3"
+									height="40" rx="2" ry="2" />
+                						<line id="sec" x1="50" y1="50" x2="50" y2="16" />
+            						</g>
+        						</svg>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-4">
+							<b:commandButton value="Submit TimeCard" size="lg" update="growl"
+								action="#{timecard.submitTimeCard(login.retrived_employee)}" style="background-color: #74A1DC;"></b:commandButton>
+						</div>
+					</div>
+				</h:form>
+				
+			</div>
+
+			<div class="jumbotron" id="details" style="background-color:rgba(249, 179, 19, 0.7);">
 				<div class="row">
 					<div class="col-lg-6">
 						<h2>Payment:
@@ -296,7 +359,7 @@
 				</div>
 			</div>
 
-			<div class="jumbotron" id="details">
+			<div class="jumbotron" id="details" style="background-color:rgba(249, 179, 19, 0.7);">
 				<div class="row">
 					<div class="col-lg-12">
 						<h2>Union Services Order</h2>
@@ -337,14 +400,14 @@
 				</div>
 			</div>
 
-			<div class="jumbotron" id="details">
+			<div class="jumbotron" id="details" style="background-color:rgba(249, 179, 19, 0.7);">
 
 				<p:dataTable id="historicalSalaries" var="hs"
 					value="#{historical_salary.historical_salaries}" editable="false"
 					style="margin-bottom:20px; text-align:center">
 					<f:facet name="header">
 						<h2>HISTORICAL SALARIES</h2>
-				</f:facet>
+					</f:facet>
 
 					<p:column headerText="Date">
 						<h:outputText value="#{hs.date}" />
@@ -393,3 +456,8 @@
 	<script src="/Pay/resources/js/bootstrap.js"></script>
 </body>
 </html>
+
+
+
+
+

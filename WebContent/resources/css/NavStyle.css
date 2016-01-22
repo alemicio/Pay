@@ -124,11 +124,15 @@
 }
 
 .input-group-addon {
+	border-width: 0.5rem;
+	border-color: white;
 	color: black;
 	background-color: transparent;
 }
 
 .form-control {
+	border-width: 0.5rem;
+	border-color: white;
 	color: white;
 	background-color: transparent;
 }
@@ -182,7 +186,7 @@
 
 #details {
 	background-color:rgba(178, 27, 124, 0.6);
-	color: #e6e6e6;
+	color: white;
 }
 
 #details h1 {
@@ -210,6 +214,15 @@
 	border-style: solid;
 	border-radius: 10px;
 	border-color: #699256;
+	border-width: 0.7rem;
+	padding: 0rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+#bordino2 {
+	border-style: solid;
+	border-radius: 10px;
+	border-color: #B21B7C;
 	border-width: 0.7rem;
 	padding: 0rem;
 	margin-top: 2rem;
