@@ -130,12 +130,12 @@ public class HistoricalUnionChargeServiceTest {
 
 			if (huc.getEmployee().getId() == employee1.getId()
 					&& huc.getUnion_service_association().getId() == usa
-							.getId())
+							.getId()){
 				was_ordered = true;
-
-			historical_union_charge_dao.remove(huc);
-			union_service_association_dao.remove(huc
-					.getUnion_service_association());
+				historical_union_charge_dao.remove(huc);
+				union_service_association_dao.remove(huc
+						.getUnion_service_association());
+			}
 		}
 
 		union_service_dao.remove(union_service);

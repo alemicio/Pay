@@ -271,7 +271,7 @@ public class PayEmployeesTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	// @Test
+	@Test
 	public void testIfCommissionedEmployeesArePaid() {
 
 		int count = 0;
