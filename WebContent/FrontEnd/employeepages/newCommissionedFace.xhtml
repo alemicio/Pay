@@ -1,0 +1,442 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<head>
+<title>commissioned Face</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+<link href="/Pay/resources/css/NavStyle.css" rel="stylesheet" />
+
+<link href="/Pay/resources/font/style.css" rel="stylesheet"></link>
+
+<link href="/Pay/resources/css/myStyle.css" rel="stylesheet"></link>
+</head>
+
+<body>
+	<div class="container-fluid" id="sfondo"
+		style="background-repeat: repeat-y;">
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="indexMicio.xhtml">Magic
+						ScrewDriver</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="cogs.xhtml" style="border-color: #699256;">COGS</a></li>
+						<li><a href="#" style="border-color: #699256;">ABOUT US</a></li>
+						<li><a href="contacts.xhtml" style="border-color: #699256;">CONTACTS</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<div class="container">
+			<div class="jumbotron" id="jumbotron">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1>COMMISSIONED FACE</h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="jumbotron" id="details"
+				style="background-color: rgba(105, 146, 86, 0.7);">
+				<div class="row">
+
+					<div class="col-lg-3" style="text-align: center;">
+						<div class="row">
+							<div class="col-xs-12">
+								<h:graphicImage library="images" name="logo_unipv.png"
+									class="img-responsive center-block" alt="Responsive image"
+									id="bordino2" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6" style="text-align: center;">
+								<button class="btn btn-lg btn-info" data-toggle="modal"
+									data-target="#edit-profile-modal"
+									style="background-color: #74A1DC;">Edit Profile</button>
+							</div>
+							<div class="col-xs-6" style="text-align: center;">
+								<h:form>
+									<b:commandButton size="lg" value="Logout"
+										action="#{login.performLogout}"
+										style="background-color: #B21B7C;"></b:commandButton>
+								</h:form>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-9">
+						<div class="row">
+							<div class="col-xs-12">
+								<h1>Benvenuto #{login.logged_employee.username}</h1>
+							</div>
+						</div>
+
+						<hr
+							style="margin: 0; width: 100%; height: 0.2rem; background: black; border: none;" />
+
+						<div class="row">
+							<div class="col-lg-6">
+								<h3>Name: #{login.logged_employee.name}</h3>
+								<h3>E-mail: #{login.logged_employee.e_mail}</h3>
+								<h3>Address: #{login.logged_employee.postal_address}</h3>
+							</div>
+
+							<div class="col-lg-6">
+								<h3>Surname: #{login.logged_employee.surname}</h3>
+								<h3>Phone: #{login.logged_employee.phone_number}</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="jumbotron" id="details"
+				style="background-color: rgba(105, 146, 86, 0.7);">
+				<h:form>
+					<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+					<h1>Send Sales Card</h1>
+					<div class="row">
+						<div class="col-lg-4">
+							<h:outputText value="Select date:" />
+							<b:datepicker mode="icon-toggle" showWeek="true" firstDay="1"
+								id="calendar" value="#{salescard.date}"></b:datepicker>
+						</div>
+						<div class="col-lg-4">
+							<h:outputText value="Customer referenced" />
+							<b:inputText id="customer" required="true" fieldSize="lg"
+								value="#{salescard.customer}">
+								<f:facet name="prepend">
+									<b:icon name="menu-up"></b:icon>
+								</f:facet>
+							</b:inputText>
+
+
+						</div>
+						<div class="col-lg-4">
+							<h:outputText value="Amount of sales" />
+							<b:inputText id="amount" required="true" fieldSize="lg"
+								value="#{salescard.amount}">
+								<f:facet name="prepend">
+									<b:icon name="menu-up"></b:icon>
+								</f:facet>
+							</b:inputText>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-4">
+							<b:commandButton value="Submit TimeCard" size="lg" update="growl"
+								action="#{salescard.submitSalesCard(login.logged_employee)}" style="background-color: #74A1DC;"></b:commandButton>
+						</div>
+					</div>
+				</h:form>
+			</div>
+			
+			
+			<div class="jumbotron" id="details"
+				style="background-color: rgba(105, 146, 86, 0.7);">
+				<div class="row">
+					<div class="col-lg-6">
+						<h2>Payment:
+							#{paymentmethod.getPaymethodType(login.logged_employee)}</h2>
+						<button type="button" class="btn btn-primary btn-lg"
+							data-toggle="modal" data-target="#myModalPay"
+							style="background-color: #F9B313;">select Payment</button>
+
+						<!-- Modal pay -->
+						<div class="modal fade" id="myModalPay" tabindex="-1"
+							role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content" id="Hmodal">
+
+									<div class="modal-header">
+										<IMG alt="uni-pv logo" src="/Pay/resources/images/logo.PNG"
+											class="img-responsive" />
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-lg-12">
+												<h3>Actual:
+													#{paymentmethod.getPaymethodType(login.logged_employee)}</h3>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-12">
+												<ul class="nav nav-tabs" role="tablist"
+													style="font-size: 0.55rem;">
+													<li role="presentation" class="active"><a href="#home"
+														aria-controls="home" role="tab" data-toggle="tab">BANK</a></li>
+													<li role="presentation"><a href="#profile"
+														aria-controls="profile" role="tab" data-toggle="tab">POSTAL</a></li>
+													<li role="presentation"><a href="#messages"
+														aria-controls="messages" role="tab" data-toggle="tab">WITHDRAW</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-12">
+												<!-- Tab panes -->
+												<div class="tab-content">
+													<div role="tabpanel" class="tab-pane active" id="home">
+
+														<!--  This is the form in which we will insert the new bank paymethod data -->
+														<h:form>
+															<b:inputText fieldSize="lg" value="#{paymentmethod.IBAN}">
+																<f:facet name="prepend">
+																	<h:outputText value="IBAN" />
+																</f:facet>
+															</b:inputText>
+
+															<b:inputText fieldSize="lg"
+																value="#{paymentmethod.filial}">
+																<f:facet name="prepend">
+																	<h:outputText value="filial" />
+																</f:facet>
+															</b:inputText>
+
+															<b:button value="close" size="lg" dismiss="modal"
+																onclick="return false;"
+																style="background-color: #F9B313;" />
+
+															<b:commandButton value="OK"
+																action="#{paymentmethod.setBankPaymethod(login.logged_employee)}"
+																style="background-color: #699256;"></b:commandButton>
+														</h:form>
+														<!-- ===================================================================== -->
+
+													</div>
+													<div role="tabpanel" class="tab-pane" id="profile">
+
+														<!--  This is the form in which we will insert the new postal paymethod data -->
+														<h:form>
+															<b:inputText fieldSize="lg"
+																value="#{paymentmethod.residential_address}">
+																<f:facet name="prepend">
+																	<h:outputText value="Residential Address" />
+																</f:facet>
+															</b:inputText>
+
+															<b:button value="close" size="lg" dismiss="modal"
+																onclick="return false;"
+																style="background-color: #F9B313;" />
+
+															<b:commandButton value="OK"
+																action="#{paymentmethod.setPostalPaymethod(login.logged_employee)}"
+																style="background-color: #699256;"></b:commandButton>
+														</h:form>
+														<!-- ===================================================================== -->
+
+													</div>
+													<div role="tabpanel" class="tab-pane" id="messages">
+
+														<!--  This is the form in which we will insert the new withdraw paymethod data -->
+														<h:form>
+															<b:inputText fieldSize="lg"
+																value="#{paymentmethod.headquarter}">
+																<f:facet name="prepend">
+																	<h:outputText value="Headquarter" />
+																</f:facet>
+															</b:inputText>
+
+															<b:button value="close" size="lg" dismiss="modal"
+																onclick="return false;"
+																style="background-color: #F9B313;" />
+
+															<b:commandButton value="OK"
+																action="#{paymentmethod.setWithDrawPaymethod(login.logged_employee)}"
+																style="background-color: #699256;"></b:commandButton>
+														</h:form>
+														<!-- ===================================================================== -->
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-6">
+						<h2>Union: #{union.getUnionName(login.logged_employee)}</h2>
+						<button type="button" class="btn btn-primary btn-lg"
+							data-toggle="modal" data-target="#myModalUnion"
+							style="background-color: #F9B313;">select Union</button>
+
+						<!-- Modal Union -->
+						<div class="modal fade" id="myModalUnion" tabindex="-1"
+							role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content" id="Hmodal">
+
+									<div class="modal-header">
+										<IMG alt="uni-pv logo" src="/Pay/resources/images/logo.PNG"
+											class="img-responsive" />
+									</div>
+									<div class="modal-body">
+										<h:form id="unionset">
+											<div class="row">
+												<div class="col-lg-12">
+													<h3>Select a Union to belong to</h3>
+													<b:selectOneMenu value="#{union.union_name}"
+														required="true" fieldSize="lg">
+														<f:facet name="prepend">
+															<h:outputText value="@union" />
+														</f:facet>
+														<f:selectItems value="#{union.union_names}" />
+													</b:selectOneMenu>
+													<b:inputText value="#{union.union_name}" disabled="true"></b:inputText>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
+													<b:commandButton value="Ok" size="lg" dismiss="modal"
+														action="#{union.setUnion(login.logged_employee)}"
+														style="background-color: #699256;" />
+												</div>
+											</div>
+										</h:form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="jumbotron" id="details"
+				style="background-color: rgba(105, 146, 86, 0.7);">
+				<div class="row">
+					<div class="col-lg-12">
+						<h2>Union Services Order</h2>
+						<h4>Select the union's services you want to order</h4>
+
+						<hr
+							style="margin-bottom: 1rem; width: 100%; height: 0.2rem; background: black; border: none;" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<!-- ===================================== -->
+						<!-- === Union services selection form === -->
+						<!-- ===================================== -->
+						<h:form role="form" styleClass="form-horizontal">
+							<div class="row">
+								<div class="col-lg-6">
+									<p:selectManyMenu id="union-services"
+										value="#{union.services_selected}" var="union_service"
+										filter="true" filterMatchMode="contains" showCheckbox="true">
+										<f:selectItems value="#{union.services_names}"
+											var="union_service" itemLabel="#{union_service}"
+											itemValue="#{union_service}" />
+										<p:column>
+											<h:outputText value="#{union_service}" />
+										</p:column>
+									</p:selectManyMenu>
+								</div>
+
+								<div class="col-lg-6">
+									<h:commandButton value="Confirm Order"
+										action="#{union.confirmOrder(login.logged_employee)}"
+										styleClass="btn btn-lg" style="background-color: #74A1DC;" />
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+			<div class="jumbotron" id="details"
+				style="background-color: rgba(105, 146, 86, 0.7);">
+
+				<p:dataTable id="historicalSalaries" var="hs"
+					value="#{historical_salary.historical_salaries}" editable="false"
+					style="margin-bottom:20px; text-align:center">
+					<f:facet name="header">
+						<h2>HISTORICAL SALARIES</h2>
+					</f:facet>
+
+					<p:column headerText="Date">
+						<h:outputText value="#{hs.date}" />
+					</p:column>
+
+					<p:column headerText="Amount">
+						<h:outputText value="#{hs.amount}" />
+					</p:column>
+
+					<p:column headerText="Commission">
+						<h:outputLabel rendered="#{hs.commission==true}">
+							<i class="glyphicon glyphicon-ok"></i>
+						</h:outputLabel>
+						<h:outputLabel rendered="#{hs.commission==false}">
+							<i class="glyphicon glyphicon-remove"></i>
+						</h:outputLabel>
+					</p:column>
+
+				</p:dataTable>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+
+
+
+
+
+	<div class="container-fluid" style="background-color: #A39758">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12" style="text-align: center;">
+					<IMG alt="uni-pv logo" src="/Pay/resources/images/unipv2.png"
+						class="img-responsive" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/Pay/resources/js/jquery-2.2.0.min.js"></script>
+	<script src="/Pay/resources/js/bootstrap.js"></script>
+</body>
+</html>
